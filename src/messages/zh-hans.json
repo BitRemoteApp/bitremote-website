@@ -1,0 +1,114 @@
+{
+  "site": {
+    "name": "BitRemote",
+    "tagline": "远程控制你的下载器。",
+    "description": "一款可在 Apple 设备上远程控制下载器的应用。"
+  },
+  "nav": {
+    "home": "主页",
+    "features": "功能",
+    "downloaders": "支持的下载器",
+    "howItWorks": "使用方式",
+    "faq": "常见问题",
+    "support": "支持"
+  },
+  "cta": {
+    "appStore": "前往 App Store 下载",
+    "supportedDownloaders": "支持的下载器"
+  },
+  "hero": {
+    "subhead": "适用于 iPhone / iPad / Mac。随时随地管理任务、查看活动情况。",
+    "splitCaptionLeft": "APP_RENDER",
+    "splitCaptionRight": "BYTE_SKELETON"
+  },
+  "sections": {
+    "benefits": {
+      "title": "你可以做什么",
+      "items": [
+        {
+          "id": "diverseClientSupport",
+          "title": "多元客户端支持",
+          "subtitle": "无缝整合常用的下载工具，包括 aria2、qBit、Trans、Synology 和 QNAP。"
+        },
+        {
+          "id": "comprehensiveTaskManagement",
+          "title": "全面的任务管理",
+          "subtitle": "轻松控制您的下载任务，可随时暂停、恢复、删除任务，并添加新任务。"
+        },
+        {
+          "id": "smartFilteringSorting",
+          "title": "智能过滤和排序",
+          "subtitle": "按状态、类别或标签整理下载任务，并按各种条件排序提高管理效率。"
+        },
+        {
+          "id": "activityMonitor",
+          "title": "活动监视器",
+          "subtitle": "实时掌握客户端的统计数据与传输记录。"
+        },
+        {
+          "id": "clientsBackupRestore",
+          "title": "客户端数据备份与恢复",
+          "subtitle": "使用统一的 JSON 格式导出和导入客户端，确保在不同版本间无缝转移。"
+        },
+        {
+          "id": "optionalCertificateEvaluation",
+          "title": "可选的证书验证",
+          "subtitle": "新增选项可跳过客户端主机的证书验证，允许连接到使用自签证书的服务器。"
+        }
+      ]
+    },
+    "downloaders": {
+      "title": "支持的下载器",
+      "items": ["aria2", "qBittorrent", "Transmission", "Synology Download Station", "QNAP Download Station"]
+    },
+    "howItWorks": {
+      "title": "使用方式",
+      "steps": [
+        { "title": "安装", "body": "在 App Store 获取 BitRemote。" },
+        { "title": "连接", "body": "添加你的客户端（主机与凭据）。" },
+        { "title": "控制", "body": "在 Apple 设备上监控并管理任务。" }
+      ],
+      "requirements": "需要 iOS / iPadOS / macOS 26.0 或更高版本。"
+    },
+    "plus": {
+      "title": "BitRemote+",
+      "subtitle": "可选会员（具体内容可能会变化）。",
+      "items": ["移除广告", "不限客户端数", "任务详情面板", "专属客户端类型"],
+      "note": "价格与方案详情即将提供。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "items": [
+        { "q": "支持哪些下载器？", "a": "aria2、qBittorrent、Transmission、Synology Download Station、QNAP Download Station。" },
+        { "q": "必须在同一网络下使用吗？", "a": "取决于你的网络环境。你可以通过局域网、VPN 或其他安全方式连接。" },
+        { "q": "BitRemote 会在手机上下载文件吗？", "a": "不会。BitRemote 用于控制和监控现有的下载器客户端。" },
+        { "q": "是否支持 HTTPS？", "a": "支持。建议尽可能使用 HTTPS 保护连接安全。" }
+      ]
+    }
+  },
+  "pages": {
+    "privacy": {
+      "title": "隐私权政策",
+      "body": "BitRemote 的官方隐私政策由 Ark Studios 托管。"
+    },
+    "terms": {
+      "title": "条款（EULA）",
+      "body": "BitRemote 的官方 EULA 由 Ark Studios 托管。"
+    },
+    "support": {
+      "title": "支持",
+      "body": "问题、反馈与社区："
+    }
+  },
+  "links": {
+    "appStore": "https://apps.apple.com/app/id6477765303",
+    "twitter": "https://twitter.com/bitremote",
+    "discord": "https://discord.gg/x5TP2z6cFj",
+    "telegram": "https://t.me/bitremote",
+    "privacyPolicyEn": "https://arkstudios.co.jp/en/privacy/bitremote",
+    "privacyPolicyJa": "https://arkstudios.co.jp/ja/privacy/bitremote",
+    "eulaEn": "https://arkstudios.co.jp/en/eula/bitremote",
+    "eulaJa": "https://arkstudios.co.jp/ja/eula/bitremote"
+  }
+}
+

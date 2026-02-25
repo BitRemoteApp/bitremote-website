@@ -1,0 +1,135 @@
+{
+  "site": {
+    "name": "BitRemote",
+    "tagline": "Control your downloaders remotely.",
+    "description": "An Apple platforms app to control your downloaders remotely."
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "downloaders": "Downloaders",
+    "howItWorks": "How it works",
+    "faq": "FAQ",
+    "support": "Support"
+  },
+  "cta": {
+    "appStore": "Download on the App Store",
+    "supportedDownloaders": "Supported downloaders"
+  },
+  "hero": {
+    "subhead": "Built for iPhone, iPad, and Mac. Manage download tasks and monitor activity — wherever you are.",
+    "splitCaptionLeft": "APP_RENDER",
+    "splitCaptionRight": "BYTE_SKELETON"
+  },
+  "sections": {
+    "benefits": {
+      "title": "What you can do",
+      "items": [
+        {
+          "id": "diverseClientSupport",
+          "title": "Diverse Client Support",
+          "subtitle": "Seamlessly integrate with popular download tools including aria2, qBit, Trans, Synology, and QNAP."
+        },
+        {
+          "id": "comprehensiveTaskManagement",
+          "title": "Comprehensive Task Management",
+          "subtitle": "Easily control your downloads with options to pause, resume, delete tasks, and add new ones on the fly."
+        },
+        {
+          "id": "smartFilteringSorting",
+          "title": "Smart Filtering & Sorting",
+          "subtitle": "Organize downloads by status, category, or tag, and sort by various criteria for efficiency."
+        },
+        {
+          "id": "activityMonitor",
+          "title": "Activity Monitor",
+          "subtitle": "Monitor real-time statistics and transfer history happening on your client."
+        },
+        {
+          "id": "clientsBackupRestore",
+          "title": "Clients Backup & Restore",
+          "subtitle": "Export and import clients with a unified JSON format, ensuring seamless transfers across app versions."
+        },
+        {
+          "id": "optionalCertificateEvaluation",
+          "title": "Optional Certificate Evaluation",
+          "subtitle": "New option to bypass certificate evaluation for client hosts, enabling connections to servers with self-signed certificates."
+        }
+      ]
+    },
+    "downloaders": {
+      "title": "Supported downloaders",
+      "items": ["aria2", "qBittorrent", "Transmission", "Synology Download Station", "QNAP Download Station"]
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "steps": [
+        {
+          "title": "Install",
+          "body": "Get BitRemote on the App Store."
+        },
+        {
+          "title": "Connect",
+          "body": "Add your downloader client (host + credentials)."
+        },
+        {
+          "title": "Control",
+          "body": "Monitor and manage tasks from your Apple devices."
+        }
+      ],
+      "requirements": "Requires iOS / iPadOS / macOS 26.0 or later."
+    },
+    "plus": {
+      "title": "BitRemote+",
+      "subtitle": "Optional membership (details may vary).",
+      "items": ["Remove Ads", "Unlimited Clients", "Task Insight Panel", "Exclusive Client Types"],
+      "note": "Pricing and plan details coming soon."
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": [
+        {
+          "q": "Which downloaders are supported?",
+          "a": "aria2, qBittorrent, Transmission, Synology Download Station, and QNAP Download Station."
+        },
+        {
+          "q": "Do I need to be on the same network?",
+          "a": "It depends on your setup. Many users connect over LAN, VPN, or a secure remote access method provided by their environment."
+        },
+        {
+          "q": "Does BitRemote download files on my phone?",
+          "a": "No. BitRemote controls and monitors your existing downloader clients."
+        },
+        {
+          "q": "Is HTTPS supported?",
+          "a": "Yes. Use HTTPS whenever possible to protect your connection."
+        }
+      ]
+    }
+  },
+  "pages": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "body": "BitRemote’s official privacy policy is hosted by Ark Studios."
+    },
+    "terms": {
+      "title": "Terms (EULA)",
+      "body": "BitRemote’s official EULA is hosted by Ark Studios."
+    },
+    "support": {
+      "title": "Support",
+      "body": "Questions, feedback, and community:"
+    }
+  },
+  "links": {
+    "appStore": "https://apps.apple.com/app/id6477765303",
+    "twitter": "https://twitter.com/bitremote",
+    "discord": "https://discord.gg/x5TP2z6cFj",
+    "telegram": "https://t.me/bitremote",
+    "privacyPolicyEn": "https://arkstudios.co.jp/en/privacy/bitremote",
+    "privacyPolicyJa": "https://arkstudios.co.jp/ja/privacy/bitremote",
+    "eulaEn": "https://arkstudios.co.jp/en/eula/bitremote",
+    "eulaJa": "https://arkstudios.co.jp/ja/eula/bitremote"
+  }
+}
+
