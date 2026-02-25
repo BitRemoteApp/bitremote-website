@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://bitremote.app/</loc></url>
+
+  <url><loc>https://bitremote.app/en/</loc></url>
+  <url><loc>https://bitremote.app/en/privacy/</loc></url>
+  <url><loc>https://bitremote.app/en/terms/</loc></url>
+  <url><loc>https://bitremote.app/en/support/</loc></url>
+
+  <url><loc>https://bitremote.app/ja/</loc></url>
+  <url><loc>https://bitremote.app/ja/privacy/</loc></url>
+  <url><loc>https://bitremote.app/ja/terms/</loc></url>
+  <url><loc>https://bitremote.app/ja/support/</loc></url>
+
+  <url><loc>https://bitremote.app/zh-hans/</loc></url>
+  <url><loc>https://bitremote.app/zh-hans/privacy/</loc></url>
+  <url><loc>https://bitremote.app/zh-hans/terms/</loc></url>
+  <url><loc>https://bitremote.app/zh-hans/support/</loc></url>
+
+  <url><loc>https://bitremote.app/zh-hant/</loc></url>
+  <url><loc>https://bitremote.app/zh-hant/privacy/</loc></url>
+  <url><loc>https://bitremote.app/zh-hant/terms/</loc></url>
+  <url><loc>https://bitremote.app/zh-hant/support/</loc></url>
+</urlset>

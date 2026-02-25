@@ -1,0 +1,253 @@
+<svg
+  width="1024"
+  height="1024"
+  viewBox="0 0 1024 1024"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <style>
+    .icon-dark {
+      display: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      .icon-light {
+        display: none;
+      }
+      .icon-dark {
+        display: inline;
+      }
+    }
+  </style>
+
+  <g class="icon-light">
+    <rect width="1024" height="1024" fill="url(#paint0_linear_3_7)" />
+    <g clip-path="url(#clip0_3_7)">
+      <rect
+        x="673.506"
+        y="444.465"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-105 673.506 444.465)"
+        fill="#767676"
+      />
+      <rect
+        x="699.388"
+        y="541.057"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-105 699.388 541.057)"
+        fill="#767676"
+      />
+      <rect
+        x="725.27"
+        y="637.65"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-105 725.27 637.65)"
+        fill="#767676"
+      />
+    </g>
+    <circle cx="782.9" cy="769.8" r="125" fill="#383838" />
+    <g clip-path="url(#clip1_3_7)">
+      <rect
+        x="432.909"
+        y="695.767"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-162 432.909 695.767)"
+        fill="#767676"
+      />
+      <rect
+        x="528.014"
+        y="726.668"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-162 528.014 726.668)"
+        fill="#767676"
+      />
+      <rect
+        x="623.12"
+        y="757.57"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-162 623.12 757.57)"
+        fill="#767676"
+      />
+    </g>
+    <circle cx="220" cy="594.8" r="98.4375" stroke="#383838" stroke-width="53.125" />
+    <g clip-path="url(#clip2_3_7)">
+      <rect
+        x="469.755"
+        y="357.874"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-40.85 469.755 357.874)"
+        fill="#767676"
+      />
+      <rect
+        x="394.112"
+        y="423.282"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-40.85 394.112 423.282)"
+        fill="#767676"
+      />
+      <rect
+        x="318.47"
+        y="488.69"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-40.85 318.47 488.69)"
+        fill="#767676"
+      />
+    </g>
+    <circle cx="640.4" cy="231.3" r="98.4375" stroke="#383838" stroke-width="53.125" />
+    <defs>
+      <linearGradient
+        id="paint0_linear_3_7"
+        x1="512"
+        y1="0"
+        x2="512"
+        y2="1024"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="white" />
+        <stop offset="1" stop-color="#DEE7F1" />
+      </linearGradient>
+      <clipPath id="clip0_3_7">
+        <rect width="275" height="40" fill="white" transform="translate(725.27 637.65) rotate(-105)" />
+      </clipPath>
+      <clipPath id="clip1_3_7">
+        <rect width="275" height="40" fill="white" transform="translate(623.12 757.57) rotate(-162)" />
+      </clipPath>
+      <clipPath id="clip2_3_7">
+        <rect width="275" height="40" fill="white" transform="translate(318.47 488.69) rotate(-40.85)" />
+      </clipPath>
+    </defs>
+  </g>
+
+  <g class="icon-dark">
+    <rect width="1024" height="1024" fill="url(#paint0_linear_4_68)" />
+    <g clip-path="url(#clip0_4_68)">
+      <rect
+        x="673.506"
+        y="443.465"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-105 673.506 443.465)"
+        fill="#767676"
+      />
+      <rect
+        x="699.388"
+        y="540.057"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-105 699.388 540.057)"
+        fill="#767676"
+      />
+      <rect
+        x="725.27"
+        y="636.65"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-105 725.27 636.65)"
+        fill="#767676"
+      />
+    </g>
+    <circle cx="782.9" cy="769.8" r="125" fill="#E0E0E0" />
+    <g clip-path="url(#clip1_4_68)">
+      <rect
+        x="432.909"
+        y="695.767"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-162 432.909 695.767)"
+        fill="#767676"
+      />
+      <rect
+        x="528.015"
+        y="726.668"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-162 528.015 726.668)"
+        fill="#767676"
+      />
+      <rect
+        x="623.12"
+        y="757.57"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-162 623.12 757.57)"
+        fill="#767676"
+      />
+    </g>
+    <circle cx="220" cy="594.8" r="98.4375" stroke="#E0E0E0" stroke-width="53.125" />
+    <g clip-path="url(#clip2_4_68)">
+      <rect
+        x="469.754"
+        y="357.874"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-40.85 469.754 357.874)"
+        fill="#767676"
+      />
+      <rect
+        x="394.112"
+        y="423.282"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-40.85 394.112 423.282)"
+        fill="#767676"
+      />
+      <rect
+        x="318.47"
+        y="488.69"
+        width="75"
+        height="40"
+        rx="20"
+        transform="rotate(-40.85 318.47 488.69)"
+        fill="#767676"
+      />
+    </g>
+    <circle cx="640.4" cy="231.3" r="98.4375" stroke="#E0E0E0" stroke-width="53.125" />
+    <defs>
+      <linearGradient
+        id="paint0_linear_4_68"
+        x1="512"
+        y1="0"
+        x2="512"
+        y2="1024"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#313131" />
+        <stop offset="1" stop-color="#141414" />
+      </linearGradient>
+      <clipPath id="clip0_4_68">
+        <rect width="275" height="40" fill="white" transform="translate(725.27 636.65) rotate(-105)" />
+      </clipPath>
+      <clipPath id="clip1_4_68">
+        <rect width="275" height="40" fill="white" transform="translate(623.12 757.57) rotate(-162)" />
+      </clipPath>
+      <clipPath id="clip2_4_68">
+        <rect width="275" height="40" fill="white" transform="translate(318.47 488.69) rotate(-40.85)" />
+      </clipPath>
+    </defs>
+  </g>
+</svg>

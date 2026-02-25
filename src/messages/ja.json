@@ -1,0 +1,102 @@
+{
+  "site": {
+    "name": "BitRemote",
+    "tagline": "ダウンロードツールをリモートで操作",
+    "description": "ダウンロードツールをリモートで操作できる Apple プラットフォーム向けアプリ。"
+  },
+  "nav": {
+    "home": "ホーム",
+    "features": "機能",
+    "downloaders": "対応クライアント",
+    "quickstart": "使い方",
+    "subscription": "サブスクリプション",
+    "faq": "FAQ"
+  },
+  "cta": {
+    "appStore": "App Store でダウンロード",
+    "supportedDownloaders": "対応ダウンロードツール"
+  },
+  "hero": {
+    "subhead": "iPhone / iPad / Mac に対応。外出先からでもタスク管理とアクティビティ確認。"
+  },
+  "sections": {
+    "benefits": {
+      "title": "機能",
+      "items": [
+        {
+          "id": "diverseClientSupport",
+          "title": "多様なクライアントサポート",
+          "subtitle": "{clients} など、人気ダウンロードツールとシームレスに連携。"
+        },
+        {
+          "id": "comprehensiveTaskManagement",
+          "title": "包括的なタスク管理",
+          "subtitle": "ダウンロードタスクの一時停止、再開、削除、新規追加など、簡単に制御できます。"
+        },
+        {
+          "id": "smartFilteringSorting",
+          "title": "スマートなフィルタリングと並べ替え",
+          "subtitle": "ステータス、カテゴリ、タグでダウンロードタスクを整理し、多様な条件で効率的に並べ替えができます。"
+        },
+        {
+          "id": "activityMonitor",
+          "title": "アクティビティモニタ",
+          "subtitle": "クライアントの統計情報と転送履歴をリアルタイムで確認できます。"
+        },
+        {
+          "id": "clientsBackupRestore",
+          "title": "クライアントのバックアップと復元",
+          "subtitle": "統一された JSON フォーマットでクライアントをバックアップ・復元し、アプリのバージョン間で円滑に転送できます。"
+        },
+        {
+          "id": "optionalCertificateEvaluation",
+          "title": "選択的証明書認証",
+          "subtitle": "クライアントホストの証明書認証をスキップするオプションにより、自己署名証明書を使用するサーバーへの接続が可能になります。"
+        }
+      ]
+    },
+    "downloaders": {
+      "title": "対応ダウンロードツール"
+    },
+    "quickstart": {
+      "title": "使い方",
+      "steps": [
+        { "title": "インストール", "body": "App Store から BitRemote を入手。" },
+        { "title": "接続", "body": "クライアント（ホストと認証情報）を追加。" },
+        { "title": "操作", "body": "Apple デバイスからタスクを管理・監視。" }
+      ],
+      "requirements": "iOS / iPadOS / macOS 26.0 以降が必要です。"
+    },
+    "plus": {
+      "title": "サブスクリプション",
+      "frameTitle": "BitRemote+",
+      "subtitle": "オプションのメンバーシップ（詳細は変更される場合があります）。",
+      "items": ["広告非表示", "クライアント数制限なし", "タスクの詳細情報パネル", "専用クライアントタイプ"],
+      "note": "料金：US$2.99/月 または US$26.99/年。"
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": [
+        { "q": "同じネットワーク内で使う必要がありますか？", "a": "構成によります。LAN / VPN / セキュアなリモートアクセス等をご利用ください。" },
+        { "q": "端末にファイルをダウンロードしますか？", "a": "いいえ。BitRemote は既存のダウンロードツールのクライアントを操作・監視します。" },
+        { "q": "データは安全ですか？", "a": "クライアント認証情報は当社サーバーにアップロードされないため、当社がアクセスすることはありません。ただし、認証情報は端末内で暗号化されません。脱獄デバイスで BitRemote を使用すると、認証情報が漏えいする可能性があります。" }
+      ]
+    }
+  },
+  "pages": {
+    "privacy": {
+      "title": "個人情報保護方針",
+      "body": "BitRemote の公式プライバシーポリシーは Ark Studios が提供しています。"
+    },
+    "terms": {
+      "title": "EULA",
+      "body": "BitRemote の公式 EULA は Ark Studios が提供しています。"
+    },
+    "support": {
+      "title": "サポート",
+      "body": "ご質問・フィードバック・コミュニティ：",
+      "github": "不具合報告・機能リクエスト：",
+      "githubButton": "GitHub リポジトリ"
+    }
+  }
+}

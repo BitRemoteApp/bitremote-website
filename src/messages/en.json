@@ -1,0 +1,120 @@
+{
+  "site": {
+    "name": "BitRemote",
+    "tagline": "Control your downloaders remotely.",
+    "description": "An Apple platforms app to control your downloaders remotely."
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "downloaders": "Downloaders",
+    "quickstart": "Quickstart",
+    "subscription": "Subscription",
+    "faq": "FAQ"
+  },
+  "cta": {
+    "appStore": "Download on the App Store",
+    "supportedDownloaders": "Supported downloaders"
+  },
+  "hero": {
+    "subhead": "Built for iPhone, iPad, and Mac. Manage download tasks and monitor activity — wherever you are."
+  },
+  "sections": {
+    "benefits": {
+      "title": "What you can do",
+      "items": [
+        {
+          "id": "diverseClientSupport",
+          "title": "Diverse Client Support",
+          "subtitle": "Seamlessly integrate with popular download tools including {clients}."
+        },
+        {
+          "id": "comprehensiveTaskManagement",
+          "title": "Comprehensive Task Management",
+          "subtitle": "Easily control your downloads with options to pause, resume, delete tasks, and add new ones on the fly."
+        },
+        {
+          "id": "smartFilteringSorting",
+          "title": "Smart Filtering & Sorting",
+          "subtitle": "Organize downloads by status, category, or tag, and sort by various criteria for efficiency."
+        },
+        {
+          "id": "activityMonitor",
+          "title": "Activity Monitor",
+          "subtitle": "Monitor real-time statistics and transfer history happening on your client."
+        },
+        {
+          "id": "clientsBackupRestore",
+          "title": "Clients Backup & Restore",
+          "subtitle": "Export and import clients with a unified JSON format, ensuring seamless transfers across app versions."
+        },
+        {
+          "id": "optionalCertificateEvaluation",
+          "title": "Optional Certificate Evaluation",
+          "subtitle": "Option to bypass certificate evaluation for client hosts, enabling connections to servers with self-signed certificates."
+        }
+      ]
+    },
+    "downloaders": {
+      "title": "Supported downloaders"
+    },
+    "quickstart": {
+      "title": "How it works",
+      "steps": [
+        {
+          "title": "Install",
+          "body": "Get BitRemote on the App Store."
+        },
+        {
+          "title": "Connect",
+          "body": "Add your downloader client (host + credentials)."
+        },
+        {
+          "title": "Control",
+          "body": "Monitor and manage tasks from your Apple devices."
+        }
+      ],
+      "requirements": "Requires iOS / iPadOS / macOS 26.0 or later."
+    },
+    "plus": {
+      "title": "Subscription",
+      "frameTitle": "BitRemote+",
+      "subtitle": "Optional membership (details may vary).",
+      "items": ["Remove Ads", "Unlimited Clients", "Task Insight Panel", "Exclusive Client Types"],
+      "note": "Pricing: $2.99/month or $26.99/year."
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": [
+        {
+          "q": "Do I need to be on the same network?",
+          "a": "It depends on your setup. Many users connect over LAN, VPN, or a secure remote access method provided by their environment."
+        },
+        {
+          "q": "Does BitRemote download files on my device?",
+          "a": "No. BitRemote controls and monitors your existing downloader clients."
+        },
+        {
+          "q": "Is my data safe?",
+          "a": "Your client credentials are never uploaded to our servers, so we cannot access them. However, credentials are not encrypted on-device. If you use BitRemote on a jailbroken device, your client credentials may be compromised."
+        }
+      ]
+    }
+  },
+  "pages": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "body": "BitRemote’s official privacy policy is hosted by Ark Studios."
+    },
+    "terms": {
+      "title": "EULA",
+      "body": "BitRemote’s official EULA is hosted by Ark Studios."
+    },
+    "support": {
+      "title": "Support",
+      "body": "Questions, feedback, and community:",
+      "github": "Bug reports and feature requests:",
+      "githubButton": "GitHub Repository"
+    }
+  }
+}
