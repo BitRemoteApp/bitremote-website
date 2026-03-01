@@ -5,7 +5,7 @@ export const LINKS = {
   twitter: 'https://twitter.com/bitremote',
   discord: 'https://discord.gg/x5TP2z6cFj',
   telegram: 'https://t.me/bitremote',
-  githubIssues: 'https://github.com/BitRemoteApp/bitremote-website/issues',
+  github: 'https://github.com/BitRemoteApp/BitRemote',
 } as const;
 
 const LEGAL_LINKS = {

@@ -38,7 +38,7 @@ export default async function SupportPage({
       <TextFrame title={messages.pages.support.title} label="HELP_001">
         <p className="mt-0 text-ink-soft">{messages.pages.support.github}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-          <TextButton href={LINKS.githubIssues} target="_blank" rel="noreferrer">
+          <TextButton href={LINKS.github} target="_blank" rel="noreferrer">
             {messages.pages.support.githubButton}
           </TextButton>
         </div>
