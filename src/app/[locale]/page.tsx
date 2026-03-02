@@ -73,10 +73,7 @@ export default async function LocaleHomePage({
 
           <div className="min-h-4 grow-[2]" aria-hidden="true" />
 
-          <p
-            className="m-0 text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em]"
-            aria-label={messages.site.tagline}
-          >
+          <p className="m-0 text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em]">
             {messages.site.tagline}
           </p>
 

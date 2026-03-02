@@ -8,18 +8,14 @@ import { localeLabels, locales } from '@/i18n/locales';
 import type { Messages } from '@/i18n/messages';
 import { localePath } from '@/i18n/urls';
 
-type Active = 'home' | 'none';
-
 type Props = {
   locale: Locale;
   messages: Messages;
-  active?: Active;
 };
 
 export function TextTabsNav({
   locale,
   messages,
-  active = 'none',
 }: Props) {
   const nav = messages.nav;
   const homeHref = localePath(locale, '/');
@@ -59,8 +55,10 @@ export function TextTabsNav({
     };
   }, [isLocaleMenuOpen]);
 
+  // data-[active=true]:* classes are intentionally never applied.
+  // Tab items respond to hover only — there is no persistent "current page" highlight by design.
   const tabLinkClassName =
-    'relative inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] text-fg opacity-85 no-underline transition-colors duration-150 hover:bg-blue-strong hover:text-bg hover:opacity-100 active:bg-blue-strong active:text-bg active:opacity-100 data-[active=true]:bg-blue-strong data-[active=true]:text-bg data-[active=true]:opacity-100';
+    'relative inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] text-fg opacity-[0.85] no-underline transition-colors duration-150 hover:bg-blue-strong hover:text-bg hover:opacity-100 active:bg-blue-strong active:text-bg active:opacity-100 data-[active=true]:bg-blue-strong data-[active=true]:text-bg data-[active=true]:opacity-100';
   const localeLinkBaseClassName =
     'group inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] no-underline select-none transition duration-150 hover:bg-blue-strong hover:text-bg active:scale-[0.97] active:bg-blue-strong active:text-bg';
 
@@ -80,7 +78,7 @@ export function TextTabsNav({
       <div className="mx-auto flex w-full max-w-6xl flex-nowrap items-center gap-4 py-[0.9rem] whitespace-nowrap">
         <div className="no-scrollbar min-w-0 flex-1 overflow-x-auto overflow-y-hidden [-webkit-overflow-scrolling:touch]">
           <div className="inline-flex min-w-max flex-nowrap items-baseline gap-x-5 gap-y-3 pb-[0.1rem] pl-[0.55rem]">
-            <a className={tabLinkClassName} data-active={active === 'home'} href={homeHref}>
+            <a className={tabLinkClassName} href={homeHref}>
               {nav.home}
             </a>
             <a className={tabLinkClassName} href={`${homeHref}#features`}>

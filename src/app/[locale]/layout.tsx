@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { TextTabsNav } from '@/components/TextTabsNav';
-import { defaultLocale, isLocale, locales, type Locale } from '@/i18n/locales';
+import { defaultLocale, isLocale, localeLang, locales, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
 import { absoluteUrl, localePath } from '@/i18n/urls';
 
@@ -52,11 +52,10 @@ export default async function LocaleLayout({
   const messages = getMessages(locale);
 
   return (
-    <div className="flex min-h-screen flex-col gap-9" data-locale={locale}>
+    <div className="flex min-h-screen flex-col gap-9" data-locale={locale} lang={localeLang[locale]}>
       <TextTabsNav
         locale={locale}
         messages={messages}
-        active="none"
       />
 
       {children}

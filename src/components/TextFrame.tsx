@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 
 type Props = {
   title: string;
@@ -7,10 +7,12 @@ type Props = {
 };
 
 export function TextFrame({ title, label, children }: Props) {
+  const titleId = useId();
+
   return (
-    <section className="border border-blue-line bg-transparent">
+    <section className="border border-blue-line bg-transparent" aria-labelledby={titleId}>
       <header className="flex items-center justify-between gap-4 border-b border-blue-line px-4 py-3">
-        <div className="font-mono text-[0.9rem] uppercase tracking-[0.1em] text-blue-strong">
+        <div id={titleId} className="font-mono text-[0.9rem] uppercase tracking-[0.1em] text-blue-strong">
           {title}
         </div>
         {label ? (

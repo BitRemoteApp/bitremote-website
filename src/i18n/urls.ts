@@ -6,9 +6,7 @@ export function localeRoot(locale: Locale): string {
 
 export function localePath(locale: Locale, path: string): string {
   if (path === '/') return localeRoot(locale);
-  const trimmed = (path.startsWith('/') ? path : `/${path}`)
-    .replace(/^\/+/, '')
-    .replace(/\/+$/, '');
+  const trimmed = path.replace(/^\/+/, '').replace(/\/+$/, '');
   return `/${locale}/${trimmed}/`;
 }
 

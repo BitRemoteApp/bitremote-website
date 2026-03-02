@@ -13,70 +13,70 @@ const clientsDataset: readonly ClientSpeedFrame[] = [
     { client: Client.qBittorrent, up: '150 KB/s', down: '80 MB/s' },
     { client: Client.Transmission, up: '22 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '14 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
   ],
   [
     { client: Client.aria2, up: '3 MB/s', down: '4 MB/s' },
     { client: Client.qBittorrent, up: '168 KB/s', down: '92 MB/s' },
     { client: Client.Transmission, up: '24 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '16 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
   ],
   [
     { client: Client.aria2, up: '3 MB/s', down: '5 MB/s' },
     { client: Client.qBittorrent, up: '192 KB/s', down: '88 MB/s' },
     { client: Client.Transmission, up: '26 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '18 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '5 KB/s' },
   ],
   [
     { client: Client.aria2, up: '2 MB/s', down: '4 MB/s' },
     { client: Client.qBittorrent, up: '180 KB/s', down: '82 MB/s' },
     { client: Client.Transmission, up: '25 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '17 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
   ],
   [
     { client: Client.aria2, up: '2 MB/s', down: '3 MB/s' },
     { client: Client.qBittorrent, up: '160 KB/s', down: '75 MB/s' },
     { client: Client.Transmission, up: '23 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '15 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
   ],
   [
     { client: Client.aria2, up: '4 MB/s', down: '2 MB/s' },
     { client: Client.qBittorrent, up: '142 KB/s', down: '72 MB/s' },
     { client: Client.Transmission, up: '21 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '13 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
   ],
   [
     { client: Client.aria2, up: '3 MB/s', down: '3 MB/s' },
     { client: Client.qBittorrent, up: '130 KB/s', down: '78 MB/s' },
     { client: Client.Transmission, up: '22 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '12 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
   ],
   [
     { client: Client.aria2, up: '2 MB/s', down: '4 MB/s' },
     { client: Client.qBittorrent, up: '145 KB/s', down: '86 MB/s' },
     { client: Client.Transmission, up: '24 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '13 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
   ],
   [
     { client: Client.aria2, up: '1 MB/s', down: '5 MB/s' },
     { client: Client.qBittorrent, up: '158 KB/s', down: '84 MB/s' },
     { client: Client.Transmission, up: '23 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '15 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
   ],
   [
     { client: Client.aria2, up: '2 MB/s', down: '3 MB/s' },
     { client: Client.qBittorrent, up: '154 KB/s', down: '79 MB/s' },
     { client: Client.Transmission, up: '22 MB/s', down: '0 KB/s' },
     { client: Client.SynologyDownloadStation, up: '14 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '0 KB/s' },
+    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
   ],
 ] as const;
 
@@ -238,7 +238,7 @@ export function AsciiSplitPanel() {
 
   return (
     <div
-      className="relative hidden w-[min(320px,100%)] self-start justify-self-end overflow-hidden bg-transparent shadow-[inset_0_0_0_1px_var(--blue-line)] before:block before:pt-[166.6667%] before:content-[''] min-[980px]:block"
+      className="relative hidden aspect-[3/5] w-[min(320px,100%)] self-start justify-self-end overflow-hidden bg-transparent shadow-[inset_0_0_0_1px_var(--blue-line)] min-[980px]:block"
       role="group"
       aria-label="Sidebar skeleton"
     >
@@ -262,28 +262,28 @@ export function AsciiSplitPanel() {
             const prevClient = prevFrame[index]?.client === client.client ? prevFrame[index] : client;
 
             return (
-            <div key={client.client}>
-              <div className="flex items-center gap-3 px-[0.8rem] py-[0.7rem]">
-                <div className="shrink-0 font-extrabold tracking-[0.1em] text-blue-strong opacity-95">
-                  [{clientBadges[client.client]}]
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="font-[750] tracking-[0.06em] text-fg opacity-90">
-                    {clientSkeletonName(client.client)}
+              <div key={client.client}>
+                <div className="flex items-center gap-3 px-[0.8rem] py-[0.7rem]">
+                  <div className="shrink-0 font-extrabold tracking-[0.1em] text-blue-strong opacity-95">
+                    [{clientBadges[client.client]}]
                   </div>
-                  <div className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs tracking-[0.1em] text-ink-soft">
-                    ↑ <AnimatedSpeed prev={prevClient.up} next={client.up} tick={state.tick} /> ↓{' '}
-                    <AnimatedSpeed prev={prevClient.down} next={client.down} tick={state.tick} />
+                  <div className="min-w-0 flex-1">
+                    <div className="font-[750] tracking-[0.06em] text-fg opacity-90">
+                      {clientSkeletonName(client.client)}
+                    </div>
+                    <div className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs tracking-[0.1em] text-ink-soft">
+                      ↑ <AnimatedSpeed prev={prevClient.up} next={client.up} tick={state.tick} /> ↓{' '}
+                      <AnimatedSpeed prev={prevClient.down} next={client.down} tick={state.tick} />
+                    </div>
+                  </div>
+                  <div className="shrink-0 font-[750] text-blue-strong opacity-75" aria-hidden="true">
+                    &gt;
                   </div>
                 </div>
-                <div className="shrink-0 font-[750] text-blue-strong opacity-75" aria-hidden="true">
-                  &gt;
-                </div>
+                {index !== frame.length - 1 ? (
+                  <div className="mx-[0.8rem] h-px bg-[var(--line-soft)]" />
+                ) : null}
               </div>
-              {index !== frame.length - 1 ? (
-                <div className="mx-[0.8rem] h-px bg-[var(--line-soft)]" />
-              ) : null}
-            </div>
             );
           })}
         </div>

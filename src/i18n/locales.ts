@@ -10,6 +10,14 @@ export const localeLabels: Record<Locale, string> = {
   'zh-hant': '繁體中文',
 };
 
+/** BCP 47 language tags for use in HTML `lang` attributes. */
+export const localeLang: Record<Locale, string> = {
+  en: 'en',
+  ja: 'ja',
+  'zh-hans': 'zh-Hans',
+  'zh-hant': 'zh-Hant',
+};
+
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }

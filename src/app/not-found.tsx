@@ -8,7 +8,7 @@ export default function NotFound() {
       </h1>
       <p className="mt-3 max-w-[62ch] text-ink-soft">This page could not be found.</p>
       <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-        <TextButton href="/en/">Go to /en/</TextButton>
+        <TextButton href="/">Go home</TextButton>
       </div>
     </main>
   );
