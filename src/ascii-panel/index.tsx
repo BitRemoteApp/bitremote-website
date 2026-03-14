@@ -5,9 +5,10 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { AsciiPanelFrame } from './components/AsciiPanelFrame';
 import { AsciiPanelSheet } from './components/AsciiPanelSheet';
 import { AsciiPanelHomePage } from './pages/HomePage';
+import { AsciiPanelNewClientPage } from './pages/NewClientPage';
 import { AsciiPanelSettingsPage } from './pages/SettingsPage';
 
-type FramePageId = 'home' | 'settings';
+type FramePageId = 'home' | 'settings' | 'new-client';
 type FramePresentation = 'inline' | 'sheet';
 type FrameSheetPhase = 'open' | 'closing';
 type FrameSheetState = {
@@ -98,18 +99,32 @@ export function AsciiPanel() {
       }
       footerAction={
         activePage === 'home' ? (
-          <FrameControlButton ariaLabel="New client preview action" disabled>
+          <FrameControlButton
+            ariaLabel="Open new client preview"
+            onClick={() => navigate({ pageId: 'new-client', presentation: 'sheet' })}
+          >
             [+ NEW CLIENT]
           </FrameControlButton>
         ) : undefined
       }
       overlay={
-        sheet?.pageId === 'settings' && sheet.presentation === 'sheet' ? (
-          <AsciiPanelSheet isClosing={sheet.phase === 'closing'} ariaLabel="Setting">
-            <AsciiPanelSettingsPage
-              onClose={closeSheet}
-              renderButton={(props) => <FrameControlButton {...props} />}
-            />
+        sheet?.presentation === 'sheet' ? (
+          <AsciiPanelSheet
+            isClosing={sheet.phase === 'closing'}
+            ariaLabel={sheet.pageId === 'new-client' ? 'New Client' : 'Setting'}
+          >
+            {sheet.pageId === 'settings' ? (
+              <AsciiPanelSettingsPage
+                onClose={closeSheet}
+                renderButton={(props) => <FrameControlButton {...props} />}
+              />
+            ) : null}
+            {sheet.pageId === 'new-client' ? (
+              <AsciiPanelNewClientPage
+                onClose={closeSheet}
+                renderButton={(props) => <FrameControlButton {...props} />}
+              />
+            ) : null}
           </AsciiPanelSheet>
         ) : undefined
       }
