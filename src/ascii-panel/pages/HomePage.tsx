@@ -90,6 +90,8 @@ const clientBadges = {
   [Client.QNAPDownloadStation]: 'Q',
 } as const satisfies Record<Client, string>;
 
+type Direction = 'up' | 'down' | 'none';
+
 function clientSkeletonName(client: Client): string {
   switch (client) {
     case Client.SynologyDownloadStation:
@@ -100,8 +102,6 @@ function clientSkeletonName(client: Client): string {
       return client;
   }
 }
-
-type Direction = 'up' | 'down' | 'none';
 
 function parseSpeed(speed: string): { num: string; unit: string } {
   const trimmed = speed.trim();
@@ -171,7 +171,6 @@ function AnimatedNumericText({ prevNum, nextNum, dir, tick }: AnimatedNumericTex
     <span className="br-num-value">
       {Array.from({ length: maxLen }, (_, index) => (
         <DigitSlot
-          // Index is stable by design; animation is driven by `tick`.
           key={index}
           prevChar={prevPadded[index]}
           nextChar={nextPadded[index]}
@@ -218,7 +217,7 @@ function DigitSlot({ prevChar, nextChar, dir, tick }: DigitSlotProps) {
   );
 }
 
-export function AsciiSplitPanel() {
+export function AsciiPanelHomePage() {
   const [state, setState] = useState({ index: 0, prevIndex: 0, tick: 0 });
 
   useEffect(() => {
@@ -237,63 +236,31 @@ export function AsciiSplitPanel() {
   const frame = clientsDataset[state.index] ?? clientsDataset[0];
 
   return (
-    <div
-      className="relative hidden aspect-[3/5] w-[min(320px,100%)] self-start justify-self-end overflow-hidden bg-transparent shadow-[inset_0_0_0_1px_var(--blue-line)] min-[980px]:block"
-      role="group"
-      aria-label="Sidebar skeleton"
-    >
-      <div
-        className="absolute inset-0 flex min-h-0 flex-col gap-3 bg-[url('/textures/texture-dots-light.svg')] bg-[length:240px_240px] bg-repeat p-[0.9rem] font-mono dark:bg-[url('/textures/texture-dots-dark.svg')]"
-        aria-hidden="true"
-      >
-        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-blue-line pb-[0.65rem]">
-          <div className="text-[1.35rem] font-extrabold tracking-[-0.02em] text-fg">
-            BitRemote
-          </div>
-          <div className="text-xs uppercase tracking-[0.14em] text-blue-strong">
-            <span className="inline-flex cursor-pointer select-none items-center px-[0.45rem] py-[0.15rem] transition-colors duration-150 hover:bg-blue-strong hover:text-bg active:bg-blue-strong active:text-bg">
-              [SETTINGS]
-            </span>
-          </div>
-        </div>
+    <div className="overflow-hidden rounded-[0.85rem] border border-blue-line bg-[var(--bg-panel-88)]" aria-hidden="true">
+      {frame.map((client, index) => {
+        const prevClient = prevFrame[index]?.client === client.client ? prevFrame[index] : client;
 
-        <div className="overflow-hidden rounded-[0.85rem] border border-blue-line bg-[var(--bg-panel-88)]">
-          {frame.map((client, index) => {
-            const prevClient = prevFrame[index]?.client === client.client ? prevFrame[index] : client;
-
-            return (
-              <div key={client.client}>
-                <div className="flex items-center gap-3 px-[0.8rem] py-[0.7rem]">
-                  <div className="shrink-0 font-extrabold tracking-[0.1em] text-blue-strong opacity-95">
-                    [{clientBadges[client.client]}]
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="font-[750] tracking-[0.06em] text-fg opacity-90">
-                      {clientSkeletonName(client.client)}
-                    </div>
-                    <div className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs tracking-[0.1em] text-ink-soft">
-                      ↑ <AnimatedSpeed prev={prevClient.up} next={client.up} tick={state.tick} /> ↓{' '}
-                      <AnimatedSpeed prev={prevClient.down} next={client.down} tick={state.tick} />
-                    </div>
-                  </div>
-                  <div className="shrink-0 font-[750] text-blue-strong opacity-75" aria-hidden="true">
-                    &gt;
-                  </div>
-                </div>
-                {index !== frame.length - 1 ? (
-                  <div className="mx-[0.8rem] h-px bg-[var(--line-soft)]" />
-                ) : null}
+        return (
+          <div key={client.client}>
+            <div className="flex items-center gap-3 px-[0.8rem] py-[0.7rem]">
+              <div className="shrink-0 font-extrabold tracking-[0.1em] text-blue-strong opacity-95">
+                [{clientBadges[client.client]}]
               </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-auto pt-[0.65rem] text-center text-xs uppercase tracking-[0.14em] text-blue-strong">
-          <span className="inline-flex cursor-pointer select-none items-center px-[0.45rem] py-[0.15rem] transition-colors duration-150 hover:bg-blue-strong hover:text-bg active:bg-blue-strong active:text-bg">
-            [+ NEW CLIENT]
-          </span>
-        </div>
-      </div>
+              <div className="min-w-0 flex-1">
+                <div className="font-[750] tracking-[0.06em] text-fg opacity-90">
+                  {clientSkeletonName(client.client)}
+                </div>
+                <div className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs tracking-[0.1em] text-ink-soft">
+                  ↑ <AnimatedSpeed prev={prevClient.up} next={client.up} tick={state.tick} /> ↓{' '}
+                  <AnimatedSpeed prev={prevClient.down} next={client.down} tick={state.tick} />
+                </div>
+              </div>
+              <div className="shrink-0 font-[750] text-blue-strong opacity-75">&gt;</div>
+            </div>
+            {index !== frame.length - 1 ? <div className="mx-[0.8rem] h-px bg-[var(--line-soft)]" /> : null}
+          </div>
+        );
+      })}
     </div>
   );
 }

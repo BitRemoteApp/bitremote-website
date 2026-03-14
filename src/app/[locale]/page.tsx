@@ -1,4 +1,4 @@
-import { AsciiSplitPanel } from '@/components/AsciiSplitPanel';
+import { AsciiPanel } from '@/ascii-panel';
 import { BitRemoteWordmark } from '@/components/BitRemoteWordmark';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { TextButton } from '@/components/TextButton';
@@ -106,7 +106,7 @@ export default async function LocaleHomePage({
           </div>
         </div>
 
-        <AsciiSplitPanel />
+        <AsciiPanel />
       </section>
 
       <TextSeparator />

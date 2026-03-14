@@ -137,6 +137,61 @@
     animation: br-num-out-down 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
+  .br-frame-sheet-backdrop-in {
+    animation: br-frame-sheet-backdrop-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .br-frame-sheet-backdrop-out {
+    animation: br-frame-sheet-backdrop-out 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .br-frame-sheet-panel-in {
+    animation: br-frame-sheet-panel-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .br-frame-sheet-panel-out {
+    animation: br-frame-sheet-panel-out 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes br-frame-sheet-backdrop-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes br-frame-sheet-backdrop-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes br-frame-sheet-panel-in {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes br-frame-sheet-panel-out {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
 }
 
 @keyframes br-num-out-up {
@@ -195,7 +250,11 @@
   .br-num-in-up,
   .br-num-out-up,
   .br-num-in-down,
-  .br-num-out-down {
+  .br-num-out-down,
+  .br-frame-sheet-backdrop-in,
+  .br-frame-sheet-backdrop-out,
+  .br-frame-sheet-panel-in,
+  .br-frame-sheet-panel-out {
     animation: none !important;
   }
 }
