@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next';
 
-import { getDownloaderLandingEntries } from '@/domain/downloader-landings';
+import {
+  getAvailableDownloaderLandingLocales,
+  getDownloaderLandingEntries,
+} from '@/domain/downloader-landings';
 import { localeLang, locales } from '@/i18n/locales';
 import { absoluteUrl, localePath } from '@/i18n/urls';
 import { getLocalizedRouteEntries } from '@/seo/routes';
@@ -24,9 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getDownloaderLandingEntries().map(({ locale, content }) => ({
       url: absoluteUrl(`/${locale}/downloaders/${content.slug}/`),
       alternates: {
-        languages: {
-          [localeLang[locale]]: absoluteUrl(`/${locale}/downloaders/${content.slug}/`),
-        },
+        languages: Object.fromEntries(
+          getAvailableDownloaderLandingLocales(content.slug).map((candidateLocale) => [
+            localeLang[candidateLocale],
+            absoluteUrl(`/${candidateLocale}/downloaders/${content.slug}/`),
+          ]),
+        ),
       },
     })),
   ];

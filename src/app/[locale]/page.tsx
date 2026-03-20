@@ -5,9 +5,14 @@ import { TextButton } from '@/components/TextButton';
 import { TextFrame } from '@/components/TextFrame';
 import { TextSeparator } from '@/components/TextSeparator';
 import { supportedClients } from '@/domain/clients';
+import {
+  downloaderLandingSlugByClientName,
+  getDownloaderLandingContent,
+} from '@/domain/downloader-landings';
 import { LINKS } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
+import { localePath } from '@/i18n/urls';
 import {
   buildFaqPageSchema,
   buildSoftwareApplicationSchema,
@@ -103,11 +108,28 @@ export default async function LocaleHomePage({
               [{messages.sections.downloaders.title}]
             </div>
             <div className="grid gap-1 text-[0.85rem] leading-[1.35] tracking-[0.06em] text-ink-soft [overflow-wrap:anywhere]">
-              {supportedClients.map((client) => (
-                <div key={client} className="opacity-90">
-                  - {client}
-                </div>
-              ))}
+              {supportedClients.map((client) => {
+                const slug = downloaderLandingSlugByClientName[client];
+                const landingContent = slug ? getDownloaderLandingContent(locale, slug) : undefined;
+
+                if (!landingContent || !slug) {
+                  return (
+                    <div key={client} className="opacity-90">
+                      - {client}
+                    </div>
+                  );
+                }
+
+                return (
+                  <a
+                    key={client}
+                    className="opacity-90 text-inherit no-underline transition-colors hover:text-blue-strong active:text-blue-strong"
+                    href={localePath(locale, `/downloaders/${slug}/`)}
+                  >
+                    - {client}
+                  </a>
+                );
+              })}
             </div>
           </div>
 

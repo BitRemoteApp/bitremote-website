@@ -30,6 +30,14 @@ export type DownloaderLandingDictionary = Partial<
   Record<Locale, Record<DownloaderLandingSlug, DownloaderLandingContent>>
 >;
 
+export const downloaderLandingSlugByClientName: Record<string, DownloaderLandingSlug> = {
+  aria2: 'aria2',
+  qBittorrent: 'qbittorrent',
+  Transmission: 'transmission',
+  'Synology Download Station': 'synology-download-station',
+  'QNAP Download Station': 'qnap-download-station',
+};
+
 export const downloaderLandingDictionary: DownloaderLandingDictionary = {
   en: {
     aria2: {
