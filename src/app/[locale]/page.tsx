@@ -4,18 +4,15 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { TextButton } from '@/components/TextButton';
 import { TextFrame } from '@/components/TextFrame';
 import { TextSeparator } from '@/components/TextSeparator';
-import { Client } from '@/domain/clients';
+import { supportedClients } from '@/domain/clients';
 import { LINKS } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
-
-const supportedClients: readonly Client[] = [
-  Client.aria2,
-  Client.qBittorrent,
-  Client.Transmission,
-  Client.SynologyDownloadStation,
-  Client.QNAPDownloadStation,
-];
+import {
+  buildFaqPageSchema,
+  buildSoftwareApplicationSchema,
+  serializeJsonLd,
+} from '@/seo/schema';
 
 function formatSupportedClients(locale: Locale): string {
   if (supportedClients.length === 0) {
@@ -60,9 +57,24 @@ export default async function LocaleHomePage({
 
   const benefits = messages.sections.benefits.items;
   const supportedClientsText = formatSupportedClients(locale);
+  const softwareApplicationSchema = buildSoftwareApplicationSchema({
+    locale,
+    messages,
+    supportedClients,
+  });
+  const faqPageSchema = buildFaqPageSchema(messages);
 
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={serializeJsonLd(softwareApplicationSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={serializeJsonLd(faqPageSchema)}
+      />
+
       <section
         className="grid grid-cols-1 items-stretch gap-5 min-[980px]:grid-cols-[1.05fr_0.95fr] min-[980px]:gap-8"
         id="top"

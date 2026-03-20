@@ -5,3 +5,11 @@ export enum Client {
   SynologyDownloadStation = 'Synology Download Station',
   QNAPDownloadStation = 'QNAP Download Station',
 }
+
+export const supportedClients: readonly Client[] = [
+  Client.aria2,
+  Client.qBittorrent,
+  Client.Transmission,
+  Client.SynologyDownloadStation,
+  Client.QNAPDownloadStation,
+];
