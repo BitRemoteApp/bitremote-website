@@ -9,7 +9,7 @@
     "features": "機能",
     "downloaders": "対応クライアント",
     "quickstart": "使い方",
-    "subscription": "サブスクリプション",
+    "subscription": "料金",
     "faq": "FAQ"
   },
   "cta": {
@@ -68,11 +68,11 @@
       "requirements": "iOS / iPadOS / macOS 26.0 以降が必要です。"
     },
     "plus": {
-      "title": "サブスクリプション",
+      "title": "料金",
       "frameTitle": "BitRemote+",
-      "subtitle": "オプションのメンバーシップ（詳細は変更される場合があります）。",
+      "subtitle": "使い方に合ったプランを選べます。",
       "items": ["広告非表示", "クライアント数制限なし", "タスクの詳細情報パネル", "専用クライアントタイプ"],
-      "note": "料金：US$2.99/月 または US$26.99/年。"
+      "note": "月額 US$1.99、年額 US$9.99、または一度購入プラン US$49.99。"
     },
     "faq": {
       "title": "FAQ",

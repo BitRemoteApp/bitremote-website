@@ -9,7 +9,7 @@
     "features": "Features",
     "downloaders": "Downloaders",
     "quickstart": "Quickstart",
-    "subscription": "Subscription",
+    "subscription": "Pricing",
     "faq": "FAQ"
   },
   "cta": {
@@ -77,11 +77,11 @@
       "requirements": "Requires iOS / iPadOS / macOS 26.0 or later."
     },
     "plus": {
-      "title": "Subscription",
+      "title": "Pricing",
       "frameTitle": "BitRemote+",
-      "subtitle": "Optional membership (details may vary).",
+      "subtitle": "Choose the plan that fits your setup.",
       "items": ["Remove Ads", "Unlimited Clients", "Task Insight Panel", "Exclusive Client Types"],
-      "note": "Pricing: $2.99/month or $26.99/year."
+      "note": "$1.99 per month, $9.99 per year, or $49.99 for a one-time purchase plan."
     },
     "faq": {
       "title": "FAQ",

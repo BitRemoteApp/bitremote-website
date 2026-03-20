@@ -9,7 +9,7 @@
     "features": "功能",
     "downloaders": "支持的下载工具",
     "quickstart": "使用方法",
-    "subscription": "订阅",
+    "subscription": "价格",
     "faq": "常见问题"
   },
   "cta": {
@@ -68,11 +68,11 @@
       "requirements": "需要 iOS / iPadOS / macOS 26.0 或更高版本。"
     },
     "plus": {
-      "title": "订阅",
+      "title": "价格",
       "frameTitle": "BitRemote+",
-      "subtitle": "可选会员（具体内容可能会变化）。",
+      "subtitle": "选择适合你使用方式的方案。",
       "items": ["移除广告", "不限客户端数", "任务详情面板", "专属客户端类型"],
-      "note": "价格：US$2.99/月 或 US$26.99/年。"
+      "note": "每月 US$1.99、每年 US$9.99，或单次购买方案 US$49.99。"
     },
     "faq": {
       "title": "常见问题",
