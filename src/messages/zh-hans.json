@@ -1,32 +1,32 @@
 {
   "site": {
     "name": "BitRemote",
-    "tagline": "适用于 NAS 与家庭服务器的远程下载管理",
-    "description": "可在 Apple 设备上远程管理 NAS、seedbox 与家庭服务器下载客户端的应用。"
+    "tagline": "适用于 NAS 与家庭服务器的远程下载管理工具",
+    "description": "可在 iPhone、iPad 和 Mac 上远程管理 NAS、seedbox 与家庭服务器下载工具的应用。"
   },
   "nav": {
     "home": "主页",
     "features": "功能",
     "downloaders": "支持的下载工具",
-    "quickstart": "使用方法",
+    "quickstart": "开始使用",
     "subscription": "价格",
     "faq": "常见问题"
   },
   "cta": {
     "appStore": "前往 App Store 下载 BitRemote",
-    "supportedDownloaders": "支持的下载客户端"
+    "supportedDownloaders": "支持的下载工具"
   },
   "hero": {
-    "subhead": "适用于 iPhone / iPad / Mac。连接 aria2、qBittorrent、Transmission、Synology Download Station 与 QNAP Download Station，随时随地管理下载任务。"
+    "subhead": "适用于 iPhone / iPad / Mac。连接你的下载工具，随时随地管理下载任务。"
   },
   "sections": {
     "benefits": {
       "title": "随时随地管理下载",
       "items": [
         {
-          "id": "diverseClientSupport",
-          "title": "支持主流下载客户端",
-          "subtitle": "将 BitRemote 连接到 {clients}，在同一个 Apple 应用中管理下载任务。"
+          "id": "accessibilitySupport",
+          "title": "丰富的辅助功能支持",
+          "subtitle": "支持「旁白」、「语音控制」、「放大文字」、「深色界面」、「足够的对比度」、「不单靠颜色区分」和「减少动态效果」。"
         },
         {
           "id": "comprehensiveTaskManagement",
@@ -56,14 +56,14 @@
       ]
     },
     "downloaders": {
-      "title": "支持的下载客户端"
+      "title": "支持的下载工具"
     },
     "quickstart": {
-      "title": "快速开始",
+      "title": "开始使用",
       "steps": [
         { "title": "安装", "body": "在 iPhone、iPad 或 Mac 上从 App Store 获取 BitRemote。" },
-        { "title": "连接", "body": "添加下载客户端的主机地址与登录凭据。" },
-        { "title": "管理", "body": "在 Apple 设备上监控活动并控制下载任务。" }
+        { "title": "连接", "body": "添加下载工具的主机地址与登录凭据。" },
+        { "title": "管理", "body": "在 iPhone、iPad 和 Mac 上监控活动并控制下载任务。" }
       ],
       "requirements": "需要 iOS / iPadOS / macOS 26.0 或更高版本。"
     },
@@ -78,7 +78,7 @@
       "title": "常见问题",
       "items": [
         { "q": "必须在同一网络下使用吗？", "a": "不一定。BitRemote 可以根据你的环境，通过局域网、VPN 或其他安全的远程访问方式连接。" },
-        { "q": "BitRemote 会在设备上下载文件吗？", "a": "不会。BitRemote 是现有下载客户端的远程控制器，文件仍会下载到 NAS、seedbox 或服务器端。" },
+        { "q": "BitRemote 会在设备上下载文件吗？", "a": "不会。BitRemote 是现有下载工具的远程控制器，文件仍会下载到 NAS、seedbox 或服务器端。" },
         { "q": "我的数据安全吗？", "a": "你的客户端凭据不会上传到我们的服务器，因此我们无法访问这些凭据。但这些凭据不会在设备上加密。如果你在越狱设备上使用 BitRemote，客户端凭据可能会被泄露。" }
       ]
     }
@@ -101,7 +101,7 @@
   },
   "seo": {
     "home": {
-      "title": "BitRemote | 面向 NAS 与家庭服务器的远程下载管理",
+      "title": "BitRemote",
       "description": "适用于 iPhone、iPad 和 Mac 的远程下载管理应用。可从任何地方控制 aria2、qBittorrent、Transmission、Synology Download Station 和 QNAP Download Station。",
       "keywords": [
         "远程下载管理",
@@ -115,7 +115,7 @@
       ]
     },
     "support": {
-      "title": "BitRemote 支持 | 帮助、社区与 GitHub",
+      "title": "BitRemote | 支持",
       "description": "获取 BitRemote 支持、提交问题、提出功能需求，并加入社区。这是面向 iPhone、iPad、Mac 的远程下载管理应用支持入口。",
       "keywords": [
         "BitRemote 支持",
@@ -126,7 +126,7 @@
       ]
     },
     "privacy": {
-      "title": "BitRemote 隐私权政策 | Ark Studios",
+      "title": "BitRemote | 隐私权政策",
       "description": "查看 Ark Studios 提供的 BitRemote 官方隐私政策，了解这款 NAS 与下载工具远程控制应用的数据处理方式。",
       "keywords": [
         "BitRemote 隐私政策",
@@ -135,8 +135,8 @@
       ]
     },
     "terms": {
-      "title": "BitRemote EULA | Ark Studios",
-      "description": "查看 Ark Studios 提供的 BitRemote EULA。BitRemote 是一款适用于 Apple 设备的远程下载管理应用。",
+      "title": "BitRemote | EULA",
+      "description": "查看 Ark Studios 提供的 BitRemote EULA。BitRemote 是一款适用于 iPhone、iPad 和 Mac 的远程下载管理应用。",
       "keywords": [
         "BitRemote EULA",
         "BitRemote 条款",
@@ -145,7 +145,7 @@
     },
     "languageSelector": {
       "title": "BitRemote | 远程下载管理应用",
-      "description": "选择你的语言以了解 BitRemote。这款应用可让你在 Apple 设备上管理 NAS、seedbox 与家庭服务器的下载任务。",
+      "description": "选择你的语言以了解 BitRemote。这款应用可让你在 iPhone、iPad 和 Mac 上管理 NAS、seedbox 与家庭服务器的下载任务。",
       "keywords": [
         "BitRemote",
         "远程下载管理应用",

@@ -7,7 +7,7 @@ import { localeLabels, locales } from '@/i18n/locales';
 import { localeRoot } from '@/i18n/urls';
 
 export const metadata: Metadata = {
-  title: 'BitRemote | Remote Download Manager App',
+  title: 'BitRemote',
   description:
     'Choose your language to learn about BitRemote, the remote download manager app for NAS, seedbox, and home server workflows on Apple devices.',
   keywords: ['bitremote', 'remote download manager app', 'nas download app'],
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://bitremote.app/',
-    title: 'BitRemote | Remote Download Manager App',
+    title: 'BitRemote',
     description:
       'Choose your language to learn about BitRemote, the remote download manager app for NAS, seedbox, and home server workflows on Apple devices.',
     siteName: 'BitRemote',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'BitRemote | Remote Download Manager App',
+    title: 'BitRemote',
     description:
       'Choose your language to learn about BitRemote, the remote download manager app for NAS, seedbox, and home server workflows on Apple devices.',
   },

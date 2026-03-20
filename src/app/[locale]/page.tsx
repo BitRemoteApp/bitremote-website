@@ -19,38 +19,6 @@ import {
   serializeJsonLd,
 } from '@/seo/schema';
 
-function formatSupportedClients(locale: Locale): string {
-  if (supportedClients.length === 0) {
-    return '';
-  }
-
-  if (locale === 'ja') {
-    return supportedClients.join('、');
-  }
-
-  if (locale === 'zh-hans' || locale === 'zh-hant') {
-    if (supportedClients.length === 1) {
-      return supportedClients[0];
-    }
-
-    if (supportedClients.length === 2) {
-      return `${supportedClients[0]} 和 ${supportedClients[1]}`;
-    }
-
-    return `${supportedClients.slice(0, -1).join('、')} 和 ${supportedClients[supportedClients.length - 1]}`;
-  }
-
-  if (supportedClients.length === 1) {
-    return supportedClients[0];
-  }
-
-  if (supportedClients.length === 2) {
-    return `${supportedClients[0]} and ${supportedClients[1]}`;
-  }
-
-  return `${supportedClients.slice(0, -1).join(', ')}, and ${supportedClients[supportedClients.length - 1]}`;
-}
-
 export default async function LocaleHomePage({
   params,
 }: {
@@ -61,7 +29,6 @@ export default async function LocaleHomePage({
   const messages = getMessages(locale);
 
   const benefits = messages.sections.benefits.items;
-  const supportedClientsText = formatSupportedClients(locale);
   const softwareApplicationSchema = buildSoftwareApplicationSchema({
     locale,
     messages,
@@ -152,10 +119,7 @@ export default async function LocaleHomePage({
 
         <div className="mt-4 grid grid-cols-1 gap-4 min-[900px]:grid-cols-2">
           {benefits.map((b, index) => {
-            const subtitle =
-              b.id === 'diverseClientSupport'
-                ? b.subtitle.replace('{clients}', supportedClientsText)
-                : b.subtitle;
+            const subtitle = b.subtitle;
 
             return (
               <TextFrame

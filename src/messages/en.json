@@ -2,7 +2,7 @@
   "site": {
     "name": "BitRemote",
     "tagline": "Remote download manager for NAS and home server tasks.",
-    "description": "An Apple platforms app to remotely manage downloader clients on NAS, seedbox, and home server setups."
+    "description": "An app for iPhone, iPad, and Mac to remotely manage downloaders on NAS, seedbox, and home server setups."
   },
   "nav": {
     "home": "Home",
@@ -14,19 +14,19 @@
   },
   "cta": {
     "appStore": "Download BitRemote on the App Store",
-    "supportedDownloaders": "Supported download clients"
+    "supportedDownloaders": "Supported downloaders"
   },
   "hero": {
-    "subhead": "Built for iPhone, iPad, and Mac. Connect to aria2, qBittorrent, Transmission, Synology Download Station, and QNAP Download Station to monitor activity and control download tasks from anywhere."
+    "subhead": "Built for iPhone, iPad, and Mac. Connect to your downloaders to monitor activity and control download tasks from anywhere."
   },
   "sections": {
     "benefits": {
       "title": "Manage downloads from anywhere",
       "items": [
         {
-          "id": "diverseClientSupport",
-          "title": "Works with popular download clients",
-          "subtitle": "Connect BitRemote to {clients} and manage downloader tasks from one Apple app."
+          "id": "accessibilitySupport",
+          "title": "Rich accessibility support",
+          "subtitle": "Supports VoiceOver, Voice Control, Larger Text, Dark Interface, Sufficient Contrast, Differentiate Without Color, and Reduced Motion."
         },
         {
           "id": "comprehensiveTaskManagement",
@@ -41,12 +41,12 @@
         {
           "id": "activityMonitor",
           "title": "Monitor transfer activity",
-          "subtitle": "Track real-time speeds, statistics, and transfer history from your downloader client on iPhone, iPad, or Mac."
+          "subtitle": "Track real-time speeds, statistics, and transfer history from your downloader on iPhone, iPad, or Mac."
         },
         {
           "id": "clientsBackupRestore",
-          "title": "Back up client connections",
-          "subtitle": "Export and import saved client setups in a unified JSON format when you move devices or reinstall the app."
+          "title": "Back up downloader connections",
+          "subtitle": "Export and import saved downloader setups in a unified JSON format when you move devices or reinstall the app."
         },
         {
           "id": "optionalCertificateEvaluation",
@@ -56,7 +56,7 @@
       ]
     },
     "downloaders": {
-      "title": "Supported download clients"
+      "title": "Supported downloaders"
     },
     "quickstart": {
       "title": "Get started in minutes",
@@ -67,11 +67,11 @@
         },
         {
           "title": "Connect",
-          "body": "Add your downloader client with its host address and credentials."
+          "body": "Add your downloader with its host address and credentials."
         },
         {
           "title": "Manage",
-          "body": "Monitor activity, review queues, and control download tasks from your Apple devices."
+          "body": "Monitor activity, review queues, and control download tasks from iPhone, iPad, or Mac."
         }
       ],
       "requirements": "Requires iOS / iPadOS / macOS 26.0 or later."
@@ -92,11 +92,11 @@
         },
         {
           "q": "Does BitRemote download files on my device?",
-          "a": "No. BitRemote is a remote controller for your existing downloader client. The downloads stay on your NAS, seedbox, or server."
+          "a": "No. BitRemote is a remote controller for your existing downloader. The downloads stay on your NAS, seedbox, or server."
         },
         {
           "q": "Is my data safe?",
-          "a": "Your client credentials are never uploaded to our servers, so we cannot access them. However, credentials are not encrypted on-device. If you use BitRemote on a jailbroken device, your client credentials may be compromised."
+          "a": "Your downloader credentials are never uploaded to our servers, so we cannot access them. However, credentials are not encrypted on-device. If you use BitRemote on a jailbroken device, your downloader credentials may be compromised."
         }
       ]
     }
@@ -119,7 +119,7 @@
   },
   "seo": {
     "home": {
-      "title": "BitRemote | Remote Download Manager for NAS and Home Server Tasks",
+      "title": "BitRemote",
       "description": "Remote download manager for iPhone, iPad, and Mac. Control aria2, qBittorrent, Transmission, Synology Download Station, and QNAP Download Station from anywhere.",
       "keywords": [
         "remote download manager",
@@ -133,7 +133,7 @@
       ]
     },
     "support": {
-      "title": "BitRemote Support | Help, Community, and GitHub",
+      "title": "BitRemote | Support",
       "description": "Get BitRemote support, report bugs, request features, and join the community for the remote download manager app for iPhone, iPad, and Mac.",
       "keywords": [
         "bitremote support",
@@ -144,8 +144,8 @@
       ]
     },
     "privacy": {
-      "title": "BitRemote Privacy Policy | Ark Studios",
-      "description": "Read the official BitRemote privacy policy from Ark Studios for the remote download manager app used with NAS and downloader clients.",
+      "title": "BitRemote | Privacy Policy",
+      "description": "Read the official BitRemote privacy policy from Ark Studios for the remote download manager app used with NAS and downloaders.",
       "keywords": [
         "bitremote privacy policy",
         "ark studios privacy",
@@ -153,8 +153,8 @@
       ]
     },
     "terms": {
-      "title": "BitRemote EULA | Ark Studios",
-      "description": "Read the BitRemote end user license agreement from Ark Studios for the remote downloader management app on Apple platforms.",
+      "title": "BitRemote | EULA",
+      "description": "Read the BitRemote end user license agreement from Ark Studios for the remote download manager app for iPhone, iPad, and Mac.",
       "keywords": [
         "bitremote eula",
         "bitremote terms",
@@ -162,8 +162,8 @@
       ]
     },
     "languageSelector": {
-      "title": "BitRemote | Remote Download Manager App",
-      "description": "Choose your language to learn about BitRemote, the remote download manager app for NAS, seedbox, and home server workflows on Apple devices.",
+      "title": "BitRemote",
+      "description": "Choose your language to learn about BitRemote, the remote download manager app for NAS, seedbox, and home server workflows on iPhone, iPad, and Mac.",
       "keywords": [
         "bitremote",
         "remote download manager app",
