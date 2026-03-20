@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 
-import type { DownloaderLandingContent, DownloaderLandingSlug } from '@/domain/downloader-landings';
-import { localeLang, locales, type Locale } from '@/i18n/locales';
+import {
+  getAvailableDownloaderLandingLocales,
+  type DownloaderLandingContent,
+  type DownloaderLandingSlug,
+} from '@/domain/downloader-landings';
+import { localeLang, type Locale } from '@/i18n/locales';
 import { absoluteUrl } from '@/i18n/urls';
 
 function landingPath(locale: Locale, slug: DownloaderLandingSlug): string {
@@ -18,6 +22,7 @@ export function buildDownloaderLandingMetadata({
   content: DownloaderLandingContent;
 }): Metadata {
   const canonical = absoluteUrl(landingPath(locale, slug));
+  const availableLocales = getAvailableDownloaderLandingLocales(slug);
 
   return {
     title: content.seoTitle,
@@ -26,11 +31,14 @@ export function buildDownloaderLandingMetadata({
     alternates: {
       canonical,
       languages: Object.fromEntries(
-        locales.map((candidateLocale) => [localeLang[candidateLocale], absoluteUrl(landingPath(candidateLocale, slug))]),
+        availableLocales.map((candidateLocale) => [
+          localeLang[candidateLocale],
+          absoluteUrl(landingPath(candidateLocale, slug)),
+        ]),
       ),
     },
     openGraph: {
-      type: 'article',
+      type: 'website',
       url: canonical,
       title: content.seoTitle,
       description: content.seoDescription,
