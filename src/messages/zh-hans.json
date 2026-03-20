@@ -98,5 +98,59 @@
       "github": "Bug 报告与功能请求：",
       "githubButton": "GitHub 仓库"
     }
+  },
+  "seo": {
+    "home": {
+      "title": "BitRemote | 面向 NAS 与家庭服务器的远程下载管理",
+      "description": "适用于 iPhone、iPad 和 Mac 的远程下载管理应用。可从任何地方控制 aria2、qBittorrent、Transmission、Synology Download Station 和 QNAP Download Station。",
+      "keywords": [
+        "远程下载管理",
+        "NAS 下载应用",
+        "家庭服务器 下载管理",
+        "aria2 远程",
+        "qBittorrent 远程",
+        "Transmission 远程",
+        "Synology Download Station 远程",
+        "QNAP Download Station 远程"
+      ]
+    },
+    "support": {
+      "title": "BitRemote 支持 | 帮助、社区与 GitHub",
+      "description": "获取 BitRemote 支持、提交问题、提出功能需求，并加入社区。这是面向 iPhone、iPad、Mac 的远程下载管理应用支持入口。",
+      "keywords": [
+        "BitRemote 支持",
+        "下载管理 支持",
+        "BitRemote GitHub",
+        "BitRemote 问题反馈",
+        "BitRemote 社区"
+      ]
+    },
+    "privacy": {
+      "title": "BitRemote 隐私权政策 | Ark Studios",
+      "description": "查看 Ark Studios 提供的 BitRemote 官方隐私政策，了解这款 NAS 与下载工具远程控制应用的数据处理方式。",
+      "keywords": [
+        "BitRemote 隐私政策",
+        "Ark Studios 隐私政策",
+        "下载管理 隐私"
+      ]
+    },
+    "terms": {
+      "title": "BitRemote EULA | Ark Studios",
+      "description": "查看 Ark Studios 提供的 BitRemote EULA。BitRemote 是一款适用于 Apple 设备的远程下载管理应用。",
+      "keywords": [
+        "BitRemote EULA",
+        "BitRemote 条款",
+        "Ark Studios EULA"
+      ]
+    },
+    "languageSelector": {
+      "title": "BitRemote | 远程下载管理应用",
+      "description": "选择你的语言以了解 BitRemote。这款应用可让你在 Apple 设备上管理 NAS、seedbox 与家庭服务器的下载任务。",
+      "keywords": [
+        "BitRemote",
+        "远程下载管理应用",
+        "NAS 下载应用"
+      ]
+    }
   }
 }

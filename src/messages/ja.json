@@ -98,5 +98,59 @@
       "github": "不具合報告・機能リクエスト：",
       "githubButton": "GitHub リポジトリ"
     }
+  },
+  "seo": {
+    "home": {
+      "title": "BitRemote | NAS とホームサーバー向けリモートダウンロード管理",
+      "description": "iPhone、iPad、Mac で使えるリモートダウンロード管理アプリ。aria2、qBittorrent、Transmission、Synology Download Station、QNAP Download Station を外出先から操作できます。",
+      "keywords": [
+        "リモート ダウンロード 管理",
+        "NAS ダウンロード アプリ",
+        "ホームサーバー ダウンロード 管理",
+        "aria2 リモート",
+        "qBittorrent リモート",
+        "Transmission リモート",
+        "Synology Download Station リモート",
+        "QNAP Download Station リモート"
+      ]
+    },
+    "support": {
+      "title": "BitRemote サポート | ヘルプ、コミュニティ、GitHub",
+      "description": "BitRemote のサポート情報、バグ報告、機能要望、コミュニティ参加先をまとめています。iPhone、iPad、Mac 向けリモートダウンロード管理アプリの案内ページです。",
+      "keywords": [
+        "BitRemote サポート",
+        "ダウンロード管理 サポート",
+        "BitRemote GitHub",
+        "BitRemote バグ報告",
+        "BitRemote コミュニティ"
+      ]
+    },
+    "privacy": {
+      "title": "BitRemote 個人情報保護方針 | Ark Studios",
+      "description": "NAS や各種ダウンロードクライアントを操作する BitRemote の公式プライバシーポリシーを Ark Studios の案内先から確認できます。",
+      "keywords": [
+        "BitRemote 個人情報保護方針",
+        "Ark Studios 個人情報保護方針",
+        "ダウンロード管理 プライバシー"
+      ]
+    },
+    "terms": {
+      "title": "BitRemote EULA | Ark Studios",
+      "description": "Apple プラットフォーム向けリモートダウンロード管理アプリ BitRemote の EULA を Ark Studios の案内先から確認できます。",
+      "keywords": [
+        "BitRemote EULA",
+        "BitRemote 利用規約",
+        "Ark Studios EULA"
+      ]
+    },
+    "languageSelector": {
+      "title": "BitRemote | リモートダウンロード管理アプリ",
+      "description": "BitRemote の紹介を読む言語を選択してください。NAS、seedbox、ホームサーバーのダウンロードタスクを Apple デバイスから管理できます。",
+      "keywords": [
+        "BitRemote",
+        "リモートダウンロード管理アプリ",
+        "NAS ダウンロード アプリ"
+      ]
+    }
   }
 }

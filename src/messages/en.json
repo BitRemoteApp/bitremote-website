@@ -116,5 +116,59 @@
       "github": "Bug reports and feature requests:",
       "githubButton": "GitHub Repository"
     }
+  },
+  "seo": {
+    "home": {
+      "title": "BitRemote | Remote Download Manager for NAS and Home Server Tasks",
+      "description": "Remote download manager for iPhone, iPad, and Mac. Control aria2, qBittorrent, Transmission, Synology Download Station, and QNAP Download Station from anywhere.",
+      "keywords": [
+        "remote download manager",
+        "nas downloads app",
+        "home server download manager",
+        "aria2 remote",
+        "qbittorrent remote",
+        "transmission remote",
+        "synology download station remote",
+        "qnap download station remote"
+      ]
+    },
+    "support": {
+      "title": "BitRemote Support | Help, Community, and GitHub",
+      "description": "Get BitRemote support, report bugs, request features, and join the community for the remote download manager app for iPhone, iPad, and Mac.",
+      "keywords": [
+        "bitremote support",
+        "download manager support",
+        "bitremote github",
+        "report bitremote bug",
+        "bitremote community"
+      ]
+    },
+    "privacy": {
+      "title": "BitRemote Privacy Policy | Ark Studios",
+      "description": "Read the official BitRemote privacy policy from Ark Studios for the remote download manager app used with NAS and downloader clients.",
+      "keywords": [
+        "bitremote privacy policy",
+        "ark studios privacy",
+        "download manager privacy"
+      ]
+    },
+    "terms": {
+      "title": "BitRemote EULA | Ark Studios",
+      "description": "Read the BitRemote end user license agreement from Ark Studios for the remote downloader management app on Apple platforms.",
+      "keywords": [
+        "bitremote eula",
+        "bitremote terms",
+        "ark studios eula"
+      ]
+    },
+    "languageSelector": {
+      "title": "BitRemote | Remote Download Manager App",
+      "description": "Choose your language to learn about BitRemote, the remote download manager app for NAS, seedbox, and home server workflows on Apple devices.",
+      "keywords": [
+        "bitremote",
+        "remote download manager app",
+        "nas download app"
+      ]
+    }
   }
 }

@@ -5,7 +5,8 @@ import { TextFrame } from '@/components/TextFrame';
 import { privacyPolicyUrl } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
-import { absoluteUrl, localePath } from '@/i18n/urls';
+import { localePath } from '@/i18n/urls';
+import { buildMetadataForCurrentLocalePage } from '@/seo/metadata';
 
 export async function generateMetadata({
   params,
@@ -16,12 +17,12 @@ export async function generateMetadata({
   const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const messages = getMessages(locale);
 
-  return {
-    title: messages.pages.privacy.title,
-    alternates: {
-      canonical: absoluteUrl(localePath(locale, '/privacy/')),
-    },
-  };
+  return buildMetadataForCurrentLocalePage({
+    locale,
+    pathname: '/privacy/',
+    messages,
+    page: 'privacy',
+  });
 }
 
 export default async function PrivacyPage({

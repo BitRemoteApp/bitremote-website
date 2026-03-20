@@ -5,7 +5,8 @@ import { TextFrame } from '@/components/TextFrame';
 import { eulaUrl } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
-import { absoluteUrl, localePath } from '@/i18n/urls';
+import { localePath } from '@/i18n/urls';
+import { buildMetadataForCurrentLocalePage } from '@/seo/metadata';
 
 export async function generateMetadata({
   params,
@@ -16,12 +17,12 @@ export async function generateMetadata({
   const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const messages = getMessages(locale);
 
-  return {
-    title: messages.pages.terms.title,
-    alternates: {
-      canonical: absoluteUrl(localePath(locale, '/terms/')),
-    },
-  };
+  return buildMetadataForCurrentLocalePage({
+    locale,
+    pathname: '/terms/',
+    messages,
+    page: 'terms',
+  });
 }
 
 export default async function TermsPage({

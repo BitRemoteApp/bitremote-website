@@ -3,7 +3,8 @@ import type { Metadata } from 'next';
 import { TextTabsNav } from '@/components/TextTabsNav';
 import { defaultLocale, isLocale, localeLang, locales, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
-import { absoluteUrl, localePath } from '@/i18n/urls';
+import { localePath } from '@/i18n/urls';
+import { buildMetadataForCurrentLocalePage } from '@/seo/metadata';
 
 export const dynamicParams = false;
 
@@ -20,24 +21,12 @@ export async function generateMetadata({
   const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const messages = getMessages(locale);
 
-  const siteName = messages.site.name;
-
-  return {
-    title: {
-      default: siteName,
-      template: `%s | ${siteName}`,
-    },
-    description: messages.site.description,
-    alternates: {
-      canonical: absoluteUrl(localePath(locale, '/')),
-      languages: {
-        en: absoluteUrl(localePath('en', '/')),
-        ja: absoluteUrl(localePath('ja', '/')),
-        'zh-Hans': absoluteUrl(localePath('zh-hans', '/')),
-        'zh-Hant': absoluteUrl(localePath('zh-hant', '/')),
-      },
-    },
-  };
+  return buildMetadataForCurrentLocalePage({
+    locale,
+    pathname: '/',
+    messages,
+    page: 'home',
+  });
 }
 
 export default async function LocaleLayout({
