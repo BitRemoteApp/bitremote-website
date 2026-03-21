@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { AsciiPanel } from '@/ascii-panel';
 import { BitRemoteWordmark } from '@/components/BitRemoteWordmark';
 import { FaqAccordion } from '@/components/FaqAccordion';
@@ -13,11 +15,29 @@ import { LINKS } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
 import { localePath } from '@/i18n/urls';
+import { buildMetadataForCurrentLocalePage } from '@/seo/metadata';
 import {
   buildFaqPageSchema,
   buildSoftwareApplicationSchema,
   serializeJsonLd,
 } from '@/seo/schema';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
+  const messages = getMessages(locale);
+
+  return buildMetadataForCurrentLocalePage({
+    locale,
+    pathname: '/',
+    messages,
+    page: 'home',
+  });
+}
 
 export default async function LocaleHomePage({
   params,

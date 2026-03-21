@@ -8,13 +8,19 @@ import { localeLang, locales } from '@/i18n/locales';
 import { absoluteUrl, localePath } from '@/i18n/urls';
 import { getLocalizedRouteEntries } from '@/seo/routes';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+
   return [
     {
       url: absoluteUrl('/'),
+      lastModified,
     },
     ...getLocalizedRouteEntries().map(({ locale, pathname, url }) => ({
       url,
+      lastModified,
       alternates: {
         languages: Object.fromEntries(
           locales.map((candidateLocale) => [
@@ -26,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...getDownloaderLandingEntries().map(({ locale, content }) => ({
       url: absoluteUrl(`/${locale}/downloaders/${content.slug}/`),
+      lastModified,
       alternates: {
         languages: Object.fromEntries(
           getAvailableDownloaderLandingLocales(content.slug).map((candidateLocale) => [

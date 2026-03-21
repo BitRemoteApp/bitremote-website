@@ -14,9 +14,12 @@ const openGraphLocaleByLocale: Record<Locale, string> = {
 };
 
 function buildLanguageAlternates(pathname: string): Record<string, string> {
-  return Object.fromEntries(
-    locales.map((locale) => [localeLang[locale], absoluteUrl(localePath(locale, pathname))]),
-  );
+  return {
+    ...Object.fromEntries(
+      locales.map((locale) => [localeLang[locale], absoluteUrl(localePath(locale, pathname))]),
+    ),
+    'x-default': absoluteUrl('/'),
+  };
 }
 
 export function buildMetadataForCurrentLocalePage({
@@ -51,11 +54,20 @@ export function buildMetadataForCurrentLocalePage({
         .map((candidate) => openGraphLocaleByLocale[candidate]),
       title: seo.title,
       description: seo.description,
+      images: [
+        {
+          url: absoluteUrl('/opengraph.jpg'),
+          width: 3544,
+          height: 1772,
+          alt: messages.site.name,
+        },
+      ],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: seo.title,
       description: seo.description,
+      images: [absoluteUrl('/opengraph.jpg')],
     },
   };
 }
