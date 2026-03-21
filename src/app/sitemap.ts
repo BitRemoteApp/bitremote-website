@@ -18,6 +18,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl('/'),
       lastModified,
     },
+    {
+      url: absoluteUrl('/llms.txt'),
+      lastModified,
+    },
+    {
+      url: absoluteUrl('/llms-full.txt'),
+      lastModified,
+    },
     ...getLocalizedRouteEntries().map(({ locale, pathname, url }) => ({
       url,
       lastModified,
