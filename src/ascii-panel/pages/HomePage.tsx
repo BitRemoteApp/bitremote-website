@@ -2,101 +2,101 @@
 
 import { useEffect, useState } from 'react';
 
-import { Client } from '@/domain/clients';
+import { Downloader } from '@/domain/downloaders';
 
-type ClientSpeed = { client: Client; up: string; down: string };
+type ClientSpeed = { client: Downloader; up: string; down: string };
 type ClientSpeedFrame = readonly [ClientSpeed, ClientSpeed, ClientSpeed, ClientSpeed, ClientSpeed];
 
 const clientsDataset: readonly ClientSpeedFrame[] = [
   [
-    { client: Client.aria2, up: '2 MB/s', down: '3 MB/s' },
-    { client: Client.qBittorrent, up: '150 KB/s', down: '80 MB/s' },
-    { client: Client.Transmission, up: '22 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '14 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
+    { client: Downloader.aria2, up: '2 MB/s', down: '3 MB/s' },
+    { client: Downloader.qBittorrent, up: '150 KB/s', down: '80 MB/s' },
+    { client: Downloader.Transmission, up: '22 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '14 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '3 MB/s', down: '4 MB/s' },
-    { client: Client.qBittorrent, up: '168 KB/s', down: '92 MB/s' },
-    { client: Client.Transmission, up: '24 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '16 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
+    { client: Downloader.aria2, up: '3 MB/s', down: '4 MB/s' },
+    { client: Downloader.qBittorrent, up: '168 KB/s', down: '92 MB/s' },
+    { client: Downloader.Transmission, up: '24 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '16 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '3 MB/s', down: '5 MB/s' },
-    { client: Client.qBittorrent, up: '192 KB/s', down: '88 MB/s' },
-    { client: Client.Transmission, up: '26 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '18 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '5 KB/s' },
+    { client: Downloader.aria2, up: '3 MB/s', down: '5 MB/s' },
+    { client: Downloader.qBittorrent, up: '192 KB/s', down: '88 MB/s' },
+    { client: Downloader.Transmission, up: '26 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '18 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '5 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '2 MB/s', down: '4 MB/s' },
-    { client: Client.qBittorrent, up: '180 KB/s', down: '82 MB/s' },
-    { client: Client.Transmission, up: '25 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '17 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
+    { client: Downloader.aria2, up: '2 MB/s', down: '4 MB/s' },
+    { client: Downloader.qBittorrent, up: '180 KB/s', down: '82 MB/s' },
+    { client: Downloader.Transmission, up: '25 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '17 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '2 MB/s', down: '3 MB/s' },
-    { client: Client.qBittorrent, up: '160 KB/s', down: '75 MB/s' },
-    { client: Client.Transmission, up: '23 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '15 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
+    { client: Downloader.aria2, up: '2 MB/s', down: '3 MB/s' },
+    { client: Downloader.qBittorrent, up: '160 KB/s', down: '75 MB/s' },
+    { client: Downloader.Transmission, up: '23 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '15 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '4 MB/s', down: '2 MB/s' },
-    { client: Client.qBittorrent, up: '142 KB/s', down: '72 MB/s' },
-    { client: Client.Transmission, up: '21 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '13 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
+    { client: Downloader.aria2, up: '4 MB/s', down: '2 MB/s' },
+    { client: Downloader.qBittorrent, up: '142 KB/s', down: '72 MB/s' },
+    { client: Downloader.Transmission, up: '21 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '13 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '3 MB/s', down: '3 MB/s' },
-    { client: Client.qBittorrent, up: '130 KB/s', down: '78 MB/s' },
-    { client: Client.Transmission, up: '22 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '12 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
+    { client: Downloader.aria2, up: '3 MB/s', down: '3 MB/s' },
+    { client: Downloader.qBittorrent, up: '130 KB/s', down: '78 MB/s' },
+    { client: Downloader.Transmission, up: '22 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '12 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '2 MB/s', down: '4 MB/s' },
-    { client: Client.qBittorrent, up: '145 KB/s', down: '86 MB/s' },
-    { client: Client.Transmission, up: '24 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '13 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
+    { client: Downloader.aria2, up: '2 MB/s', down: '4 MB/s' },
+    { client: Downloader.qBittorrent, up: '145 KB/s', down: '86 MB/s' },
+    { client: Downloader.Transmission, up: '24 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '13 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '4 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '1 MB/s', down: '5 MB/s' },
-    { client: Client.qBittorrent, up: '158 KB/s', down: '84 MB/s' },
-    { client: Client.Transmission, up: '23 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '15 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
+    { client: Downloader.aria2, up: '1 MB/s', down: '5 MB/s' },
+    { client: Downloader.qBittorrent, up: '158 KB/s', down: '84 MB/s' },
+    { client: Downloader.Transmission, up: '23 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '15 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '3 KB/s' },
   ],
   [
-    { client: Client.aria2, up: '2 MB/s', down: '3 MB/s' },
-    { client: Client.qBittorrent, up: '154 KB/s', down: '79 MB/s' },
-    { client: Client.Transmission, up: '22 MB/s', down: '0 KB/s' },
-    { client: Client.SynologyDownloadStation, up: '14 KB/s', down: '0 KB/s' },
-    { client: Client.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
+    { client: Downloader.aria2, up: '2 MB/s', down: '3 MB/s' },
+    { client: Downloader.qBittorrent, up: '154 KB/s', down: '79 MB/s' },
+    { client: Downloader.Transmission, up: '22 MB/s', down: '0 KB/s' },
+    { client: Downloader.SynologyDownloadStation, up: '14 KB/s', down: '0 KB/s' },
+    { client: Downloader.QNAPDownloadStation, up: '0 KB/s', down: '2 KB/s' },
   ],
 ] as const;
 
 const FRAME_INTERVAL_MS = 2000;
 
 const clientBadges = {
-  [Client.aria2]: 'A',
-  [Client.qBittorrent]: 'Q',
-  [Client.Transmission]: 'T',
-  [Client.SynologyDownloadStation]: 'S',
-  [Client.QNAPDownloadStation]: 'Q',
-} as const satisfies Record<Client, string>;
+  [Downloader.aria2]: 'A',
+  [Downloader.qBittorrent]: 'Q',
+  [Downloader.Transmission]: 'T',
+  [Downloader.SynologyDownloadStation]: 'S',
+  [Downloader.QNAPDownloadStation]: 'Q',
+} as const satisfies Record<Downloader, string>;
 
 type Direction = 'up' | 'down' | 'none';
 
-function clientSkeletonName(client: Client): string {
+function clientSkeletonName(client: Downloader): string {
   switch (client) {
-    case Client.SynologyDownloadStation:
+    case Downloader.SynologyDownloadStation:
       return 'Synology DS';
-    case Client.QNAPDownloadStation:
+    case Downloader.QNAPDownloadStation:
       return 'QNAP DS';
     default:
       return client;

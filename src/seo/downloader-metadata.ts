@@ -27,7 +27,7 @@ export function buildDownloaderLandingMetadata({
   return {
     title: content.seoTitle,
     description: content.seoDescription,
-    keywords: [content.primaryKeyword, content.clientName, 'BitRemote'],
+    keywords: [content.primaryKeyword, content.downloader, 'BitRemote'],
     alternates: {
       canonical,
       languages: Object.fromEntries(

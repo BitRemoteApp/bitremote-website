@@ -71,7 +71,7 @@ export default async function DownloaderLandingRoute({
     items: [
       { name: messages.nav.home, path: '/' },
       { name: messages.sections.downloaders.title, path: '/' },
-      { name: content.clientName, path: `/downloaders/${content.slug}/` },
+      { name: content.downloader, path: `/downloaders/${content.slug}/` },
     ],
   });
 

@@ -17,11 +17,11 @@ export function serializeJsonLd(schema: object): { __html: string } {
 export function buildSoftwareApplicationSchema({
   locale,
   messages,
-  supportedClients,
+  supportedDownloaders,
 }: {
   locale: Locale;
   messages: Messages;
-  supportedClients: readonly string[];
+  supportedDownloaders: readonly string[];
 }) {
   return {
     '@context': 'https://schema.org',
@@ -40,7 +40,7 @@ export function buildSoftwareApplicationSchema({
     },
     featureList: [
       ...messages.sections.benefits.items.map((item) => item.title),
-      ...supportedClients,
+      ...supportedDownloaders,
     ],
     sameAs: [LINKS.appStore, LINKS.github],
   };

@@ -20,7 +20,7 @@ export function DownloaderLandingPage({
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 pb-16">
       <section className="grid grid-cols-1 gap-5">
         <div className="font-mono text-xs uppercase tracking-[0.14em] text-blue-strong">
-          [{content.clientName}]
+          [{content.downloader}]
         </div>
         <h1 className="m-0 text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em]">
           {content.heroTitle}

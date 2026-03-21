@@ -4,9 +4,9 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { TextButton } from '@/components/TextButton';
 import { TextFrame } from '@/components/TextFrame';
 import { TextSeparator } from '@/components/TextSeparator';
-import { supportedClients } from '@/domain/clients';
+import { supportedDownloaders } from '@/domain/downloaders';
 import {
-  downloaderLandingSlugByClientName,
+  downloaderSlugByDownloader,
   getDownloaderLandingContent,
 } from '@/domain/downloader-landings';
 import { LINKS } from '@/i18n/links';
@@ -32,7 +32,7 @@ export default async function LocaleHomePage({
   const softwareApplicationSchema = buildSoftwareApplicationSchema({
     locale,
     messages,
-    supportedClients,
+    supportedDownloaders,
   });
   const faqPageSchema = buildFaqPageSchema(messages);
 
@@ -75,8 +75,8 @@ export default async function LocaleHomePage({
               [{messages.sections.downloaders.title}]
             </div>
             <div className="grid gap-1 text-[0.85rem] leading-[1.35] tracking-[0.06em] text-ink-soft [overflow-wrap:anywhere]">
-              {supportedClients.map((client) => {
-                const slug = downloaderLandingSlugByClientName[client];
+              {supportedDownloaders.map((client) => {
+                const slug = downloaderSlugByDownloader[client];
                 const landingContent = slug ? getDownloaderLandingContent(locale, slug) : undefined;
 
                 if (!landingContent || !slug) {
