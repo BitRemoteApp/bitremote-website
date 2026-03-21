@@ -1,43 +1,12 @@
-import type { Metadata } from 'next';
-
 import { TextTabsNav } from '@/components/TextTabsNav';
 import { defaultLocale, isLocale, localeLang, locales, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
-import { absoluteUrl, localePath } from '@/i18n/urls';
+import { localePath } from '@/i18n/urls';
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale: rawLocale } = await params;
-  const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
-  const messages = getMessages(locale);
-
-  const siteName = messages.site.name;
-
-  return {
-    title: {
-      default: siteName,
-      template: `%s | ${siteName}`,
-    },
-    description: messages.site.description,
-    alternates: {
-      canonical: absoluteUrl(localePath(locale, '/')),
-      languages: {
-        en: absoluteUrl(localePath('en', '/')),
-        ja: absoluteUrl(localePath('ja', '/')),
-        'zh-Hans': absoluteUrl(localePath('zh-hans', '/')),
-        'zh-Hant': absoluteUrl(localePath('zh-hant', '/')),
-      },
-    },
-  };
 }
 
 export default async function LocaleLayout({

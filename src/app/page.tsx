@@ -1,8 +1,41 @@
+import type { Metadata } from 'next';
+
 import { BitRemoteWordmark } from '@/components/BitRemoteWordmark';
 import { TextButton } from '@/components/TextButton';
 import { LINKS } from '@/i18n/links';
-import { localeLabels, locales } from '@/i18n/locales';
-import { localeRoot } from '@/i18n/urls';
+import { localeLabels, localeLang, locales } from '@/i18n/locales';
+import { absoluteUrl, localePath, localeRoot } from '@/i18n/urls';
+
+const description =
+  'Choose your language to learn about BitRemote, the remote download manager app for NAS, seedbox, and home server workflows on Apple devices.';
+
+export const metadata: Metadata = {
+  title: 'BitRemote',
+  description,
+  keywords: ['bitremote', 'remote download manager app', 'nas download app'],
+  alternates: {
+    canonical: 'https://bitremote.app/',
+    languages: {
+      ...Object.fromEntries(
+        locales.map((locale) => [localeLang[locale], absoluteUrl(localePath(locale, '/'))]),
+      ),
+      'x-default': 'https://bitremote.app/',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://bitremote.app/',
+    title: 'BitRemote',
+    description,
+    siteName: 'BitRemote',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'BitRemote',
+    description,
+  },
+};
 
 export default function RootPage() {
   return (

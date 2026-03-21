@@ -5,7 +5,6 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://bitremote.app'),
   title: 'BitRemote',
-  description: 'An Apple platforms app to control your downloaders remotely.',
   manifest: '/site.webmanifest',
   icons: {
     icon: [

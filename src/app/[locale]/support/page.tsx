@@ -5,7 +5,9 @@ import { TextFrame } from '@/components/TextFrame';
 import { LINKS } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
-import { absoluteUrl, localePath } from '@/i18n/urls';
+import { localePath } from '@/i18n/urls';
+import { buildMetadataForCurrentLocalePage } from '@/seo/metadata';
+import { buildBreadcrumbSchema, serializeJsonLd } from '@/seo/schema';
 
 export async function generateMetadata({
   params,
@@ -16,12 +18,12 @@ export async function generateMetadata({
   const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const messages = getMessages(locale);
 
-  return {
-    title: messages.pages.support.title,
-    alternates: {
-      canonical: absoluteUrl(localePath(locale, '/support/')),
-    },
-  };
+  return buildMetadataForCurrentLocalePage({
+    locale,
+    pathname: '/support/',
+    messages,
+    page: 'support',
+  });
 }
 
 export default async function SupportPage({
@@ -32,9 +34,21 @@ export default async function SupportPage({
   const { locale: rawLocale } = await params;
   const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const messages = getMessages(locale);
+  const breadcrumbSchema = buildBreadcrumbSchema({
+    locale,
+    items: [
+      { name: messages.nav.home, path: '/' },
+      { name: messages.pages.support.title, path: '/support/' },
+    ],
+  });
 
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={serializeJsonLd(breadcrumbSchema)}
+      />
+
       <TextFrame title={messages.pages.support.title} label="HELP_001">
         <p className="mt-0 text-ink-soft">{messages.pages.support.github}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
