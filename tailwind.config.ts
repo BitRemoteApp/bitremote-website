@@ -6,7 +6,6 @@ const config = {
   theme: {
     extend: {
       colors: {
-        /* New semantic tokens (per D-20) */
         bg:            'var(--color-bg)',
         surface:       'var(--color-surface)',
         'surface-alt': 'var(--color-surface-alt)',
@@ -19,18 +18,9 @@ const config = {
           hover:   'var(--color-accent-hover)',
           subtle:  'var(--color-accent-subtle)',
         },
-
-        /* Backward compat aliases (removed in Plan 02) */
-        fg:            'var(--fg)',
-        blue:          'var(--blue)',
-        'blue-strong': 'var(--blue-strong)',
-        'blue-line':   'var(--blue-line)',
-        'blue-soft':   'var(--blue-soft)',
-        'ink-soft':    'var(--ink-soft)',
       },
       fontFamily: {
         sans: ['var(--font-sans)'],
-        mono: ['var(--font-ui)'],  /* Kept for compat; removed in Plan 02 */
       },
       borderRadius: {
         sm: 'var(--radius-sm)',
