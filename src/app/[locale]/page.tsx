@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { AppShowcaseClient } from '@/components/AppShowcaseClient';
 import { BitRemoteWordmark } from '@/components/BitRemoteWordmark';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { TextButton } from '@/components/TextButton';
@@ -125,6 +126,10 @@ export default async function LocaleHomePage({
         </div>
 
       </section>
+
+      <hr className="border-t border-border my-12" />
+
+      <AppShowcaseClient />
 
       <hr className="border-t border-border my-12" />
 
