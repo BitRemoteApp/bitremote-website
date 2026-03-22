@@ -30,6 +30,14 @@ The website must look and feel like it belongs to the same product as the BitRem
 - [ ] Maintain all existing content and functionality during redesign
 - [ ] Ensure responsive design across mobile, tablet, and desktop
 
+### Validated in Phase 2
+
+- ✓ Scroll entrance animations using only opacity and transform (GPU-composited, no layout thrash) — Validated in Phase 02: motion-and-ui-primitives
+- ✓ Smooth scrolling via Lenis for premium weighted feel — Validated in Phase 02: motion-and-ui-primitives
+- ✓ All animations respect prefers-reduced-motion (completely absent, not just skipped) — Validated in Phase 02: motion-and-ui-primitives
+- ✓ No React hydration mismatches — animation/theme state handled without browser APIs during server render — Validated in Phase 02: motion-and-ui-primitives
+- ✓ Static export remains compatible with Cloudflare Pages — Validated in Phase 02: motion-and-ui-primitives
+
 ### Validated in Phase 1
 
 - ✓ Replace ASCII/monospace design language with modern sans-serif typography — Validated in Phase 01: design-foundation
@@ -82,7 +90,7 @@ The website must look and feel like it belongs to the same product as the BitRem
 |----------|-----------|---------|
 | Blue as sole accent color | Matches app's design system — monochromatic + blue | ✓ Implemented in Phase 01 |
 | Dark/light via prefers-color-scheme | CSS media query, no JS — both themes supported | ✓ Implemented in Phase 01 |
-| Marketing-grade visual effects allowed | This is a conversion page, not docs — impressiveness matters | — Pending |
+| Marketing-grade visual effects allowed | This is a conversion page, not docs — impressiveness matters | ✓ Foundation in Phase 02 (motion primitives ready) |
 | Keep Next.js static export | No reason to change what works for deployment | ✓ Good |
 
 ## Evolution
@@ -103,4 +111,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-22 after Phase 01 completion*
+*Last updated: 2026-03-23 after Phase 02 completion*
