@@ -24,15 +24,18 @@ The website must look and feel like it belongs to the same product as the BitRem
 
 ### Active
 
-- [ ] Replace ASCII/monospace design language with modern sans-serif typography
-- [ ] Implement monochromatic color palette (black/white/gray) with blue as the sole accent color
-- [ ] Design can be dark or light themed (app supports both) — dark preferred for premium feel
 - [ ] Add polished visual effects suitable for a marketing site (scroll animations, parallax, glowing elements, smooth transitions)
 - [ ] Showcase app screenshots as hero visuals — let the app's UI sell itself
 - [ ] Use card-based layouts and rounded shapes that echo the app's native UI patterns
 - [ ] Maintain all existing content and functionality during redesign
 - [ ] Ensure responsive design across mobile, tablet, and desktop
-- [ ] Remove ASCII art separators, text-frame components, and terminal-style UI elements
+
+### Validated in Phase 1
+
+- ✓ Replace ASCII/monospace design language with modern sans-serif typography — Validated in Phase 01: design-foundation
+- ✓ Implement monochromatic color palette (black/white/gray) with blue as the sole accent color — Validated in Phase 01: design-foundation
+- ✓ Design can be dark or light themed (app supports both) — Validated in Phase 01: design-foundation
+- ✓ Remove ASCII art separators, text-frame components, and terminal-style UI elements — Validated in Phase 01: design-foundation
 
 ### Out of Scope
 
@@ -77,8 +80,8 @@ The website must look and feel like it belongs to the same product as the BitRem
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Blue as sole accent color | Matches app's design system — monochromatic + blue | — Pending |
-| Dark or light theme TBD | App supports both; dark feels premium for marketing | — Pending |
+| Blue as sole accent color | Matches app's design system — monochromatic + blue | ✓ Implemented in Phase 01 |
+| Dark/light via prefers-color-scheme | CSS media query, no JS — both themes supported | ✓ Implemented in Phase 01 |
 | Marketing-grade visual effects allowed | This is a conversion page, not docs — impressiveness matters | — Pending |
 | Keep Next.js static export | No reason to change what works for deployment | ✓ Good |
 
@@ -100,4 +103,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-22 after initialization*
+*Last updated: 2026-03-22 after Phase 01 completion*
