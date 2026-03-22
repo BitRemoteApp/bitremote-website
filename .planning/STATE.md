@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Phase 3 UI-SPEC approved
-last_updated: "2026-03-22T17:49:25.138Z"
+stopped_at: Completed 03-screenshot-assets-03-01-PLAN.md
+last_updated: "2026-03-22T18:10:35.090Z"
 progress:
   total_phases: 5
   completed_phases: 2
-  total_plans: 5
-  completed_plans: 5
+  total_plans: 7
+  completed_plans: 6
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** The website must look and feel like it belongs to the same product as the BitRemote app — clean, professional, and visually impressive enough to make tech-savvy visitors want to download it.
-**Current focus:** Phase 02 — motion-and-ui-primitives
+**Current focus:** Phase 03 — screenshot-assets
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
+Phase: 03 (screenshot-assets) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Plan: Not started
 | Phase 02-motion-and-ui-primitives P01 | 8 | 2 tasks | 5 files |
 | Phase 02-motion-and-ui-primitives P02 | 4 | 1 tasks | 2 files |
 | Phase 02-motion-and-ui-primitives P02 | 576 | 2 tasks | 2 files |
+| Phase 03-screenshot-assets P01 | 2 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - [Phase 02-motion-and-ui-primitives]: MotionProvider wraps LenisProvider in root layout (MotionConfig must be ancestor of all motion.* elements)
 - [Phase 02-motion-and-ui-primitives]: scroll-behavior: smooth removed from globals.css — Lenis owns scroll behavior; CSS property redundant and unsafe for reduced-motion users who skip Lenis
 - [Phase 02-motion-and-ui-primitives]: Animation infrastructure browser verification approved: Lenis smooth scroll active, no hydration errors, reduced-motion disables Lenis
+- [Phase 03-screenshot-assets]: Used raw picture element instead of next/image — next/image does not support picture + prefers-color-scheme source switching
+- [Phase 03-screenshot-assets]: Split AppShowcase (server) from AppShowcaseClient (client) — motion.div requires use client but IPhoneFrame/AppScreenshot are pure HTML/CSS and benefit from server rendering
+- [Phase 03-screenshot-assets]: screenshots-source/ gitignored at project root — only WebP output in public/screenshots/ committed to prevent raw PNG repo bloat
 
 ### Pending Todos
 
@@ -86,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T17:49:25.135Z
-Stopped at: Phase 3 UI-SPEC approved
-Resume file: .planning/phases/03-screenshot-assets/03-UI-SPEC.md
+Last session: 2026-03-22T18:10:35.088Z
+Stopped at: Completed 03-screenshot-assets-03-01-PLAN.md
+Resume file: None

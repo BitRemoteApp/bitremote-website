@@ -60,9 +60,9 @@ Plans:
   2. All screenshot images are WebP format and under the performance budget — page LCP is not caused by an unoptimized image asset
   3. Visiting the site in dark OS theme shows dark-mode app screenshots; light OS theme shows light-mode screenshots — no JavaScript state drives this on initial load
   4. Screenshots animate into view as the visitor scrolls to the showcase section
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 Plans:
-- [ ] 03-01-PLAN.md — Optimization script, showcase components, and page wiring
+- [x] 03-01-PLAN.md — Optimization script, showcase components, and page wiring
 - [ ] 03-02-PLAN.md — Screenshot capture, pipeline execution, and visual verification
 
 ### Phase 4: Section Assembly
@@ -96,6 +96,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Design Foundation | 3/3 | Complete   | 2026-03-22 |
 | 2. Motion and UI Primitives | 2/2 | Complete   | 2026-03-22 |
-| 3. Screenshot Assets | 0/2 | Planning complete | - |
+| 3. Screenshot Assets | 1/2 | In Progress|  |
 | 4. Section Assembly | 0/? | Not started | - |
 | 5. Visual Polish | 0/? | Not started | - |

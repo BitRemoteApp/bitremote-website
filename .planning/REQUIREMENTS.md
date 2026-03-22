@@ -24,10 +24,10 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### App Showcase
 
-- [ ] **SHOW-01**: Dedicated showcase section below the hero displays app screenshots in device mockups
-- [ ] **SHOW-02**: Screenshots are shown in realistic device frames (iPhone and/or Mac)
-- [ ] **SHOW-03**: Dark theme shows dark-mode app screenshots, light theme shows light-mode screenshots
-- [ ] **SHOW-04**: Screenshots animate into view on scroll
+- [x] **SHOW-01**: Dedicated showcase section below the hero displays app screenshots in device mockups
+- [x] **SHOW-02**: Screenshots are shown in realistic device frames (iPhone and/or Mac)
+- [x] **SHOW-03**: Dark theme shows dark-mode app screenshots, light theme shows light-mode screenshots
+- [x] **SHOW-04**: Screenshots animate into view on scroll
 
 ### Features Section
 
@@ -61,7 +61,7 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 - [x] **TECH-01**: Site remains a Next.js static export compatible with Cloudflare Pages
 - [x] **TECH-02**: No hydration mismatches — theme detection uses CSS media queries, not JS localStorage on initial render
-- [ ] **TECH-03**: App screenshots are pre-optimized to WebP before being added to the project
+- [x] **TECH-03**: App screenshots are pre-optimized to WebP before being added to the project
 - [x] **TECH-04**: Animation components use `"use client"` directive; static content stays server-renderable
 - [ ] **TECH-05**: Build produces correct output for all locale paths
 
@@ -112,11 +112,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | TECH-01 | Phase 2 | Complete |
 | TECH-02 | Phase 2 | Complete |
 | TECH-04 | Phase 2 | Complete |
-| SHOW-01 | Phase 3 | Pending |
-| SHOW-02 | Phase 3 | Pending |
-| SHOW-03 | Phase 3 | Pending |
-| SHOW-04 | Phase 3 | Pending |
-| TECH-03 | Phase 3 | Pending |
+| SHOW-01 | Phase 3 | Complete |
+| SHOW-02 | Phase 3 | Complete |
+| SHOW-03 | Phase 3 | Complete |
+| SHOW-04 | Phase 3 | Complete |
+| TECH-03 | Phase 3 | Complete |
 | HERO-01 | Phase 4 | Pending |
 | HERO-02 | Phase 4 | Pending |
 | HERO-03 | Phase 4 | Pending |
