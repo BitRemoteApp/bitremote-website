@@ -1,6 +1,4 @@
 import { TextButton } from '@/components/TextButton';
-import { TextFrame } from '@/components/TextFrame';
-import { TextSeparator } from '@/components/TextSeparator';
 import type { DownloaderLandingContent } from '@/domain/downloader-landings';
 import { LINKS } from '@/i18n/links';
 import type { Messages } from '@/i18n/messages';
@@ -37,32 +35,32 @@ export function DownloaderLandingPage({
         </div>
       </section>
 
-      <TextSeparator />
+      <hr className="border-t border-border my-12" />
 
       <section>
-        <TextFrame title={content.overviewTitle} label="DLP_001">
+        <section aria-label={content.overviewTitle}>
           <p className="m-0 text-text-secondary">{content.overviewBody}</p>
-        </TextFrame>
+        </section>
       </section>
 
-      <TextSeparator />
+      <hr className="border-t border-border my-12" />
 
       <section className="grid grid-cols-1 gap-4 min-[900px]:grid-cols-2">
-        <TextFrame title={content.capabilityTitle} label="DLP_002">
+        <section aria-label={content.capabilityTitle}>
           <ul className="m-0 list-disc pl-5 text-text-secondary">
             {content.capabilityItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </TextFrame>
+        </section>
 
-        <TextFrame title={content.useCaseTitle} label="DLP_003">
+        <section aria-label={content.useCaseTitle}>
           <ul className="m-0 list-disc pl-5 text-text-secondary">
             {content.useCaseItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </TextFrame>
+        </section>
       </section>
     </main>
   );

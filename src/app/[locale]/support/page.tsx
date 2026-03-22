@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
 import { TextButton } from '@/components/TextButton';
-import { TextFrame } from '@/components/TextFrame';
 import { LINKS } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
@@ -49,7 +48,7 @@ export default async function SupportPage({
         dangerouslySetInnerHTML={serializeJsonLd(breadcrumbSchema)}
       />
 
-      <TextFrame title={messages.pages.support.title} label="HELP_001">
+      <section aria-label={messages.pages.support.title}>
         <p className="mt-0 text-ink-soft">{messages.pages.support.github}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <TextButton href={LINKS.github} target="_blank" rel="noreferrer">
@@ -78,7 +77,7 @@ export default async function SupportPage({
             {messages.nav.home}
           </TextButton>
         </div>
-      </TextFrame>
+      </section>
     </main>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
 import { TextButton } from '@/components/TextButton';
-import { TextFrame } from '@/components/TextFrame';
 import { eulaUrl } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
@@ -50,7 +49,7 @@ export default async function TermsPage({
         dangerouslySetInnerHTML={serializeJsonLd(breadcrumbSchema)}
       />
 
-      <TextFrame title={messages.pages.terms.title} label="LEGAL_002">
+      <section aria-label={messages.pages.terms.title}>
         <p className="mt-0 text-ink-soft">{messages.pages.terms.body}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <TextButton href={href} target="_blank" rel="noreferrer">
@@ -60,7 +59,7 @@ export default async function TermsPage({
             Back
           </TextButton>
         </div>
-      </TextFrame>
+      </section>
     </main>
   );
 }

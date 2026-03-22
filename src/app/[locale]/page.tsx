@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
 
-import { AsciiPanel } from '@/ascii-panel';
 import { BitRemoteWordmark } from '@/components/BitRemoteWordmark';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { TextButton } from '@/components/TextButton';
-import { TextFrame } from '@/components/TextFrame';
-import { TextSeparator } from '@/components/TextSeparator';
 import { supportedDownloaders } from '@/domain/downloaders';
 import {
   downloaderSlugByDownloader,
@@ -68,7 +65,7 @@ export default async function LocaleHomePage({
       />
 
       <section
-        className="grid grid-cols-1 items-stretch gap-5 min-[980px]:grid-cols-[1.05fr_0.95fr] min-[980px]:gap-8"
+        className="grid grid-cols-1 items-stretch gap-5"
         id="top"
       >
         <div className="flex h-full flex-col">
@@ -83,18 +80,18 @@ export default async function LocaleHomePage({
 
           <div className="min-h-3 grow" aria-hidden="true" />
 
-          <p className="m-0 max-w-[62ch] text-ink-soft">{messages.hero.subhead}</p>
+          <p className="m-0 max-w-[62ch] text-text-secondary">{messages.hero.subhead}</p>
 
           <div className="min-h-5 grow-[4]" aria-hidden="true" />
 
           <div
-            className="mb-6 grid gap-[0.35rem] border border-blue-line bg-[var(--bg-glass-92)] px-3 py-3 font-mono"
+            className="mb-6 grid gap-[0.35rem] border border-border bg-[var(--bg-glass-92)] px-3 py-3 font-sans"
             aria-label={messages.sections.downloaders.title}
           >
-            <div className="text-xs uppercase tracking-[0.14em] text-blue-strong">
+            <div className="text-xs uppercase tracking-wider text-accent">
               [{messages.sections.downloaders.title}]
             </div>
-            <div className="grid gap-1 text-[0.85rem] leading-[1.35] tracking-[0.06em] text-ink-soft [overflow-wrap:anywhere]">
+            <div className="grid gap-1 text-[0.85rem] leading-[1.35] text-text-secondary [overflow-wrap:anywhere]">
               {supportedDownloaders.map((client) => {
                 const slug = downloaderSlugByDownloader[client];
                 const landingContent = slug ? getDownloaderLandingContent(locale, slug) : undefined;
@@ -110,7 +107,7 @@ export default async function LocaleHomePage({
                 return (
                   <a
                     key={client}
-                    className="opacity-90 text-inherit no-underline transition-colors hover:text-blue-strong active:text-blue-strong"
+                    className="opacity-90 text-inherit no-underline transition-colors hover:text-accent active:text-accent"
                     href={localePath(locale, `/downloaders/${slug}/`)}
                   >
                     - {client}
@@ -127,13 +124,12 @@ export default async function LocaleHomePage({
           </div>
         </div>
 
-        <AsciiPanel />
       </section>
 
-      <TextSeparator />
+      <hr className="border-t border-border my-12" />
 
       <section id="features">
-        <h2 className="m-0 font-mono text-base uppercase tracking-[0.12em] text-blue-strong">
+        <h2 className="m-0 font-sans text-base uppercase tracking-wide text-accent">
           {messages.sections.benefits.title}
         </h2>
 
@@ -142,59 +138,55 @@ export default async function LocaleHomePage({
             const subtitle = b.subtitle;
 
             return (
-              <TextFrame
-                key={b.id}
-                title={b.title}
-                label={`FIG_${String(index + 1).padStart(3, '0')}`}
-              >
-                <p className="m-0 text-ink-soft">{subtitle}</p>
-              </TextFrame>
+              <section key={b.id} aria-label={b.title}>
+                <p className="m-0 text-text-secondary">{subtitle}</p>
+              </section>
             );
           })}
         </div>
       </section>
 
-      <TextSeparator />
+      <hr className="border-t border-border my-12" />
 
       <section id="how-it-works">
-        <h2 className="m-0 font-mono text-base uppercase tracking-[0.12em] text-blue-strong">
+        <h2 className="m-0 font-sans text-base uppercase tracking-wide text-accent">
           {messages.sections.quickstart.title}
         </h2>
         <div className="mt-4 grid grid-cols-1 gap-4 min-[900px]:grid-cols-2">
           {messages.sections.quickstart.steps.map((step, index) => (
-            <TextFrame key={step.title} title={step.title} label={`STEP_${index + 1}`}>
-              <p className="m-0 text-ink-soft">{step.body}</p>
-            </TextFrame>
+            <section key={step.title} aria-label={step.title}>
+              <p className="m-0 text-text-secondary">{step.body}</p>
+            </section>
           ))}
         </div>
-        <p className="mt-[0.9rem] font-mono tracking-[0.04em] text-ink-soft">
+        <p className="mt-[0.9rem] font-sans text-text-secondary">
           {messages.sections.quickstart.requirements}
         </p>
       </section>
 
-      <TextSeparator />
+      <hr className="border-t border-border my-12" />
 
       <section id="plus">
-        <h2 className="m-0 mb-4 font-mono text-base uppercase tracking-[0.12em] text-blue-strong">
+        <h2 className="m-0 mb-4 font-sans text-base uppercase tracking-wide text-accent">
           {messages.sections.plus.title}
         </h2>
-        <TextFrame title={messages.sections.plus.frameTitle} label="PLUS_001">
-          <p className="mt-0 text-ink-soft">{messages.sections.plus.subtitle}</p>
+        <section aria-label={messages.sections.plus.frameTitle}>
+          <p className="mt-0 text-text-secondary">{messages.sections.plus.subtitle}</p>
           <ul className="m-0 list-disc pl-5">
             {messages.sections.plus.items.map((x) => (
               <li key={x}>{x}</li>
             ))}
           </ul>
-          <p className="mb-0 mt-[0.9rem] font-mono tracking-[0.04em] text-ink-soft">
+          <p className="mb-0 mt-[0.9rem] font-sans text-text-secondary">
             {messages.sections.plus.note}
           </p>
-        </TextFrame>
+        </section>
       </section>
 
-      <TextSeparator />
+      <hr className="border-t border-border my-12" />
 
       <section id="faq">
-        <h2 className="m-0 font-mono text-base uppercase tracking-[0.12em] text-blue-strong">
+        <h2 className="m-0 font-sans text-base uppercase tracking-wide text-accent">
           {messages.sections.faq.title}
         </h2>
         <div className="mt-4">
