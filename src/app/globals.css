@@ -73,7 +73,6 @@
   html {
     background: var(--color-bg);
     color: var(--color-text-primary);
-    scroll-behavior: smooth;
     scroll-padding-top: 5.25rem;
   }
 
