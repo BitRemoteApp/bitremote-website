@@ -230,6 +230,10 @@ Project not yet initialized. Run /gsd:new-project to set up.
 ## Cross-Cutting Concerns
 <!-- GSD:architecture-end -->
 
+## Design Decision Authority
+
+For design-related decisions (typography, color, layout, spacing, tokens, visual effects, component styling), Claude should consult available design skills and the Impeccable skill set rather than asking the user. Use project research docs (`.planning/research/`) and PROJECT.md as context. Present decisions made, not questions. Still ask the user about non-design decisions (product scope, content strategy, business logic).
+
 <!-- GSD:workflow-start source:GSD defaults -->
 ## GSD Workflow Enforcement
 
