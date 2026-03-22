@@ -9,10 +9,10 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### Design Foundation
 
-- [ ] **DSGN-01**: Site uses a CSS variable design token system for colors, spacing, typography, and border radius
-- [ ] **DSGN-02**: Site supports both dark and light themes, switching automatically via `prefers-color-scheme`
-- [ ] **DSGN-03**: Color palette is monochromatic (near-black/white/gray) with blue as the sole accent color, matching the app
-- [ ] **DSGN-04**: Dark theme uses near-black backgrounds (not pure `#000`) to avoid halation
+- [x] **DSGN-01**: Site uses a CSS variable design token system for colors, spacing, typography, and border radius
+- [x] **DSGN-02**: Site supports both dark and light themes, switching automatically via `prefers-color-scheme`
+- [x] **DSGN-03**: Color palette is monochromatic (near-black/white/gray) with blue as the sole accent color, matching the app
+- [x] **DSGN-04**: Dark theme uses near-black backgrounds (not pure `#000`) to avoid halation
 - [ ] **DSGN-05**: Typography uses a modern sans-serif font throughout, replacing all monospace usage
 - [ ] **DSGN-06**: All ASCII art separators (░ patterns) and terminal-style UI elements are removed
 
@@ -99,10 +99,10 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DSGN-01 | Phase 1 | Pending |
-| DSGN-02 | Phase 1 | Pending |
-| DSGN-03 | Phase 1 | Pending |
-| DSGN-04 | Phase 1 | Pending |
+| DSGN-01 | Phase 1 | Complete |
+| DSGN-02 | Phase 1 | Complete |
+| DSGN-03 | Phase 1 | Complete |
+| DSGN-04 | Phase 1 | Complete |
 | DSGN-05 | Phase 1 | Pending |
 | DSGN-06 | Phase 1 | Pending |
 | VFX-01 | Phase 2 | Pending |

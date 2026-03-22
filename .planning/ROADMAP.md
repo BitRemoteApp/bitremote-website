@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. No ASCII art separators (░ patterns), terminal borders, or monospace decorative elements exist anywhere in the codebase or rendered page
 **Plans:** 3 plans
 Plans:
-- [ ] 01-01-PLAN.md — Token system and Tailwind config (globals.css + tailwind.config.ts)
+- [x] 01-01-PLAN.md — Token system and Tailwind config (globals.css + tailwind.config.ts)
 - [ ] 01-02-PLAN.md — Font and color class migration across all surviving component/page files
 - [ ] 01-03-PLAN.md — ASCII/terminal component deletion, import site cleanup, dead code removal
 
