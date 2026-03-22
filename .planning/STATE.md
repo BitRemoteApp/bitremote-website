@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: "Completed 01-design-foundation plan 02: component token migration"
-last_updated: "2026-03-22T14:28:54.590Z"
+stopped_at: "Completed 01-design-foundation plan 03: ASCII component deletion and CSS cleanup"
+last_updated: "2026-03-22T14:30:19.394Z"
 progress:
   total_phases: 5
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 3
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -48,6 +48,7 @@ Plan: 3 of 3
 *Updated after each plan completion*
 | Phase 01-design-foundation P01 | 2 | 2 tasks | 2 files |
 | Phase 01-design-foundation P02 | 4 minutes | 2 tasks | 12 files |
+| Phase 01-design-foundation P03 | 5 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -61,6 +62,9 @@ Recent decisions affecting current work:
 - [Phase 01-design-foundation]: fontFamily.mono kept in Tailwind config pointing to --font-ui which aliases to --font-sans; removed in Plan 02
 - [Phase 01-design-foundation]: Removed tracking-[0.08em]/[0.04em] from font-sans usage; used tracking-wide for 0.12em headings, tracking-wider for 0.14em labels
 - [Phase 01-design-foundation]: Backward compat aliases (--bg, --fg, --blue, etc.) are now fully unused in surviving .tsx files after Plan 02 migration
+- [Phase 01-design-foundation]: TextFrame replaced with <section aria-label> (semantic placeholder) until Phase 4 Card component; TextSeparator replaced with <hr> until Phase 5 SVG dividers
+- [Phase 01-design-foundation]: Backward compat CSS variables and Tailwind color aliases fully removed after all usage sites migrated
+- [Phase 01-design-foundation]: Glass tokens (--bg-glass-92, --bg-glass-95) kept in globals.css - still used by TextTabsNav and page.tsx backdrop blur
 
 ### Pending Todos
 
@@ -73,6 +77,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T14:28:54.588Z
-Stopped at: Completed 01-design-foundation plan 02: component token migration
+Last session: 2026-03-22T14:30:19.392Z
+Stopped at: Completed 01-design-foundation plan 03: ASCII component deletion and CSS cleanup
 Resume file: None

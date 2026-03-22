@@ -14,7 +14,7 @@ Requirements for the redesign. Each maps to roadmap phases.
 - [x] **DSGN-03**: Color palette is monochromatic (near-black/white/gray) with blue as the sole accent color, matching the app
 - [x] **DSGN-04**: Dark theme uses near-black backgrounds (not pure `#000`) to avoid halation
 - [x] **DSGN-05**: Typography uses a modern sans-serif font throughout, replacing all monospace usage
-- [ ] **DSGN-06**: All ASCII art separators (░ patterns) and terminal-style UI elements are removed
+- [x] **DSGN-06**: All ASCII art separators (░ patterns) and terminal-style UI elements are removed
 
 ### Hero Section
 
@@ -104,7 +104,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | DSGN-03 | Phase 1 | Complete |
 | DSGN-04 | Phase 1 | Complete |
 | DSGN-05 | Phase 1 | Complete |
-| DSGN-06 | Phase 1 | Pending |
+| DSGN-06 | Phase 1 | Complete |
 | VFX-01 | Phase 2 | Pending |
 | VFX-02 | Phase 2 | Pending |
 | VFX-04 | Phase 2 | Pending |

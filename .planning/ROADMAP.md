@@ -12,7 +12,7 @@ The redesign replaces the current ASCII/monospace aesthetic with a modern design
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Design Foundation** - Establish the design token system, typography, color palette, and dark theme that all other components depend on
+- [x] **Phase 1: Design Foundation** - Establish the design token system, typography, color palette, and dark theme that all other components depend on (completed 2026-03-22)
 - [ ] **Phase 2: Motion and UI Primitives** - Build reusable animation and UI components with GPU-safe constraints baked in from day one
 - [ ] **Phase 3: Screenshot Assets** - Prepare, optimize, and validate app screenshot assets before any section that displays them is built
 - [ ] **Phase 4: Section Assembly** - Build all section components and assemble the full page using tokens, primitives, and optimized assets
@@ -30,11 +30,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The color palette uses only near-black, white, gray, and blue across all themed surfaces — no other hues appear
   4. Dark backgrounds use near-black (not pure #000), visually distinguishable from pure black on any display
   5. No ASCII art separators (░ patterns), terminal borders, or monospace decorative elements exist anywhere in the codebase or rendered page
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 Plans:
 - [x] 01-01-PLAN.md — Token system and Tailwind config (globals.css + tailwind.config.ts)
 - [x] 01-02-PLAN.md — Font and color class migration across all surviving component/page files
-- [ ] 01-03-PLAN.md — ASCII/terminal component deletion, import site cleanup, dead code removal
+- [x] 01-03-PLAN.md — ASCII/terminal component deletion, import site cleanup, dead code removal
 
 ### Phase 2: Motion and UI Primitives
 **Goal**: All reusable animation and UI building blocks exist and enforce correct constraints — transform/opacity-only animations, reduced-motion support, and hydration safety are baked in before any section is built
@@ -88,7 +88,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Design Foundation | 2/3 | In Progress|  |
+| 1. Design Foundation | 3/3 | Complete   | 2026-03-22 |
 | 2. Motion and UI Primitives | 0/? | Not started | - |
 | 3. Screenshot Assets | 0/? | Not started | - |
 | 4. Section Assembly | 0/? | Not started | - |
