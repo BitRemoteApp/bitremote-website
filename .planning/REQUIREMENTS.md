@@ -59,8 +59,8 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### Technical
 
-- [ ] **TECH-01**: Site remains a Next.js static export compatible with Cloudflare Pages
-- [ ] **TECH-02**: No hydration mismatches — theme detection uses CSS media queries, not JS localStorage on initial render
+- [x] **TECH-01**: Site remains a Next.js static export compatible with Cloudflare Pages
+- [x] **TECH-02**: No hydration mismatches — theme detection uses CSS media queries, not JS localStorage on initial render
 - [ ] **TECH-03**: App screenshots are pre-optimized to WebP before being added to the project
 - [x] **TECH-04**: Animation components use `"use client"` directive; static content stays server-renderable
 - [ ] **TECH-05**: Build produces correct output for all locale paths
@@ -109,8 +109,8 @@ Deferred to future release. Tracked but not in current roadmap.
 | VFX-02 | Phase 2 | Complete |
 | VFX-04 | Phase 2 | Complete |
 | VFX-05 | Phase 2 | Complete |
-| TECH-01 | Phase 2 | Pending |
-| TECH-02 | Phase 2 | Pending |
+| TECH-01 | Phase 2 | Complete |
+| TECH-02 | Phase 2 | Complete |
 | TECH-04 | Phase 2 | Complete |
 | SHOW-01 | Phase 3 | Pending |
 | SHOW-02 | Phase 3 | Pending |

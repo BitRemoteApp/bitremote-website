@@ -49,7 +49,7 @@ Plans:
 **Plans:** 1/2 plans executed
 Plans:
 - [x] 02-01-PLAN.md — Install motion + lenis, create LenisProvider, MotionProvider, and FadeInSection components
-- [ ] 02-02-PLAN.md — Wire providers into root layout, remove scroll-behavior CSS, browser verification
+- [x] 02-02-PLAN.md — Wire providers into root layout, remove scroll-behavior CSS, browser verification
 
 ### Phase 3: Screenshot Assets
 **Goal**: App screenshots are captured, optimized to WebP, sized for retina displays, and validated against the AppMockup component before any section that displays them is built

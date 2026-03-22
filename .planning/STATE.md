@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-22T16:26:55.818Z"
+stopped_at: "Completed 02-02-PLAN.md (Task 2: awaiting human-verify checkpoint)"
+last_updated: "2026-03-22T16:29:38.498Z"
 progress:
   total_phases: 5
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -50,6 +50,7 @@ Plan: 2 of 2
 | Phase 01-design-foundation P02 | 4 minutes | 2 tasks | 12 files |
 | Phase 01-design-foundation P03 | 5 | 2 tasks | 9 files |
 | Phase 02-motion-and-ui-primitives P01 | 8 | 2 tasks | 5 files |
+| Phase 02-motion-and-ui-primitives P02 | 4 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,8 @@ Recent decisions affecting current work:
 - [Phase 02-motion-and-ui-primitives]: Typed easing as Easing from motion/react to satisfy TypeScript number[] vs Easing variance
 - [Phase 02-motion-and-ui-primitives]: LenisProvider defaults skipLenis=true for hydration safety; client enables Lenis after matchMedia confirms no reduced-motion preference
 - [Phase 02-motion-and-ui-primitives]: FadeInSection exports three variant sets (sectionVariants, staggerContainerVariants, staggerItemVariants) as named exports for Phase 4 client stagger components
+- [Phase 02-motion-and-ui-primitives]: MotionProvider wraps LenisProvider in root layout (MotionConfig must be ancestor of all motion.* elements)
+- [Phase 02-motion-and-ui-primitives]: scroll-behavior: smooth removed from globals.css — Lenis owns scroll behavior; CSS property redundant and unsafe for reduced-motion users who skip Lenis
 
 ### Pending Todos
 
@@ -81,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T16:26:55.816Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-22T16:29:38.496Z
+Stopped at: Completed 02-02-PLAN.md (Task 2: awaiting human-verify checkpoint)
 Resume file: None
