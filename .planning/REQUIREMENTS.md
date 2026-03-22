@@ -99,46 +99,46 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DSGN-01 | Pending | Pending |
-| DSGN-02 | Pending | Pending |
-| DSGN-03 | Pending | Pending |
-| DSGN-04 | Pending | Pending |
-| DSGN-05 | Pending | Pending |
-| DSGN-06 | Pending | Pending |
-| HERO-01 | Pending | Pending |
-| HERO-02 | Pending | Pending |
-| HERO-03 | Pending | Pending |
-| SHOW-01 | Pending | Pending |
-| SHOW-02 | Pending | Pending |
-| SHOW-03 | Pending | Pending |
-| SHOW-04 | Pending | Pending |
-| FEAT-01 | Pending | Pending |
-| FEAT-02 | Pending | Pending |
-| FEAT-03 | Pending | Pending |
-| NAV-01 | Pending | Pending |
-| NAV-02 | Pending | Pending |
-| NAV-03 | Pending | Pending |
-| VFX-01 | Pending | Pending |
-| VFX-02 | Pending | Pending |
-| VFX-03 | Pending | Pending |
-| VFX-04 | Pending | Pending |
-| VFX-05 | Pending | Pending |
-| CONT-01 | Pending | Pending |
-| CONT-02 | Pending | Pending |
-| CONT-03 | Pending | Pending |
-| CONT-04 | Pending | Pending |
-| CONT-05 | Pending | Pending |
-| TECH-01 | Pending | Pending |
-| TECH-02 | Pending | Pending |
-| TECH-03 | Pending | Pending |
-| TECH-04 | Pending | Pending |
-| TECH-05 | Pending | Pending |
+| DSGN-01 | Phase 1 | Pending |
+| DSGN-02 | Phase 1 | Pending |
+| DSGN-03 | Phase 1 | Pending |
+| DSGN-04 | Phase 1 | Pending |
+| DSGN-05 | Phase 1 | Pending |
+| DSGN-06 | Phase 1 | Pending |
+| VFX-01 | Phase 2 | Pending |
+| VFX-02 | Phase 2 | Pending |
+| VFX-04 | Phase 2 | Pending |
+| VFX-05 | Phase 2 | Pending |
+| TECH-01 | Phase 2 | Pending |
+| TECH-02 | Phase 2 | Pending |
+| TECH-04 | Phase 2 | Pending |
+| SHOW-01 | Phase 3 | Pending |
+| SHOW-02 | Phase 3 | Pending |
+| SHOW-03 | Phase 3 | Pending |
+| SHOW-04 | Phase 3 | Pending |
+| TECH-03 | Phase 3 | Pending |
+| HERO-01 | Phase 4 | Pending |
+| HERO-02 | Phase 4 | Pending |
+| HERO-03 | Phase 4 | Pending |
+| FEAT-01 | Phase 4 | Pending |
+| FEAT-02 | Phase 4 | Pending |
+| FEAT-03 | Phase 4 | Pending |
+| NAV-01 | Phase 4 | Pending |
+| NAV-02 | Phase 4 | Pending |
+| NAV-03 | Phase 4 | Pending |
+| CONT-01 | Phase 4 | Pending |
+| CONT-02 | Phase 4 | Pending |
+| CONT-03 | Phase 4 | Pending |
+| CONT-04 | Phase 4 | Pending |
+| CONT-05 | Phase 4 | Pending |
+| TECH-05 | Phase 4 | Pending |
+| VFX-03 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 34 total
-- Mapped to phases: 0
-- Unmapped: 34 ⚠️
+- Mapped to phases: 34
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-22*
-*Last updated: 2026-03-22 after initial definition*
+*Last updated: 2026-03-22 after roadmap creation*
