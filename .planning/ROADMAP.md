@@ -46,9 +46,9 @@ Plans:
   3. All animations are completely absent (not just skipped) for visitors with prefers-reduced-motion enabled
   4. The site produces no React hydration mismatch warnings — theme and animation state are handled without reading browser APIs during server render
   5. The site remains a Next.js static export deployable to Cloudflare Pages with no SSR-only dependencies introduced
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 Plans:
-- [ ] 02-01-PLAN.md — Install motion + lenis, create LenisProvider, MotionProvider, and FadeInSection components
+- [x] 02-01-PLAN.md — Install motion + lenis, create LenisProvider, MotionProvider, and FadeInSection components
 - [ ] 02-02-PLAN.md — Wire providers into root layout, remove scroll-behavior CSS, browser verification
 
 ### Phase 3: Screenshot Assets
@@ -92,7 +92,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Design Foundation | 3/3 | Complete   | 2026-03-22 |
-| 2. Motion and UI Primitives | 0/2 | Planned | - |
+| 2. Motion and UI Primitives | 1/2 | In Progress|  |
 | 3. Screenshot Assets | 0/? | Not started | - |
 | 4. Section Assembly | 0/? | Not started | - |
 | 5. Visual Polish | 0/? | Not started | - |

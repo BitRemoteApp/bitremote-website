@@ -43,11 +43,11 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### Visual Effects
 
-- [ ] **VFX-01**: Sections use staggered fade-in entrance animations triggered on scroll
-- [ ] **VFX-02**: Smooth scrolling implemented via lenis for premium feel
+- [x] **VFX-01**: Sections use staggered fade-in entrance animations triggered on scroll
+- [x] **VFX-02**: Smooth scrolling implemented via lenis for premium feel
 - [ ] **VFX-03**: Section dividers use thin elegant SVG lines replacing ASCII separators
-- [ ] **VFX-04**: All animations respect `prefers-reduced-motion` — baked in from day one, not retrofitted
-- [ ] **VFX-05**: Animations only use `transform` and `opacity` (GPU-composited, no layout thrashing)
+- [x] **VFX-04**: All animations respect `prefers-reduced-motion` — baked in from day one, not retrofitted
+- [x] **VFX-05**: Animations only use `transform` and `opacity` (GPU-composited, no layout thrashing)
 
 ### Content Preservation
 
@@ -62,7 +62,7 @@ Requirements for the redesign. Each maps to roadmap phases.
 - [ ] **TECH-01**: Site remains a Next.js static export compatible with Cloudflare Pages
 - [ ] **TECH-02**: No hydration mismatches — theme detection uses CSS media queries, not JS localStorage on initial render
 - [ ] **TECH-03**: App screenshots are pre-optimized to WebP before being added to the project
-- [ ] **TECH-04**: Animation components use `"use client"` directive; static content stays server-renderable
+- [x] **TECH-04**: Animation components use `"use client"` directive; static content stays server-renderable
 - [ ] **TECH-05**: Build produces correct output for all locale paths
 
 ## v2 Requirements
@@ -105,13 +105,13 @@ Deferred to future release. Tracked but not in current roadmap.
 | DSGN-04 | Phase 1 | Complete |
 | DSGN-05 | Phase 1 | Complete |
 | DSGN-06 | Phase 1 | Complete |
-| VFX-01 | Phase 2 | Pending |
-| VFX-02 | Phase 2 | Pending |
-| VFX-04 | Phase 2 | Pending |
-| VFX-05 | Phase 2 | Pending |
+| VFX-01 | Phase 2 | Complete |
+| VFX-02 | Phase 2 | Complete |
+| VFX-04 | Phase 2 | Complete |
+| VFX-05 | Phase 2 | Complete |
 | TECH-01 | Phase 2 | Pending |
 | TECH-02 | Phase 2 | Pending |
-| TECH-04 | Phase 2 | Pending |
+| TECH-04 | Phase 2 | Complete |
 | SHOW-01 | Phase 3 | Pending |
 | SHOW-02 | Phase 3 | Pending |
 | SHOW-03 | Phase 3 | Pending |
