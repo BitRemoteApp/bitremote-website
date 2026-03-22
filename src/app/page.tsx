@@ -43,28 +43,28 @@ export default function RootPage() {
       <BitRemoteWordmark />
       <h1 className="sr-only">BitRemote</h1>
 
-      <p className="mt-4 max-w-[62ch] text-ink-soft">Select a language to continue.</p>
+      <p className="mt-4 max-w-[62ch] text-text-secondary">Select a language to continue.</p>
 
       <div className="mt-5 flex justify-center">
         <div className="table border-separate border-spacing-x-0 border-spacing-y-2">
           {locales.map((l) => (
             <a
               key={l}
-              className="group table-row font-mono text-sm uppercase tracking-[0.08em] text-blue-strong no-underline select-none"
+              className="group table-row font-sans text-sm uppercase text-accent no-underline select-none"
               href={localeRoot(l)}
             >
               <span
                 aria-hidden="true"
-                className="table-cell w-[1ch] py-[0.15rem] text-left text-current opacity-70 transition-opacity group-hover:bg-blue-strong group-hover:text-bg group-hover:opacity-100 group-active:bg-blue-strong group-active:text-bg group-active:opacity-100"
+                className="table-cell w-[1ch] py-[0.15rem] text-left text-current opacity-70 transition-opacity group-hover:bg-accent group-hover:text-bg group-hover:opacity-100 group-active:bg-accent group-active:text-bg group-active:opacity-100"
               >
                 [
               </span>
-              <span className="table-cell py-[0.15rem] px-[0.55ch] text-center transition-colors group-hover:bg-blue-strong group-hover:text-bg group-active:bg-blue-strong group-active:text-bg">
+              <span className="table-cell py-[0.15rem] px-[0.55ch] text-center transition-colors group-hover:bg-accent group-hover:text-bg group-active:bg-accent group-active:text-bg">
                 {localeLabels[l]}
               </span>
               <span
                 aria-hidden="true"
-                className="table-cell w-[1ch] py-[0.15rem] text-right text-current opacity-70 transition-opacity group-hover:bg-blue-strong group-hover:text-bg group-hover:opacity-100 group-active:bg-blue-strong group-active:text-bg group-active:opacity-100"
+                className="table-cell w-[1ch] py-[0.15rem] text-right text-current opacity-70 transition-opacity group-hover:bg-accent group-hover:text-bg group-hover:opacity-100 group-active:bg-accent group-active:text-bg group-active:opacity-100"
               >
                 ]
               </span>

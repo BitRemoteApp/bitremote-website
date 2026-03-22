@@ -29,12 +29,12 @@ export default async function LocaleLayout({
 
       {children}
 
-      <footer className="border-t border-blue-line pb-10 pt-6 text-ink-soft">
+      <footer className="border-t border-border pb-10 pt-6 text-text-secondary">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 font-mono tracking-[0.04em]">
+          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 font-sans">
             <nav className="flex flex-wrap items-center gap-x-3 gap-y-2" aria-label="Footer">
               <a
-                className="inline-flex items-center px-[0.4rem] py-[0.15rem] text-blue-strong no-underline transition-colors duration-150 hover:bg-blue-strong hover:text-bg active:bg-blue-strong active:text-bg"
+                className="inline-flex items-center px-[0.4rem] py-[0.15rem] text-accent no-underline transition-colors duration-150 hover:bg-accent hover:text-bg active:bg-accent active:text-bg"
                 href={localePath(locale, '/support/')}
               >
                 {messages.pages.support.title}
@@ -43,7 +43,7 @@ export default async function LocaleLayout({
                 |
               </span>
               <a
-                className="inline-flex items-center px-[0.4rem] py-[0.15rem] text-blue-strong no-underline transition-colors duration-150 hover:bg-blue-strong hover:text-bg active:bg-blue-strong active:text-bg"
+                className="inline-flex items-center px-[0.4rem] py-[0.15rem] text-accent no-underline transition-colors duration-150 hover:bg-accent hover:text-bg active:bg-accent active:text-bg"
                 href={localePath(locale, '/privacy/')}
               >
                 {messages.pages.privacy.title}
@@ -52,7 +52,7 @@ export default async function LocaleLayout({
                 |
               </span>
               <a
-                className="inline-flex items-center px-[0.4rem] py-[0.15rem] text-blue-strong no-underline transition-colors duration-150 hover:bg-blue-strong hover:text-bg active:bg-blue-strong active:text-bg"
+                className="inline-flex items-center px-[0.4rem] py-[0.15rem] text-accent no-underline transition-colors duration-150 hover:bg-accent hover:text-bg active:bg-accent active:text-bg"
                 href={localePath(locale, '/terms/')}
               >
                 {messages.pages.terms.title}

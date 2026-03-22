@@ -50,7 +50,7 @@ export default async function TermsPage({
       />
 
       <section aria-label={messages.pages.terms.title}>
-        <p className="mt-0 text-ink-soft">{messages.pages.terms.body}</p>
+        <p className="mt-0 text-text-secondary">{messages.pages.terms.body}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <TextButton href={href} target="_blank" rel="noreferrer">
             Open EULA

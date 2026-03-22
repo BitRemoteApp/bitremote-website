@@ -49,14 +49,14 @@ export default async function SupportPage({
       />
 
       <section aria-label={messages.pages.support.title}>
-        <p className="mt-0 text-ink-soft">{messages.pages.support.github}</p>
+        <p className="mt-0 text-text-secondary">{messages.pages.support.github}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <TextButton href={LINKS.github} target="_blank" rel="noreferrer">
             {messages.pages.support.githubButton}
           </TextButton>
         </div>
 
-        <p className="mt-6 text-ink-soft">{messages.pages.support.body}</p>
+        <p className="mt-6 text-text-secondary">{messages.pages.support.body}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <TextButton href={LINKS.discord} target="_blank" rel="noreferrer">
             Discord

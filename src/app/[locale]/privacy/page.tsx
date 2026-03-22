@@ -50,7 +50,7 @@ export default async function PrivacyPage({
       />
 
       <section aria-label={messages.pages.privacy.title}>
-        <p className="mt-0 text-ink-soft">{messages.pages.privacy.body}</p>
+        <p className="mt-0 text-text-secondary">{messages.pages.privacy.body}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <TextButton href={href} target="_blank" rel="noreferrer">
             Open policy
