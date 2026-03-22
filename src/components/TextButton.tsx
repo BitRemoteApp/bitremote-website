@@ -16,11 +16,11 @@ export function TextButton({
   rel,
 }: Props) {
   const baseClassName =
-    'group inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] no-underline select-none transition duration-150 hover:bg-blue-strong hover:text-bg active:scale-[0.97] active:bg-blue-strong active:text-bg';
+    'group inline-flex items-center px-[0.45rem] py-[0.15rem] font-sans text-sm uppercase no-underline select-none transition duration-150 hover:bg-accent hover:text-bg active:scale-[0.97] active:bg-accent active:text-bg';
   const variantClassName =
     variant === 'secondary'
-      ? 'text-fg opacity-80 hover:opacity-100 active:opacity-100'
-      : 'text-blue-strong';
+      ? 'text-text-primary opacity-80 hover:opacity-100 active:opacity-100'
+      : 'text-accent';
 
   return (
     <a

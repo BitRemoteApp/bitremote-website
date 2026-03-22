@@ -50,7 +50,7 @@ export function BitRemoteWordmark() {
         textAnchor="start"
         fill="var(--blue)"
         stroke="none"
-        className="font-mono motion-reduce:opacity-0"
+        className="font-sans motion-reduce:opacity-0"
         filter="url(#pixelate)"
         style={{ fontSize: 52, letterSpacing: '-0.06em', textTransform: 'uppercase' }}
       >
@@ -63,7 +63,7 @@ export function BitRemoteWordmark() {
         textAnchor="start"
         fill="var(--blue)"
         stroke="none"
-        className="font-mono opacity-0 motion-reduce:opacity-100"
+        className="font-sans opacity-0 motion-reduce:opacity-100"
         style={{ fontSize: 52, letterSpacing: '-0.06em', textTransform: 'uppercase' }}
       >
         BitRemote

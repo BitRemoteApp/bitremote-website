@@ -58,21 +58,21 @@ export function TextTabsNav({
   // data-[active=true]:* classes are intentionally never applied.
   // Tab items respond to hover only — there is no persistent "current page" highlight by design.
   const tabLinkClassName =
-    'relative inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] text-fg opacity-[0.85] no-underline transition-colors duration-150 hover:bg-blue-strong hover:text-bg hover:opacity-100 active:bg-blue-strong active:text-bg active:opacity-100 data-[active=true]:bg-blue-strong data-[active=true]:text-bg data-[active=true]:opacity-100';
+    'relative inline-flex items-center px-[0.45rem] py-[0.15rem] font-sans text-sm uppercase text-text-primary opacity-[0.85] no-underline transition-colors duration-150 hover:bg-accent hover:text-bg hover:opacity-100 active:bg-accent active:text-bg active:opacity-100 data-[active=true]:bg-accent data-[active=true]:text-bg data-[active=true]:opacity-100';
   const localeLinkBaseClassName =
-    'group inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] no-underline select-none transition duration-150 hover:bg-blue-strong hover:text-bg active:scale-[0.97] active:bg-blue-strong active:text-bg';
+    'group inline-flex items-center px-[0.45rem] py-[0.15rem] font-sans text-sm uppercase no-underline select-none transition duration-150 hover:bg-accent hover:text-bg active:scale-[0.97] active:bg-accent active:text-bg';
 
   const localeLinkClassName = (isCurrent: boolean) =>
     isCurrent
-      ? 'text-blue-strong'
-      : 'text-fg opacity-80 hover:opacity-100 active:opacity-100';
+      ? 'text-accent'
+      : 'text-text-primary opacity-80 hover:opacity-100 active:opacity-100';
 
   const localeBracketClassName =
     'text-current opacity-70 transition-opacity group-hover:opacity-100 group-active:opacity-100';
 
   return (
     <nav
-      className="sticky top-0 z-10 border-b border-blue-line bg-[var(--bg-glass-92)] backdrop-blur"
+      className="sticky top-0 z-10 border-b border-border bg-[var(--bg-glass-92)] backdrop-blur"
       aria-label="Site"
     >
       <div className="mx-auto flex w-full max-w-6xl flex-nowrap items-center gap-4 py-[0.9rem] whitespace-nowrap">
@@ -131,7 +131,7 @@ export function TextTabsNav({
         <div data-locale-picker className="relative ml-auto" ref={pickerRef}>
           <button
             type="button"
-            className={`${localeLinkBaseClassName} cursor-pointer border-0 bg-transparent text-fg opacity-80 hover:opacity-100 active:opacity-100`}
+            className={`${localeLinkBaseClassName} cursor-pointer border-0 bg-transparent text-text-primary opacity-80 hover:opacity-100 active:opacity-100`}
             aria-expanded={isLocaleMenuOpen}
             aria-controls={localeMenuId}
             onClick={() => setIsLocaleMenuOpen((current) => !current)}
@@ -147,7 +147,7 @@ export function TextTabsNav({
 
           {isLocaleMenuOpen ? (
             <div
-              className="absolute right-0 top-[calc(100%+0.45rem)] z-20 border border-blue-line bg-[var(--bg-glass-95)] py-[0.45rem] px-[0.55rem] backdrop-blur"
+              className="absolute right-0 top-[calc(100%+0.45rem)] z-20 border border-border bg-[var(--bg-glass-95)] py-[0.45rem] px-[0.55rem] backdrop-blur"
               id={localeMenuId}
               role="menu"
               aria-label="Language options"
@@ -156,13 +156,13 @@ export function TextTabsNav({
                 {locales.map((l) => {
                   const isCurrent = l === locale;
                   const rowBaseClassName =
-                    'group table-row font-mono text-sm uppercase tracking-[0.08em] no-underline select-none transition duration-150';
+                    'group table-row font-sans text-sm uppercase no-underline select-none transition duration-150';
                   const rowClassName = isCurrent
-                    ? `${rowBaseClassName} text-blue-strong`
-                    : `${rowBaseClassName} text-fg opacity-80 hover:opacity-100 active:opacity-100`;
+                    ? `${rowBaseClassName} text-accent`
+                    : `${rowBaseClassName} text-text-primary opacity-80 hover:opacity-100 active:opacity-100`;
 
                   const cellClassName =
-                    'table-cell py-[0.15rem] transition-colors group-hover:bg-blue-strong group-hover:text-bg group-active:bg-blue-strong group-active:text-bg';
+                    'table-cell py-[0.15rem] transition-colors group-hover:bg-accent group-hover:text-bg group-active:bg-accent group-active:text-bg';
                   return (
                     <a
                       key={l}

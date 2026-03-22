@@ -19,13 +19,13 @@ export function DownloaderLandingPage({
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 pb-16">
       <section className="grid grid-cols-1 gap-5">
-        <div className="font-mono text-xs uppercase tracking-[0.14em] text-blue-strong">
+        <div className="font-sans text-xs uppercase tracking-wider text-accent">
           [{content.downloader}]
         </div>
         <h1 className="m-0 text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em]">
           {content.heroTitle}
         </h1>
-        <p className="m-0 max-w-[70ch] text-ink-soft">{content.heroBody}</p>
+        <p className="m-0 max-w-[70ch] text-text-secondary">{content.heroBody}</p>
 
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <TextButton href={LINKS.appStore} target="_blank" rel="noreferrer">
@@ -41,7 +41,7 @@ export function DownloaderLandingPage({
 
       <section>
         <TextFrame title={content.overviewTitle} label="DLP_001">
-          <p className="m-0 text-ink-soft">{content.overviewBody}</p>
+          <p className="m-0 text-text-secondary">{content.overviewBody}</p>
         </TextFrame>
       </section>
 
@@ -49,7 +49,7 @@ export function DownloaderLandingPage({
 
       <section className="grid grid-cols-1 gap-4 min-[900px]:grid-cols-2">
         <TextFrame title={content.capabilityTitle} label="DLP_002">
-          <ul className="m-0 list-disc pl-5 text-ink-soft">
+          <ul className="m-0 list-disc pl-5 text-text-secondary">
             {content.capabilityItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -57,7 +57,7 @@ export function DownloaderLandingPage({
         </TextFrame>
 
         <TextFrame title={content.useCaseTitle} label="DLP_003">
-          <ul className="m-0 list-disc pl-5 text-ink-soft">
+          <ul className="m-0 list-disc pl-5 text-text-secondary">
             {content.useCaseItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
