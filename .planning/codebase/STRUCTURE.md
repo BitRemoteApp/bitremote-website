@@ -6,239 +6,219 @@
 
 ```
 bitremote-website/
-├── src/                         # Source code
-│   ├── app/                     # Next.js App Router routes
-│   │   ├── [locale]/            # Locale dynamic segment
-│   │   │   ├── downloaders/     # Downloader landing pages
-│   │   │   │   └── [slug]/      # Individual downloader slugs
-│   │   │   ├── privacy/         # Privacy policy page
-│   │   │   ├── support/         # Support page
-│   │   │   ├── terms/           # Terms of service page
-│   │   │   ├── layout.tsx       # Locale-aware wrapper layout
-│   │   │   └── page.tsx         # Home page (/)
-│   │   ├── llms-full.txt/       # API route for LLM context
-│   │   ├── layout.tsx           # Root layout (globals.css)
-│   │   ├── page.tsx             # Language selector page
-│   │   ├── robots.ts            # robots.txt generation
-│   │   ├── sitemap.ts           # Sitemap generation
-│   │   └── not-found.tsx        # 404 fallback
-│   ├── ascii-panel/             # Interactive terminal-style component
-│   │   ├── components/          # Frame/sheet sub-components
-│   │   ├── pages/               # Panel pages (Home, Settings, NewClient)
-│   │   └── index.tsx            # Main ASCII panel export
-│   ├── components/              # Reusable presentation components
+├── .github/                    # GitHub configuration
+│   └── workflows/              # CI/CD workflow definitions
+├── .planning/                  # GSD planning documents
+│   └── codebase/               # Codebase analysis artifacts
+├── .vscode/                    # VSCode editor configuration
+├── public/                     # Static assets
+│   └── textures/               # Image and texture files
+├── src/                        # Source code
+│   ├── app/                    # Next.js App Router pages and layouts
+│   │   ├── [locale]/           # Locale-parameterized pages
+│   │   │   ├── downloaders/    # Downloader landing pages
+│   │   │   │   └── [slug]/     # Dynamic downloader routes
+│   │   │   ├── privacy/        # Privacy policy page
+│   │   │   ├── support/        # Support page
+│   │   │   ├── terms/          # Terms page
+│   │   │   ├── layout.tsx      # Locale layout with nav and footer
+│   │   │   └── page.tsx        # Home page (main marketing page)
+│   │   ├── llms-full.txt/      # API route for LLM context
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── page.tsx            # Root redirect page (language selector)
+│   │   ├── robots.ts           # Robots.txt generator
+│   │   ├── sitemap.ts          # Sitemap.xml generator
+│   │   ├── not-found.tsx       # Custom 404 page
+│   │   └── globals.css         # Global styles
+│   ├── ascii-panel/            # ASCII panel interactive component module
+│   │   ├── components/         # ASCII panel sub-components
+│   │   │   ├── AsciiPanelFrame.tsx
+│   │   │   └── AsciiPanelSheet.tsx
+│   │   ├── pages/              # ASCII panel page views
+│   │   │   ├── HomePage.tsx
+│   │   │   ├── NewClientPage.tsx
+│   │   │   └── SettingsPage.tsx
+│   │   └── index.tsx           # Main ASCII panel component
+│   ├── components/             # Shared reusable UI components
 │   │   ├── BitRemoteWordmark.tsx
+│   │   ├── DownloaderLandingPage.tsx
+│   │   ├── FaqAccordion.tsx
 │   │   ├── TextButton.tsx
 │   │   ├── TextFrame.tsx
 │   │   ├── TextSeparator.tsx
-│   │   ├── TextTabsNav.tsx
-│   │   ├── FaqAccordion.tsx
-│   │   └── DownloaderLandingPage.tsx
-│   ├── domain/                  # Domain models and business logic
-│   │   ├── downloaders.ts       # Downloader enum, supported list
-│   │   └── downloader-landings.ts # Landing page content dictionary
-│   ├── i18n/                    # Internationalization
-│   │   ├── locales.ts           # Locale constants, validation
-│   │   ├── messages.ts          # Message loader function
-│   │   ├── urls.ts              # Locale-aware URL builders
-│   │   └── links.ts             # External links constants
-│   ├── messages/                # Message JSON files (imported by i18n/messages.ts)
-│   │   ├── en.json
-│   │   ├── ja.json
-│   │   ├── zh-hans.json
-│   │   └── zh-hant.json
-│   ├── seo/                     # SEO and metadata generation
-│   │   ├── metadata.ts          # buildMetadataForCurrentLocalePage()
-│   │   ├── schema.ts            # JSON-LD builders
-│   │   └── routes.ts            # Localized route entries
-│   └── globals.css              # Tailwind + CSS variables
-├── public/                      # Static assets
-│   ├── favicon.svg, favicon-16x16.png, favicon-32x32.png
-│   ├── apple-touch-icon.png
-│   ├── site.webmanifest
-│   ├── opengraph.jpg            # Social media preview
-│   └── [other assets]
-├── .vscode/                     # IDE settings
-├── .github/                     # GitHub workflows and config
-├── next.config.ts               # Next.js configuration
-├── tsconfig.json                # TypeScript configuration
-├── tailwind.config.ts           # Tailwind CSS configuration
-├── postcss.config.js            # PostCSS configuration
-├── .eslintrc.json               # ESLint configuration
-├── package.json                 # Dependencies and scripts
-└── next-env.d.ts                # Next.js type definitions
+│   │   └── TextTabsNav.tsx
+│   ├── domain/                 # Business logic and data models
+│   │   ├── downloader-landings.ts   # Downloader landing page content
+│   │   └── downloaders.ts           # Downloader enum and list
+│   ├── i18n/                   # Internationalization
+│   │   ├── links.ts            # External links configuration
+│   │   ├── locales.ts          # Locale definitions and validation
+│   │   ├── messages.ts         # Message loader and type
+│   │   └── urls.ts             # URL building utilities
+│   ├── messages/               # Localized content (JSON files)
+│   │   ├── en.json             # English messages
+│   │   ├── ja.json             # Japanese messages
+│   │   ├── zh-hans.json        # Simplified Chinese messages
+│   │   └── zh-hant.json        # Traditional Chinese messages
+│   └── seo/                    # SEO and metadata generation
+│       ├── downloader-metadata.ts
+│       ├── metadata.ts
+│       ├── routes.ts
+│       └── schema.ts
+├── .eslintrc.json              # ESLint configuration
+├── .claude/                    # Claude Code workspace config
+├── next.config.ts              # Next.js configuration
+├── package.json                # npm dependencies and scripts
+├── package-lock.json           # npm lock file
+├── postcss.config.js           # PostCSS configuration
+├── tailwind.config.ts          # Tailwind CSS configuration
+├── tsconfig.json               # TypeScript configuration
+└── [root config files]         # Various root-level config files
 ```
 
 ## Directory Purposes
 
-**`src/app/`:**
-- Purpose: Next.js App Router structure with page components
-- Contains: Route handlers, page components, layouts, metadata generation
-- Key files: `[locale]/layout.tsx` (static param generation), `[locale]/page.tsx` (home page), `sitemap.ts`, `robots.ts`
+**src/app/:**
+- Purpose: Next.js App Router pages, layouts, and route definitions
+- Contains: Page components, layout components, metadata generation, route groups
+- Key files: `[locale]/page.tsx` (home page), `[locale]/layout.tsx` (main layout), `layout.tsx` (root layout)
 
-**`src/app/[locale]/`:**
-- Purpose: Locale-aware route segment; all content lives under this segment
-- Contains: Layout wrapper, home page, child routes (downloaders, privacy, support, terms)
-- Pattern: Dynamic segment with `dynamicParams = false` ensures all locales are pre-generated at build time
+**src/app/[locale]/:**
+- Purpose: Locale-parameterized routes for multi-language support
+- Contains: All content pages that require locale context
+- Key files: `page.tsx`, `layout.tsx`, subdirectories for specific pages
 
-**`src/app/[locale]/downloaders/[slug]/`:**
-- Purpose: Downloader-specific landing pages
-- Contains: Page component that loads content from domain layer
-- Pattern: Slug routes enumerated from `downloaderLandingSlugs` constant; one route per downloader
+**src/ascii-panel/:**
+- Purpose: Isolated interactive ASCII-art UI component for demonstration
+- Contains: Coordinator component, sub-components, internal page states
+- Key files: `index.tsx` (main component), `components/`, `pages/`
 
-**`src/ascii-panel/`:**
-- Purpose: Self-contained interactive component with internal state management
-- Contains: Main component, sub-components (Frame, Sheet), page variants (Home, Settings, NewClient)
-- Pattern: Marked with `'use client'`; encapsulates React hooks and event handlers
-- Used by: `src/app/[locale]/page.tsx` as visual component
+**src/components/:**
+- Purpose: Reusable UI building blocks
+- Contains: Button, frame, navigation, wordmark, landing page layouts
+- Key files: `TextButton.tsx`, `TextFrame.tsx`, `TextTabsNav.tsx`, `BitRemoteWordmark.tsx`
 
-**`src/components/`:**
-- Purpose: Reusable, presentational UI building blocks
-- Contains: Buttons, frames, separators, navigation, accordion, wordmark
-- Pattern: Stateless functional components; accept props for styling/content; no `'use client'` required (but can be used in client components)
+**src/domain/:**
+- Purpose: Business logic and data models
+- Contains: Downloader definitions, landing page content mapping
+- Key files: `downloaders.ts` (enum), `downloader-landings.ts` (content factory)
 
-**`src/domain/`:**
-- Purpose: Product-specific data models and business logic
-- Contains:
-  - `downloaders.ts`: Enum of supported downloaders + readonly list
-  - `downloader-landings.ts`: Content factory pattern with locale-specific templates
-- Pattern: Pure data structures and factory functions; imports from i18n/locales for type safety
+**src/i18n/:**
+- Purpose: Localization and routing utilities
+- Contains: Locale definitions, message loading, URL building, link configuration
+- Key files: `locales.ts`, `messages.ts`, `urls.ts`, `links.ts`
 
-**`src/i18n/`:**
-- Purpose: Centralize all internationalization concerns
-- Contains:
-  - `locales.ts`: Locale constants, type guard, BCP 47 language tags
-  - `messages.ts`: Imports JSON files and exports typed getMessages() function
-  - `urls.ts`: Locale-aware URL builders (localePath, localeRoot, absoluteUrl)
-  - `links.ts`: External links (App Store, GitHub, etc.)
-- Pattern: All locale handling flows through these modules; type-safe via branded types and guards
+**src/messages/:**
+- Purpose: Centralized translatable content
+- Contains: JSON files with all UI strings for each supported locale
+- Key files: `en.json`, `ja.json`, `zh-hans.json`, `zh-hant.json`
 
-**`src/messages/`:**
-- Purpose: Store translated content as importable JSON files
-- Contains: One JSON file per language (en.json, ja.json, zh-hans.json, zh-hant.json)
-- Pattern: Files are imported in `src/i18n/messages.ts`; never referenced directly elsewhere
+**src/seo/:**
+- Purpose: SEO optimization and metadata generation
+- Contains: Schema.org JSON-LD builders, metadata generators, route definitions
+- Key files: `schema.ts`, `metadata.ts`, `downloader-metadata.ts`
 
-**`src/seo/`:**
-- Purpose: SEO, metadata, and structured data generation
-- Contains:
-  - `metadata.ts`: Builds Next.js Metadata objects with Open Graph, Twitter, canonical links, hreflang
-  - `schema.ts`: JSON-LD builder functions (SoftwareApplication, FAQPage, BreadcrumbList)
-  - `routes.ts`: Exports localized route entries for use in sitemap
-- Pattern: Pure functions that combine locale + messages + domain data into metadata/schema objects
-
-**`public/`:**
+**public/:**
 - Purpose: Static assets served directly
-- Contains: Favicon variants, webmanifest, social media preview image
-- Pattern: Files are referenced by path in layout/metadata (e.g., `/favicon.svg`)
+- Contains: Favicon, manifest, images, textures
+- Key files: `textures/` for visual assets
 
 ## Key File Locations
 
 **Entry Points:**
-- `src/app/layout.tsx`: Global layout (metadata, globals.css, favicon config)
-- `src/app/page.tsx`: Root language selector (`/`)
-- `src/app/[locale]/layout.tsx`: Locale layout (navigation, footer, static param generation)
-- `src/app/[locale]/page.tsx`: Locale home page (`/{locale}/`)
-- `src/app/[locale]/downloaders/[slug]/page.tsx`: Downloader landing pages
+- `src/app/page.tsx`: Root page (language selector)
+- `src/app/[locale]/page.tsx`: Home page for each locale
+- `src/app/[locale]/layout.tsx`: Main layout wrapper with nav and footer
+- `src/app/layout.tsx`: Root layout with global metadata and CSS
 
 **Configuration:**
-- `next.config.ts`: Enables `output: export` (SSG), `trailingSlash: true`, disables image optimization
-- `tsconfig.json`: Target ES2022, path alias `@/*` → `src/*`
-- `tailwind.config.ts`: Tailwind configuration (theme colors, fonts)
-- `.eslintrc.json`: ESLint with Next.js config
+- `next.config.ts`: Next.js build and behavior settings
+- `tsconfig.json`: TypeScript compiler options and path aliases
+- `tailwind.config.ts`: Tailwind CSS customization
+- `postcss.config.js`: PostCSS plugins (autoprefixer, tailwindcss)
+- `.eslintrc.json`: ESLint rules and config
 
 **Core Logic:**
-- `src/domain/downloaders.ts`: Downloader enum and supported list
-- `src/domain/downloader-landings.ts`: Landing page content dictionaries (huge file, 550+ lines)
-- `src/i18n/locales.ts`: Locale type definitions and validation
-- `src/i18n/messages.ts`: Message loading function
-- `src/seo/metadata.ts`: Metadata builder for current page locale
-- `src/seo/schema.ts`: JSON-LD schema builders
-
-**Styling:**
-- `src/globals.css`: Global Tailwind directives, CSS variables (--blue, --bg, --ink-soft, etc.)
-- `tailwind.config.ts`: Theme configuration, font imports
+- `src/i18n/locales.ts`: Locale types and validation
+- `src/i18n/messages.ts`: Message loader function
+- `src/domain/downloaders.ts`: Downloader types and enum
+- `src/domain/downloader-landings.ts`: Landing content factories
 
 **Testing:**
-- Not present. No test files exist in the codebase.
+- Not detected - no test files found in current structure
 
 ## Naming Conventions
 
 **Files:**
-- Page/component files: PascalCase (e.g., `BitRemoteWordmark.tsx`, `TextButton.tsx`)
-- Utility/logic files: camelCase (e.g., `locales.ts`, `urls.ts`, `metadata.ts`)
-- Configuration files: lowercase or specific format (e.g., `next.config.ts`, `.eslintrc.json`)
+- React components: PascalCase with `.tsx` extension (e.g., `TextButton.tsx`, `AsciiPanel.tsx`)
+- Utility/helper functions: camelCase with `.ts` extension (e.g., `locales.ts`, `urls.ts`, `schema.ts`)
+- Config files: Root level in kebab-case (e.g., `next.config.ts`, `tailwind.config.ts`, `postcss.config.js`)
+- Message files: locale codes in kebab-case (e.g., `en.json`, `zh-hans.json`)
 
 **Directories:**
-- Route segments: kebab-case for multi-word segments (e.g., `[locale]`, `llms-full.txt`, `ascii-panel`)
 - Feature directories: kebab-case (e.g., `ascii-panel`, `downloader-landings`)
-- Standard Next.js directories: lowercase (e.g., `app`, `public`, `components`, `i18n`, `domain`)
+- Feature groupings: lowercase plural (e.g., `components`, `messages`, `pages`)
+- Dynamic routes: square brackets (e.g., `[locale]`, `[slug]`) per Next.js convention
+- Private routes/groups: parentheses (not currently used in this codebase)
 
-**TypeScript/Variables:**
+**Functions:**
+- Export functions: camelCase (e.g., `getMessages()`, `localeRoot()`, `buildSoftwareApplicationSchema()`)
+- React components: PascalCase (e.g., `TextButton`, `AsciiPanel`)
+- Type guards: camelCase (e.g., `isLocale()`)
+
+**Types/Interfaces:**
+- TypeScript types: PascalCase (e.g., `Locale`, `Messages`, `Metadata`)
 - Enums: PascalCase (e.g., `Downloader`)
-- Types: PascalCase (e.g., `Locale`, `Messages`, `DownloaderLandingContent`)
-- Functions: camelCase (e.g., `getMessages()`, `buildContent()`, `localePath()`)
-- Constants: camelCase or UPPER_CASE for config (e.g., `defaultLocale`, `supportedDownloaders`, `LINKS`)
+- Type aliases for unions: PascalCase (e.g., `DownloaderLandingSlug`)
 
 ## Where to Add New Code
 
-**New Localized Page:**
-1. Create directory: `src/app/[locale]/[new-route]/`
-2. Add page file: `src/app/[locale]/[new-route]/page.tsx`
-3. Import and call `generateStaticParams()` if route has dynamic segments
-4. Load messages via `getMessages(locale)` from `src/i18n/messages.ts`
-5. Add metadata generation via `buildMetadataForCurrentLocalePage()` from `src/seo/metadata.ts`
-6. Add route entry to `src/seo/routes.ts` if needed for sitemap
+**New Feature (Downloader or Page Section):**
+- Primary code: Create page route in `src/app/[locale]/{feature}/page.tsx`
+- Logic: Add domain logic in `src/domain/` if needed
+- Content: Add message keys to all files in `src/messages/`
+- Components: Create shared components in `src/components/`
+- Tests: Create alongside feature code (pattern to be established)
 
-**New Component:**
-- If reusable across pages: `src/components/[ComponentName].tsx`
-- If specific to ASCII panel: `src/ascii-panel/components/[ComponentName].tsx` or `src/ascii-panel/pages/[PageName].tsx`
-- Import from `@/components/` using path alias
+**New Component/Module:**
+- Shared component: Add to `src/components/{ComponentName}.tsx`
+- Isolated module (like ASCII panel): Create in `src/{module-name}/` with `index.tsx` and subdirectories
+- Import: Use path alias `@/` (configured in `tsconfig.json`)
 
-**New Domain Model:**
-- Add to `src/domain/`: Keep enum/types in separate files (one concern per file)
-- Example: `src/domain/new-entity.ts` with enum, types, factory functions
-- Export public getters; keep factories internal
+**Utilities:**
+- Shared helpers: Add to `src/i18n/`, `src/seo/`, or `src/domain/` based on responsibility
+- Configuration/constants: Add to appropriate domain folder or create new `src/utils/` if needed
 
-**New i18n Module:**
-- Add to `src/i18n/`: Keep each concern separate
-- Example: if adding date/number formatting, create `src/i18n/formatters.ts`
-- Use existing pattern: accept `locale` parameter, return typed result
+**Styling:**
+- Global styles: Add to `src/app/globals.css`
+- Component styles: Use Tailwind CSS utility classes directly in component JSX (not separate CSS files)
+- Theme customization: Modify `tailwind.config.ts` for custom colors, spacing, etc.
 
-**New Utility Function:**
-- Shared across multiple modules: `src/utils/[concern].ts`
-- Route-specific: Co-locate in the route directory
-- SEO-specific: Add to `src/seo/`
-
-**Updating Messages:**
-- Edit JSON files in `src/messages/`
-- Update TypeScript inferred type: `src/i18n/messages.ts` imports and exports `Messages` type
-- Type-checking ensures all locales have matching structure
+**Localization:**
+- New UI strings: Add keys to all four JSON files in `src/messages/` (en, ja, zh-hans, zh-hant)
+- Message type safety: Update type when message structure changes; `Messages` type is inferred from `en.json`
 
 ## Special Directories
 
-**`src/app/llms-full.txt/`:**
-- Purpose: API route that returns full context for LLM systems
-- Generated: Yes, at build time
-- Committed: Yes (but generated content varies)
-- Pattern: Route handler in `route.ts` file
+**src/app/llms-full.txt/:**
+- Purpose: API route providing full LLM context of codebase
+- Generated: No - manually maintained
+- Committed: Yes - checked into git
 
-**`src/messages/`:**
-- Purpose: Localization files
-- Generated: No, hand-edited
-- Committed: Yes, all translations committed
-- Pattern: Imported as modules in `src/i18n/messages.ts`
+**public/:**
+- Purpose: Static asset serving
+- Generated: No
+- Committed: Yes
 
-**`.next/`:**
-- Purpose: Build output directory
-- Generated: Yes, by `next build`
-- Committed: No (in `.gitignore`)
-- Pattern: Contains pre-rendered pages, static assets, build artifacts
+**.next/, dist/, build/:**
+- Purpose: Build output directories
+- Generated: Yes - during `npm run build`
+- Committed: No (should be in .gitignore)
 
-**`.planning/codebase/`:**
-- Purpose: Documentation generated by GSD codebase mapper
-- Generated: Yes, by orchestrator
-- Committed: Tracked in git (reference documentation)
-- Pattern: Markdown files documenting architecture, structure, conventions, testing patterns, and concerns
+**.planning/codebase/:**
+- Purpose: GSD mapping and analysis documents
+- Generated: Yes - by GSD mapping command
+- Committed: Yes - to track planning decisions
 
 ---
 

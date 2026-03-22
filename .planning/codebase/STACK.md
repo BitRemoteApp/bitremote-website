@@ -5,102 +5,109 @@
 ## Languages
 
 **Primary:**
-- TypeScript 5.7.3 - All source code in `src/`
-- JavaScript - Build configuration and scripts
+- TypeScript 5.7.3 - All application source code
+- JSX/TSX - React component files
 
 **Secondary:**
-- JSON - Internationalization messages and configuration
-- CSS - Styling via Tailwind (processed through PostCSS)
+- JavaScript - PostCSS configuration
+- CSS - Styling via Tailwind CSS
 
 ## Runtime
 
 **Environment:**
-- Node.js 25 (required for CI, see `.github/workflows/ci.yml`)
+- Node.js 25 (specified in `.github/workflows/ci.yml`)
 
 **Package Manager:**
-- npm (with lockfile `package-lock.json`)
-- Lockfile: Present
+- npm (with package-lock.json)
+- Lockfile: `package-lock.json` (218MB)
 
 ## Frameworks
 
 **Core:**
-- Next.js 15.1.0 - Full-stack React framework for SSR/static generation
-- React 19.0.0 - UI component library
-- React DOM 19.0.0 - DOM rendering
+- Next.js 15.1.0 - Full-stack React framework
+  - Configured for static export (`output: 'export'` in `next.config.ts`)
+  - Pages Router with dynamic localization via `[locale]` segments
+  - API routes via file-based routing in `src/app/*/route.ts`
 
-**Styling:**
+**UI & Styling:**
+- React 19.0.0 - Component library
+- React DOM 19.0.0 - React rendering
 - Tailwind CSS 3.4.0 - Utility-first CSS framework
-- PostCSS 8.4.0 - CSS transformations
-- Autoprefixer 10.4.0 - Vendor prefix automation
+- PostCSS 8.4.0 - CSS transformation
+- Autoprefixer 10.4.0 - CSS vendor prefixes
+
+**Testing:**
+- None detected
 
 **Build/Dev:**
-- TypeScript 5.7.3 - Language compilation
-- ESLint 8.57.0 with next/core-web-vitals - Code linting
-- ESLint Config Next 15.1.0 - Next.js specific linting rules
+- TypeScript 5.7.3 - Static type checking
+- ESLint 8.57.0 - Code linting
+- eslint-config-next 15.1.0 - Next.js ESLint configuration
 
 ## Key Dependencies
 
 **Critical:**
-- next (15.1.0) - Framework providing server rendering, static generation, and API routes
-- react (19.0.0) - Component library and state management
-- react-dom (19.0.0) - Renders React components to DOM
+- `next` 15.1.0 - Framework backbone, builds static HTML export
+- `react` 19.0.0 - Component rendering engine
+- `tailwindcss` 3.4.0 - CSS generation from config
 
 **Infrastructure:**
-- autoprefixer (10.4.0) - Auto-adds vendor prefixes to CSS
-- postcss (8.4.0) - CSS processing pipeline
-- tailwindcss (3.4.0) - CSS utility generation from config
-
-**Development:**
-- @types/node (22.10.0) - Node.js type definitions
-- @types/react (19.0.0) - React component type definitions
-- @types/react-dom (19.0.0) - React DOM type definitions
-- typescript (5.7.3) - TypeScript compiler
+- `@types/node` 22.10.0 - Node.js type definitions
+- `@types/react` 19.0.0 - React type definitions
+- `@types/react-dom` 19.0.0 - React DOM type definitions
 
 ## Configuration
 
 **Environment:**
-- `NEXT_ALLOWED_DEV_ORIGINS` (optional) - Comma-separated list of allowed origins for development
-  - Read in `next.config.ts` line 3-5
-  - Used to configure dev server CORS if needed
+- `NEXT_ALLOWED_DEV_ORIGINS` - Comma-separated list of allowed dev origins, parsed in `next.config.ts`
+  - Optional setting, only used for development CORS configuration
+  - See: `next.config.ts` lines 3-5
 
 **Build:**
-- `next.config.ts` - Next.js configuration
-  - Static export mode: `output: 'export'` (line 8)
-  - Image optimization disabled: `unoptimized: true` (line 12)
-  - Trailing slashes enabled: `trailingSlash: true` (line 9)
-  - Removes powered-by header: `poweredByHeader: false` (line 14)
-- `tsconfig.json` - TypeScript compiler settings
+- `next.config.ts` - Next.js configuration with static export mode
+- `tsconfig.json` - TypeScript compiler options
   - Target: ES2022
-  - Path aliases: `@/*` maps to `src/*`
-  - Strict mode enabled
-  - Module: ESNext with bundler resolution
-- `tailwind.config.ts` - Tailwind CSS configuration
-  - Content scan: `src/**/*.{js,ts,jsx,tsx,mdx}`
-  - Dark mode: media preference based
-  - Custom theme colors using CSS variables: `--bg`, `--fg`, `--blue`, etc.
-  - Custom font families: `--font-body` (sans), `--font-ui` (mono)
-- `.eslintrc.json` - ESLint configuration
-  - Extends: `next/core-web-vitals`
-- `postcss.config.js` - PostCSS pipeline
-  - Plugins: tailwindcss, autoprefixer
+  - Module resolution: bundler
+  - Path alias: `@/*` maps to `src/*`
+- `tailwind.config.ts` - Tailwind CSS theme configuration with custom CSS variables
+- `postcss.config.js` - PostCSS plugin chain (Tailwind + Autoprefixer)
+- `.eslintrc.json` - ESLint configuration (extends Next.js core Web Vitals config)
 
 ## Platform Requirements
 
 **Development:**
-- Node.js 25 (see `.github/workflows/ci.yml`)
-- npm with lockfile caching support
-- TypeScript compiler
+- Node.js 25
+- npm
+- Modern terminal/shell for build scripts
 
 **Production:**
-- Cloudflare Pages (deployment target based on recent commit history)
-- Static file hosting (output is `out/` directory)
-- No server-side runtime required (static export)
+- Static hosting platform supporting SPA/SSG
+- Current deployment: Cloudflare Pages (from commit "57ede02 Migrate to Cloudflare Pages")
+- Previous: GitHub Pages with CNAME file for `bitremote.app`
+- No server-side runtime required - output is pure static HTML/CSS/JS
 
-## Build Output
+## Build & Runtime Behavior
 
-- Static export to `out/` directory
-- No API runtime required
-- Suitable for static hosting (Cloudflare Pages, GitHub Pages)
+**Static Export Mode:**
+- Next.js configured with `output: 'export'`
+- All pages pre-rendered to static HTML during `npm run build`
+- Output directory: `out/`
+- Unoptimized images (no Next.js Image optimization)
+- Trailing slashes enforced (`trailingSlash: true`)
+- Powered-by header disabled (`poweredByHeader: false`)
+
+**Development:**
+- `npm run dev` - Starts Next.js dev server on http://localhost:3000
+- Hot module replacement enabled
+- Type checking on file save
+
+**Scripts:**
+```
+npm run dev      # Start development server
+npm run build    # Build static export to out/ directory
+npm run start    # Start Next.js server (not typical for static export)
+npm run lint     # Run ESLint with zero-warnings policy
+```
 
 ---
 

@@ -4,128 +4,161 @@
 
 ## APIs & External Services
 
-**Third-Party Links/References:**
-- Apple App Store - Direct link to BitRemote app
-  - URL: `https://apps.apple.com/app/id6477765303`
-  - Used in: `src/i18n/links.ts`
+**App Distribution:**
+- Apple App Store - Distribution of native BitRemote app for iOS/macOS
+  - Link: `https://apps.apple.com/app/id6477765303`
+  - Reference: `src/i18n/links.ts` line 4
 
-- GitHub Repository - BitRemote source code
-  - URL: `https://github.com/BitRemoteApp/BitRemote`
-  - Used in: `src/i18n/links.ts`, displayed in support pages
-
-- Twitter/X - Social channel
-  - URL: `https://twitter.com/bitremote`
-  - Used in: `src/i18n/links.ts`
+**Social & Community:**
+- Twitter/X
+  - Link: `https://twitter.com/bitremote`
+  - Reference: `src/i18n/links.ts` line 5
 
 - Discord - Community server
-  - URL: `https://discord.gg/x5TP2z6cFj`
-  - Used in: `src/i18n/links.ts`
+  - Link: `https://discord.gg/x5TP2z6cFj`
+  - Reference: `src/i18n/links.ts` line 6
 
-- Telegram - Chat channel
-  - URL: `https://t.me/bitremote`
-  - Used in: `src/i18n/links.ts`
+- Telegram - Messaging channel
+  - Link: `https://t.me/bitremote`
+  - Reference: `src/i18n/links.ts` line 7
+
+**Source Code:**
+- GitHub - BitRemote app repository
+  - Link: `https://github.com/BitRemoteApp/BitRemote`
+  - Reference: `src/i18n/links.ts` line 8
 
 ## Data Storage
 
 **Databases:**
-- Not used - Static website with no backend database
+- None - This is a static website with no dynamic backend
+- All data is read-only content from JSON message files
 
 **File Storage:**
-- Local filesystem only
-  - Static assets: `public/`
-  - Messages/i18n: `src/messages/`
-  - No external object storage
+- Static assets in `public/` directory
+  - Favicons, touch icons, PNG/SVG files
+  - Web manifest: `public/site.webmanifest`
+  - CNAME file for custom domain: `public/CNAME` (points to `bitremote.app`)
+  - Textures directory for design assets: `public/textures/`
+  - OpenGraph image: `public/opengraph.jpg`
 
 **Caching:**
-- Build-time caching only
-  - GitHub Actions caches Next.js build output (`.next/cache`)
-  - No runtime caching service
+- None configured - Depends on Cloudflare Pages CDN caching
 
 ## Authentication & Identity
 
 **Auth Provider:**
-- None - Public website with no user authentication
-- No login/signup functionality
-- No session management required
+- None - Static website requires no authentication
+- No user login or accounts system
 
-## Content Management
+## Legal & Compliance
 
-**Content Storage:**
-- JSON files for internationalization: `src/messages/*.json`
-  - `en.json` - English content
-  - `ja.json` - Japanese content
-  - `zh-hans.json` - Simplified Chinese content
-  - `zh-hant.json` - Traditional Chinese content
-- Hardcoded data in TypeScript:
-  - Downloader information: `src/domain/downloaders.ts`
-  - Landing page content: `src/domain/downloader-landings.ts`
+**Legal Documents:**
+- Privacy Policy - Hosted externally at Ark Studios
+  - English: `https://arkstudios.co.jp/en/privacy/bitremote`
+  - Japanese: `https://arkstudios.co.jp/ja/privacy/bitremote`
+  - Retrieval: `src/i18n/links.ts` via `privacyPolicyUrl(locale)` function
+
+- End User License Agreement (EULA) - Hosted externally at Ark Studios
+  - English: `https://arkstudios.co.jp/en/eula/bitremote`
+  - Japanese: `https://arkstudios.co.jp/ja/eula/bitremote`
+  - Retrieval: `src/i18n/links.ts` via `eulaUrl(locale)` function
 
 ## Monitoring & Observability
 
 **Error Tracking:**
-- Not detected - No error tracking service configured
+- None detected
 
 **Logs:**
-- Default approach - Build and deployment logs from GitHub Actions
-- CLI output during `npm run build` and `npm run lint`
+- No application logging configured
+- Build logs available via GitHub Actions CI
+
+**Analytics:**
+- Not detected in codebase
 
 ## CI/CD & Deployment
 
 **Hosting:**
-- Cloudflare Pages (primary deployment)
-- GitHub Pages (fallback, see `public/CNAME` for custom domain)
+- Cloudflare Pages (current)
+  - Previous: GitHub Pages
+  - Deployment via git push to main/develop branches
 
 **CI Pipeline:**
-- GitHub Actions (`.github/workflows/ci.yml`)
+- GitHub Actions - Single workflow: `CI`
+  - File: `.github/workflows/ci.yml`
   - Trigger: Pull requests to `main` branch
-  - Node.js 25 setup
-  - npm cache restoration
-  - Next.js cache restoration (`.next/cache`)
   - Steps:
-    1. Checkout code
-    2. Install dependencies via `npm ci`
-    3. Lint with ESLint: `npx eslint src/`
-    4. Build with Next.js: `npx next build`
-  - Static output to `out/` directory
-  - No automatic deployment (deployment handled separately)
+    1. Checkout code (uses actions/checkout@v6)
+    2. Setup Node 25 (uses actions/setup-node@v6)
+    3. Restore Next.js build cache (uses actions/cache@v5)
+    4. Install dependencies via `npm ci`
+    5. Lint with ESLint: `npx --no-install eslint src/`
+    6. Build with `npx --no-install next build`
+
+**Dependency Management:**
+- Dependabot configuration in `.github/dependabot.yml`
+  - Monitors npm packages and GitHub Actions
+  - Weekly checks on Mondays at 09:00 JST
+  - Creates PRs against `develop` branch
+  - Groups all update types (major, minor, patch)
+  - Limit: 5 open pull requests max
 
 ## Environment Configuration
 
 **Required env vars:**
-- `NEXT_ALLOWED_DEV_ORIGINS` (optional) - Comma-separated list of allowed origins
-  - Only used in development
+- `NEXT_ALLOWED_DEV_ORIGINS` (optional)
+  - Comma-separated list of allowed origins for development
   - Parsed in `next.config.ts` line 3-5
+  - Used for dev server CORS configuration
 
 **Secrets location:**
-- No secrets in codebase
-- No `.env` file checked in
-- Environment variables minimal (none required for production)
+- No secrets stored in repository
+- `.gitignore` prevents committing sensitive files
+- Cloudflare Pages likely handles API keys/tokens securely
 
 ## Webhooks & Callbacks
 
 **Incoming:**
-- None - No API endpoints accepting webhooks
+- None - Static website receives no webhooks
 
 **Outgoing:**
-- None - No external callback invocations
+- GitHub webhook trigger on push to main (handled by Cloudflare Pages integration)
+- No custom outgoing webhooks implemented
 
-## External Content
+## External Content & Localization
 
-**Linked Services:**
-- arkstudios.co.jp - Privacy policy and EULA hosting
-  - Privacy: `https://arkstudios.co.jp/en/privacy/bitremote`
-  - EULA: `https://arkstudios.co.jp/en/eula/bitremote`
-  - Referenced in: `src/i18n/links.ts`
+**Localization Sources:**
+- Message files are committed to repository
+  - `src/messages/en.json` - English
+  - `src/messages/ja.json` - Japanese
+  - `src/messages/zh-hans.json` - Simplified Chinese
+  - `src/messages/zh-hant.json` - Traditional Chinese
+- Loader: `src/i18n/messages.ts` maps locales to message objects
 
-**Search Engine Integration:**
-- Sitemap: `/sitemap.xml` (generated dynamically at build time)
-  - Generated by: `src/app/sitemap.ts`
-- Robots.txt: `/robots.txt` (via `src/app/robots.ts`)
+**SEO & Discovery:**
+- Robots.txt metadata: `src/app/robots.ts`
+  - Sitemap endpoint: `https://bitremote.app/sitemap.xml`
 
-**SEO/Structured Data:**
-- Schema.org JSON-LD
-  - Location: `src/seo/schema.ts`
-  - Types: Organization, WebSite, BreadcrumbList
+- Sitemap generation: `src/app/sitemap.ts`
+  - Dynamic routes for all locales
+  - Downloader landing pages with locale alternates
+  - Auto-generated static XML
+
+- OpenGraph metadata: `src/app/layout.tsx`
+  - Base URL: `https://bitremote.app`
+  - Manifest: `/site.webmanifest`
+
+## No External Dependencies
+
+**Notable absences:**
+- No database client (Firebase, Supabase, PostgreSQL, etc.)
+- No payment processor (Stripe, PayPal)
+- No email service (SendGrid, Mailgun)
+- No CDN beyond Cloudflare Pages
+- No third-party API clients imported
+- No analytics SDK
+- No A/B testing framework
+
+The site is fully self-contained with only outbound links to social platforms and app stores.
 
 ---
 

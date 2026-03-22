@@ -4,215 +4,263 @@
 
 ## Test Framework
 
-**Status:** No testing framework configured
+**Status:** Not detected
 
-This is a static website with no test dependencies in `package.json`. No Jest, Vitest, Playwright, or other test runners are present.
+**Summary:** The codebase does not use a test framework. No test configuration files found (no `jest.config.*`, `vitest.config.*`, or test scripts in `package.json`). No `.test.*` or `.spec.*` files exist in the codebase.
 
-**Development Dependencies:**
-- No testing libraries (@testing-library/react, jest, vitest, etc.)
-- ESLint configured for code quality checks only
-- TypeScript for compile-time type safety
-
-**Run Commands:**
-```bash
-npm run lint              # Run ESLint with --max-warnings 0 (zero warnings allowed)
-npm run dev              # Start development server
-npm run build            # Build static export
-npm start                # Start production server
-```
-
-## Test Coverage
-
-**Requirements:** Not enforced
-
-Coverage is managed through:
-1. **TypeScript strict mode** (`strict: true` in `tsconfig.json`)
-2. **ESLint with Next.js rules** (via `eslint-config-next`)
-3. **Static analysis only** — no runtime tests
-
-## Code Quality Approach
-
-Instead of unit/integration tests, quality assurance relies on:
-
-**Compile-time safety:**
-- TypeScript with strict mode enabled
-- Exhaustive type checking for all functions and components
-- Type guards like `isLocale()` function for runtime validation
-
-**Static analysis:**
-- ESLint configured with `"next/core-web-vitals"` rules
-- Zero warnings policy (`--max-warnings 0` in lint script)
-- Enforces Next.js best practices and accessibility standards
-
-**Type-driven development:**
-- All functions have explicit return types
-- Props interfaces define component contracts
-- Type aliases ensure consistency (e.g., `Locale`, `Messages`)
-
-Example type safety from `src/i18n/messages.ts`:
-```typescript
-export type Messages = typeof en;
-
-export function getMessages(locale: Locale): Messages {
-  return MESSAGES_BY_LOCALE[locale];
+**Package.json Scripts:**
+```json
+{
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "eslint . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx --max-warnings 0"
 }
 ```
 
-## Test Types Not Implemented
+**Implications:**
+- Code quality relies entirely on TypeScript type checking and ESLint linting
+- No unit tests, integration tests, or end-to-end tests
+- Manual testing or staging deployment required for validation
+- Type safety is the primary mechanism for catching errors
 
-**Unit Tests:** Not present
-- Small utility functions like `parseSpeed()`, `localeRoot()` are tested implicitly through TypeScript
-- No .test.ts or .spec.ts files in `src/`
+## Code Quality Mechanisms (Current)
 
-**Integration Tests:** Not present
-- Next.js page routes and metadata generation rely on Next.js build/runtime validation
+**TypeScript:**
+- Version: ^5.7.3
+- Strict mode enabled: `"strict": true` in `tsconfig.json`
+- Provides compile-time type checking across all `.ts` and `.tsx` files
 
-**E2E Tests:** Not present
-- No Playwright, Cypress, or other E2E framework configured
-- Manual testing or CI-based validation only
+**ESLint:**
+- Configuration: `extends: ["next/core-web-vitals"]`
+- Max warnings: 0 (strict enforcement)
+- Covers JavaScript, TypeScript, JSX, and TSX
 
-**Visual Regression Tests:** Not present
-- ASCII panel animations and styling verified through development/preview
+**Build-Time Validation:**
+- Next.js App Router enforces segment structure (dynamic routes)
+- Static generation via `generateStaticParams()` validates all parameterized routes
+- Type-safe metadata generation through Next.js `Metadata` type
 
-## Static Site Validation
+## Testing Recommendations for Future Implementation
 
-Since this is a static website generated with `output: 'export'` in `next.config.ts`, testing is minimal:
+**If tests are added, follow these patterns:**
 
-**What is validated:**
-1. Build succeeds without errors
-2. TypeScript compilation passes strict mode
-3. ESLint reports zero warnings
-4. Metadata generation correct (Next.js validates at build time)
-5. Routes and path parameters valid
+### File Organization
 
-**What is NOT tested:**
-- Runtime behavior (animations, state management)
-- Component rendering output
-- User interactions
-- Browser compatibility
-- Accessibility compliance (beyond ESLint checks)
+**Location:** Co-locate tests with source files
+- Test files should use `.test.ts` or `.test.tsx` extension
+- Place alongside source files, not in separate directory
+- Example: `src/components/TextButton.tsx` → `src/components/TextButton.test.tsx`
 
-## Type Safety as Testing
+**Suggested Framework:** Vitest (recommended for Next.js + TypeScript)
+- Fast, TypeScript-native
+- Familiar syntax (similar to Jest)
+- Better ESM support than Jest
+- Config location: `vitest.config.ts` at project root
 
-The codebase replaces runtime tests with compile-time type checking:
+### Component Testing Pattern
 
-**Example: Locale validation**
+**For React components** (pattern to follow if tests are added):
 
-File: `src/i18n/locales.ts`
 ```typescript
-export const defaultLocale = 'en' as const;
-export const locales = ['en', 'ja', 'zh-hans', 'zh-hant'] as const;
-export type Locale = (typeof locales)[number];
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { TextButton } from './TextButton';
 
-export function isLocale(value: string): value is Locale {
-  return (locales as readonly string[]).includes(value);
+describe('TextButton', () => {
+  it('renders with correct href', () => {
+    render(<TextButton href="/test">Click me</TextButton>);
+    const link = screen.getByRole('link', { name: /click me/i });
+    expect(link).toHaveAttribute('href', '/test');
+  });
+
+  it('applies primary variant by default', () => {
+    render(<TextButton href="/test">Click me</TextButton>);
+    const link = screen.getByRole('link');
+    expect(link).toHaveClass('text-blue-strong');
+  });
+
+  it('applies secondary variant when specified', () => {
+    render(<TextButton href="/test" variant="secondary">Click me</TextButton>);
+    const link = screen.getByRole('link');
+    expect(link).toHaveClass('text-fg');
+  });
+
+  it('handles target and rel attributes', () => {
+    render(
+      <TextButton href="https://external.com" target="_blank" rel="noreferrer">
+        External Link
+      </TextButton>
+    );
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noreferrer');
+  });
+});
+```
+
+### Utility Function Testing Pattern
+
+**For pure utility functions** (pattern to follow if tests are added):
+
+```typescript
+import { describe, it, expect } from 'vitest';
+import { localePath, absoluteUrl } from './urls';
+
+describe('URL utilities', () => {
+  describe('localePath', () => {
+    it('appends locale prefix and trailing slash', () => {
+      expect(localePath('en', '/about')).toBe('/en/about/');
+    });
+
+    it('handles root path', () => {
+      expect(localePath('en', '/')).toBe('/en/');
+    });
+
+    it('strips multiple slashes', () => {
+      expect(localePath('en', '///about///')).toBe('/en/about/');
+    });
+  });
+
+  describe('absoluteUrl', () => {
+    it('builds full HTTPS URL', () => {
+      expect(absoluteUrl('/about')).toBe('https://bitremote.app/about');
+    });
+
+    it('handles paths without leading slash', () => {
+      expect(absoluteUrl('about')).toBe('https://bitremote.app/about');
+    });
+  });
+});
+```
+
+### Type Guard Testing Pattern
+
+**For type guard functions** (pattern to follow if tests are added):
+
+```typescript
+import { describe, it, expect } from 'vitest';
+import { isLocale } from './locales';
+
+describe('isLocale', () => {
+  it('returns true for valid locales', () => {
+    expect(isLocale('en')).toBe(true);
+    expect(isLocale('ja')).toBe(true);
+    expect(isLocale('zh-hans')).toBe(true);
+    expect(isLocale('zh-hant')).toBe(true);
+  });
+
+  it('returns false for invalid locales', () => {
+    expect(isLocale('fr')).toBe(false);
+    expect(isLocale('invalid')).toBe(false);
+    expect(isLocale('')).toBe(false);
+    expect(isLocale('EN')).toBe(false); // Case-sensitive
+  });
+});
+```
+
+### Page Component Testing Pattern
+
+**For Next.js page components** (pattern to follow if tests are added):
+
+```typescript
+import { describe, it, expect, vi } from 'vitest';
+import { LocaleLayout } from './layout';
+
+// Mock Next.js hooks
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/en/',
+}));
+
+describe('LocaleLayout', () => {
+  it('renders with correct lang attribute', async () => {
+    const Component = await LocaleLayout({
+      children: <div>Test</div>,
+      params: Promise.resolve({ locale: 'en' }),
+    });
+
+    expect(Component.props['lang']).toBe('en');
+  });
+
+  it('falls back to default locale for invalid input', async () => {
+    const Component = await LocaleLayout({
+      children: <div>Test</div>,
+      params: Promise.resolve({ locale: 'invalid' }),
+    });
+
+    expect(Component.props['data-locale']).toBe('en');
+  });
+});
+```
+
+## What to Test (Priority Order)
+
+**High Priority:**
+1. **Type guards** (`isLocale()`) - Critical for runtime safety
+2. **URL utilities** (`localePath()`, `absoluteUrl()`) - Used throughout app, easy to break
+3. **Data transformations** (mapping locales, building schemas) - Complex logic that could fail silently
+4. **Component rendering** (TextButton, TextFrame, etc.) - User-facing, visual regressions possible
+
+**Medium Priority:**
+5. **i18n message loading** (`getMessages()`) - Ensure all locales load correctly
+6. **Downloader slug mapping** - Data integrity between display names and URLs
+7. **Page metadata generation** - SEO impact of errors
+
+**Low Priority:**
+8. **SVG rendering** (BitRemoteWordmark) - Visual component, harder to test
+9. **Static page content** - HTML structure unlikely to change
+
+## What NOT to Test
+
+- **Pure markup components** with no logic (TextSeparator, etc.)
+- **Next.js framework code** (App Router, metadata generation framework itself)
+- **CSS/styling** (Tailwind classes)
+- **Visual animations** (unless using visual regression tools)
+
+## Test Coverage Goals (If Added)
+
+**Recommended minimums:**
+- Utility functions: 100% coverage (small, deterministic)
+- Type guards: 100% coverage (critical for safety)
+- Components: 80%+ coverage (focus on logic, not markup)
+- Overall: 70%+ coverage minimum
+
+**Commands to add to package.json:**
+```json
+{
+  "test": "vitest",
+  "test:watch": "vitest --watch",
+  "test:coverage": "vitest --coverage"
 }
 ```
 
-Usage in `src/app/[locale]/page.tsx`:
-```typescript
-const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
-```
+## Mocking Strategy (If Tests Are Added)
 
-This ensures:
-- Only valid locale strings can be used as `Locale` type
-- Invalid locales fall back to `defaultLocale`
-- TypeScript enforces the type at compile time
-- No runtime test needed — type system validates
+**What to mock:**
+- Next.js hooks: `usePathname()`, `useRouter()` (when present)
+- Environment variables
+- Imported JSON files for message testing
 
-**Example: Component Props**
+**What NOT to mock:**
+- Pure utility functions (test them directly)
+- Type guards (test them directly)
+- Component props and children
 
-File: `src/components/TextButton.tsx`
-```typescript
-type Props = {
-  href: string;
-  children: ReactNode;
-  variant?: 'primary' | 'secondary';
-  target?: '_blank' | '_self';
-  rel?: string;
-};
+**Mock location:** Create `__mocks__` directories adjacent to source files or use `vi.mock()` inline
 
-export function TextButton({
-  href,
-  children,
-  variant = 'primary',
-  target,
-  rel,
-}: Props) {
-  // implementation
-}
-```
+## Current Testing Reality
 
-All callers must provide correct prop types — verified at compile time in every consuming component.
+**Static Site Generation** (`output: 'export'` in `next.config.ts`) provides safety:
+- All dynamic routes must have `generateStaticParams()` defined
+- Missing routes cause build failure, not runtime 404
+- Type safety prevents invalid locale values at compile time
 
-## Linting and Formatting
-
-**ESLint Configuration:**
-- Config: `.eslintrc.json`
-- Base: `extends: ["next/core-web-vitals"]`
-- Command: `npm run lint`
-- Zero-tolerance policy: `--max-warnings 0`
-
-**What ESLint checks:**
-- Next.js best practices (Image component, Script handling, dynamic imports)
-- Core Web Vitals compliance
-- React best practices
-- No imports in Next.js config files
-- Accessibility issues
-
-**Prettier:**
-- Not explicitly configured
-- ESLint may format through its rules
-- Code follows standard 2-space indentation
-
-## Build-Time Validation
-
-The Next.js build process (`npm run build`) with `output: 'export'` validates:
-
-1. **Route generation**: All `[locale]` parameters resolved
-2. **Static generation**: All pages generate without errors
-3. **Metadata**: Next.js validates metadata objects at build time
-4. **Images**: Unoptimized images allowed (`images: { unoptimized: true }`)
-5. **TypeScript**: Full type checking during build
-
-## Development Practices
-
-**During development:**
-```bash
-npm run dev              # Start Next.js dev server with HMR
-npm run lint            # Check code quality
-```
-
-**No automated test runs** — quality relies on:
-- Developer type checking via IDE (TypeScript integration)
-- ESLint warnings during development
-- Build validation before deployment
-
-**Testing strategy:**
-- Manual testing in browser during development
-- Preview deployments for visual/functional verification
-- Metadata and SEO validation through build output
-
-## Future Testing Considerations
-
-If testing becomes necessary:
-
-**Unit tests:**
-- Could add Jest or Vitest
-- Focus on i18n functions (`getMessages()`, locale guards)
-- Test URL builders (`localePath()`, `absoluteUrl()`)
-- Test data transformations (`parseSpeed()`, schema builders)
-
-**Component tests:**
-- Would test interactive features (locale switcher in `TextTabsNav`)
-- Would verify ASCII panel state management
-- Would validate animation timing
-
-**E2E tests:**
-- Could use Playwright for production validation
-- Verify all locales render correctly
-- Test locale switching navigation
-- Validate metadata in rendered HTML
+**Manual testing checklist** (until automated tests are added):
+- [ ] All locale variants render without errors
+- [ ] All downloader landing pages build successfully
+- [ ] Links resolve to correct localized paths
+- [ ] Metadata is generated correctly for each page
+- [ ] Static export build completes without warnings
 
 ---
 

@@ -5,228 +5,195 @@
 ## Naming Patterns
 
 **Files:**
-- Components: PascalCase (e.g., `BitRemoteWordmark.tsx`, `TextButton.tsx`)
-- Utilities/Helpers: camelCase (e.g., `messages.ts`, `locales.ts`, `urls.ts`)
-- Pages: Match Next.js conventions with brackets for dynamic routes (e.g., `[locale]`, `page.tsx`)
-- Features organized in directories: lowercase with hyphens for multi-word (e.g., `ascii-panel`, `downloader-landings`)
+- Components: PascalCase with `.tsx` extension (e.g., `BitRemoteWordmark.tsx`, `TextButton.tsx`, `FaqAccordion.tsx`)
+- Utility/service files: camelCase with `.ts` extension (e.g., `downloaders.ts`, `messages.ts`, `locales.ts`)
+- Server route handlers: `route.ts` (e.g., `src/app/llms-full.txt/route.ts`)
+- Page components: `page.tsx` (Next.js convention)
+- Layout wrappers: `layout.tsx` (Next.js convention)
+- Error pages: specific names like `not-found.tsx`
 
 **Functions:**
-- React components: PascalCase (e.g., `TextFrame`, `AsciiPanel`, `FaqAccordion`)
-- Utility functions: camelCase (e.g., `parseSpeed`, `buildMetadataForCurrentLocalePage`, `localeRoot`)
-- Internal helper functions: camelCase (e.g., `clientSkeletonName`, `digitText`, `numericDirection`)
-- Boolean/type guard functions use `is` prefix (e.g., `isLocale`)
+- React components: PascalCase (e.g., `BitRemoteWordmark()`, `TextButton()`, `LocaleHomePage()`)
+- Utility functions: camelCase (e.g., `getMessages()`, `buildMetadataForCurrentLocalePage()`, `buildSoftwareApplicationSchema()`)
+- Type guards: camelCase with `is` prefix (e.g., `isLocale()`)
+- Predicate/factory functions: camelCase starting with verb (e.g., `buildMetadataForCurrentLocalePage()`, `buildSoftwareApplicationSchema()`)
 
 **Variables:**
-- Regular variables: camelCase (e.g., `activePage`, `isLocaleMenuOpen`, `localePrefix`)
-- Constants: UPPER_SNAKE_CASE (e.g., `FRAME_INTERVAL_MS`, `LINKS`)
-- Type/interface instances: PascalCase when they represent a type definition, camelCase when assigned
-- Enums: PascalCase members (e.g., `Downloader.aria2`, `Downloader.qBittorrent`)
+- Local state and props: camelCase (e.g., `locale`, `messages`, `content`, `isLocaleMenuOpen`)
+- Constants: camelCase or UPPER_CASE depending on scope
+  - Module-level exports: UPPER_CASE for configuration (e.g., `LINKS`, `MESSAGES_BY_LOCALE`)
+  - Local constants: camelCase (e.g., `tabLinkClassName`)
+  - Type definitions as constants: camelCase with semantic name (e.g., `supportedDownloaders`)
 
 **Types:**
-- Interface/Type definitions: PascalCase (e.g., `Props`, `Messages`, `FrameSheetState`, `ClientSpeed`)
-- Generic type parameters: Single uppercase letter or descriptive PascalCase (e.g., `T`, `Locale`)
-- Type aliases: PascalCase (e.g., `FramePageId`, `FramePresentation`)
+- Type definitions: PascalCase (e.g., `Locale`, `Messages`, `DownloaderLandingContent`)
+- Generic type aliases: PascalCase (e.g., `Props`, `Item`)
+- Enum members: match their runtime values (e.g., `Downloader.aria2`, `Downloader.qBittorrent`)
+- Union types: PascalCase (e.g., `FramePageId = 'home' | 'settings' | 'new-client'`)
 
 ## Code Style
 
 **Formatting:**
-- No explicit prettier config in project — uses ESLint's defaults
-- Line length: No strict limit observed but code typically under 120 chars per line
-- Indentation: 2 spaces (standard Next.js)
-- Trailing commas: Used in objects and arrays
+- No explicit prettier config found; uses Next.js defaults
+- File paths and imports use Unix-style separators (`/`)
+- Trailing semicolons present throughout codebase
+- 2-space indentation (implied by Next.js standard)
 
 **Linting:**
-- ESLint configuration: `extends: ["next/core-web-vitals"]`
-- Config file: `.eslintrc.json`
-- Lint command: `npm run lint` runs ESLint with `--max-warnings 0` (zero warnings allowed)
-- Enforced rules include Next.js best practices and core web vitals compliance
-
-**Import statements:**
-- All imports sorted: React types first, then third-party, then local imports
-- Type imports use explicit `type` keyword (e.g., `import type { Metadata } from 'next'`)
-- Multi-line imports: Values before types when from same module
-
-Example pattern from `src/app/[locale]/page.tsx`:
-```typescript
-import type { Metadata } from 'next';
-
-import { AsciiPanel } from '@/ascii-panel';
-import { BitRemoteWordmark } from '@/components/BitRemoteWordmark';
-import { FaqAccordion } from '@/components/FaqAccordion';
-import { supportedDownloaders } from '@/domain/downloaders';
-import { LINKS } from '@/i18n/links';
-import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
-import { getMessages } from '@/i18n/messages';
-```
+- ESLint with `eslint-config-next` (extends `next/core-web-vitals`)
+- Config: `.eslintrc.json`
+- Lint command: `npm run lint` with max-warnings set to 0 (strict mode)
+- Covers `.js`, `.jsx`, `.ts`, `.tsx` files
 
 ## Import Organization
 
 **Order:**
-1. Built-in Node/Next.js imports with `type` keyword (e.g., `import type { Metadata }`)
-2. React and React-related imports
-3. Third-party library imports
-4. Local imports using `@/` path alias
-5. Local type imports at the end of local imports section
+1. Built-in modules (e.g., `'next'`, `'react'`)
+2. Type imports from external packages (e.g., `import type { Metadata } from 'next'`)
+3. Third-party dependencies
+4. Path-aliased imports from `@/*` (relative to `src/`)
+5. Internal type imports (e.g., `import type { Locale } from '@/i18n/locales'`)
+6. Internal value imports
 
 **Path Aliases:**
-- `@/*` maps to `src/*` (defined in `tsconfig.json`)
-- Always use `@/` for imports from `src/` directory
-- Examples: `@/components`, `@/i18n`, `@/domain`, `@/seo`, `@/ascii-panel`
+- `@/*` resolves to `src/*` (configured in `tsconfig.json`)
+- Examples:
+  - `@/components/TextButton`
+  - `@/i18n/locales`
+  - `@/domain/downloaders`
+  - `@/seo/metadata`
 
-**Barrel exports:**
-- `src/ascii-panel/index.tsx` exports `AsciiPanel` component as barrel export
-- Most other modules export directly without barrel files
+**Pattern:**
+Imports are organized with `type` keyword separating type-only imports:
+```typescript
+import type { Metadata } from 'next';
+
+import { TextButton } from '@/components/TextButton';
+import type { Locale } from '@/i18n/locales';
+import { getMessages } from '@/i18n/messages';
+```
 
 ## Error Handling
 
 **Patterns:**
-- Explicit type guards for validation (e.g., `isLocale()` function in `src/i18n/locales.ts`)
-- Fallback to defaults on invalid input (e.g., if locale is invalid, use `defaultLocale`)
-- No try-catch blocks observed — static/compile-time approach preferred
-- Optional chaining used extensively (e.g., `prevFrame[index]?.client`)
-- Null coalescing with `??` operator (e.g., `clientsDataset[state.index] ?? clientsDataset[0]`)
+- No explicit try-catch patterns found in codebase; validation preferred
+- Type guards used for runtime validation (e.g., `isLocale()` to validate string as `Locale` type)
+- Fallback to defaults on invalid input:
+  - `const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;`
+  - Invalid downloader slugs handled with conditional rendering
+- No logging of errors detected (no `console.error` calls found)
+- Static site generation prevents runtime errors in most cases
 
-Example from `src/i18n/locales.ts`:
-```typescript
-export function isLocale(value: string): value is Locale {
-  return (locales as readonly string[]).includes(value);
-}
-```
-
-Usage pattern in `src/app/[locale]/page.tsx`:
-```typescript
-const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
-```
+**Null Safety:**
+- Optional chaining used for property access (`obj?.property`)
+- Conditional rendering with explicit checks (`if (!landingContent || !slug) { return (...) }`)
 
 ## Logging
 
-**Framework:** `console` only — no logging library in dependencies
+**Framework:** Not used - no logging infrastructure detected
 
-**Patterns:**
-- No logging observed in production code
-- No debug output in normal operation
-- SVG filters and animations used for visual feedback instead
+**Pattern:** No logging present in codebase. Static site generation and server-side rendering handle most concerns.
 
 ## Comments
 
 **When to Comment:**
-- Minimal commenting — code is self-explanatory through naming
-- Section dividers used in data-heavy files (e.g., `/* ------------------------------------------------------------------ */`)
-- JSDoc-style comments on complex functions
+- Comments are minimal throughout codebase
+- Comments used for section markers in longer files (e.g., `/* ---- Type definitions ---- */`)
+- Inline comments sparse; code is self-documenting through clear naming
 
 **JSDoc/TSDoc:**
-- Not consistently used across the codebase
-- Example from `src/i18n/locales.ts`:
-```typescript
-/** BCP 47 language tags for use in HTML `lang` attributes. */
-export const localeLang: Record<Locale, string> = {
-  en: 'en',
-  ja: 'ja',
-  'zh-hans': 'zh-Hans',
-  'zh-hant': 'zh-Hant',
-};
-```
-
-- Rare inline comments explaining design decisions (e.g., `src/components/TextTabsNav.tsx`:
-```typescript
-// data-[active=true]:* classes are intentionally never applied.
-// Tab items respond to hover only — there is no persistent "current page" highlight by design.
-```
+- Not used systematically
+- No JSDoc comments on functions or types
+- Codebase relies on TypeScript type annotations for documentation
 
 ## Function Design
 
-**Size:** Functions are typically 10–30 lines, with some reaching 70+ lines for complex components
-- Small utility functions: 5–10 lines
-- React components: 20–50 lines
-- Complex interactive components: 50–135+ lines
+**Size:** Functions are generally compact, ranging from 5-50 lines
+- Example: `BitRemoteWordmark()` is 73 lines (mostly SVG markup)
+- Example: `TextButton()` is 47 lines including destructuring
+- Longer functions break logic into helper functions or components
 
 **Parameters:**
-- Destructured from `Props` type or inline destructuring
-- Always use explicit type annotations
-- Example from `src/components/TextButton.tsx`:
-```typescript
-export function TextButton({
-  href,
-  children,
-  variant = 'primary',
-  target,
-  rel,
-}: Props) {
-```
+- Props pattern uses single object parameter for React components:
+  ```typescript
+  export function TextButton({
+    href,
+    children,
+    variant = 'primary',
+    target,
+    rel,
+  }: Props)
+  ```
+- Type declarations for parameters use inline object types or separate `type Props`
+- Named parameters preferred over positional
 
 **Return Values:**
-- React components return JSX directly
-- Utility functions return typed values
-- Optional returns use `null` or `undefined` explicitly
-- No implicit `undefined` returns
-
-Example from `src/seo/schema.ts`:
-```typescript
-export function serializeJsonLd(schema: object): { __html: string } {
-  return {
-    __html: JSON.stringify(schema).replace(/</g, '\\u003c'),
-  };
-}
-```
+- React components return JSX.Element implicitly
+- Utility functions return their expected types explicitly
+- Nullable returns handled through type signatures (e.g., `Messages | undefined` would be explicit)
+- Factories return complete objects with all required fields
 
 ## Module Design
 
 **Exports:**
-- Named exports used exclusively (no default exports observed except Next.js page/layout files)
-- Each module exports only what's necessary
-- Example from `src/i18n/messages.ts`:
-```typescript
-export type Messages = typeof en;
-export function getMessages(locale: Locale): Messages {
-  return MESSAGES_BY_LOCALE[locale];
-}
-```
+- Named exports preferred (e.g., `export function BitRemoteWordmark()`)
+- Single default exports for page components (Next.js requirement)
+- Type exports separated: `export type Locale = ...`
+- Constants exported as named exports: `export const LINKS = {...}`
 
 **Barrel Files:**
-- `src/ascii-panel/index.tsx` exports the main `AsciiPanel` component
-- Other feature directories don't use barrel files, direct imports preferred
+- Used in feature directories:
+  - `src/ascii-panel/index.tsx` exports the main `AsciiPanel` component
+  - No `index.ts` re-exports for utility modules (each file exports its own)
 
-**Type Organization:**
-- Types defined at file level, before implementation
-- Component `Props` type defined before component function
-- Example pattern:
-```typescript
-type Props = {
-  title: string;
-  label?: string;
-  children: ReactNode;
-};
+**Module Organization:**
+- Clear separation by domain:
+  - `src/app/` - Next.js App Router pages and layouts
+  - `src/components/` - Shared React components
+  - `src/domain/` - Business logic and data models
+  - `src/i18n/` - Internationalization helpers
+  - `src/seo/` - SEO metadata and schema generation
+  - `src/ascii-panel/` - Interactive ASCII panel feature with sub-pages
+  - `src/messages/` - Message JSON files per locale
 
-export function TextFrame({ title, label, children }: Props) {
-  // implementation
-}
-```
+**Type Exports:**
+- Utility types exported from their modules (e.g., `export type Locale = ...`)
+- Message types derived from JSON structure: `export type Messages = typeof en;`
+- Domain types live in domain modules (e.g., `DownloaderLandingContent` in `downloader-landings.ts`)
 
-## Special Patterns
+## Const/Enum Patterns
 
-**Satisfies operator:**
-- Used for type-safe object/enum mappings
-- Example from `src/ascii-panel/pages/HomePage.tsx`:
-```typescript
-const clientBadges = {
-  [Downloader.aria2]: 'A',
-  [Downloader.qBittorrent]: 'Q',
-  // ...
-} as const satisfies Record<Downloader, string>;
-```
+**Enums:**
+- Used for fixed sets of string values: `enum Downloader { aria2 = 'aria2', ... }`
+- Members are string enums matching their display names
+- Exported alongside supporting maps (e.g., `downloaderSlugByDownloader`)
 
-**Const assertions:**
-- `as const` used on objects/arrays that should be treated as literal types
-- Enables type safety for mapped/readonly data
+**Const Assertions:**
+- Used with mapped objects: `as const satisfies Record<Downloader, string>`
+- Enables type-safe lookups while maintaining immutability
 
-**Next.js Server/Client boundaries:**
-- `'use client'` directive used in interactive components (`src/ascii-panel/index.tsx`, `src/components/TextTabsNav.tsx`)
-- Server components by default (no directive needed)
-- Server functions with `async` keywords used in page components
+**Readonly Arrays:**
+- Exported as `readonly` to prevent accidental mutations:
+  ```typescript
+  export const supportedDownloaders: readonly Downloader[] = [...]
+  ```
 
-**Readonly types:**
-- Used for immutable data structures (e.g., `readonly ClientSpeedFrame[]`)
-- Combined with `const` for extra type safety
+## Next.js Patterns
+
+**Server Components:**
+- Pages and layouts use `async function` (server components by default)
+- Parameter destructuring for dynamic segments: `params: Promise<{ locale: string }>`
+- Async metadata generation: `export async function generateMetadata(...)`
+
+**Client Components:**
+- Marked with `'use client'` directive (e.g., `TextTabsNav.tsx`)
+- Event handlers and state management wrapped in client components
+- Server component tree can include client components
+
+**Dynamic Routes:**
+- Dynamic segments: `[locale]`, `[slug]`
+- `generateStaticParams()` used for static generation of parameterized pages
+- `dynamicParams = false` prevents runtime generation of unlisted params
 
 ---
 
