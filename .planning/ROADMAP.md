@@ -30,7 +30,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The color palette uses only near-black, white, gray, and blue across all themed surfaces — no other hues appear
   4. Dark backgrounds use near-black (not pure #000), visually distinguishable from pure black on any display
   5. No ASCII art separators (░ patterns), terminal borders, or monospace decorative elements exist anywhere in the codebase or rendered page
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 01-01-PLAN.md — Token system and Tailwind config (globals.css + tailwind.config.ts)
+- [ ] 01-02-PLAN.md — Font and color class migration across all surviving component/page files
+- [ ] 01-03-PLAN.md — ASCII/terminal component deletion, import site cleanup, dead code removal
 
 ### Phase 2: Motion and UI Primitives
 **Goal**: All reusable animation and UI building blocks exist and enforce correct constraints — transform/opacity-only animations, reduced-motion support, and hydration safety are baked in before any section is built
@@ -84,7 +88,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Design Foundation | 0/? | Not started | - |
+| 1. Design Foundation | 0/3 | Planning complete | - |
 | 2. Motion and UI Primitives | 0/? | Not started | - |
 | 3. Screenshot Assets | 0/? | Not started | - |
 | 4. Section Assembly | 0/? | Not started | - |
