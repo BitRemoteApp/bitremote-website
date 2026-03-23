@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Design Foundation** - Establish the design token system, typography, color palette, and dark theme that all other components depend on (completed 2026-03-22)
 - [x] **Phase 2: Motion and UI Primitives** - Build reusable animation and UI components with GPU-safe constraints baked in from day one (completed 2026-03-22)
-- [ ] **Phase 3: Screenshot Assets** - Prepare, optimize, and validate app screenshot assets before any section that displays them is built
+- [x] **Phase 3: Screenshot Assets** - Prepare, optimize, and validate app screenshot assets before any section that displays them is built (completed 2026-03-23)
 - [ ] **Phase 4: Section Assembly** - Build all section components and assemble the full page using tokens, primitives, and optimized assets
 - [ ] **Phase 5: Visual Polish** - Add differentiating effects (SVG dividers, glassmorphism, ambient glow, platform badges) and audit responsive behavior
 
@@ -60,10 +60,10 @@ Plans:
   2. All screenshot images are WebP format and under the performance budget — page LCP is not caused by an unoptimized image asset
   3. Visiting the site in dark OS theme shows dark-mode app screenshots; light OS theme shows light-mode screenshots — no JavaScript state drives this on initial load
   4. Screenshots animate into view as the visitor scrolls to the showcase section
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 Plans:
 - [x] 03-01-PLAN.md — Optimization script, showcase components, and page wiring
-- [ ] 03-02-PLAN.md — Screenshot capture, pipeline execution, and visual verification
+- [x] 03-02-PLAN.md — Screenshot capture, pipeline execution, and visual verification
 
 ### Phase 4: Section Assembly
 **Goal**: All sections are built and the home page is fully assembled — visitors experience a complete, content-correct redesigned marketing page with all existing localized content preserved
@@ -96,6 +96,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Design Foundation | 3/3 | Complete   | 2026-03-22 |
 | 2. Motion and UI Primitives | 2/2 | Complete   | 2026-03-22 |
-| 3. Screenshot Assets | 1/2 | In Progress|  |
+| 3. Screenshot Assets | 2/2 | Complete   | 2026-03-23 |
 | 4. Section Assembly | 0/? | Not started | - |
 | 5. Visual Polish | 0/? | Not started | - |
