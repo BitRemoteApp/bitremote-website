@@ -25,10 +25,16 @@ The website must look and feel like it belongs to the same product as the BitRem
 ### Active
 
 - [ ] Add polished visual effects suitable for a marketing site (scroll animations, parallax, glowing elements, smooth transitions)
-- [ ] Showcase app screenshots as hero visuals — let the app's UI sell itself
+- ✓ Showcase app screenshots as hero visuals — let the app's UI sell itself — Validated in Phase 03: screenshot-assets
 - [ ] Use card-based layouts and rounded shapes that echo the app's native UI patterns
 - [ ] Maintain all existing content and functionality during redesign
 - [ ] Ensure responsive design across mobile, tablet, and desktop
+
+### Validated in Phase 3
+
+- ✓ App screenshots displayed in realistic iPhone device frames with CSS dark/light switching — Validated in Phase 03: screenshot-assets
+- ✓ WebP-optimized retina screenshots under performance budget (~12KB each) — Validated in Phase 03: screenshot-assets
+- ✓ Showcase section with scroll entrance animation respecting prefers-reduced-motion — Validated in Phase 03: screenshot-assets
 
 ### Validated in Phase 2
 
@@ -91,6 +97,8 @@ The website must look and feel like it belongs to the same product as the BitRem
 | Blue as sole accent color | Matches app's design system — monochromatic + blue | ✓ Implemented in Phase 01 |
 | Dark/light via prefers-color-scheme | CSS media query, no JS — both themes supported | ✓ Implemented in Phase 01 |
 | Marketing-grade visual effects allowed | This is a conversion page, not docs — impressiveness matters | ✓ Foundation in Phase 02 (motion primitives ready) |
+| Pre-processed App Store screenshots as source | Already rounded and sized for store — skip manual capture | ✓ Implemented in Phase 03 |
+| CSS `<picture>` for dark/light switching | Zero JS, SSR-safe, no hydration risk | ✓ Implemented in Phase 03 |
 | Keep Next.js static export | No reason to change what works for deployment | ✓ Good |
 
 ## Evolution
@@ -111,4 +119,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-23 after Phase 02 completion*
+*Last updated: 2026-03-24 after Phase 03 completion*
