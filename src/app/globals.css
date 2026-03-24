@@ -1,6 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-blue: var(--blue);
+  --color-blue-strong: var(--blue-strong);
+  --color-blue-line: var(--blue-line);
+  --color-blue-soft: var(--blue-soft);
+  --color-ink-soft: var(--ink-soft);
+
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-ui);
+}
 
 @layer base {
   :root {
@@ -76,82 +87,80 @@
   }
 }
 
-@layer utilities {
-  .no-scrollbar {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
-  .no-scrollbar::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
+}
 
-  .br-num-value {
-    display: inline-block;
-    vertical-align: baseline;
-  }
+@utility br-num-value {
+  display: inline-block;
+  vertical-align: baseline;
+}
 
-  .br-num-slot {
-    display: inline-block;
-    width: 1ch;
-    position: relative;
-    vertical-align: baseline;
-  }
+@utility br-num-slot {
+  display: inline-block;
+  width: 1ch;
+  position: relative;
+  vertical-align: baseline;
+}
 
-  .br-num-clip {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
+@utility br-num-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
 
-  .br-num-baseline {
-    visibility: hidden;
-  }
+@utility br-num-baseline {
+  visibility: hidden;
+}
 
-  .br-num-layer {
-    position: absolute;
-    inset: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    will-change: transform, opacity, filter;
-  }
+@utility br-num-layer {
+  position: absolute;
+  inset: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  will-change: transform, opacity, filter;
+}
 
-  .br-num-old {
-    opacity: 0;
-  }
+@utility br-num-old {
+  opacity: 0;
+}
 
-  .br-num-in-up {
-    animation: br-num-in-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-num-in-up {
+  animation: br-num-in-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .br-num-out-up {
-    animation: br-num-out-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-num-out-up {
+  animation: br-num-out-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .br-num-in-down {
-    animation: br-num-in-down 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-num-in-down {
+  animation: br-num-in-down 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .br-num-out-down {
-    animation: br-num-out-down 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-num-out-down {
+  animation: br-num-out-down 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .br-frame-sheet-backdrop-in {
-    animation: br-frame-sheet-backdrop-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-frame-sheet-backdrop-in {
+  animation: br-frame-sheet-backdrop-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .br-frame-sheet-backdrop-out {
-    animation: br-frame-sheet-backdrop-out 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-frame-sheet-backdrop-out {
+  animation: br-frame-sheet-backdrop-out 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .br-frame-sheet-panel-in {
-    animation: br-frame-sheet-panel-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-frame-sheet-panel-in {
+  animation: br-frame-sheet-panel-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .br-frame-sheet-panel-out {
-    animation: br-frame-sheet-panel-out 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+@utility br-frame-sheet-panel-out {
+  animation: br-frame-sheet-panel-out 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes br-frame-sheet-backdrop-in {
