@@ -18,9 +18,9 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### Hero Section
 
-- [ ] **HERO-01**: Hero section has a compelling headline, subheadline, and prominent App Store download button
+- [x] **HERO-01**: Hero section has a compelling headline, subheadline, and prominent App Store download button
 - [ ] **HERO-02**: Hero features a subtle ambient glow effect (blue-tinted gradient orb) that adapts to theme
-- [ ] **HERO-03**: Platform badge strip shows iOS, iPadOS, and macOS support
+- [x] **HERO-03**: Platform badge strip shows iOS, iPadOS, and macOS support
 
 ### App Showcase
 
@@ -31,9 +31,9 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### Features Section
 
-- [ ] **FEAT-01**: Features/benefits are presented in a bento grid layout with varied card sizes
-- [ ] **FEAT-02**: Cards use glassmorphism styling (blur + translucency on dark, subtle shadow + border on light)
-- [ ] **FEAT-03**: Feature content communicates what the app does and why it matters
+- [x] **FEAT-01**: Features/benefits are presented in a bento grid layout with varied card sizes
+- [x] **FEAT-02**: Cards use glassmorphism styling (blur + translucency on dark, subtle shadow + border on light)
+- [x] **FEAT-03**: Feature content communicates what the app does and why it matters
 
 ### Navigation & CTAs
 
@@ -117,12 +117,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | SHOW-03 | Phase 3 | Complete |
 | SHOW-04 | Phase 3 | Complete |
 | TECH-03 | Phase 3 | Complete |
-| HERO-01 | Phase 4 | Pending |
+| HERO-01 | Phase 4 | Complete |
 | HERO-02 | Phase 4 | Pending |
-| HERO-03 | Phase 4 | Pending |
-| FEAT-01 | Phase 4 | Pending |
-| FEAT-02 | Phase 4 | Pending |
-| FEAT-03 | Phase 4 | Pending |
+| HERO-03 | Phase 4 | Complete |
+| FEAT-01 | Phase 4 | Complete |
+| FEAT-02 | Phase 4 | Complete |
+| FEAT-03 | Phase 4 | Complete |
 | NAV-01 | Phase 4 | Complete |
 | NAV-02 | Phase 4 | Complete |
 | NAV-03 | Phase 4 | Complete |

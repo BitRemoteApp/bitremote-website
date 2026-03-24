@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-section-assembly-02-PLAN.md
-last_updated: "2026-03-24T16:13:54.274Z"
+stopped_at: Completed 04-section-assembly-01-PLAN.md
+last_updated: "2026-03-24T16:14:51.194Z"
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 11
-  completed_plans: 8
+  completed_plans: 9
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-22)
 ## Current Position
 
 Phase: 04 (section-assembly) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Plan: 2 of 4
 | Phase 03-screenshot-assets P01 | 2 | 2 tasks | 7 files |
 | Phase 03-screenshot-assets P02 | continuation | 3 tasks | 4 files |
 | Phase 04-section-assembly P02 | 5 | 2 tasks | 2 files |
+| Phase 04-section-assembly P01 | 8 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,8 @@ Recent decisions affecting current work:
 - [Phase 03-screenshot-assets]: User provided iOS Simulator screenshots; Sharp pipeline produced 1x/2x WebP within 100KB budget; showcase visually approved
 - [Phase 04-section-assembly]: Tailwind open: modifier used on <details> element for FAQ open-state background — no JS needed
 - [Phase 04-section-assembly]: Wrapper div pattern for TextButton CTA — TextButton has no className prop, wrapper div handles responsive display and flex behavior
+- [Phase 04-section-assembly]: HeroSection receives pre-resolved string props instead of messages object — decouples component from i18n layer
+- [Phase 04-section-assembly]: HERO-02 ambient glow deferred to Phase 5; BentoGrid uses standard Tailwind gap-4/lg:gap-6 (gap-md/gap-lg tokens not in tailwind.config.ts)
 
 ### Pending Todos
 
@@ -95,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T16:13:54.272Z
-Stopped at: Completed 04-section-assembly-02-PLAN.md
+Last session: 2026-03-24T16:14:51.191Z
+Stopped at: Completed 04-section-assembly-01-PLAN.md
 Resume file: None
