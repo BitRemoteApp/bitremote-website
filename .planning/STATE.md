@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Phase 04 UI-SPEC approved
-last_updated: "2026-03-23T16:44:02.891Z"
+stopped_at: Completed 04-section-assembly-02-PLAN.md
+last_updated: "2026-03-24T16:13:54.274Z"
 progress:
   total_phases: 5
   completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 11
+  completed_plans: 8
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** The website must look and feel like it belongs to the same product as the BitRemote app — clean, professional, and visually impressive enough to make tech-savvy visitors want to download it.
-**Current focus:** Phase 03 — screenshot-assets
+**Current focus:** Phase 04 — section-assembly
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
+Phase: 04 (section-assembly) — EXECUTING
+Plan: 2 of 4
 
 ## Performance Metrics
 
@@ -54,6 +54,7 @@ Plan: Not started
 | Phase 02-motion-and-ui-primitives P02 | 576 | 2 tasks | 2 files |
 | Phase 03-screenshot-assets P01 | 2 | 2 tasks | 7 files |
 | Phase 03-screenshot-assets P02 | continuation | 3 tasks | 4 files |
+| Phase 04-section-assembly P02 | 5 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,8 @@ Recent decisions affecting current work:
 - [Phase 03-screenshot-assets]: Split AppShowcase (server) from AppShowcaseClient (client) — motion.div requires use client but IPhoneFrame/AppScreenshot are pure HTML/CSS and benefit from server rendering
 - [Phase 03-screenshot-assets]: screenshots-source/ gitignored at project root — only WebP output in public/screenshots/ committed to prevent raw PNG repo bloat
 - [Phase 03-screenshot-assets]: User provided iOS Simulator screenshots; Sharp pipeline produced 1x/2x WebP within 100KB budget; showcase visually approved
+- [Phase 04-section-assembly]: Tailwind open: modifier used on <details> element for FAQ open-state background — no JS needed
+- [Phase 04-section-assembly]: Wrapper div pattern for TextButton CTA — TextButton has no className prop, wrapper div handles responsive display and flex behavior
 
 ### Pending Todos
 
@@ -92,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T16:44:02.888Z
-Stopped at: Phase 04 UI-SPEC approved
-Resume file: .planning/phases/04-section-assembly/04-UI-SPEC.md
+Last session: 2026-03-24T16:13:54.272Z
+Stopped at: Completed 04-section-assembly-02-PLAN.md
+Resume file: None

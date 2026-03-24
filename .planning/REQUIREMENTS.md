@@ -37,9 +37,9 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### Navigation & CTAs
 
-- [ ] **NAV-01**: Sticky navigation bar with section anchor links
-- [ ] **NAV-02**: App Store download button appears at top, mid-page, and bottom (inline CTA repetition)
-- [ ] **NAV-03**: Navigation adapts to mobile (hamburger or simplified)
+- [x] **NAV-01**: Sticky navigation bar with section anchor links
+- [x] **NAV-02**: App Store download button appears at top, mid-page, and bottom (inline CTA repetition)
+- [x] **NAV-03**: Navigation adapts to mobile (hamburger or simplified)
 
 ### Visual Effects
 
@@ -52,7 +52,7 @@ Requirements for the redesign. Each maps to roadmap phases.
 ### Content Preservation
 
 - [ ] **CONT-01**: All existing localized content (en, ja, zh-hans, zh-hant) carries over to the new design
-- [ ] **CONT-02**: FAQ section is restyled to match new design system (keep accordion behavior)
+- [x] **CONT-02**: FAQ section is restyled to match new design system (keep accordion behavior)
 - [ ] **CONT-03**: Legal pages (privacy, terms, support) are restyled
 - [ ] **CONT-04**: Social links (Twitter, Discord, Telegram, GitHub) remain accessible
 - [ ] **CONT-05**: SEO metadata, JSON-LD schemas, sitemap, and robots.txt continue working
@@ -123,11 +123,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | FEAT-01 | Phase 4 | Pending |
 | FEAT-02 | Phase 4 | Pending |
 | FEAT-03 | Phase 4 | Pending |
-| NAV-01 | Phase 4 | Pending |
-| NAV-02 | Phase 4 | Pending |
-| NAV-03 | Phase 4 | Pending |
+| NAV-01 | Phase 4 | Complete |
+| NAV-02 | Phase 4 | Complete |
+| NAV-03 | Phase 4 | Complete |
 | CONT-01 | Phase 4 | Pending |
-| CONT-02 | Phase 4 | Pending |
+| CONT-02 | Phase 4 | Complete |
 | CONT-03 | Phase 4 | Pending |
 | CONT-04 | Phase 4 | Pending |
 | CONT-05 | Phase 4 | Pending |
