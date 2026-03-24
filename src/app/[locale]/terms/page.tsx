@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { TextButton } from '@/components/TextButton';
+import { FadeInSection } from '@/components/ui/FadeInSection';
 import { eulaUrl } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
@@ -49,17 +50,19 @@ export default async function TermsPage({
         dangerouslySetInnerHTML={serializeJsonLd(breadcrumbSchema)}
       />
 
-      <section aria-label={messages.pages.terms.title}>
-        <p className="mt-0 text-text-secondary">{messages.pages.terms.body}</p>
-        <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-          <TextButton href={href} target="_blank" rel="noreferrer">
-            Open EULA
-          </TextButton>
-          <TextButton href={localePath(locale, '/')} variant="secondary">
-            Back
-          </TextButton>
-        </div>
-      </section>
+      <FadeInSection as="div">
+        <section aria-label={messages.pages.terms.title}>
+          <p className="mt-0 text-text-secondary">{messages.pages.terms.body}</p>
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+            <TextButton href={href} target="_blank" rel="noreferrer">
+              Open EULA
+            </TextButton>
+            <TextButton href={localePath(locale, '/')} variant="secondary">
+              Back
+            </TextButton>
+          </div>
+        </section>
+      </FadeInSection>
     </main>
   );
 }
