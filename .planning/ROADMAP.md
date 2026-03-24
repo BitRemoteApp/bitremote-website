@@ -68,7 +68,7 @@ Plans:
 ### Phase 4: Section Assembly
 **Goal**: All sections are built and the home page is fully assembled — visitors experience a complete, content-correct redesigned marketing page with all existing localized content preserved
 **Depends on**: Phase 3
-**Requirements**: HERO-01, HERO-02, HERO-03, FEAT-01, FEAT-02, FEAT-03, NAV-01, NAV-02, NAV-03, CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, TECH-05
+**Requirements**: HERO-01, HERO-03, FEAT-01, FEAT-02, FEAT-03, NAV-01, NAV-02, NAV-03, CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, TECH-05
 **Success Criteria** (what must be TRUE):
   1. The hero section displays a compelling headline, subheadline, prominent App Store download button, and platform badge strip (iOS, iPadOS, macOS) above the fold
   2. The features section uses a bento grid layout with glassmorphism-styled cards that communicate what the app does and why it matters
@@ -85,7 +85,7 @@ Plans:
 ### Phase 5: Visual Polish
 **Goal**: Differentiating visual effects are added and responsive behavior is audited — the site looks premium and works correctly across all screen sizes
 **Depends on**: Phase 4
-**Requirements**: VFX-03
+**Requirements**: VFX-03, HERO-02
 **Success Criteria** (what must be TRUE):
   1. Section boundaries are separated by thin, elegant SVG lines — no ASCII separator patterns remain as dividers
   2. The hero section has an ambient blue-tinted glow effect that adapts correctly between dark and light themes without visual artifacts
