@@ -7,6 +7,8 @@ import type { Locale } from '@/i18n/locales';
 import { localeLabels, locales } from '@/i18n/locales';
 import type { Messages } from '@/i18n/messages';
 import { localePath } from '@/i18n/urls';
+import { LINKS } from '@/i18n/links';
+import { TextButton } from '@/components/TextButton';
 
 type Props = {
   locale: Locale;
@@ -94,6 +96,12 @@ export function TextTabsNav({
               {nav.faq}
             </a>
           </div>
+        </div>
+
+        <div className="hidden min-[480px]:block flex-shrink-0">
+          <TextButton href={LINKS.appStore} target="_blank" rel="noreferrer">
+            {messages.cta.appStore}
+          </TextButton>
         </div>
 
         <div
