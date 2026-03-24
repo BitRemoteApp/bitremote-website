@@ -37,15 +37,17 @@ type Props = {
   className?: string;
   delay?: number;
   as?: 'section' | 'div' | 'article';
+  id?: string;
 };
 
-export function FadeInSection({ children, className, delay = 0, as = 'section' }: Props) {
+export function FadeInSection({ children, className, delay = 0, as = 'section', id }: Props) {
   const shouldReduceMotion = useReducedMotion();
 
   const MotionEl = motion[as];
 
   return (
     <MotionEl
+      id={id}
       className={className}
       variants={sectionVariants}
       initial={shouldReduceMotion ? 'visible' : 'hidden'}
