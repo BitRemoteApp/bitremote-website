@@ -75,11 +75,11 @@ Plans:
   3. A sticky navigation bar is present with section anchor links and an App Store download button; a second CTA appears mid-page or bottom — visitors never scroll past a CTA
   4. Navigation collapses to a mobile-appropriate layout on small screens without breaking usability
   5. Visiting /ja/, /zh-hans/, and /zh-hant/ routes produces complete, correctly localized pages — no locale routes are missing from the static build output
-**Plans:** 2/4 plans executed
+**Plans:** 3/4 plans executed
 Plans:
 - [x] 04-01-PLAN.md — Create section components (HeroSection, BentoGrid, BentoCard, SectionLabel, PlatformBadgeStrip, BentoGridClient)
 - [x] 04-02-PLAN.md — Restyle FaqAccordion and add App Store CTA to TextTabsNav
-- [ ] 04-03-PLAN.md — Assemble home page with new components, restyle legal pages, verify build
+- [x] 04-03-PLAN.md — Assemble home page with new components, restyle legal pages, verify build
 - [ ] 04-04-PLAN.md — Visual verification checkpoint across viewports, themes, and locales
 
 ### Phase 5: Visual Polish
@@ -102,5 +102,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Design Foundation | 3/3 | Complete   | 2026-03-22 |
 | 2. Motion and UI Primitives | 2/2 | Complete   | 2026-03-22 |
 | 3. Screenshot Assets | 2/2 | Complete   | 2026-03-23 |
-| 4. Section Assembly | 2/4 | In Progress|  |
+| 4. Section Assembly | 3/4 | In Progress|  |
 | 5. Visual Polish | 0/? | Not started | - |

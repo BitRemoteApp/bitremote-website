@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-section-assembly-01-PLAN.md
-last_updated: "2026-03-24T16:14:51.194Z"
+stopped_at: Completed 04-section-assembly-03-PLAN.md
+last_updated: "2026-03-24T16:21:18.043Z"
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 11
-  completed_plans: 9
+  completed_plans: 10
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-22)
 ## Current Position
 
 Phase: 04 (section-assembly) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Plan: 3 of 4
 | Phase 03-screenshot-assets P02 | continuation | 3 tasks | 4 files |
 | Phase 04-section-assembly P02 | 5 | 2 tasks | 2 files |
 | Phase 04-section-assembly P01 | 8 | 2 tasks | 7 files |
+| Phase 04-section-assembly P03 | 15 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,9 @@ Recent decisions affecting current work:
 - [Phase 04-section-assembly]: Wrapper div pattern for TextButton CTA — TextButton has no className prop, wrapper div handles responsive display and flex behavior
 - [Phase 04-section-assembly]: HeroSection receives pre-resolved string props instead of messages object — decouples component from i18n layer
 - [Phase 04-section-assembly]: HERO-02 ambient glow deferred to Phase 5; BentoGrid uses standard Tailwind gap-4/lg:gap-6 (gap-md/gap-lg tokens not in tailwind.config.ts)
+- [Phase 04-section-assembly]: supportedDownloaders kept in page.tsx for buildSoftwareApplicationSchema featureList despite visual panel removal
+- [Phase 04-section-assembly]: Quickstart steps use index-based keys and card styling (border/bg-surface/rounded-md) instead of aria-label sections
+- [Phase 04-section-assembly]: FadeInSection wraps HeroSection with as=div (HeroSection renders its own section element)
 
 ### Pending Todos
 
@@ -98,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T16:14:51.191Z
-Stopped at: Completed 04-section-assembly-01-PLAN.md
+Last session: 2026-03-24T16:21:18.040Z
+Stopped at: Completed 04-section-assembly-03-PLAN.md
 Resume file: None

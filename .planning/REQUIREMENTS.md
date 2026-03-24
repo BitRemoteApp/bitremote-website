@@ -51,11 +51,11 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 ### Content Preservation
 
-- [ ] **CONT-01**: All existing localized content (en, ja, zh-hans, zh-hant) carries over to the new design
+- [x] **CONT-01**: All existing localized content (en, ja, zh-hans, zh-hant) carries over to the new design
 - [x] **CONT-02**: FAQ section is restyled to match new design system (keep accordion behavior)
-- [ ] **CONT-03**: Legal pages (privacy, terms, support) are restyled
-- [ ] **CONT-04**: Social links (Twitter, Discord, Telegram, GitHub) remain accessible
-- [ ] **CONT-05**: SEO metadata, JSON-LD schemas, sitemap, and robots.txt continue working
+- [x] **CONT-03**: Legal pages (privacy, terms, support) are restyled
+- [x] **CONT-04**: Social links (Twitter, Discord, Telegram, GitHub) remain accessible
+- [x] **CONT-05**: SEO metadata, JSON-LD schemas, sitemap, and robots.txt continue working
 
 ### Technical
 
@@ -63,7 +63,7 @@ Requirements for the redesign. Each maps to roadmap phases.
 - [x] **TECH-02**: No hydration mismatches — theme detection uses CSS media queries, not JS localStorage on initial render
 - [x] **TECH-03**: App screenshots are pre-optimized to WebP before being added to the project
 - [x] **TECH-04**: Animation components use `"use client"` directive; static content stays server-renderable
-- [ ] **TECH-05**: Build produces correct output for all locale paths
+- [x] **TECH-05**: Build produces correct output for all locale paths
 
 ## v2 Requirements
 
@@ -126,12 +126,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | NAV-01 | Phase 4 | Complete |
 | NAV-02 | Phase 4 | Complete |
 | NAV-03 | Phase 4 | Complete |
-| CONT-01 | Phase 4 | Pending |
+| CONT-01 | Phase 4 | Complete |
 | CONT-02 | Phase 4 | Complete |
-| CONT-03 | Phase 4 | Pending |
-| CONT-04 | Phase 4 | Pending |
-| CONT-05 | Phase 4 | Pending |
-| TECH-05 | Phase 4 | Pending |
+| CONT-03 | Phase 4 | Complete |
+| CONT-04 | Phase 4 | Complete |
+| CONT-05 | Phase 4 | Complete |
+| TECH-05 | Phase 4 | Complete |
 | VFX-03 | Phase 5 | Pending |
 
 **Coverage:**
