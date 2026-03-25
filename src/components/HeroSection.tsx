@@ -12,7 +12,7 @@ type Props = {
 
 export function HeroSection({ tagline, subhead, ctaLabel, siteName }: Props) {
   return (
-    <section id="top" className="relative flex flex-col gap-6">
+    <section className="relative flex flex-col gap-6">
       {/* Ambient glow — decorative only */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -top-16 overflow-hidden">
         <div

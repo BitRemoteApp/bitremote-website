@@ -15,8 +15,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Design Foundation** - Establish the design token system, typography, color palette, and dark theme that all other components depend on (completed 2026-03-22)
 - [x] **Phase 2: Motion and UI Primitives** - Build reusable animation and UI components with GPU-safe constraints baked in from day one (completed 2026-03-22)
 - [x] **Phase 3: Screenshot Assets** - Prepare, optimize, and validate app screenshot assets before any section that displays them is built (completed 2026-03-23)
-- [ ] **Phase 4: Section Assembly** - Build all section components and assemble the full page using tokens, primitives, and optimized assets
-- [ ] **Phase 5: Visual Polish** - Add differentiating effects (SVG dividers, glassmorphism, ambient glow, platform badges) and audit responsive behavior
+- [x] **Phase 4: Section Assembly** - Build all section components and assemble the full page using tokens, primitives, and optimized assets
+- [x] **Phase 5: Visual Polish** - Add differentiating effects (SVG dividers, glassmorphism, ambient glow, platform badges) and audit responsive behavior
 
 ## Phase Details
 
@@ -75,12 +75,12 @@ Plans:
   3. A sticky navigation bar is present with section anchor links and an App Store download button; a second CTA appears mid-page or bottom — visitors never scroll past a CTA
   4. Navigation collapses to a mobile-appropriate layout on small screens without breaking usability
   5. Visiting /ja/, /zh-hans/, and /zh-hant/ routes produces complete, correctly localized pages — no locale routes are missing from the static build output
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans complete
 Plans:
 - [x] 04-01-PLAN.md — Create section components (HeroSection, BentoGrid, BentoCard, SectionLabel, PlatformBadgeStrip, BentoGridClient)
 - [x] 04-02-PLAN.md — Restyle FaqAccordion and add App Store CTA to TextTabsNav
 - [x] 04-03-PLAN.md — Assemble home page with new components, restyle legal pages, verify build
-- [ ] 04-04-PLAN.md — Visual verification checkpoint across viewports, themes, and locales
+- [x] 04-04-PLAN.md — Visual verification checkpoint across viewports, themes, and locales
 
 ### Phase 5: Visual Polish
 **Goal**: Differentiating visual effects are added and responsive behavior is audited — the site looks premium and works correctly across all screen sizes
@@ -90,7 +90,7 @@ Plans:
   1. Section boundaries are separated by thin, elegant SVG lines — no ASCII separator patterns remain as dividers
   2. The hero section has an ambient blue-tinted glow effect that adapts correctly between dark and light themes without visual artifacts
   3. The site renders correctly and looks intentional on mobile (375px), tablet (768px), and desktop (1280px+) screen widths
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 Plans:
 - [x] 05-01-PLAN.md — Create SvgDivider component and hero ambient glow effect
 - [x] 05-02-PLAN.md — Visual verification across viewports, themes, and locales
@@ -105,5 +105,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Design Foundation | 3/3 | Complete   | 2026-03-22 |
 | 2. Motion and UI Primitives | 2/2 | Complete   | 2026-03-22 |
 | 3. Screenshot Assets | 2/2 | Complete   | 2026-03-23 |
-| 4. Section Assembly | 3/4 | In Progress|  |
-| 5. Visual Polish | 1/2 | In Progress|  |
+| 4. Section Assembly | 4/4 | Complete   | 2026-03-25 |
+| 5. Visual Polish | 2/2 | Complete   | 2026-03-26 |
