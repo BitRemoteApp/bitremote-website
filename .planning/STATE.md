@@ -61,6 +61,10 @@ Plan: Not started
 
 ## Accumulated Context
 
+### Roadmap Evolution
+
+- Phase 6 added: Corrective total UI refresh. This phase exists to correct drift from the original redesign brief by establishing Impeccable design context first, then rebuilding the site as a true UI refresh rather than a surface reskin. Scope must include removing remaining ASCII/terminal UI language such as bracketed buttons and the pixelated wordmark treatment, restoring a prominent Supported Downloaders section on the homepage, reevaluating the screenshot-led homepage structure, and redesigning the overall information architecture and component styling so the site feels calm, professional, and aligned with the native BitRemote app.
+
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.

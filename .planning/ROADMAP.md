@@ -17,6 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Screenshot Assets** - Prepare, optimize, and validate app screenshot assets before any section that displays them is built (completed 2026-03-23)
 - [x] **Phase 4: Section Assembly** - Build all section components and assemble the full page using tokens, primitives, and optimized assets
 - [x] **Phase 5: Visual Polish** - Add differentiating effects (SVG dividers, glassmorphism, ambient glow, platform badges) and audit responsive behavior
+- [ ] **Phase 6: Corrective total UI refresh** - Correct the redesign drift by redoing the site as a true UI refresh: establish Impeccable design context first, remove remaining ASCII/terminal language, restore critical homepage content, and realign the site with the calm, professional BitRemote app aesthetic
 
 ## Phase Details
 
@@ -95,10 +96,29 @@ Plans:
 - [x] 05-01-PLAN.md — Create SvgDivider component and hero ambient glow effect
 - [x] 05-02-PLAN.md — Visual verification across viewports, themes, and locales
 
+### Phase 6: Corrective total UI refresh
+**Goal**: The redesign is corrected into a true end-to-end UI refresh that fulfills the original brief — the site no longer feels like the old interface with a new skin, and instead presents BitRemote with a calm, professional, native-app-aligned visual language and information architecture
+**Depends on**: Phase 5
+**Requirements**: DSGN-07, DSGN-08, NAV-04, CONT-06, CONT-07, BRAND-01
+**Success Criteria** (what must be TRUE):
+  1. Impeccable design context is established before implementation work begins, and Phase 6 design decisions explicitly follow that context rather than ad hoc styling choices
+  2. Remaining ASCII/terminal UI language is removed from the primary experience, including bracket-style buttons, the pixelated/glitch wordmark treatment, and hover behavior that reinforces the old retro aesthetic
+  3. The homepage information architecture is reworked as needed to support the original refresh brief instead of preserving the old structure under new styling
+  4. Supported Downloaders is restored as a prominent homepage section because it is core product trust and capability information
+  5. The screenshot-led homepage structure is reevaluated; screenshots must support the story of the page rather than consuming a section without clear product communication value
+  6. The final homepage and shared UI feel calm, professional, and aligned with the BitRemote native app rather than playful, retro, or novelty-driven
+  7. Existing localized content, downloader landing pages, legal pages, and static export behavior remain intact through the redesign
+**Plans:** 0/4 plans complete
+Plans:
+- [ ] 06-01-PLAN.md — Establish Impeccable design context and translate the original brief into explicit design constraints for the corrective redesign
+- [ ] 06-02-PLAN.md — Redesign homepage information architecture and shared brand, CTA, and navigation language to remove remaining retro UI patterns
+- [ ] 06-03-PLAN.md — Restore and redesign critical content sections, including Supported Downloaders and screenshot usage, within the new calm professional layout
+- [ ] 06-04-PLAN.md — Verify the corrective redesign across locales, responsive breakpoints, and the original brief requirements
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -107,3 +127,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 3. Screenshot Assets | 2/2 | Complete   | 2026-03-23 |
 | 4. Section Assembly | 4/4 | Complete   | 2026-03-25 |
 | 5. Visual Polish | 2/2 | Complete   | 2026-03-26 |
+| 6. Corrective total UI refresh | 0/4 | Planned | — |
