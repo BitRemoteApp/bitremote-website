@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Phase 5 UI-SPEC approved
-last_updated: "2026-03-25T15:06:56.580Z"
+stopped_at: Completed 05-visual-polish 05-01-PLAN.md
+last_updated: "2026-03-25T15:22:16.653Z"
 progress:
   total_phases: 5
   completed_phases: 4
-  total_plans: 11
-  completed_plans: 11
+  total_plans: 13
+  completed_plans: 12
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** The website must look and feel like it belongs to the same product as the BitRemote app — clean, professional, and visually impressive enough to make tech-savvy visitors want to download it.
-**Current focus:** Phase 04 — section-assembly
+**Current focus:** Phase 05 — visual-polish
 
 ## Current Position
 
-Phase: 04 (section-assembly) — EXECUTING
-Plan: 1 of 4
+Phase: 05 (visual-polish) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Plan: 1 of 4
 | Phase 04-section-assembly P02 | 5 | 2 tasks | 2 files |
 | Phase 04-section-assembly P01 | 8 | 2 tasks | 7 files |
 | Phase 04-section-assembly P03 | 15 | 2 tasks | 4 files |
+| Phase 05-visual-polish P01 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,8 @@ Recent decisions affecting current work:
 - [Phase 04-section-assembly]: supportedDownloaders kept in page.tsx for buildSoftwareApplicationSchema featureList despite visual panel removal
 - [Phase 04-section-assembly]: Quickstart steps use index-based keys and card styling (border/bg-surface/rounded-md) instead of aria-label sections
 - [Phase 04-section-assembly]: FadeInSection wraps HeroSection with as=div (HeroSection renders its own section element)
+- [Phase 05-visual-polish]: SvgDivider uses CSS linear-gradient on a div (not an SVG element) — named SvgDivider per UI spec for semantic clarity
+- [Phase 05-visual-polish]: color-mix pattern for --hero-glow-color follows identical approach as --bg-glass-92/95, --bg-panel-88 tokens
 
 ### Pending Todos
 
@@ -102,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T15:06:56.578Z
-Stopped at: Phase 5 UI-SPEC approved
-Resume file: .planning/phases/05-visual-polish/05-UI-SPEC.md
+Last session: 2026-03-25T15:22:16.651Z
+Stopped at: Completed 05-visual-polish 05-01-PLAN.md
+Resume file: None

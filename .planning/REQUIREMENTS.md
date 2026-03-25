@@ -19,7 +19,7 @@ Requirements for the redesign. Each maps to roadmap phases.
 ### Hero Section
 
 - [x] **HERO-01**: Hero section has a compelling headline, subheadline, and prominent App Store download button
-- [ ] **HERO-02**: Hero features a subtle ambient glow effect (blue-tinted gradient orb) that adapts to theme
+- [x] **HERO-02**: Hero features a subtle ambient glow effect (blue-tinted gradient orb) that adapts to theme
 - [x] **HERO-03**: Platform badge strip shows iOS, iPadOS, and macOS support
 
 ### App Showcase
@@ -45,7 +45,7 @@ Requirements for the redesign. Each maps to roadmap phases.
 
 - [x] **VFX-01**: Sections use staggered fade-in entrance animations triggered on scroll
 - [x] **VFX-02**: Smooth scrolling implemented via lenis for premium feel
-- [ ] **VFX-03**: Section dividers use thin elegant SVG lines replacing ASCII separators
+- [x] **VFX-03**: Section dividers use thin elegant SVG lines replacing ASCII separators
 - [x] **VFX-04**: All animations respect `prefers-reduced-motion` — baked in from day one, not retrofitted
 - [x] **VFX-05**: Animations only use `transform` and `opacity` (GPU-composited, no layout thrashing)
 
@@ -118,7 +118,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | SHOW-04 | Phase 3 | Complete |
 | TECH-03 | Phase 3 | Complete |
 | HERO-01 | Phase 4 | Complete |
-| HERO-02 | Phase 4 | Pending |
+| HERO-02 | Phase 4 | Complete |
 | HERO-03 | Phase 4 | Complete |
 | FEAT-01 | Phase 4 | Complete |
 | FEAT-02 | Phase 4 | Complete |
@@ -132,7 +132,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | CONT-04 | Phase 4 | Complete |
 | CONT-05 | Phase 4 | Complete |
 | TECH-05 | Phase 4 | Complete |
-| VFX-03 | Phase 5 | Pending |
+| VFX-03 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 34 total
