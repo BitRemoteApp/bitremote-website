@@ -1,3 +1,4 @@
+import { SvgDivider } from '@/components/SvgDivider';
 import { TextButton } from '@/components/TextButton';
 import type { DownloaderLandingContent } from '@/domain/downloader-landings';
 import { LINKS } from '@/i18n/links';
@@ -35,7 +36,7 @@ export function DownloaderLandingPage({
         </div>
       </section>
 
-      <hr className="border-t border-border my-12" />
+      <SvgDivider className="my-12" />
 
       <section>
         <section aria-label={content.overviewTitle}>
@@ -43,7 +44,7 @@ export function DownloaderLandingPage({
         </section>
       </section>
 
-      <hr className="border-t border-border my-12" />
+      <SvgDivider className="my-12" />
 
       <section className="grid grid-cols-1 gap-4 min-[900px]:grid-cols-2">
         <section aria-label={content.capabilityTitle}>

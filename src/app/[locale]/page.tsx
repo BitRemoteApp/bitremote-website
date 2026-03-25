@@ -5,6 +5,7 @@ import { BentoGridClient } from '@/components/BentoGridClient';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { HeroSection } from '@/components/HeroSection';
 import { SectionLabel } from '@/components/SectionLabel';
+import { SvgDivider } from '@/components/SvgDivider';
 import { TextButton } from '@/components/TextButton';
 import { FadeInSection } from '@/components/ui/FadeInSection';
 import { supportedDownloaders } from '@/domain/downloaders';
@@ -71,11 +72,11 @@ export default async function LocaleHomePage({
         />
       </FadeInSection>
 
-      <hr className="border-t border-border" />
+      <SvgDivider />
 
       <AppShowcaseClient />
 
-      <hr className="border-t border-border" />
+      <SvgDivider />
 
       <FadeInSection as="section" id="features">
         <SectionLabel>{messages.sections.benefits.title}</SectionLabel>
@@ -84,7 +85,7 @@ export default async function LocaleHomePage({
         </div>
       </FadeInSection>
 
-      <hr className="border-t border-border" />
+      <SvgDivider />
 
       <FadeInSection as="section" id="how-it-works">
         <SectionLabel>{messages.sections.quickstart.title}</SectionLabel>
@@ -106,7 +107,7 @@ export default async function LocaleHomePage({
         </p>
       </FadeInSection>
 
-      <hr className="border-t border-border" />
+      <SvgDivider />
 
       <FadeInSection as="section" id="plus">
         <SectionLabel>{messages.sections.plus.title}</SectionLabel>
@@ -131,7 +132,7 @@ export default async function LocaleHomePage({
         </div>
       </FadeInSection>
 
-      <hr className="border-t border-border" />
+      <SvgDivider />
 
       <FadeInSection as="section" id="faq">
         <SectionLabel>{messages.sections.faq.title}</SectionLabel>
