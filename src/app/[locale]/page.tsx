@@ -56,6 +56,92 @@ export default async function LocaleHomePage({
     downloader,
     href: localePath(locale, `/downloaders/${downloaderSlugByDownloader[downloader]}/`),
   }));
+  const proofTabs = [
+    {
+      id: 'control',
+      label: messages.sections.benefits.items[1]?.title ?? messages.nav.features,
+      title: messages.sections.benefits.items[1]?.title ?? messages.nav.features,
+      summary:
+        messages.sections.benefits.items[1]?.subtitle ?? messages.site.description,
+      metricLabel: messages.nav.downloaders,
+      metricValue: String(supportedDownloaders.length),
+      detailLabel: messages.sections.quickstart.steps[1]?.title ?? messages.nav.quickstart,
+      detailValue: 'aria2 / qBittorrent / Transmission',
+      items: [
+        {
+          name: 'ubuntu-24.04.iso',
+          meta: 'Synology DS920+',
+          progress: 82,
+        },
+        {
+          name: 'server-backup.tar',
+          meta: 'qBittorrent',
+          progress: 61,
+        },
+        {
+          name: 'media-archive.part01',
+          meta: 'Transmission',
+          progress: 34,
+        },
+      ],
+    },
+    {
+      id: 'queues',
+      label: messages.sections.benefits.items[2]?.title ?? messages.nav.features,
+      title: messages.sections.benefits.items[2]?.title ?? messages.nav.features,
+      summary:
+        messages.sections.benefits.items[2]?.subtitle ?? messages.site.description,
+      metricLabel: messages.sections.quickstart.steps[2]?.title ?? messages.nav.quickstart,
+      metricValue: '24',
+      detailLabel: messages.sections.quickstart.requirements,
+      detailValue: 'Priority, tags, and destination rules stay visible in one queue.',
+      items: [
+        {
+          name: 'linux-seedbox-sync',
+          meta: 'Priority A',
+          progress: 93,
+        },
+        {
+          name: 'camera-footage-2026',
+          meta: 'Nightly ingest',
+          progress: 57,
+        },
+        {
+          name: 'postgres-snapshot',
+          meta: 'Server backup',
+          progress: 18,
+        },
+      ],
+    },
+    {
+      id: 'activity',
+      label: messages.sections.benefits.items[3]?.title ?? messages.nav.features,
+      title: messages.sections.benefits.items[3]?.title ?? messages.nav.features,
+      summary:
+        messages.sections.benefits.items[3]?.subtitle ?? messages.site.description,
+      metricLabel: messages.sections.plus.frameTitle,
+      metricValue: '18.4 MB/s',
+      detailLabel: messages.site.name,
+      detailValue: 'Live transfer history stays readable on iPhone, iPad, and Mac.',
+      items: [
+        {
+          name: 'Downstream',
+          meta: 'Current throughput',
+          progress: 74,
+        },
+        {
+          name: 'Active peers',
+          meta: 'Across connected clients',
+          progress: 66,
+        },
+        {
+          name: 'Queue health',
+          meta: 'No stalled items',
+          progress: 91,
+        },
+      ],
+    },
+  ] as const;
 
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 pb-20 md:gap-20">
@@ -77,21 +163,16 @@ export default async function LocaleHomePage({
         />
       </FadeInSection>
 
-      <FadeInSection
-        as="section"
-        className="rounded-[2rem] border border-border/70 bg-surface/70 px-5 py-6 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-8 sm:py-8"
-      >
-        <div className="mx-auto flex max-w-5xl flex-col gap-6">
-          <div className="max-w-2xl">
-            <SectionLabel>{messages.site.name}</SectionLabel>
-            <p className="mt-4 max-w-[60ch] text-base leading-6 text-text-secondary">
-              {messages.site.description}
-            </p>
-          </div>
-
-          <AppShowcaseClient />
-        </div>
-      </FadeInSection>
+      <AppShowcaseClient
+        eyebrow={messages.site.name}
+        title={messages.site.tagline}
+        body={messages.site.description}
+        helperTitle={messages.sections.quickstart.title}
+        helperBody={messages.hero.subhead}
+        fallbackTitle={messages.sections.quickstart.steps[2]?.title ?? messages.nav.quickstart}
+        fallbackBody={messages.sections.quickstart.steps[2]?.body ?? messages.site.description}
+        tabs={proofTabs}
+      />
 
       <FadeInSection as="section" id="downloaders">
         <div className="flex flex-col gap-6">
