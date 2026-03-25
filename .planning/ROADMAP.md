@@ -90,7 +90,10 @@ Plans:
   1. Section boundaries are separated by thin, elegant SVG lines — no ASCII separator patterns remain as dividers
   2. The hero section has an ambient blue-tinted glow effect that adapts correctly between dark and light themes without visual artifacts
   3. The site renders correctly and looks intentional on mobile (375px), tablet (768px), and desktop (1280px+) screen widths
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 05-01-PLAN.md — Create SvgDivider component and hero ambient glow effect
+- [ ] 05-02-PLAN.md — Visual verification across viewports, themes, and locales
 
 ## Progress
 
@@ -103,4 +106,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Motion and UI Primitives | 2/2 | Complete   | 2026-03-22 |
 | 3. Screenshot Assets | 2/2 | Complete   | 2026-03-23 |
 | 4. Section Assembly | 3/4 | In Progress|  |
-| 5. Visual Polish | 0/? | Not started | - |
+| 5. Visual Polish | 0/2 | Not started | - |
