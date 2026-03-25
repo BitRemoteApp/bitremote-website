@@ -14,12 +14,12 @@ export function HeroSection({ tagline, subhead, ctaLabel, siteName }: Props) {
   return (
     <section id="top" className="relative flex flex-col gap-6">
       {/* Ambient glow — decorative only */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -top-16 overflow-hidden">
         <div
-          className="absolute -top-1/4 left-1/2 -translate-x-1/2 w-[80%] max-w-[600px] aspect-[3/2]"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] max-w-[700px] aspect-[2/1]"
           style={{
             background: 'radial-gradient(ellipse at center, var(--hero-glow-color) 0%, transparent 70%)',
-            filter: 'blur(60px)',
+            filter: 'blur(48px)',
           }}
         />
       </div>
