@@ -112,6 +112,7 @@ Structural rules:
 - Screenshots may appear only as supporting assets inside the demo or feature storytelling.
 - Supported Downloaders must be presented as trust-building product coverage, not a buried appendix.
 - The page should feel composed through hierarchy and grouping, not through repeated divider lines and repeated box treatments.
+- The first focal point on load is the hero value proposition and primary CTA; the interactive demo is the immediate secondary proof block that validates that claim.
 
 **Source:** `06-CONTEXT.md` decisions D-08 through D-15, `.impeccable.md`, `ROADMAP.md`
 
@@ -217,11 +218,11 @@ No third-party registry blocks are part of this contract.
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-03-26
