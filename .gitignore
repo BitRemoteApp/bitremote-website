@@ -13,5 +13,6 @@ yarn-error.log*
 .env
 .env.*
 
-# Screenshot source PNGs (only WebP output is committed)
 screenshots-source/
+
+.claude/launch.json
