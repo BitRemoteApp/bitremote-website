@@ -56,7 +56,66 @@
       ]
     },
     "downloaders": {
-      "title": "支持的下载工具"
+      "title": "支持的下载工具",
+      "description": "BitRemote 支持技术用户已经在用的下载客户端。打开各个落地页，可以先查看兼容性、适用场景与支持的工作流程。",
+      "supportLabel": "已支持",
+      "linkLabel": "查看兼容详情"
+    },
+    "proof": {
+      "eyebrow": "产品预览",
+      "title": "用更沉稳的方式掌握远程下载状态。",
+      "body": "无需在多个下载器后台之间来回切换，也能查看实时进度、队列状态与传输细节。下面的预览展示了 BitRemote 如何帮助你在 iPhone、iPad 和 Mac 上快速做出判断。",
+      "helperTitle": "它解决什么问题",
+      "helperBody": "BitRemote 将活跃队列、支持的客户端与传输上下文集中到一起，让你在任务停滞或需要处理时更快响应。",
+      "fallbackTitle": "此预览中当前没有活跃下载",
+      "fallbackBody": "BitRemote 让你能在 iPhone、iPad 和 Mac 上随时查看下载客户端。连接受支持的下载器后，就能在同一处监控进度、队列与状态。",
+      "tabs": [
+        {
+          "id": "control",
+          "label": "远程控制下载任务",
+          "title": "不用打开每台服务器后台，也能看清当前队列。",
+          "summary": "你可以快速知道哪一个下载器在运行、当前处理到哪里，以及下一步该介入什么。",
+          "metricLabel": "支持的下载工具",
+          "metricValue": "5 个客户端",
+          "detailLabel": "已连接环境",
+          "detailValue": "aria2、qBittorrent、Transmission、Synology Download Station 与 QNAP Download Station 可以集中显示在同一视图中。",
+          "items": [
+            { "name": "ubuntu-24.04.iso", "meta": "Synology DS920+", "progress": 82 },
+            { "name": "server-backup.tar", "meta": "qBittorrent", "progress": 61 },
+            { "name": "media-archive.part01", "meta": "Transmission", "progress": 34 }
+          ]
+        },
+        {
+          "id": "queues",
+          "label": "快速整理下载队列",
+          "title": "当多个任务同时进行时，也不会丢失队列上下文。",
+          "summary": "按状态排序、找到需要处理的任务，并在同一屏中保留目标规则与标签信息。",
+          "metricLabel": "可见队列项目",
+          "metricValue": "24 项",
+          "detailLabel": "队列上下文",
+          "detailValue": "优先级、标签与目标规则会与当前进度一起保持清晰可读。",
+          "items": [
+            { "name": "linux-seedbox-sync", "meta": "优先级 A", "progress": 93 },
+            { "name": "camera-footage-2026", "meta": "夜间导入", "progress": 57 },
+            { "name": "postgres-snapshot", "meta": "服务器备份", "progress": 18 }
+          ]
+        },
+        {
+          "id": "activity",
+          "label": "查看传输活动",
+          "title": "在 Apple 设备之间保持同样清晰的传输视图。",
+          "summary": "吞吐量、Peer 数与队列健康度都能保持可见，而不会让界面显得拥挤。",
+          "metricLabel": "当前吞吐量",
+          "metricValue": "18.4 MB/s",
+          "detailLabel": "跨设备清晰度",
+          "detailValue": "实时传输历史在 iPhone、iPad 与 Mac 上都保持易读。",
+          "items": [
+            { "name": "下行速率", "meta": "当前吞吐量", "progress": 74 },
+            { "name": "活跃 Peer", "meta": "跨已连接客户端", "progress": 66 },
+            { "name": "队列健康度", "meta": "无停滞项目", "progress": 91 }
+          ]
+        }
+      ]
     },
     "quickstart": {
       "title": "开始使用",

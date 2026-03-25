@@ -56,92 +56,11 @@ export default async function LocaleHomePage({
     downloader,
     href: localePath(locale, `/downloaders/${downloaderSlugByDownloader[downloader]}/`),
   }));
-  const proofTabs = [
-    {
-      id: 'control',
-      label: messages.sections.benefits.items[1]?.title ?? messages.nav.features,
-      title: messages.sections.benefits.items[1]?.title ?? messages.nav.features,
-      summary:
-        messages.sections.benefits.items[1]?.subtitle ?? messages.site.description,
-      metricLabel: messages.nav.downloaders,
-      metricValue: String(supportedDownloaders.length),
-      detailLabel: messages.sections.quickstart.steps[1]?.title ?? messages.nav.quickstart,
-      detailValue: 'aria2 / qBittorrent / Transmission',
-      items: [
-        {
-          name: 'ubuntu-24.04.iso',
-          meta: 'Synology DS920+',
-          progress: 82,
-        },
-        {
-          name: 'server-backup.tar',
-          meta: 'qBittorrent',
-          progress: 61,
-        },
-        {
-          name: 'media-archive.part01',
-          meta: 'Transmission',
-          progress: 34,
-        },
-      ],
-    },
-    {
-      id: 'queues',
-      label: messages.sections.benefits.items[2]?.title ?? messages.nav.features,
-      title: messages.sections.benefits.items[2]?.title ?? messages.nav.features,
-      summary:
-        messages.sections.benefits.items[2]?.subtitle ?? messages.site.description,
-      metricLabel: messages.sections.quickstart.steps[2]?.title ?? messages.nav.quickstart,
-      metricValue: '24',
-      detailLabel: messages.sections.quickstart.requirements,
-      detailValue: 'Priority, tags, and destination rules stay visible in one queue.',
-      items: [
-        {
-          name: 'linux-seedbox-sync',
-          meta: 'Priority A',
-          progress: 93,
-        },
-        {
-          name: 'camera-footage-2026',
-          meta: 'Nightly ingest',
-          progress: 57,
-        },
-        {
-          name: 'postgres-snapshot',
-          meta: 'Server backup',
-          progress: 18,
-        },
-      ],
-    },
-    {
-      id: 'activity',
-      label: messages.sections.benefits.items[3]?.title ?? messages.nav.features,
-      title: messages.sections.benefits.items[3]?.title ?? messages.nav.features,
-      summary:
-        messages.sections.benefits.items[3]?.subtitle ?? messages.site.description,
-      metricLabel: messages.sections.plus.frameTitle,
-      metricValue: '18.4 MB/s',
-      detailLabel: messages.site.name,
-      detailValue: 'Live transfer history stays readable on iPhone, iPad, and Mac.',
-      items: [
-        {
-          name: 'Downstream',
-          meta: 'Current throughput',
-          progress: 74,
-        },
-        {
-          name: 'Active peers',
-          meta: 'Across connected clients',
-          progress: 66,
-        },
-        {
-          name: 'Queue health',
-          meta: 'No stalled items',
-          progress: 91,
-        },
-      ],
-    },
-  ] as const;
+  const proof = messages.sections.proof;
+  const proofTabs = proof.tabs.map((tab) => ({
+    ...tab,
+    items: tab.items.map((item) => ({ ...item })),
+  }));
 
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 pb-20 md:gap-20">
@@ -164,34 +83,54 @@ export default async function LocaleHomePage({
       </FadeInSection>
 
       <AppShowcaseClient
-        eyebrow={messages.site.name}
-        title={messages.site.tagline}
-        body={messages.site.description}
-        helperTitle={messages.sections.quickstart.title}
-        helperBody={messages.hero.subhead}
-        fallbackTitle={messages.sections.quickstart.steps[2]?.title ?? messages.nav.quickstart}
-        fallbackBody={messages.sections.quickstart.steps[2]?.body ?? messages.site.description}
+        eyebrow={proof.eyebrow}
+        title={proof.title}
+        body={proof.body}
+        helperTitle={proof.helperTitle}
+        helperBody={proof.helperBody}
+        fallbackTitle={proof.fallbackTitle}
+        fallbackBody={proof.fallbackBody}
         tabs={proofTabs}
       />
 
       <FadeInSection as="section" id="downloaders">
-        <div className="flex flex-col gap-6">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
           <div className="max-w-2xl">
             <SectionLabel>{messages.sections.downloaders.title}</SectionLabel>
+            <p className="mb-0 mt-4 text-base leading-7 text-text-secondary">
+              {messages.sections.downloaders.description}
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <TextButton href={LINKS.appStore} target="_blank" rel="noreferrer">
+                {messages.cta.appStore}
+              </TextButton>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-5">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {downloaderLinks.map(({ downloader, href }) => (
               <a
                 key={downloader}
-                className="group flex min-h-28 flex-col justify-between rounded-[1.5rem] border border-border/70 bg-surface/70 p-5 no-underline transition-colors duration-150 hover:bg-surface hover:text-text-primary active:bg-surface"
+                className="group flex min-h-32 flex-col justify-between rounded-[1.75rem] border border-border/70 bg-surface/75 p-5 no-underline transition-[border-color,background-color,transform] duration-150 hover:border-accent/30 hover:bg-surface hover:-translate-y-0.5 active:bg-surface"
                 href={href}
               >
-                <span className="text-sm font-medium text-accent">{messages.sections.downloaders.title}</span>
-                <span className="text-lg font-semibold leading-6 text-text-primary">{downloader}</span>
-                <span className="text-sm text-text-secondary transition-colors duration-150 group-hover:text-text-primary">
-                  {messages.site.name}
-                </span>
+                <div className="flex items-start justify-between gap-3">
+                  <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                    {messages.sections.downloaders.supportLabel}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="text-sm text-text-secondary transition-colors duration-150 group-hover:text-accent"
+                  >
+                    →
+                  </span>
+                </div>
+                <div className="mt-6">
+                  <span className="block text-lg font-semibold leading-6 text-text-primary">{downloader}</span>
+                  <span className="mt-2 block text-sm leading-6 text-text-secondary">
+                    {messages.sections.downloaders.linkLabel}
+                  </span>
+                </div>
               </a>
             ))}
           </div>
@@ -217,7 +156,7 @@ export default async function LocaleHomePage({
             {messages.sections.quickstart.steps.map((step, index) => (
               <div
                 key={index}
-                className="rounded-[1.5rem] border border-border/70 bg-surface/70 p-6"
+                className="rounded-[1.75rem] border border-border/70 bg-surface/75 p-6 shadow-[0_14px_36px_rgba(15,23,42,0.05)]"
               >
                 <p className="m-0 mb-3 text-sm font-medium text-accent">0{index + 1}</p>
                 <h3 className="m-0 mb-2 font-sans text-xl font-semibold leading-[1.2] text-text-primary">
@@ -234,7 +173,7 @@ export default async function LocaleHomePage({
       </FadeInSection>
 
       <FadeInSection as="section" id="plus">
-        <div className="rounded-[2rem] border border-border/70 bg-surface/70 px-5 py-6 sm:px-8 sm:py-8">
+        <div className="rounded-[2rem] border border-border/70 bg-surface/75 px-5 py-6 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-8 sm:py-8">
           <SectionLabel>{messages.sections.plus.title}</SectionLabel>
           <div className="mt-4 max-w-3xl">
             <h3 className="m-0 mb-2 font-sans text-xl font-semibold leading-[1.2] text-text-primary">

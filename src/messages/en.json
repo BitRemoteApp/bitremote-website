@@ -56,7 +56,66 @@
       ]
     },
     "downloaders": {
-      "title": "Supported downloaders"
+      "title": "Supported downloaders",
+      "description": "BitRemote works with the downloader clients technical users already rely on. Open a landing page to review capability details, setup fit, and supported workflows before you install.",
+      "supportLabel": "Supported",
+      "linkLabel": "View compatibility details"
+    },
+    "proof": {
+      "eyebrow": "Product preview",
+      "title": "A calmer way to stay on top of remote download activity.",
+      "body": "Review live progress, queue state, and transfer details without jumping back into each downloader dashboard. The preview below focuses on the moments BitRemote helps you make quick decisions from iPhone, iPad, and Mac.",
+      "helperTitle": "Why this matters",
+      "helperBody": "BitRemote keeps active queues, downloader coverage, and transfer context within reach so you can react quickly when something stalls or needs attention.",
+      "fallbackTitle": "No active downloads in this preview",
+      "fallbackBody": "BitRemote keeps your download clients within reach from iPhone, iPad, and Mac. Connect a supported downloader to monitor progress, queues, and status in one place.",
+      "tabs": [
+        {
+          "id": "control",
+          "label": "Control remote download tasks",
+          "title": "Review the queue without opening each server dashboard.",
+          "summary": "See which downloader is active, what is moving right now, and where to step in next.",
+          "metricLabel": "Supported downloaders",
+          "metricValue": "5 clients",
+          "detailLabel": "Connected environments",
+          "detailValue": "aria2, qBittorrent, Transmission, Synology Download Station, and QNAP Download Station stay in one view.",
+          "items": [
+            { "name": "ubuntu-24.04.iso", "meta": "Synology DS920+", "progress": 82 },
+            { "name": "server-backup.tar", "meta": "qBittorrent", "progress": 61 },
+            { "name": "media-archive.part01", "meta": "Transmission", "progress": 34 }
+          ]
+        },
+        {
+          "id": "queues",
+          "label": "Filter and sort large queues",
+          "title": "Keep queue context visible when several jobs move at once.",
+          "summary": "Sort by status, inspect what needs attention, and keep destination rules readable on the same screen.",
+          "metricLabel": "Visible queue items",
+          "metricValue": "24 items",
+          "detailLabel": "Queue context",
+          "detailValue": "Priority, tags, and destination rules stay readable alongside current progress.",
+          "items": [
+            { "name": "linux-seedbox-sync", "meta": "Priority A", "progress": 93 },
+            { "name": "camera-footage-2026", "meta": "Nightly ingest", "progress": 57 },
+            { "name": "postgres-snapshot", "meta": "Server backup", "progress": 18 }
+          ]
+        },
+        {
+          "id": "activity",
+          "label": "Monitor transfer activity",
+          "title": "Track transfer health with the same clarity across Apple devices.",
+          "summary": "Throughput, peers, and queue health stay visible without overwhelming the rest of the interface.",
+          "metricLabel": "Current throughput",
+          "metricValue": "18.4 MB/s",
+          "detailLabel": "Cross-device clarity",
+          "detailValue": "Live transfer history stays readable on iPhone, iPad, and Mac.",
+          "items": [
+            { "name": "Downstream", "meta": "Current throughput", "progress": 74 },
+            { "name": "Active peers", "meta": "Across connected clients", "progress": 66 },
+            { "name": "Queue health", "meta": "No stalled items", "progress": 91 }
+          ]
+        }
+      ]
     },
     "quickstart": {
       "title": "Get started in minutes",

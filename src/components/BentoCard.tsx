@@ -5,11 +5,11 @@ type Props = {
 
 export function BentoCard({ title, body }: Props) {
   return (
-    <div className="relative bg-[var(--bg-panel-88)] backdrop-blur-md border border-border rounded-lg p-6 shadow-card">
-      <h3 className="m-0 mb-2 font-sans text-xl font-semibold leading-[1.2] text-text-primary">
+    <div className="relative h-full rounded-[1.75rem] border border-border/70 bg-surface/75 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.06)] backdrop-blur-md">
+      <h3 className="m-0 mb-3 font-sans text-xl font-semibold leading-[1.2] text-text-primary">
         {title}
       </h3>
-      <p className="m-0 text-text-secondary">{body}</p>
+      <p className="m-0 text-base leading-7 text-text-secondary">{body}</p>
     </div>
   );
 }

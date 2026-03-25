@@ -56,7 +56,66 @@
       ]
     },
     "downloaders": {
-      "title": "対応ダウンロードツール"
+      "title": "対応ダウンロードツール",
+      "description": "BitRemote は、技術志向のユーザーが日常的に使うダウンロードツールに対応しています。各ランディングページで対応内容、用途、導入の相性を確認できます。",
+      "supportLabel": "対応",
+      "linkLabel": "対応内容を見る"
+    },
+    "proof": {
+      "eyebrow": "製品プレビュー",
+      "title": "リモートのダウンロード状況を、もっと落ち着いて把握できます。",
+      "body": "各ダウンロードツールの管理画面を行き来しなくても、進行状況、キューの状態、転送の詳細を確認できます。下のプレビューでは、iPhone、iPad、Mac から素早く判断できる BitRemote の使いどころを示しています。",
+      "helperTitle": "役立つ理由",
+      "helperBody": "BitRemote は、稼働中のキュー、対応クライアント、転送状況をひとつにまとめ、停止や異常にすぐ対応できるようにします。",
+      "fallbackTitle": "このプレビューではアクティブなダウンロードはありません",
+      "fallbackBody": "BitRemote は、iPhone、iPad、Mac からダウンロードツールを手元で確認できるようにします。対応ツールに接続すると、進捗、キュー、状態をひとつの画面で追えます。",
+      "tabs": [
+        {
+          "id": "control",
+          "label": "リモートでタスク操作",
+          "title": "各サーバーの管理画面を開かずにキューを確認できます。",
+          "summary": "どのダウンロードツールが動いているか、今どの処理が進んでいるか、次にどこへ介入すべきかをすぐ把握できます。",
+          "metricLabel": "対応ダウンロードツール",
+          "metricValue": "5 クライアント",
+          "detailLabel": "接続先",
+          "detailValue": "aria2、qBittorrent、Transmission、Synology Download Station、QNAP Download Station をひとつの画面で確認できます。",
+          "items": [
+            { "name": "ubuntu-24.04.iso", "meta": "Synology DS920+", "progress": 82 },
+            { "name": "server-backup.tar", "meta": "qBittorrent", "progress": 61 },
+            { "name": "media-archive.part01", "meta": "Transmission", "progress": 34 }
+          ]
+        },
+        {
+          "id": "queues",
+          "label": "キューを素早く整理",
+          "title": "複数のジョブが動くときも、キュー全体の文脈を見失いません。",
+          "summary": "ステータス順に並べ替え、対応が必要な項目を見つけ、保存先ルールまで同じ画面で確認できます。",
+          "metricLabel": "表示中のキュー項目",
+          "metricValue": "24 項目",
+          "detailLabel": "キュー情報",
+          "detailValue": "優先度、タグ、保存先ルールを現在の進捗と並べて読みやすく保てます。",
+          "items": [
+            { "name": "linux-seedbox-sync", "meta": "優先度 A", "progress": 93 },
+            { "name": "camera-footage-2026", "meta": "夜間取り込み", "progress": 57 },
+            { "name": "postgres-snapshot", "meta": "サーバーバックアップ", "progress": 18 }
+          ]
+        },
+        {
+          "id": "activity",
+          "label": "転送状況を確認",
+          "title": "Apple デバイス間で同じ見やすさのまま転送状態を追えます。",
+          "summary": "スループット、ピア数、キュー健全性を、画面を圧迫せずに把握できます。",
+          "metricLabel": "現在の転送速度",
+          "metricValue": "18.4 MB/s",
+          "detailLabel": "デバイス横断の見やすさ",
+          "detailValue": "ライブの転送履歴を iPhone、iPad、Mac で読みやすく保ちます。",
+          "items": [
+            { "name": "下り速度", "meta": "現在のスループット", "progress": 74 },
+            { "name": "接続中ピア", "meta": "接続中クライアント全体", "progress": 66 },
+            { "name": "キュー健全性", "meta": "停止中の項目なし", "progress": 91 }
+          ]
+        }
+      ]
     },
     "quickstart": {
       "title": "はじめ方",

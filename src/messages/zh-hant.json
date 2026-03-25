@@ -56,7 +56,66 @@
       ]
     },
     "downloaders": {
-      "title": "支援的下載工具"
+      "title": "支援的下載工具",
+      "description": "BitRemote 支援技術使用者已經在用的下載用戶端。打開各個落地頁後，可以先查看相容性、適用情境與支援的工作流程。",
+      "supportLabel": "已支援",
+      "linkLabel": "查看相容詳情"
+    },
+    "proof": {
+      "eyebrow": "產品預覽",
+      "title": "用更沉穩的方式掌握遠端下載狀態。",
+      "body": "不必在多個下載器後台之間來回切換，也能查看即時進度、佇列狀態與傳輸細節。下方預覽展示了 BitRemote 如何幫助你在 iPhone、iPad 與 Mac 上快速做出判斷。",
+      "helperTitle": "它解決什麼問題",
+      "helperBody": "BitRemote 將活躍佇列、支援的用戶端與傳輸脈絡集中在一起，讓你在任務卡住或需要處理時更快回應。",
+      "fallbackTitle": "此預覽中目前沒有進行中的下載",
+      "fallbackBody": "BitRemote 讓你能在 iPhone、iPad 與 Mac 上隨時查看下載用戶端。連接支援的下載器後，就能在同一處監控進度、佇列與狀態。",
+      "tabs": [
+        {
+          "id": "control",
+          "label": "遠端控制下載任務",
+          "title": "不必開啟每台伺服器後台，也能看清目前佇列。",
+          "summary": "你可以快速知道哪一個下載器正在運作、目前處理到哪裡，以及下一步該介入什麼。",
+          "metricLabel": "支援的下載工具",
+          "metricValue": "5 個用戶端",
+          "detailLabel": "已連線環境",
+          "detailValue": "aria2、qBittorrent、Transmission、Synology Download Station 與 QNAP Download Station 可以集中顯示在同一個畫面。",
+          "items": [
+            { "name": "ubuntu-24.04.iso", "meta": "Synology DS920+", "progress": 82 },
+            { "name": "server-backup.tar", "meta": "qBittorrent", "progress": 61 },
+            { "name": "media-archive.part01", "meta": "Transmission", "progress": 34 }
+          ]
+        },
+        {
+          "id": "queues",
+          "label": "快速整理下載佇列",
+          "title": "當多個任務同時進行時，也不會失去佇列脈絡。",
+          "summary": "依狀態排序、找到需要處理的項目，並在同一畫面保留目標規則與標籤資訊。",
+          "metricLabel": "可見佇列項目",
+          "metricValue": "24 項",
+          "detailLabel": "佇列脈絡",
+          "detailValue": "優先順序、標籤與目標規則會與目前進度一起保持清楚可讀。",
+          "items": [
+            { "name": "linux-seedbox-sync", "meta": "優先級 A", "progress": 93 },
+            { "name": "camera-footage-2026", "meta": "夜間匯入", "progress": 57 },
+            { "name": "postgres-snapshot", "meta": "伺服器備份", "progress": 18 }
+          ]
+        },
+        {
+          "id": "activity",
+          "label": "查看傳輸活動",
+          "title": "在 Apple 裝置之間維持同樣清晰的傳輸視圖。",
+          "summary": "吞吐量、Peer 數與佇列健康度都能保持可見，而不會讓介面變得擁擠。",
+          "metricLabel": "目前吞吐量",
+          "metricValue": "18.4 MB/s",
+          "detailLabel": "跨裝置清晰度",
+          "detailValue": "即時傳輸歷史在 iPhone、iPad 與 Mac 上都保持易讀。",
+          "items": [
+            { "name": "下行速率", "meta": "目前吞吐量", "progress": 74 },
+            { "name": "活躍 Peer", "meta": "跨已連線用戶端", "progress": 66 },
+            { "name": "佇列健康度", "meta": "沒有停滯項目", "progress": 91 }
+          ]
+        }
+      ]
     },
     "quickstart": {
       "title": "開始使用",
