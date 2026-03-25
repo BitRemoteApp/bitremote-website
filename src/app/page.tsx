@@ -40,33 +40,28 @@ export const metadata: Metadata = {
 export default function RootPage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-12">
-      <BitRemoteWordmark />
+      <div className="max-w-3xl">
+        <BitRemoteWordmark />
+      </div>
       <h1 className="sr-only">BitRemote</h1>
 
-      <p className="mt-4 max-w-[62ch] text-text-secondary">Select a language to continue.</p>
+      <p className="mt-6 max-w-[62ch] text-base leading-7 text-text-secondary">
+        Select a language to continue.
+      </p>
 
-      <div className="mt-5 flex justify-center">
-        <div className="table border-separate border-spacing-x-0 border-spacing-y-2">
+      <div className="mt-8">
+        <div className="grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
           {locales.map((l) => (
             <a
               key={l}
-              className="group table-row font-sans text-sm uppercase text-accent no-underline select-none"
+              className="group flex min-h-14 items-center justify-between rounded-[1.5rem] border border-border/70 bg-surface/75 px-5 py-4 font-sans text-base font-semibold text-text-primary no-underline transition-[border-color,background-color,transform] duration-150 hover:border-accent/30 hover:bg-surface hover:-translate-y-0.5 active:bg-surface"
               href={localeRoot(l)}
             >
-              <span
-                aria-hidden="true"
-                className="table-cell w-[1ch] py-[0.15rem] text-left text-current opacity-70 transition-opacity group-hover:bg-accent group-hover:text-bg group-hover:opacity-100 group-active:bg-accent group-active:text-bg group-active:opacity-100"
-              >
-                [
-              </span>
-              <span className="table-cell py-[0.15rem] px-[0.55ch] text-center transition-colors group-hover:bg-accent group-hover:text-bg group-active:bg-accent group-active:text-bg">
+              <span>
                 {localeLabels[l]}
               </span>
-              <span
-                aria-hidden="true"
-                className="table-cell w-[1ch] py-[0.15rem] text-right text-current opacity-70 transition-opacity group-hover:bg-accent group-hover:text-bg group-hover:opacity-100 group-active:bg-accent group-active:text-bg group-active:opacity-100"
-              >
-                ]
+              <span aria-hidden="true" className="text-sm text-text-secondary transition-colors duration-150 group-hover:text-accent">
+                →
               </span>
             </a>
           ))}
