@@ -83,10 +83,9 @@ export default async function LocaleHomePage({
       >
         <div className="mx-auto flex max-w-5xl flex-col gap-6">
           <div className="max-w-2xl">
-            <SectionLabel>Product demo</SectionLabel>
+            <SectionLabel>{messages.site.name}</SectionLabel>
             <p className="mt-4 max-w-[60ch] text-base leading-6 text-text-secondary">
-              Review the app interface before you install. BitRemote keeps queue status, transfer
-              activity, and remote controls readable across iPhone, iPad, and Mac.
+              {messages.site.description}
             </p>
           </div>
 
@@ -98,10 +97,6 @@ export default async function LocaleHomePage({
         <div className="flex flex-col gap-6">
           <div className="max-w-2xl">
             <SectionLabel>{messages.sections.downloaders.title}</SectionLabel>
-            <p className="mt-4 max-w-[60ch] text-base leading-6 text-text-secondary">
-              BitRemote works with the downloader setups people already trust on NAS devices, home
-              servers, and seedboxes.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-5">
@@ -111,10 +106,10 @@ export default async function LocaleHomePage({
                 className="group flex min-h-28 flex-col justify-between rounded-[1.5rem] border border-border/70 bg-surface/70 p-5 no-underline transition-colors duration-150 hover:bg-surface hover:text-text-primary active:bg-surface"
                 href={href}
               >
-                <span className="text-sm font-medium text-accent">Supported</span>
+                <span className="text-sm font-medium text-accent">{messages.sections.downloaders.title}</span>
                 <span className="text-lg font-semibold leading-6 text-text-primary">{downloader}</span>
                 <span className="text-sm text-text-secondary transition-colors duration-150 group-hover:text-text-primary">
-                  Learn more
+                  {messages.site.name}
                 </span>
               </a>
             ))}
@@ -135,10 +130,6 @@ export default async function LocaleHomePage({
         <div className="flex flex-col gap-6">
           <div className="max-w-2xl">
             <SectionLabel>{messages.sections.quickstart.title}</SectionLabel>
-            <p className="mt-4 max-w-[60ch] text-base leading-6 text-text-secondary">
-              Connect your downloader once, then keep status, queue health, and task controls
-              close at hand across your Apple devices.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
