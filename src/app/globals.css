@@ -42,6 +42,9 @@
     --bg-glass-92: color-mix(in srgb, var(--color-bg) 92%, transparent);
     --bg-glass-95: color-mix(in srgb, var(--color-bg) 95%, transparent);
     --bg-panel-88: color-mix(in srgb, var(--color-bg) 88%, transparent);
+
+    /* Hero glow (color-mix pattern using --color-accent) */
+    --hero-glow-color: color-mix(in srgb, var(--color-accent) 6%, transparent);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -61,6 +64,8 @@
 
       --shadow-card:  0 1px 3px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
       --shadow-raise: 0 8px 32px rgb(0 0 0 / 0.5);
+
+      --hero-glow-color: color-mix(in srgb, var(--color-accent) 14%, transparent);
     }
   }
 

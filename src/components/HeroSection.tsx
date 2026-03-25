@@ -12,7 +12,17 @@ type Props = {
 
 export function HeroSection({ tagline, subhead, ctaLabel, siteName }: Props) {
   return (
-    <section id="top" className="flex flex-col gap-6">
+    <section id="top" className="relative flex flex-col gap-6">
+      {/* Ambient glow — decorative only */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute -top-1/4 left-1/2 -translate-x-1/2 w-[80%] max-w-[600px] aspect-[3/2]"
+          style={{
+            background: 'radial-gradient(ellipse at center, var(--hero-glow-color) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
+      </div>
       <BitRemoteWordmark />
       <h1 className="sr-only">{siteName}</h1>
 
