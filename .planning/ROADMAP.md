@@ -108,11 +108,11 @@ Plans:
   5. The screenshot-led homepage structure is reevaluated; screenshots must support the story of the page rather than consuming a section without clear product communication value
   6. The final homepage and shared UI feel calm, professional, and aligned with the BitRemote native app rather than playful, retro, or novelty-driven
   7. Existing localized content, downloader landing pages, legal pages, and static export behavior remain intact through the redesign
-**Plans:** 2/4 plans complete
+**Plans:** 3/4 plans complete
 Plans:
 - [x] 06-01-PLAN.md — Establish Impeccable design context and translate the original brief into explicit design constraints for the corrective redesign
 - [x] 06-02-PLAN.md — Redesign homepage information architecture and shared brand, CTA, and navigation language to remove remaining retro UI patterns
-- [ ] 06-03-PLAN.md — Restore and redesign critical content sections, including Supported Downloaders and screenshot usage, within the new calm professional layout
+- [x] 06-03-PLAN.md — Restore and redesign critical content sections, including Supported Downloaders and screenshot usage, within the new calm professional layout
 - [ ] 06-04-PLAN.md — Verify the corrective redesign across locales, responsive breakpoints, and the original brief requirements
 
 ## Progress

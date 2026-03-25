@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-03-25T17:41:54Z"
+stopped_at: Completed 06-03-PLAN.md
+last_updated: "2026-03-25T17:52:50Z"
 progress:
   total_phases: 6
   completed_phases: 5
   total_plans: 17
-  completed_plans: 15
+  completed_plans: 16
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-22)
 ## Current Position
 
 Phase: 06 (corrective-total-ui-refresh) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Plan: 3 of 4
 | Phase 05-visual-polish P01 | 2 | 2 tasks | 5 files |
 | Phase 06-corrective-total-ui-refresh P01 | 12 | 2 tasks | 6 files |
 | Phase 06-corrective-total-ui-refresh P02 | 14 | 2 tasks | 3 files |
+| Phase 06-corrective-total-ui-refresh P03 | 25 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -101,6 +102,7 @@ Recent decisions affecting current work:
 - [Phase 05-visual-polish]: color-mix pattern for --hero-glow-color follows identical approach as --bg-glass-92/95, --bg-panel-88 tokens
 - [Phase 06]: Added only a minimal set of shared surface tokens in globals.css so the new primitives can be reused across homepage and landing-page contexts.
 - [Phase 06]: Navigation now uses persistent active states plus a dedicated Downloaders anchor, and the homepage skeleton is reordered around hero, proof, and downloader trust.
+- [Phase 06]: Product proof now uses localized tabbed preview states, and Supported Downloaders is restored as canonical linked trust content near the top of the homepage.
 
 ### Pending Todos
 
@@ -113,6 +115,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T17:41:54Z
-Stopped at: Completed 06-02-PLAN.md
+Last session: 2026-03-25T17:52:50Z
+Stopped at: Completed 06-03-PLAN.md
 Resume file: None
