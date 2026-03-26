@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useId, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import type { Locale } from '@/i18n/locales';
-import { localeLabels, locales } from '@/i18n/locales';
+import { localeLabels, localeLang, locales } from '@/i18n/locales';
 import type { Messages } from '@/i18n/messages';
+import { LINKS } from '@/i18n/links';
 import { localePath } from '@/i18n/urls';
 
 type Props = {
@@ -17,6 +19,7 @@ export function TextTabsNav({
   locale,
   messages,
 }: Props) {
+  const shouldReduceMotion = useReducedMotion();
   const nav = messages.nav;
   const homeHref = localePath(locale, '/');
   const pathname = usePathname();
@@ -24,9 +27,59 @@ export function TextTabsNav({
   const currentPathWithinLocale = pathname.startsWith(localePrefix)
     ? pathname.slice(localePrefix.length) || '/'
     : '/';
+  const isHomePage = currentPathWithinLocale === '/';
+  const isTermsPage = currentPathWithinLocale === '/terms/';
   const pickerRef = useRef<HTMLDivElement | null>(null);
+  const shellRef = useRef<HTMLDivElement | null>(null);
   const [isLocaleMenuOpen, setIsLocaleMenuOpen] = useState(false);
-  const localeMenuId = useId();
+  const [navVeilHeight, setNavVeilHeight] = useState(0);
+  const [isHeroCtaVisible, setIsHeroCtaVisible] = useState(isHomePage);
+  const localeMenuId = `locale-menu-${locale}`;
+
+  useEffect(() => {
+    const updateNavVeilHeight = () => {
+      const shell = shellRef.current;
+      setNavVeilHeight((shell?.offsetHeight ?? 0) + 50);
+    };
+
+    updateNavVeilHeight();
+    window.addEventListener('resize', updateNavVeilHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateNavVeilHeight);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isHomePage) {
+      return;
+    }
+
+    const heroCta = document.querySelector('[data-hero-cta="true"]');
+
+    if (!(heroCta instanceof HTMLElement)) {
+      window.setTimeout(() => {
+        setIsHeroCtaVisible(false);
+      }, 0);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroCtaVisible(entry?.isIntersecting ?? false);
+      },
+      {
+        threshold: 0.45,
+        rootMargin: '-10% 0px -12% 0px',
+      },
+    );
+
+    observer.observe(heroCta);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isHomePage, pathname]);
 
   useEffect(() => {
     if (!isLocaleMenuOpen) {
@@ -55,52 +108,91 @@ export function TextTabsNav({
     };
   }, [isLocaleMenuOpen]);
 
-  // data-[active=true]:* classes are intentionally never applied.
-  // Tab items respond to hover only — there is no persistent "current page" highlight by design.
   const tabLinkClassName =
-    'relative inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] text-fg opacity-[0.85] no-underline transition-colors duration-150 hover:bg-blue-strong hover:text-bg hover:opacity-100 active:bg-blue-strong active:text-bg active:opacity-100 data-[active=true]:bg-blue-strong data-[active=true]:text-bg data-[active=true]:opacity-100';
+    'inline-flex min-h-11 items-center rounded-full px-4 py-2 font-sans text-sm font-medium text-text-secondary no-underline transition-colors duration-150 hover:bg-surface hover:text-text-primary active:bg-surface';
   const localeLinkBaseClassName =
-    'group inline-flex items-center px-[0.45rem] py-[0.15rem] font-mono text-sm uppercase tracking-[0.08em] no-underline select-none transition duration-150 hover:bg-blue-strong hover:text-bg active:scale-[0.97] active:bg-blue-strong active:text-bg';
+    'inline-flex min-h-11 items-center rounded-full px-4 py-2 font-sans text-sm font-medium no-underline select-none transition-colors duration-150';
 
   const localeLinkClassName = (isCurrent: boolean) =>
     isCurrent
-      ? 'text-blue-strong'
-      : 'text-fg opacity-80 hover:opacity-100 active:opacity-100';
+      ? 'bg-accent text-[var(--color-accent-contrast)] shadow-[0_10px_28px_rgba(37,99,235,0.18)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-accent-contrast)]'
+      : 'text-text-secondary hover:bg-surface hover:text-text-primary active:bg-surface';
+  const compactCtaClassName =
+    'min-h-11 shrink-0 items-center rounded-full border border-[color-mix(in_srgb,var(--color-accent)_18%,var(--color-border))] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-bg))] px-4 py-2 text-sm font-semibold leading-none text-[color-mix(in_srgb,var(--color-accent)_92%,var(--color-text-primary))] no-underline transition-[background-color,border-color,color] duration-150 hover:border-[color-mix(in_srgb,var(--color-accent)_32%,var(--color-border))] hover:bg-[color-mix(in_srgb,var(--color-accent)_14%,var(--color-bg))] hover:text-[color-mix(in_srgb,var(--color-accent)_92%,var(--color-text-primary))]';
 
-  const localeBracketClassName =
-    'text-current opacity-70 transition-opacity group-hover:opacity-100 group-active:opacity-100';
+  const navItems = [
+    { href: homeHref, label: nav.home },
+    { href: `${homeHref}#feature`, label: nav.feature },
+    { href: `${homeHref}#downloader`, label: nav.downloaders },
+    { href: `${homeHref}#how-it-works`, label: nav.quickstart },
+    { href: `${homeHref}#faq`, label: nav.faq },
+  ] as const;
+
+  const localeLabelClassName = (value: Locale) =>
+    value === 'ja'
+      ? 'text-[0.97rem] font-normal tracking-[-0.01em]'
+      : value.startsWith('zh-')
+        ? 'font-["PingFang_SC","PingFang_TC","Hiragino_Sans_GB","Noto_Sans_CJK_SC","Noto_Sans_CJK_TC","Microsoft_YaHei","Microsoft_JhengHei",sans-serif] text-[0.94rem] font-normal tracking-[-0.01em]'
+        : 'font-normal';
+  const shouldShowNavCta = isTermsPage || (isHomePage && !isHeroCtaVisible);
 
   return (
     <nav
-      className="sticky top-0 z-10 border-b border-blue-line bg-[var(--bg-glass-92)] backdrop-blur"
+      className="sticky top-3 z-20 px-3 sm:px-4"
       aria-label="Site"
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-nowrap items-center gap-4 py-[0.9rem] whitespace-nowrap">
-        <div className="no-scrollbar min-w-0 flex-1 overflow-x-auto overflow-y-hidden [-webkit-overflow-scrolling:touch]">
-          <div className="inline-flex min-w-max flex-nowrap items-baseline gap-x-5 gap-y-3 pb-[0.1rem] pl-[0.55rem]">
-            <a className={tabLinkClassName} href={homeHref}>
-              {nav.home}
-            </a>
-            <a className={tabLinkClassName} href={`${homeHref}#features`}>
-              {nav.features}
-            </a>
-            <a className={tabLinkClassName} href={`${homeHref}#how-it-works`}>
-              {nav.quickstart}
-            </a>
-            <a className={tabLinkClassName} href={`${homeHref}#plus`}>
-              {nav.subscription}
-            </a>
-            <a className={tabLinkClassName} href={`${homeHref}#faq`}>
-              {nav.faq}
-            </a>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -top-3 -z-10"
+        style={{ height: navVeilHeight || undefined }}
+      >
+        <div className="h-full w-full bg-[color-mix(in_srgb,var(--color-bg)_46%,transparent)] backdrop-blur-[28px] [mask-image:linear-gradient(to_bottom,black_0%,black_58%,transparent_100%)]" />
+      </div>
+      <div className="relative mx-auto max-w-6xl">
+        <div
+          ref={shellRef}
+          className="relative flex w-full items-center gap-3 rounded-[1.85rem] border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_72%,transparent)] px-3 py-3 shadow-[0_20px_44px_rgba(15,23,42,0.08)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_50%,transparent)] sm:px-4"
+        >
+        <div className="min-w-0 flex-1 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="inline-flex min-w-max items-center gap-2">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                className={tabLinkClassName}
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
 
-        <div
-          data-locale-switch
-          className="ml-auto hidden flex-nowrap items-center gap-2"
-          aria-label="Language"
-        >
+        <AnimatePresence initial={false}>
+          {shouldShowNavCta ? (
+            <motion.div
+              key="nav-cta"
+              initial={shouldReduceMotion ? false : { opacity: 0, y: -6, scale: 0.96 }}
+              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
+              transition={{ duration: shouldReduceMotion ? 0.12 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <a
+                className={`${compactCtaClassName} inline-flex`}
+                href={LINKS.appStore}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={messages.cta.appStore}
+              >
+                <span aria-hidden="true" className="inline-flex items-center gap-2 text-inherit">
+                  <span className="inline-block text-[1.2em] leading-none"></span>
+                  <span className="text-sm font-medium tracking-[0.02em] text-inherit">{messages.cta.download}</span>
+                </span>
+              </a>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+
+        <div data-locale-switch className="ml-auto hidden" aria-label="Language" hidden>
           {locales.map((l) => {
             const isCurrent = l === locale;
             return (
@@ -110,18 +202,8 @@ export function TextTabsNav({
                 href={localePath(l, currentPathWithinLocale)}
                 aria-current={l === locale ? 'page' : undefined}
               >
-                <span
-                  aria-hidden="true"
-                  className={`mr-[0.55ch] ${localeBracketClassName}`}
-                >
-                  [
-                </span>
-                {localeLabels[l]}
-                <span
-                  aria-hidden="true"
-                  className={`ml-[0.55ch] ${localeBracketClassName}`}
-                >
-                  ]
+                <span className={localeLabelClassName(l)} lang={localeLang[l]}>
+                  {localeLabels[l]}
                 </span>
               </a>
             );
@@ -131,38 +213,34 @@ export function TextTabsNav({
         <div data-locale-picker className="relative ml-auto" ref={pickerRef}>
           <button
             type="button"
-            className={`${localeLinkBaseClassName} cursor-pointer border-0 bg-transparent text-fg opacity-80 hover:opacity-100 active:opacity-100`}
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] px-4 py-2 font-sans text-sm font-medium text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface"
             aria-expanded={isLocaleMenuOpen}
             aria-controls={localeMenuId}
             onClick={() => setIsLocaleMenuOpen((current) => !current)}
           >
-            <span aria-hidden="true" className={`mr-[0.55ch] ${localeBracketClassName}`}>
-              [
+            <span className={localeLabelClassName(locale)} lang={localeLang[locale]}>
+              {localeLabels[locale]}
             </span>
-            {localeLabels[locale]}
-            <span aria-hidden="true" className={`ml-[0.55ch] ${localeBracketClassName}`}>
-              ]
+            <span aria-hidden="true" className="text-text-secondary">
+              {isLocaleMenuOpen ? '▴' : '▾'}
             </span>
           </button>
 
           {isLocaleMenuOpen ? (
             <div
-              className="absolute right-0 top-[calc(100%+0.45rem)] z-20 border border-blue-line bg-[var(--bg-glass-95)] py-[0.45rem] px-[0.55rem] backdrop-blur"
+              className="absolute right-0 top-[calc(100%+0.55rem)] z-20 min-w-[12rem] rounded-3xl border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]"
               id={localeMenuId}
               role="menu"
               aria-label="Language options"
             >
-              <div className="table border-separate border-spacing-x-0 border-spacing-y-1">
+              <div className="flex flex-col gap-1">
                 {locales.map((l) => {
                   const isCurrent = l === locale;
                   const rowBaseClassName =
-                    'group table-row font-mono text-sm uppercase tracking-[0.08em] no-underline select-none transition duration-150';
+                    'inline-flex min-h-11 items-center justify-between rounded-2xl px-4 py-2 font-sans text-sm font-normal no-underline transition-colors duration-150';
                   const rowClassName = isCurrent
-                    ? `${rowBaseClassName} text-blue-strong`
-                    : `${rowBaseClassName} text-fg opacity-80 hover:opacity-100 active:opacity-100`;
-
-                  const cellClassName =
-                    'table-cell py-[0.15rem] transition-colors group-hover:bg-blue-strong group-hover:text-bg group-active:bg-blue-strong group-active:text-bg';
+                    ? `${rowBaseClassName} bg-accent text-[var(--color-accent-contrast)] shadow-[0_10px_28px_rgba(37,99,235,0.18)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-accent-contrast)]`
+                    : `${rowBaseClassName} text-text-primary hover:bg-surface hover:text-text-primary active:bg-surface`;
                   return (
                     <a
                       key={l}
@@ -171,20 +249,8 @@ export function TextTabsNav({
                       aria-current={l === locale ? 'page' : undefined}
                       role="menuitem"
                     >
-                      <span
-                        aria-hidden="true"
-                        className={`${cellClassName} w-[1ch] text-left ${localeBracketClassName}`}
-                      >
-                        [
-                      </span>
-                      <span className={`${cellClassName} px-[0.55ch] text-center`}>
+                      <span className={localeLabelClassName(l)} lang={localeLang[l]}>
                         {localeLabels[l]}
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className={`${cellClassName} w-[1ch] text-right ${localeBracketClassName}`}
-                      >
-                        ]
                       </span>
                     </a>
                   );
@@ -197,6 +263,7 @@ export function TextTabsNav({
         <noscript>
           <style>{'[data-locale-switch]{display:flex}[data-locale-picker]{display:none}'}</style>
         </noscript>
+        </div>
       </div>
     </nav>
   );

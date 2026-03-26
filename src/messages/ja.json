@@ -6,18 +6,22 @@
   },
   "nav": {
     "home": "ホーム",
-    "features": "機能",
-    "downloaders": "対応ダウンロードツール",
+    "feature": "機能",
+    "downloaders": "ダウンロードツール",
     "quickstart": "はじめ方",
-    "subscription": "料金",
     "faq": "FAQ"
   },
   "cta": {
-    "appStore": "App Store でダウンロード",
-    "supportedDownloaders": "対応ダウンロードツール"
+    "download": "ダウンロード",
+    "appStore": "App Store でダウンロード"
   },
   "hero": {
-    "subhead": "iPhone / iPad / Mac に対応。ダウンロードツールに接続して、どこからでもアクティビティの確認とダウンロードタスクの管理ができます。"
+    "subhead": "iPhone / iPad / Mac に対応。ダウンロードツールに接続して、どこからでもアクティビティの確認とダウンロードタスクの管理ができます。",
+    "platforms": [
+      { "id": "iphone", "label": "iPhone", "version": "iOS 26.0 以降" },
+      { "id": "ipad", "label": "iPad", "version": "iPadOS 26.0 以降" },
+      { "id": "mac", "label": "Mac", "version": "macOS 26.0 以降" }
+    ]
   },
   "sections": {
     "benefits": {
@@ -34,29 +38,27 @@
           "subtitle": "NAS やホームサーバーの管理画面に戻らなくても、タスクの追加、一時停止、再開、削除が行えます。"
         },
         {
-          "id": "smartFilteringSorting",
-          "title": "キューを素早く整理",
-          "subtitle": "ステータス、カテゴリ、タグでタスクを絞り込み、大量のダウンロードキューから目的の項目をすぐに見つけられます。"
-        },
-        {
           "id": "activityMonitor",
           "title": "転送状況を確認",
           "subtitle": "ダウンロードツールの速度、統計情報、転送履歴をリアルタイムで確認できます。"
         },
         {
-          "id": "clientsBackupRestore",
-          "title": "接続設定をバックアップ",
-          "subtitle": "保存したダウンロードツール設定を JSON 形式で書き出し・読み込みできるため、端末移行や再設定が簡単です。"
-        },
-        {
-          "id": "optionalCertificateEvaluation",
-          "title": "セルフホスト環境にも対応",
-          "subtitle": "自己署名証明書を使うサーバー向けに、証明書評価をスキップするオプションを利用できます。"
+          "id": "taskInsightPanel",
+          "title": "タスクの詳細情報パネル",
+          "subtitle": "ダウンロードタスクの進行状況や動作の傾向を直感的に把握できます。さらにトラッカーやピア、ファイル情報も確認でき、全体像を見渡せます。"
         }
       ]
     },
     "downloaders": {
-      "title": "対応ダウンロードツール"
+      "title": "対応ダウンロードツール",
+      "description": "BitRemote は、技術志向のユーザーが日常的に使うダウンロードツールに対応しています。各ランディングページで対応内容、用途、導入の相性を確認できます。",
+      "items": {
+        "aria2": "RPC に対応し、複数ソースからの取得もできる軽量なオープンソースダウンロードツール。",
+        "qBittorrent": "カテゴリ、検索プラグイン、キュー管理で知られるオープンソースのダウンロードクライアント。",
+        "Transmission": "軽快さとシンプルな操作性を重視した、ミニマルなオープンソースのダウンロードクライアント。",
+        "Synology Download Station": "BitTorrent、HTTP、FTP などに対応する Synology NAS 標準のダウンロードクライアント。",
+        "QNAP Download Station": "BitTorrent と直接ダウンロードの管理に対応する QNAP NAS 標準のダウンロードクライアント。"
+      }
     },
     "quickstart": {
       "title": "はじめ方",
@@ -64,15 +66,7 @@
         { "title": "インストール", "body": "iPhone、iPad、または Mac に BitRemote を App Store からインストール。" },
         { "title": "接続", "body": "ダウンロードツールのホスト情報と認証情報を追加。" },
         { "title": "管理", "body": "iPhone、iPad、Mac からアクティビティ確認とタスク操作を開始。" }
-      ],
-      "requirements": "iOS / iPadOS / macOS 26.0 以降が必要です。"
-    },
-    "plus": {
-      "title": "料金",
-      "frameTitle": "BitRemote+",
-      "subtitle": "基本機能から始めて、より多くのダウンロードツールや詳細機能が必要になったらアップグレードできます。",
-      "items": ["広告非表示", "クライアント数制限なし", "タスクの詳細情報パネル", "専用ダウンロードツールタイプ"],
-      "note": "月額 US$1.99、年額 US$9.99、または一度購入プラン US$49.99。"
+      ]
     },
     "faq": {
       "title": "FAQ",
@@ -84,19 +78,13 @@
     }
   },
   "pages": {
-    "privacy": {
-      "title": "個人情報保護方針",
-      "body": "BitRemote の公式プライバシーポリシーは Ark Studios が提供しています。"
-    },
     "terms": {
-      "title": "EULA",
-      "body": "BitRemote の公式 EULA は Ark Studios が提供しています。"
-    },
-    "support": {
-      "title": "サポート",
-      "body": "ご質問・フィードバック・コミュニティ：",
-      "github": "不具合報告・機能リクエスト：",
-      "githubButton": "GitHub リポジトリ"
+      "title": "利用規約",
+      "body": "BitRemote の法的文書は Ark Studios が提供しています。\n以下のリンクから公式ページを開けます。",
+      "privacyTitle": "個人情報保護方針",
+      "privacyBody": "BitRemote で収集される可能性のある情報、その利用目的、利用される第三者サービスについて確認できます。",
+      "eulaTitle": "エンドユーザー使用許諾契約",
+      "eulaBody": "BitRemote の利用条件、使用制限、更新、紛争時の扱いなどの契約内容を確認できます。"
     }
   },
   "seo": {
@@ -114,32 +102,14 @@
         "QNAP Download Station リモート"
       ]
     },
-    "support": {
-      "title": "サポート | BitRemote",
-      "description": "BitRemote のサポート情報、バグ報告、機能要望、コミュニティ参加先をまとめています。iPhone、iPad、Mac 向けリモートダウンロード管理アプリの案内ページです。",
-      "keywords": [
-        "BitRemote サポート",
-        "ダウンロード管理 サポート",
-        "BitRemote GitHub",
-        "BitRemote バグ報告",
-        "BitRemote コミュニティ"
-      ]
-    },
-    "privacy": {
-      "title": "個人情報保護方針 | BitRemote",
-      "description": "NAS や各種ダウンロードツールを操作する BitRemote の公式プライバシーポリシーを Ark Studios の案内先から確認できます。",
+    "terms": {
+      "title": "利用規約 | BitRemote",
+      "description": "BitRemote の法的文書をまとめたページです。Ark Studios LLC が提供する個人情報保護方針と EULA を確認できます。",
       "keywords": [
         "BitRemote 個人情報保護方針",
-        "Ark Studios 個人情報保護方針",
-        "ダウンロード管理 プライバシー"
-      ]
-    },
-    "terms": {
-      "title": "EULA | BitRemote",
-      "description": "iPhone、iPad、Mac 向けリモートダウンロード管理アプリ BitRemote の EULA を Ark Studios の案内先から確認できます。",
-      "keywords": [
         "BitRemote EULA",
         "BitRemote 利用規約",
+        "Ark Studios 個人情報保護方針",
         "Ark Studios EULA"
       ]
     },

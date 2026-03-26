@@ -6,18 +6,22 @@
   },
   "nav": {
     "home": "Home",
-    "features": "Features",
-    "downloaders": "Downloaders",
+    "feature": "Feature",
+    "downloaders": "Downloader",
     "quickstart": "Quickstart",
-    "subscription": "Pricing",
     "faq": "FAQ"
   },
   "cta": {
-    "appStore": "Download on the App Store",
-    "supportedDownloaders": "Supported downloaders"
+    "download": "Download",
+    "appStore": "Download on the App Store"
   },
   "hero": {
-    "subhead": "Built for iPhone, iPad, and Mac. Connect to your downloaders to monitor activity and control download tasks from anywhere."
+    "subhead": "Built for iPhone, iPad, and Mac. Connect to your downloaders to monitor activity and control download tasks from anywhere.",
+    "platforms": [
+      { "id": "iphone", "label": "iPhone", "version": "iOS 26.0+" },
+      { "id": "ipad", "label": "iPad", "version": "iPadOS 26.0+" },
+      { "id": "mac", "label": "Mac", "version": "macOS 26.0+" }
+    ]
   },
   "sections": {
     "benefits": {
@@ -34,29 +38,27 @@
           "subtitle": "Pause, resume, remove, and add tasks without going back to your NAS, seedbox, or home server dashboard."
         },
         {
-          "id": "smartFilteringSorting",
-          "title": "Filter and sort large queues",
-          "subtitle": "Review tasks by status, category, and tag so you can find active, paused, or completed downloads faster."
-        },
-        {
           "id": "activityMonitor",
           "title": "Monitor transfer activity",
           "subtitle": "Track real-time speeds, statistics, and transfer history from your downloader on iPhone, iPad, or Mac."
         },
         {
-          "id": "clientsBackupRestore",
-          "title": "Back up downloader connections",
-          "subtitle": "Export and import saved downloader setups in a unified JSON format when you move devices or reinstall the app."
-        },
-        {
-          "id": "optionalCertificateEvaluation",
-          "title": "Connect to self-hosted environments",
-          "subtitle": "Optional certificate evaluation bypass helps when your downloader host uses a self-signed certificate."
+          "id": "taskInsightPanel",
+          "title": "Task Insight Panel",
+          "subtitle": "Gain clear visibility into your download tasks with real-time progress and performance information. Trackers, peers, and files can also be reviewed for a complete view."
         }
       ]
     },
     "downloaders": {
-      "title": "Supported downloaders"
+      "title": "Supported downloaders",
+      "description": "BitRemote works with the downloader clients technical users already rely on. Open a landing page to review capability details, setup fit, and supported workflows before you install.",
+      "items": {
+        "aria2": "A lightweight open-source download utility with RPC support and multi-source transfers.",
+        "qBittorrent": "An open-source download client known for categories, search plugins, and queue controls.",
+        "Transmission": "A streamlined open-source download client focused on low overhead and a clean, minimal interface.",
+        "Synology Download Station": "Synology’s built-in NAS download client for BitTorrent, HTTP, FTP, and more.",
+        "QNAP Download Station": "QNAP’s NAS download client for managing BitTorrent and direct-download tasks."
+      }
     },
     "quickstart": {
       "title": "Get started in minutes",
@@ -73,15 +75,7 @@
           "title": "Manage",
           "body": "Monitor activity, review queues, and control download tasks from iPhone, iPad, or Mac."
         }
-      ],
-      "requirements": "Requires iOS / iPadOS / macOS 26.0 or later."
-    },
-    "plus": {
-      "title": "Pricing",
-      "frameTitle": "BitRemote+",
-      "subtitle": "Start with the core app, then unlock advanced features for heavier downloader setups.",
-      "items": ["Remove Ads", "Unlimited Clients", "Task Insight Panel", "Exclusive Client Types"],
-      "note": "$1.99 per month, $9.99 per year, or $49.99 for a one-time purchase plan."
+      ]
     },
     "faq": {
       "title": "FAQ",
@@ -102,19 +96,13 @@
     }
   },
   "pages": {
-    "privacy": {
-      "title": "Privacy Policy",
-      "body": "BitRemote’s official privacy policy is hosted by Ark Studios."
-    },
     "terms": {
-      "title": "EULA",
-      "body": "BitRemote’s official EULA is hosted by Ark Studios."
-    },
-    "support": {
-      "title": "Support",
-      "body": "Questions, feedback, and community:",
-      "github": "Bug reports and feature requests:",
-      "githubButton": "GitHub Repository"
+      "title": "Terms",
+      "body": "BitRemote’s legal documents are hosted by Ark Studios LLC.\nUse the links below to open the official pages.",
+      "privacyTitle": "Privacy Policy",
+      "privacyBody": "Learn what BitRemote data may be collected, how it may be used, and which third-party services are involved.",
+      "eulaTitle": "End User License Agreement",
+      "eulaBody": "Review the license terms for BitRemote, including usage limits, legal precedence, updates, and dispute handling."
     }
   },
   "seo": {
@@ -132,32 +120,14 @@
         "qnap download station remote"
       ]
     },
-    "support": {
-      "title": "Support | BitRemote",
-      "description": "Get BitRemote support, report bugs, request features, and join the community for the remote download manager app for iPhone, iPad, and Mac.",
-      "keywords": [
-        "bitremote support",
-        "download manager support",
-        "bitremote github",
-        "report bitremote bug",
-        "bitremote community"
-      ]
-    },
-    "privacy": {
-      "title": "Privacy Policy | BitRemote",
-      "description": "Read the official BitRemote privacy policy from Ark Studios for the remote download manager app used with NAS and downloaders.",
+    "terms": {
+      "title": "Terms | BitRemote",
+      "description": "Open BitRemote’s legal documents from Ark Studios, including the privacy policy and end user license agreement.",
       "keywords": [
         "bitremote privacy policy",
-        "ark studios privacy",
-        "download manager privacy"
-      ]
-    },
-    "terms": {
-      "title": "EULA | BitRemote",
-      "description": "Read the BitRemote end user license agreement from Ark Studios for the remote download manager app for iPhone, iPad, and Mac.",
-      "keywords": [
         "bitremote eula",
         "bitremote terms",
+        "ark studios privacy",
         "ark studios eula"
       ]
     },

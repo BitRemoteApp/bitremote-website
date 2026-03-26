@@ -1,7 +1,7 @@
 import { locales, type Locale } from '@/i18n/locales';
 import { absoluteUrl, localePath } from '@/i18n/urls';
 
-export const localeStaticPaths = ['/', '/privacy/', '/terms/', '/support/'] as const;
+export const localeStaticPaths = ['/', '/terms/'] as const;
 
 export function getLocalizedRouteEntries(): Array<{
   locale: Locale;

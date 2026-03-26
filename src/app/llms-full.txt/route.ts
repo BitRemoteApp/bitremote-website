@@ -45,16 +45,6 @@ export function GET() {
     sections.push(step.body);
     sections.push('');
   }
-  sections.push(messages.sections.quickstart.requirements);
-
-  // Pricing
-  sections.push(`\n## Pricing\n`);
-  sections.push(messages.sections.plus.subtitle);
-  sections.push(`\nBitRemote+ includes:`);
-  for (const item of messages.sections.plus.items) {
-    sections.push(`- ${item}`);
-  }
-  sections.push(`\n${messages.sections.plus.note}`);
 
   // FAQ
   sections.push(`\n## FAQ\n`);
