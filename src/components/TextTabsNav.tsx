@@ -231,7 +231,7 @@ export function TextTabsNav({
 
           {isLocaleMenuOpen ? (
             <div
-              className="absolute right-0 top-[calc(100%+0.55rem)] z-20 min-w-[12rem] rounded-3xl border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_86%,transparent)] p-2 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_72%,transparent)]"
+              className="absolute right-0 top-[calc(100%+0.55rem)] z-20 min-w-[12rem] rounded-3xl border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]"
               id={localeMenuId}
               role="menu"
               aria-label="Language options"
