@@ -48,7 +48,7 @@ const FEATURE_MEDIA_BY_ID: Record<string, FeatureMedia> = {
 };
 
 export function AppShowcaseClient({ id, title, items }: Props) {
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const mobileStepRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileDirection, setMobileDirection] = useState(1);

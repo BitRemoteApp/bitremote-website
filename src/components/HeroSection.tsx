@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { PlatformBadgeStrip } from '@/components/PlatformBadgeStrip';
+import type { PlatformId, PlatformItem } from '@/components/PlatformBadgeStrip';
 import { TextButton } from '@/components/TextButton';
 import { LINKS } from '@/i18n/links';
 
@@ -10,6 +11,7 @@ type Props = {
   ctaLabel: string;
   siteName: string;
   platforms: readonly {
+    id: string;
     label: string;
     version: string;
   }[];
@@ -17,6 +19,10 @@ type Props = {
 
 export function HeroSection({ tagline, subhead, ctaLabel, siteName, platforms }: Props) {
   const platformFootnote = 'iOS • iPadOS • macOS 26.0+';
+  const platformItems: readonly PlatformItem[] = platforms.map((platform) => ({
+    ...platform,
+    id: (['iphone', 'ipad', 'mac'].includes(platform.id) ? platform.id : 'iphone') as PlatformId,
+  }));
 
   return (
     <section className="relative flex flex-col gap-8 lg:gap-10">
@@ -76,7 +82,7 @@ export function HeroSection({ tagline, subhead, ctaLabel, siteName, platforms }:
           </div>
 
           <div className="mt-auto flex h-11 w-fit max-w-[12rem] items-center rounded-full border border-[var(--color-border-soft)] bg-surface/70 px-3 sm:max-w-[12.75rem] sm:px-3.5 lg:max-w-[12.75rem]">
-            <PlatformBadgeStrip items={platforms} />
+            <PlatformBadgeStrip items={platformItems} />
           </div>
         </div>
       </div>

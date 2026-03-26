@@ -1,5 +1,7 @@
-type PlatformItem = {
-  id: 'iphone' | 'ipad' | 'mac';
+export type PlatformId = 'iphone' | 'ipad' | 'mac';
+
+export type PlatformItem = {
+  id: PlatformId;
   label: string;
   version: string;
 };
@@ -8,11 +10,11 @@ type Props = {
   items: readonly PlatformItem[];
 };
 
-const PLATFORM_ICON_PATHS: Record<PlatformItem['id'], string> = {
+const PLATFORM_ICON_PATHS = {
   iphone: '/icons/platform/iphone.svg',
   ipad: '/icons/platform/ipad.svg',
   mac: '/icons/platform/mac.svg',
-};
+} as const;
 
 export function PlatformBadgeStrip({ items }: Props) {
   return (
@@ -27,8 +29,8 @@ export function PlatformBadgeStrip({ items }: Props) {
               aria-hidden="true"
               className="h-4 w-4 bg-current"
               style={{
-                WebkitMaskImage: `url(${PLATFORM_ICON_PATHS[item.id]})`,
-                maskImage: `url(${PLATFORM_ICON_PATHS[item.id]})`,
+                WebkitMaskImage: `url(${PLATFORM_ICON_PATHS[item.id as keyof typeof PLATFORM_ICON_PATHS] ?? PLATFORM_ICON_PATHS.iphone})`,
+                maskImage: `url(${PLATFORM_ICON_PATHS[item.id as keyof typeof PLATFORM_ICON_PATHS] ?? PLATFORM_ICON_PATHS.iphone})`,
                 WebkitMaskRepeat: 'no-repeat',
                 maskRepeat: 'no-repeat',
                 WebkitMaskPosition: 'center',
