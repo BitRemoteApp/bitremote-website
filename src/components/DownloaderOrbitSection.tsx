@@ -73,7 +73,7 @@ export function DownloaderOrbitSection({
   }, []);
 
   return (
-    <FadeInSection as="section" id="downloader" className="px-6 md:px-8 lg:px-8">
+    <FadeInSection as="section" id="downloader" className="md:px-8 lg:px-8">
       <div className="relative isolate">
         {!isGridMode ? (
           <div aria-hidden="true" className="downloaders-mesh pointer-events-none absolute inset-0 -z-10" />
