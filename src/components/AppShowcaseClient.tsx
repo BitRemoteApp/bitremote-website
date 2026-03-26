@@ -1,210 +1,418 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { AppScreenshot } from '@/components/AppScreenshot';
-import { IPhoneFrame } from '@/components/IPhoneFrame';
+import { SectionLabel } from '@/components/SectionLabel';
 import { FadeInSection } from '@/components/ui/FadeInSection';
 
-type DemoItem = {
-  name: string;
-  meta: string;
-  progress: number;
-};
-
-type DemoTab = {
+type BenefitItem = {
   id: string;
-  label: string;
   title: string;
-  summary: string;
-  metricLabel: string;
-  metricValue: string;
-  detailLabel: string;
-  detailValue: string;
-  items: readonly DemoItem[];
+  subtitle: string;
 };
 
 type Props = {
-  eyebrow: string;
+  id?: string;
   title: string;
-  body: string;
-  helperTitle: string;
-  helperBody: string;
-  fallbackTitle: string;
-  fallbackBody: string;
-  tabs: readonly DemoTab[];
+  items: readonly BenefitItem[];
 };
 
-const SCREENSHOT = {
-  slug: 'iphone-home',
-  alt: 'BitRemote app home screen showing active downloads',
-  width: 390,
-  height: 844,
-} as const;
+type FeatureMedia = {
+  lightSrc: string;
+  darkSrc: string;
+  alt: string;
+};
 
-export function AppShowcaseClient({
-  eyebrow,
-  title,
-  body,
-  helperTitle,
-  helperBody,
-  fallbackTitle,
-  fallbackBody,
-  tabs,
-}: Props) {
-  const shouldReduceMotion = useReducedMotion();
-  const [activeTabId, setActiveTabId] = useState<string>(tabs[0]?.id ?? '');
+const FEATURE_MEDIA_BY_ID: Record<string, FeatureMedia> = {
+  accessibilitySupport: {
+    lightSrc: '/screenshots/light/sidebar-light.png',
+    darkSrc: '/screenshots/dark/sidebar.png',
+    alt: 'BitRemote sidebar showing accessible navigation and task filters',
+  },
+  comprehensiveTaskManagement: {
+    lightSrc: '/screenshots/light/tasksview.png',
+    darkSrc: '/screenshots/dark/tasksview.png',
+    alt: 'BitRemote tasks view showing queue controls and task management actions',
+  },
+  activityMonitor: {
+    lightSrc: '/screenshots/light/activity-monitor.png',
+    darkSrc: '/screenshots/dark/activity-monitor.png',
+    alt: 'BitRemote activity monitor showing live speed, statistics, and transfer activity',
+  },
+  taskInsightPanel: {
+    lightSrc: '/screenshots/light/task-insight-panel.png',
+    darkSrc: '/screenshots/dark/task-insight-panel.png',
+    alt: 'BitRemote task insight panel showing task details, trackers, peers, and files',
+  },
+};
+
+export function AppShowcaseClient({ id, title, items }: Props) {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const mobileStepRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileDirection, setMobileDirection] = useState(1);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [navHeight, setNavHeight] = useState(84);
+
+  const itemsWithMedia = useMemo(
+    () =>
+      items.map((item) => ({
+        ...item,
+        media: FEATURE_MEDIA_BY_ID[item.id] ?? FEATURE_MEDIA_BY_ID.comprehensiveTaskManagement,
+      })),
+    [items],
+  );
 
   useEffect(() => {
-    setActiveTabId((currentTabId) => {
-      if (tabs.some((tab) => tab.id === currentTabId)) {
-        return currentTabId;
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const sync = () => setIsDesktop(mediaQuery.matches);
+
+    sync();
+    mediaQuery.addEventListener('change', sync);
+
+    return () => {
+      mediaQuery.removeEventListener('change', sync);
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateNavHeight = () => {
+      const nav = document.querySelector('nav[aria-label="Site"]');
+      setNavHeight(nav instanceof HTMLElement ? nav.offsetHeight : 84);
+    };
+
+    updateNavHeight();
+    window.addEventListener('resize', updateNavHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateNavHeight);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop) {
+      let frame = 0;
+
+      const update = () => {
+        frame = 0;
+
+        const section = sectionRef.current;
+        if (!section) {
+          return;
+        }
+
+        const rect = section.getBoundingClientRect();
+        const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
+        const progress = Math.min(Math.max(-rect.top / scrollable, 0), 0.9999);
+        const nextIndex = Math.min(itemsWithMedia.length - 1, Math.floor(progress * itemsWithMedia.length));
+
+        setActiveIndex(nextIndex);
+      };
+
+      const requestUpdate = () => {
+        if (frame !== 0) {
+          return;
+        }
+
+        frame = window.requestAnimationFrame(update);
+      };
+
+      update();
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+
+      return () => {
+        if (frame !== 0) {
+          window.cancelAnimationFrame(frame);
+        }
+        window.removeEventListener('scroll', requestUpdate);
+        window.removeEventListener('resize', requestUpdate);
+      };
+    }
+
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+
+      const candidates = mobileStepRefs.current
+        .map((element, index) => ({ element, index }))
+        .filter(
+          (entry): entry is { element: HTMLDivElement; index: number } =>
+            entry.element instanceof HTMLDivElement,
+        );
+
+      if (candidates.length === 0) {
+        return;
       }
 
-      return tabs[0]?.id ?? '';
-    });
-  }, [tabs]);
+      const viewportCenter = navHeight + (window.innerHeight - navHeight) / 2;
+      let nextIndex = activeIndex;
+      let bestDistance = Number.POSITIVE_INFINITY;
 
-  const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0];
+      candidates.forEach(({ element, index }) => {
+        const rect = element.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - viewportCenter);
 
-  if (!activeTab) {
-    return (
-      <FadeInSection as="section" className="py-4 lg:py-6">
-        <div className="rounded-[2rem] border border-border/70 bg-surface/80 p-6 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-          <p className="m-0 text-sm font-medium text-accent">{fallbackTitle}</p>
-          <p className="mb-0 mt-3 max-w-[60ch] text-text-secondary">{fallbackBody}</p>
-        </div>
-      </FadeInSection>
-    );
-  }
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          nextIndex = index;
+        }
+      });
+
+      if (nextIndex !== activeIndex) {
+        setMobileDirection(nextIndex > activeIndex ? 1 : -1);
+        setActiveIndex(nextIndex);
+      }
+    };
+
+    const requestUpdate = () => {
+      if (frame !== 0) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+
+    return () => {
+      if (frame !== 0) {
+        window.cancelAnimationFrame(frame);
+      }
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+    };
+  }, [activeIndex, isDesktop, itemsWithMedia.length, navHeight]);
 
   return (
-    <FadeInSection as="section" className="py-2 lg:py-4">
-      <div className="rounded-[2rem] border border-border/70 bg-surface/80 px-5 py-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-7 sm:py-7">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.82fr)] lg:items-start">
-          <div className="flex flex-col gap-6">
-            <div className="max-w-3xl">
-              <p className="m-0 text-sm font-medium text-accent">{eyebrow}</p>
-              <h2 className="mt-3 text-[clamp(2rem,4vw,2.8rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary">
-                {title}
-              </h2>
-              <p className="mb-0 mt-4 max-w-[62ch] text-base leading-7 text-text-secondary">
-                {body}
-              </p>
+    <FadeInSection as="section" id={id} className="py-2 md:py-4">
+      <div
+        ref={sectionRef}
+        style={isDesktop ? { minHeight: `${itemsWithMedia.length * 90}vh` } : undefined}
+      >
+      <div className="grid gap-8 md:hidden">
+        <div className="flex flex-col gap-6">
+          <SectionLabel>{title}</SectionLabel>
+
+          <div className="relative">
+            <div
+              className="sticky z-[1]"
+              style={{ top: `calc(${navHeight}px + 1.5rem)` }}
+            >
+              <MobileShowcaseStage
+                items={itemsWithMedia}
+                activeIndex={activeIndex}
+                direction={mobileDirection}
+                navHeight={navHeight}
+              />
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {tabs.map((tab) => {
-                const isActive = tab.id === activeTab.id;
-
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    aria-pressed={isActive}
-                    onClick={() => setActiveTabId(tab.id)}
-                    className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-sm font-semibold transition-[background-color,border-color,color,box-shadow] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
-                      isActive
-                        ? 'border-accent/30 bg-accent text-white shadow-[var(--button-primary-shadow)]'
-                        : 'border-border/80 bg-[var(--button-secondary-bg)] text-text-secondary hover:border-border hover:bg-[var(--button-secondary-bg-hover)] hover:text-text-primary'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="overflow-hidden rounded-[1.75rem] border border-border/70 bg-[color-mix(in_srgb,var(--surface-alt)_78%,transparent)]">
-              <div className="flex items-center justify-between border-b border-border/60 px-4 py-3 sm:px-5">
-                <div>
-                  <p className="m-0 text-sm font-semibold text-text-primary">{activeTab.title}</p>
-                  <p className="m-0 mt-1 text-sm text-text-secondary">{activeTab.summary}</p>
-                </div>
-                <div className="hidden rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent sm:block">
-                  {activeTab.metricValue}
-                </div>
-              </div>
-
-              <motion.div
-                key={activeTab.id}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: shouldReduceMotion ? 0 : 0.22, ease: 'easeOut' }}
-                className="grid gap-4 p-4 sm:p-5 xl:grid-cols-[minmax(0,1.4fr)_minmax(220px,0.8fr)]"
-              >
-                <div className="rounded-[1.5rem] border border-border/60 bg-bg/75 p-4">
-                  <div className="grid gap-3">
-                    {activeTab.items.map((item) => (
-                      <div
-                        key={`${activeTab.id}-${item.name}`}
-                        className="rounded-[1.25rem] border border-border/50 bg-surface px-4 py-3"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0">
-                            <p className="m-0 truncate text-sm font-semibold text-text-primary">
-                              {item.name}
-                            </p>
-                            <p className="m-0 mt-1 text-sm text-text-secondary">{item.meta}</p>
-                          </div>
-                          <span className="rounded-full bg-accent/10 px-2.5 py-1 text-xs font-semibold text-accent">
-                            {item.progress}%
-                          </span>
-                        </div>
-                        <div className="mt-3 h-2 rounded-full bg-border/70">
-                          <div
-                            className="h-full rounded-full bg-accent transition-[width] duration-200 ease-out"
-                            style={{ width: `${item.progress}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid gap-4">
-                  <div className="rounded-[1.5rem] border border-border/60 bg-bg/70 p-4">
-                    <p className="m-0 text-sm text-text-secondary">{activeTab.metricLabel}</p>
-                    <p className="mb-0 mt-2 text-2xl font-semibold tracking-[-0.03em] text-text-primary">
-                      {activeTab.metricValue}
-                    </p>
-                  </div>
-                  <div className="rounded-[1.5rem] border border-border/60 bg-bg/70 p-4">
-                    <p className="m-0 text-sm text-text-secondary">{activeTab.detailLabel}</p>
-                    <p className="mb-0 mt-2 text-sm font-semibold text-text-primary">
-                      {activeTab.detailValue}
-                    </p>
-                  </div>
-                  <div className="rounded-[1.5rem] border border-dashed border-border/70 bg-[var(--button-secondary-bg)] p-4">
-                    <p className="m-0 text-sm font-semibold text-text-primary">{fallbackTitle}</p>
-                    <p className="mb-0 mt-2 text-sm leading-6 text-text-secondary">
-                      {fallbackBody}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          <div className="grid gap-4 lg:sticky lg:top-24">
-            <div className="rounded-[1.75rem] border border-border/70 bg-[color-mix(in_srgb,var(--surface-alt)_74%,transparent)] p-4">
-              <p className="m-0 text-sm font-medium text-accent">{helperTitle}</p>
-              <p className="mb-0 mt-3 text-sm leading-6 text-text-secondary">{helperBody}</p>
-            </div>
-            <div className="rounded-[1.75rem] border border-border/70 bg-[color-mix(in_srgb,var(--surface-alt)_82%,transparent)] p-3">
-              <IPhoneFrame>
-                <AppScreenshot
-                  slug={SCREENSHOT.slug}
-                  alt={SCREENSHOT.alt}
-                  width={SCREENSHOT.width}
-                  height={SCREENSHOT.height}
+            <div className="mt-6 grid gap-0" aria-hidden="true">
+              {itemsWithMedia.map((item, index) => (
+                <div
+                  key={item.id}
+                  ref={(element) => {
+                    mobileStepRefs.current[index] = element;
+                  }}
+                  className="min-h-[52vh] first:min-h-[42vh] last:min-h-[96vh]"
                 />
-              </IPhoneFrame>
+              ))}
             </div>
           </div>
         </div>
       </div>
+
+      <div
+        className="hidden md:sticky md:flex md:items-center"
+        style={{
+          top: `calc(${navHeight}px + 1.5rem)`,
+          height: `calc(100dvh - ${navHeight}px - 3rem)`,
+        }}
+      >
+        <div className="grid w-full grid-cols-[minmax(0,0.92fr)_minmax(240px,0.78fr)] items-start gap-8 md:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.84fr)] md:gap-10 lg:grid-cols-[minmax(0,0.86fr)_minmax(320px,0.92fr)] lg:gap-14">
+          <div className="flex flex-col justify-start gap-6 pt-2 md:gap-7 md:pt-3 lg:gap-8 lg:pt-4">
+            <SectionLabel>{title}</SectionLabel>
+
+            <div className="grid gap-0 pt-3 md:pt-4 lg:pt-5">
+              {itemsWithMedia.map((item, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <div
+                    key={item.id}
+                    className="grid min-h-[8.25rem] content-center gap-4 border-b border-[var(--color-border-soft)] py-4 last:border-b-0 last:pb-0 first:pt-0 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-4 md:min-h-[8.75rem] md:gap-5 md:py-5 lg:min-h-[9.5rem] lg:gap-6 lg:py-6"
+                  >
+                    <div
+                      className={[
+                        'text-sm font-semibold tracking-[0.08em] transition-colors duration-500',
+                        isActive ? 'text-accent' : 'text-text-muted',
+                      ].join(' ')}
+                    >
+                      0{index + 1}
+                    </div>
+                    <div>
+                      <h3
+                        className={[
+                          'm-0 text-[1.3rem] font-semibold leading-[1.08] tracking-[-0.03em] transition-colors duration-500 md:text-[1.45rem] lg:text-[1.7rem]',
+                          isActive ? 'text-text-primary' : 'text-text-secondary',
+                        ].join(' ')}
+                      >
+                        {item.title}
+                      </h3>
+                      <p
+                        className={[
+                          'm-0 mt-2 max-w-[34ch] text-[0.95rem] leading-6 transition-colors duration-500 md:mt-3 md:max-w-[36ch] md:text-base md:leading-7 lg:max-w-[38ch] lg:text-[1.0625rem]',
+                          isActive ? 'text-text-secondary' : 'text-text-muted',
+                        ].join(' ')}
+                      >
+                        {item.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="justify-self-end pt-2 md:pt-3 lg:pt-4">
+            <div className="w-fit rounded-[3.75rem] border border-[var(--color-border-soft)] bg-surface p-3 shadow-[0_18px_56px_rgba(15,23,42,0.12)] md:rounded-[4.125rem] md:p-4 lg:rounded-[4.75rem] lg:p-5">
+              <ScreenshotStage items={itemsWithMedia} activeIndex={activeIndex} />
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </FadeInSection>
+  );
+}
+
+function MobileShowcaseStage({
+  items,
+  activeIndex,
+  direction,
+  navHeight,
+}: {
+  items: Array<BenefitItem & { media: FeatureMedia }>;
+  activeIndex: number;
+  direction: number;
+  navHeight: number;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+  const item = items[activeIndex];
+
+  return (
+    <div className="relative rounded-[4.75rem] border border-[var(--color-border-soft)] bg-surface p-4 shadow-card">
+      <div
+        className="relative overflow-hidden rounded-[3.5rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]"
+        style={{ height: `calc(100dvh - ${navHeight}px - 4.5rem)` }}
+      >
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={item.id}
+            initial={
+              shouldReduceMotion
+                ? { opacity: 0 }
+                : { opacity: 0, y: direction > 0 ? 40 : -40 }
+            }
+            animate={
+              shouldReduceMotion
+                ? { opacity: 1 }
+                : { opacity: 1, y: 0 }
+            }
+            exit={
+              shouldReduceMotion
+                ? { opacity: 0 }
+                : { opacity: 0, y: direction > 0 ? -28 : 28 }
+            }
+            transition={{ duration: shouldReduceMotion ? 0.14 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-x-4 inset-y-4 flex flex-col gap-5"
+          >
+              <div className="shrink-0">
+                <h3 className="m-0 text-[1.45rem] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary">
+                  <span className="mr-3 text-sm tracking-[0.08em] text-accent align-[0.04em]">
+                    0{activeIndex + 1}
+                  </span>
+                  <span>{item.title}</span>
+                </h3>
+                <p className="m-0 mt-3 text-[0.98rem] leading-7 text-text-secondary">
+                  {item.subtitle}
+                </p>
+              </div>
+
+              <div className="relative flex flex-1 items-end justify-center overflow-hidden">
+                <picture className="flex h-full w-full items-end justify-center">
+                  <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
+                  <img
+                    src={item.media.lightSrc}
+                    alt={item.media.alt}
+                    width={1260}
+                    height={2736}
+                    loading="lazy"
+                    decoding="async"
+                    className="apple-squircle h-auto max-h-full w-auto max-w-full rounded-[2.625rem] object-contain"
+                  />
+                </picture>
+              </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+function ScreenshotStage({
+  items,
+  activeIndex,
+  compact = false,
+}: {
+  items: Array<BenefitItem & { media: FeatureMedia }>;
+  activeIndex: number;
+  compact?: boolean;
+}) {
+  return (
+    <div
+      className={[
+        'relative overflow-hidden rounded-[3.5rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]',
+        compact ? 'mx-auto w-full max-w-[18rem]' : 'w-[15.5rem] md:w-[19rem] lg:w-[25rem]',
+      ].join(' ')}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14),transparent_48%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_48%)]" />
+      <div className="relative aspect-[1260/2736] overflow-hidden rounded-[2.5rem] md:rounded-[2.75rem] lg:rounded-[3rem]">
+        {items.map((item, index) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <picture
+              key={item.id}
+              className={[
+                'absolute inset-0 block transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
+                isActive
+                  ? 'translate-y-0 scale-100 opacity-100'
+                  : index < activeIndex
+                    ? '-translate-y-[6%] scale-[0.97] opacity-0'
+                    : 'translate-y-[6%] scale-[1.03] opacity-0',
+              ].join(' ')}
+              aria-hidden={!isActive}
+            >
+              <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
+              <img
+                src={item.media.lightSrc}
+                alt={item.media.alt}
+                width={1260}
+                height={2736}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+            </picture>
+          );
+        })}
+      </div>
+    </div>
   );
 }

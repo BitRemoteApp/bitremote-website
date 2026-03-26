@@ -30,9 +30,7 @@ BitRemote is a native Apple platform app that lets you remotely manage download 
 ## Pages
 
 - [Home](https://bitremote.app/en/)
-- [Support](https://bitremote.app/en/support/)
-- [Privacy Policy](https://bitremote.app/en/privacy/)
-- [Terms / EULA](https://bitremote.app/en/terms/)
+- [Terms](https://bitremote.app/en/terms/)
 
 ## Full Content
 

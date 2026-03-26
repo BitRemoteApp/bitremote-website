@@ -6,6 +6,7 @@ export const LINKS = {
   discord: 'https://discord.gg/x5TP2z6cFj',
   telegram: 'https://t.me/bitremote',
   github: 'https://github.com/BitRemoteApp/BitRemote',
+  email: 'mailto:support@bitremote.app',
 } as const;
 
 const LEGAL_LINKS = {

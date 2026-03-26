@@ -2,7 +2,7 @@ import { TextButton } from '@/components/TextButton';
 
 export default function NotFound() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-12">
+    <main className="mx-auto w-full max-w-6xl px-6 pb-16 pt-12 md:px-8 lg:px-8">
       <div className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent">
         404
       </div>

@@ -48,17 +48,20 @@
     --button-secondary-bg-hover: color-mix(in srgb, var(--color-surface-alt) 94%, var(--color-bg));
     --button-secondary-border-hover: color-mix(in srgb, var(--color-border) 78%, var(--color-accent) 22%);
     --button-primary-shadow: 0 8px 24px rgb(37 99 235 / 0.16);
+    --color-border-soft: color-mix(in srgb, var(--color-border) 72%, transparent);
 
     /* Hero glow (color-mix pattern using --color-accent) */
-    --hero-glow-color: color-mix(in srgb, var(--color-accent) 6%, transparent);
+    --hero-glow-color: transparent;
+    --downloaders-mesh-opacity: 1;
+    --downloaders-mesh-primary: color-mix(in srgb, var(--color-border) 90%, transparent);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-bg:          #0a0a0a;
-      --color-surface:     #141414;
-      --color-surface-alt: #1e1e1e;
-      --color-border:      #2a2a2a;
+      --color-bg:          #090b0d;
+      --color-surface:     #14181c;
+      --color-surface-alt: #1b2025;
+      --color-border:      rgb(255 255 255 / 0.1);
 
       --color-text-primary:   #f5f5f5;
       --color-text-secondary: #a3a3a3;
@@ -76,8 +79,11 @@
       --button-secondary-bg-hover: color-mix(in srgb, var(--color-surface-alt) 88%, var(--color-bg));
       --button-secondary-border-hover: color-mix(in srgb, var(--color-border) 72%, var(--color-accent) 28%);
       --button-primary-shadow: 0 10px 28px rgb(59 130 246 / 0.24);
+      --color-border-soft: color-mix(in srgb, white 18%, transparent);
 
       --hero-glow-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+      --downloaders-mesh-opacity: 0.94;
+      --downloaders-mesh-primary: color-mix(in srgb, var(--color-border) 75%, transparent);
     }
   }
 
@@ -117,5 +123,51 @@
 
   ::selection {
     background: var(--color-accent-subtle);
+  }
+}
+
+@layer utilities {
+  @keyframes downloader-orbit-float {
+    0%,
+    100% {
+      transform: translate3d(0, calc(var(--orbit-drift-y, 0.6rem) * -0.55), 0);
+    }
+
+    25% {
+      transform: translate3d(var(--orbit-drift-x, 0.2rem), 0, 0);
+    }
+
+    50% {
+      transform: translate3d(0, var(--orbit-drift-y, 0.6rem), 0);
+    }
+
+    75% {
+      transform: translate3d(calc(var(--orbit-drift-x, 0.2rem) * -1), 0, 0);
+    }
+  }
+
+  .downloader-orbit-float {
+    animation: downloader-orbit-float var(--orbit-duration, 9s) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    animation-delay: var(--orbit-delay, 0s);
+    will-change: transform;
+  }
+
+  .downloaders-mesh {
+    opacity: var(--downloaders-mesh-opacity);
+    background-image: radial-gradient(
+      circle at center,
+      var(--downloaders-mesh-primary) 0 0.1rem,
+      transparent 0.11rem
+    );
+    background-position: center center;
+    background-size: 3.75rem 3.75rem;
+    filter: saturate(0.92);
+    mask-image: radial-gradient(circle at center, black 0 54%, transparent 86%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .downloader-orbit-float {
+      animation: none;
+    }
   }
 }

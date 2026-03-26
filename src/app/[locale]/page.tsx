@@ -1,15 +1,13 @@
 import type { Metadata } from 'next';
 
 import { AppShowcaseClient } from '@/components/AppShowcaseClient';
-import { BentoGridClient } from '@/components/BentoGridClient';
+import { DownloaderOrbitSection } from '@/components/DownloaderOrbitSection';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { HeroSection } from '@/components/HeroSection';
 import { SectionLabel } from '@/components/SectionLabel';
-import { TextButton } from '@/components/TextButton';
 import { FadeInSection } from '@/components/ui/FadeInSection';
 import { downloaderSlugByDownloader } from '@/domain/downloader-landings';
 import { supportedDownloaders } from '@/domain/downloaders';
-import { LINKS } from '@/i18n/links';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
 import { localePath } from '@/i18n/urls';
@@ -52,18 +50,20 @@ export default async function LocaleHomePage({
     supportedDownloaders,
   });
   const faqPageSchema = buildFaqPageSchema(messages);
+  const downloaderTints: Record<string, { primary: string; secondary: string }> = {
+    aria2: { primary: '#3a3a3a', secondary: '#7a7a7a' },
+    qBittorrent: { primary: '#4f88d6', secondary: '#b8daf7' },
+    Transmission: { primary: '#a61e1e', secondary: '#a9adb4' },
+    'Synology Download Station': { primary: '#f39a17', secondary: '#ffbf57' },
+    'QNAP Download Station': { primary: '#46c24a', secondary: '#c7f06e' },
+  };
   const downloaderLinks = supportedDownloaders.map((downloader) => ({
     downloader,
     href: localePath(locale, `/downloaders/${downloaderSlugByDownloader[downloader]}/`),
   }));
-  const proof = messages.sections.proof;
-  const proofTabs = proof.tabs.map((tab) => ({
-    ...tab,
-    items: tab.items.map((item) => ({ ...item })),
-  }));
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 pb-20 md:gap-20">
+    <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 pb-20 pt-4 md:gap-20 md:px-8 md:pt-5 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={serializeJsonLd(softwareApplicationSchema)}
@@ -79,119 +79,53 @@ export default async function LocaleHomePage({
           subhead={messages.hero.subhead}
           ctaLabel={messages.cta.appStore}
           siteName={messages.site.name}
+          platforms={messages.hero.platforms}
         />
       </FadeInSection>
 
       <AppShowcaseClient
-        eyebrow={proof.eyebrow}
-        title={proof.title}
-        body={proof.body}
-        helperTitle={proof.helperTitle}
-        helperBody={proof.helperBody}
-        fallbackTitle={proof.fallbackTitle}
-        fallbackBody={proof.fallbackBody}
-        tabs={proofTabs}
+        id="feature"
+        title={messages.sections.benefits.title}
+        items={messages.sections.benefits.items}
       />
 
-      <FadeInSection as="section" id="downloaders">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-          <div className="max-w-2xl">
-            <SectionLabel>{messages.sections.downloaders.title}</SectionLabel>
-            <p className="mb-0 mt-4 text-base leading-7 text-text-secondary">
-              {messages.sections.downloaders.description}
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-              <TextButton href={LINKS.appStore} target="_blank" rel="noreferrer">
-                {messages.cta.appStore}
-              </TextButton>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {downloaderLinks.map(({ downloader, href }) => (
-              <a
-                key={downloader}
-                className="group flex min-h-32 flex-col justify-between rounded-[1.75rem] border border-border/70 bg-surface/75 p-5 no-underline transition-[border-color,background-color,transform] duration-150 hover:border-accent/30 hover:bg-surface hover:-translate-y-0.5 active:bg-surface"
-                href={href}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                    {messages.sections.downloaders.supportLabel}
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="text-sm text-text-secondary transition-colors duration-150 group-hover:text-accent"
-                  >
-                    →
-                  </span>
-                </div>
-                <div className="mt-6">
-                  <span className="block text-lg font-semibold leading-6 text-text-primary">{downloader}</span>
-                  <span className="mt-2 block text-sm leading-6 text-text-secondary">
-                    {messages.sections.downloaders.linkLabel}
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </FadeInSection>
-
-      <FadeInSection as="section" id="features">
-        <div className="flex flex-col gap-4">
-          <SectionLabel>{messages.sections.benefits.title}</SectionLabel>
-          <div>
-            <BentoGridClient items={messages.sections.benefits.items} />
-          </div>
-        </div>
-      </FadeInSection>
+      <div className="sm:mb-32">
+        <DownloaderOrbitSection
+          title={messages.sections.downloaders.title}
+          description={messages.sections.downloaders.description}
+          items={messages.sections.downloaders.items}
+          downloaderLinks={downloaderLinks}
+          downloaderTints={downloaderTints}
+        />
+      </div>
 
       <FadeInSection as="section" id="how-it-works">
         <div className="flex flex-col gap-6">
-          <div className="max-w-2xl">
-            <SectionLabel>{messages.sections.quickstart.title}</SectionLabel>
-          </div>
+          <SectionLabel>{messages.sections.quickstart.title}</SectionLabel>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="relative mt-4 sm:mt-5">
+            <div
+              aria-hidden="true"
+              className="absolute bottom-0 left-[1.15rem] top-0 w-px bg-[linear-gradient(180deg,transparent,color-mix(in_srgb,var(--color-border-soft)_90%,transparent)_12%,color-mix(in_srgb,var(--color-border-soft)_90%,transparent)_88%,transparent)] sm:left-0 sm:right-0 sm:top-[1.1rem] sm:h-px sm:w-auto sm:bg-[linear-gradient(90deg,transparent,color-mix(in_srgb,var(--color-border-soft)_90%,transparent)_12%,color-mix(in_srgb,var(--color-border-soft)_90%,transparent)_88%,transparent)]"
+            />
+
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
             {messages.sections.quickstart.steps.map((step, index) => (
-              <div
-                key={index}
-                className="rounded-[1.75rem] border border-border/70 bg-surface/75 p-6 shadow-[0_14px_36px_rgba(15,23,42,0.05)]"
-              >
-                <p className="m-0 mb-3 text-sm font-medium text-accent">0{index + 1}</p>
-                <h3 className="m-0 mb-2 font-sans text-xl font-semibold leading-[1.2] text-text-primary">
-                  {step.title}
-                </h3>
-                <p className="m-0 text-text-secondary">{step.body}</p>
+              <div key={index} className="relative grid grid-cols-[2.3rem_minmax(0,1fr)] gap-4 sm:block">
+                <div className="relative z-[1] flex h-9 w-9 items-center justify-center self-start rounded-full border border-[var(--color-border-soft)] bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-bg))] text-sm font-semibold text-accent shadow-[0_10px_24px_rgba(15,23,42,0.06)] sm:mx-auto">
+                  0{index + 1}
+                </div>
+
+                <div className="pt-0.5 sm:pt-6 sm:text-center">
+                  <h3 className="m-0 font-sans text-[1.4rem] font-semibold leading-[1.15] tracking-[-0.025em] text-text-primary">
+                    {step.title}
+                  </h3>
+                  <p className="m-0 mt-2 max-w-[34ch] text-base leading-7 text-text-secondary sm:mx-auto">
+                    {step.body}
+                  </p>
+                </div>
               </div>
             ))}
-          </div>
-          <p className="font-sans text-sm text-text-secondary">
-            {messages.sections.quickstart.requirements}
-          </p>
-        </div>
-      </FadeInSection>
-
-      <FadeInSection as="section" id="plus">
-        <div className="rounded-[2rem] border border-border/70 bg-surface/75 px-5 py-6 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-8 sm:py-8">
-          <SectionLabel>{messages.sections.plus.title}</SectionLabel>
-          <div className="mt-4 max-w-3xl">
-            <h3 className="m-0 mb-2 font-sans text-xl font-semibold leading-[1.2] text-text-primary">
-              {messages.sections.plus.frameTitle}
-            </h3>
-            <p className="mt-0 text-text-secondary">{messages.sections.plus.subtitle}</p>
-            <ul className="m-0 list-disc pl-5 text-text-primary">
-              {messages.sections.plus.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="mb-0 mt-4 font-sans text-text-secondary">
-              {messages.sections.plus.note}
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-              <TextButton href={LINKS.appStore} target="_blank" rel="noreferrer">
-                {messages.cta.appStore}
-              </TextButton>
             </div>
           </div>
         </div>

@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function RootPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-12">
+    <main className="mx-auto w-full max-w-6xl px-6 pb-16 pt-12 md:px-8 lg:px-8">
       <div className="max-w-3xl">
         <BitRemoteWordmark />
       </div>
