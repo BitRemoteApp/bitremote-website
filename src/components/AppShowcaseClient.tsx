@@ -387,7 +387,7 @@ function ScreenshotStage({
           const isActive = index === activeIndex;
 
           return (
-            <picture
+            <div
               key={item.id}
               className={[
                 'absolute inset-0 block transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
@@ -399,17 +399,19 @@ function ScreenshotStage({
               ].join(' ')}
               aria-hidden={!isActive}
             >
-              <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
-              <img
-                src={item.media.lightSrc}
-                alt={item.media.alt}
-                width={1260}
-                height={2736}
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-            </picture>
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
+                <img
+                  src={item.media.lightSrc}
+                  alt={item.media.alt}
+                  width={1260}
+                  height={2736}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </picture>
+            </div>
           );
         })}
       </div>

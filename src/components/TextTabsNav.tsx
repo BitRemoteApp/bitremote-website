@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import type { Locale } from '@/i18n/locales';
@@ -33,8 +33,8 @@ export function TextTabsNav({
   const shellRef = useRef<HTMLDivElement | null>(null);
   const [isLocaleMenuOpen, setIsLocaleMenuOpen] = useState(false);
   const [navVeilHeight, setNavVeilHeight] = useState(0);
-  const [isHeroCtaVisible, setIsHeroCtaVisible] = useState(!isTermsPage);
-  const localeMenuId = useId();
+  const [isHeroCtaVisible, setIsHeroCtaVisible] = useState(isHomePage);
+  const localeMenuId = `locale-menu-${locale}`;
 
   useEffect(() => {
     const updateNavVeilHeight = () => {
@@ -51,20 +51,16 @@ export function TextTabsNav({
   }, []);
 
   useEffect(() => {
-    if (isTermsPage) {
-      setIsHeroCtaVisible(false);
-      return;
-    }
-
     if (!isHomePage) {
-      setIsHeroCtaVisible(true);
       return;
     }
 
     const heroCta = document.querySelector('[data-hero-cta="true"]');
 
     if (!(heroCta instanceof HTMLElement)) {
-      setIsHeroCtaVisible(false);
+      window.setTimeout(() => {
+        setIsHeroCtaVisible(false);
+      }, 0);
       return;
     }
 
@@ -83,7 +79,7 @@ export function TextTabsNav({
     return () => {
       observer.disconnect();
     };
-  }, [isHomePage, isTermsPage, pathname]);
+  }, [isHomePage, pathname]);
 
   useEffect(() => {
     if (!isLocaleMenuOpen) {
@@ -138,6 +134,7 @@ export function TextTabsNav({
       : value.startsWith('zh-')
         ? 'font-["PingFang_SC","PingFang_TC","Hiragino_Sans_GB","Noto_Sans_CJK_SC","Noto_Sans_CJK_TC","Microsoft_YaHei","Microsoft_JhengHei",sans-serif] text-[0.94rem] font-normal tracking-[-0.01em]'
         : 'font-normal';
+  const shouldShowNavCta = isTermsPage || (isHomePage && !isHeroCtaVisible);
 
   return (
     <nav
@@ -171,7 +168,7 @@ export function TextTabsNav({
         </div>
 
         <AnimatePresence initial={false}>
-          {!isHeroCtaVisible ? (
+          {shouldShowNavCta ? (
             <motion.div
               key="nav-cta"
               initial={shouldReduceMotion ? false : { opacity: 0, y: -6, scale: 0.96 }}

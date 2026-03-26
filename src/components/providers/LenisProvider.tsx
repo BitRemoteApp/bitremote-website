@@ -12,8 +12,6 @@ const NAV_SELECTOR = 'nav[aria-label="Site"]';
  */
 function AnchorScrollHandler() {
   const lenis = useLenis();
-  const lenisRef = useRef(lenis);
-  lenisRef.current = lenis;
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -38,8 +36,8 @@ function AnchorScrollHandler() {
       const transform = new DOMMatrix(getComputedStyle(target).transform);
       const translateY = transform.m42;
 
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(target, { offset: -navHeight - translateY });
+      if (lenis) {
+        lenis.scrollTo(target, { offset: -navHeight - translateY });
       } else {
         const top = target.getBoundingClientRect().top + window.scrollY - navHeight - translateY;
         window.scrollTo({ top, behavior: 'smooth' });
@@ -48,18 +46,23 @@ function AnchorScrollHandler() {
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, []);
+  }, [lenis]);
 
   return null;
 }
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   // Default to true (no Lenis) — matches server render, avoids hydration mismatch
-  const [skipLenis, setSkipLenis] = useState(true);
+  const [skipLenis, setSkipLenis] = useState(() => {
+    if (typeof window === 'undefined') {
+      return true;
+    }
+
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setSkipLenis(mq.matches);
     const handler = (e: MediaQueryListEvent) => setSkipLenis(e.matches);
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
