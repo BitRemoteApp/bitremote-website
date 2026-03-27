@@ -79,7 +79,7 @@ export function DownloaderOrbitSection({
           <div aria-hidden="true" className="downloaders-mesh pointer-events-none absolute inset-0 -z-10" />
         ) : null}
         {isGridMode ? (
-          <div className="grid grid-cols-2 items-stretch gap-3 lg:grid-cols-3">
+          <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <div className="flex min-h-28 h-full flex-col justify-center rounded-[1.75rem] border border-[var(--color-border-soft)] bg-surface px-5 py-4 shadow-[0_16px_36px_rgba(15,23,42,0.05)] sm:min-h-32 sm:px-6 sm:py-5">
               <h2 className="m-0 max-w-none text-[clamp(1.25rem,2vw,1.625rem)] font-semibold leading-[1.2] tracking-[-0.03em] text-text-primary lg:whitespace-nowrap">
                 {title}
@@ -103,7 +103,7 @@ export function DownloaderOrbitSection({
                   }
                 >
                   <a
-                  className="group relative flex min-h-28 h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/70 bg-surface px-5 py-5 no-underline transition-[border-color,background-color,transform,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt"
+                    className="group relative flex min-h-28 h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/70 bg-surface px-5 py-5 no-underline transition-[border-color,background-color,transform,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt"
                     href={href}
                     style={
                       {

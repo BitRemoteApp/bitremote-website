@@ -9,7 +9,8 @@
     "feature": "Feature",
     "downloaders": "Downloader",
     "quickstart": "Quickstart",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "language": "Language"
   },
   "cta": {
     "download": "Download",

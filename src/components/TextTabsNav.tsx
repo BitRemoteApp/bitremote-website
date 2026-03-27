@@ -30,11 +30,15 @@ export function TextTabsNav({
   const isHomePage = currentPathWithinLocale === '/';
   const isTermsPage = currentPathWithinLocale === '/terms/';
   const pickerRef = useRef<HTMLDivElement | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const shellRef = useRef<HTMLDivElement | null>(null);
   const [isLocaleMenuOpen, setIsLocaleMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [navVeilHeight, setNavVeilHeight] = useState(0);
   const [isHeroCtaVisible, setIsHeroCtaVisible] = useState(isHomePage);
   const localeMenuId = `locale-menu-${locale}`;
+  const mobileMenuId = `mobile-menu-${locale}`;
 
   useEffect(() => {
     const updateNavVeilHeight = () => {
@@ -82,6 +86,11 @@ export function TextTabsNav({
   }, [isHomePage, pathname]);
 
   useEffect(() => {
+    setIsLocaleMenuOpen(false);
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
     if (!isLocaleMenuOpen) {
       return;
     }
@@ -108,17 +117,55 @@ export function TextTabsNav({
     };
   }, [isLocaleMenuOpen]);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const onPointerDown = (event: PointerEvent) => {
+      const trigger = mobileMenuButtonRef.current;
+      const menu = mobileMenuRef.current;
+      if (!menu) {
+        return;
+      }
+      if (menu.contains(event.target as Node) || trigger?.contains(event.target as Node)) {
+        return;
+      }
+      setIsMobileMenuOpen(false);
+    };
+
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onEscape);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onEscape);
+    };
+  }, [isMobileMenuOpen]);
+
   const tabLinkClassName =
     'inline-flex min-h-11 items-center rounded-full px-4 py-2 font-sans text-sm font-medium text-text-secondary no-underline transition-colors duration-150 hover:bg-surface hover:text-text-primary active:bg-surface';
   const localeLinkBaseClassName =
     'inline-flex min-h-11 items-center rounded-full px-4 py-2 font-sans text-sm font-medium no-underline select-none transition-colors duration-150';
-
   const localeLinkClassName = (isCurrent: boolean) =>
     isCurrent
       ? 'bg-accent text-[var(--color-accent-contrast)] shadow-[0_10px_28px_rgba(37,99,235,0.18)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-accent-contrast)]'
       : 'text-text-secondary hover:bg-surface hover:text-text-primary active:bg-surface';
   const compactCtaClassName =
     'min-h-11 shrink-0 items-center rounded-full border border-[color-mix(in_srgb,var(--color-accent)_18%,var(--color-border))] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-bg))] px-4 py-2 text-sm font-semibold leading-none text-[color-mix(in_srgb,var(--color-accent)_92%,var(--color-text-primary))] no-underline transition-[background-color,border-color,color] duration-150 hover:border-[color-mix(in_srgb,var(--color-accent)_32%,var(--color-border))] hover:bg-[color-mix(in_srgb,var(--color-accent)_14%,var(--color-bg))] hover:text-[color-mix(in_srgb,var(--color-accent)_92%,var(--color-text-primary))]';
+  const mobileMenuButtonClassName =
+    'inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface sm:hidden';
+  const localeRowBaseClassName =
+    'inline-flex min-h-11 items-center justify-between rounded-2xl px-4 py-2 font-sans text-sm font-normal no-underline transition-colors duration-150';
+  const localeRowClassName = (isCurrent: boolean) =>
+    isCurrent
+      ? `${localeRowBaseClassName} bg-accent text-[var(--color-accent-contrast)] shadow-[0_10px_28px_rgba(37,99,235,0.18)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-accent-contrast)]`
+      : `${localeRowBaseClassName} text-text-primary hover:bg-surface hover:text-text-primary active:bg-surface`;
 
   const navItems = [
     { href: homeHref, label: nav.home },
@@ -153,116 +200,200 @@ export function TextTabsNav({
           ref={shellRef}
           className="relative flex w-full items-center gap-3 rounded-[1.85rem] border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_72%,transparent)] px-3 py-3 shadow-[0_20px_44px_rgba(15,23,42,0.08)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_50%,transparent)] sm:px-4"
         >
-        <div className="min-w-0 flex-1 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="inline-flex min-w-max items-center gap-2">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                className={tabLinkClassName}
-                href={item.href}
-              >
-                {item.label}
-              </a>
-            ))}
+          <div className="sm:hidden">
+            <button
+              type="button"
+              data-mobile-menu-button
+              ref={mobileMenuButtonRef}
+              className={mobileMenuButtonClassName}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls={mobileMenuId}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              onClick={() => setIsMobileMenuOpen((current) => !current)}
+            >
+              <span className="sr-only">{isMobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
+              <span aria-hidden="true" className="relative h-4 w-4">
+                <span
+                  className={`absolute left-0 top-[2px] h-[1.5px] w-4 rounded-full bg-current transition-transform duration-200 ${isMobileMenuOpen ? 'translate-y-[5px] rotate-45' : ''}`}
+                />
+                <span
+                  className={`absolute left-0 top-[7px] h-[1.5px] w-4 rounded-full bg-current transition-opacity duration-200 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
+                />
+                <span
+                  className={`absolute left-0 top-[12px] h-[1.5px] w-4 rounded-full bg-current transition-transform duration-200 ${isMobileMenuOpen ? '-translate-y-[5px] -rotate-45' : ''}`}
+                />
+              </span>
+            </button>
           </div>
-        </div>
 
-        <AnimatePresence initial={false}>
-          {shouldShowNavCta ? (
-            <motion.div
-              key="nav-cta"
-              initial={shouldReduceMotion ? false : { opacity: 0, y: -6, scale: 0.96 }}
-              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
-              transition={{ duration: shouldReduceMotion ? 0.12 : 0.22, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <a
-                className={`${compactCtaClassName} inline-flex`}
-                href={LINKS.appStore}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={messages.cta.appStore}
-              >
-                <span aria-hidden="true" className="inline-flex items-center gap-2 text-inherit">
-                  <span className="inline-block text-[1.2em] leading-none"></span>
-                  <span className="text-sm font-medium tracking-[0.02em] text-inherit">{messages.cta.download}</span>
-                </span>
-              </a>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+          <div className="flex-1 sm:hidden" />
 
-        <div data-locale-switch className="ml-auto hidden" aria-label="Language" hidden>
-          {locales.map((l) => {
-            const isCurrent = l === locale;
-            return (
-              <a
-                key={l}
-                className={`${localeLinkBaseClassName} ${localeLinkClassName(isCurrent)}`}
-                href={localePath(l, currentPathWithinLocale)}
-                aria-current={l === locale ? 'page' : undefined}
-              >
-                <span className={localeLabelClassName(l)} lang={localeLang[l]}>
-                  {localeLabels[l]}
-                </span>
-              </a>
-            );
-          })}
-        </div>
-
-        <div data-locale-picker className="relative ml-auto" ref={pickerRef}>
-          <button
-            type="button"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] px-4 py-2 font-sans text-sm font-medium text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface"
-            aria-expanded={isLocaleMenuOpen}
-            aria-controls={localeMenuId}
-            onClick={() => setIsLocaleMenuOpen((current) => !current)}
+          <div
+            data-primary-tabs
+            className="hidden min-w-0 flex-1 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:block"
           >
-            <span className={localeLabelClassName(locale)} lang={localeLang[locale]}>
-              {localeLabels[locale]}
-            </span>
-            <span aria-hidden="true" className="text-text-secondary">
-              {isLocaleMenuOpen ? '▴' : '▾'}
-            </span>
-          </button>
-
-          {isLocaleMenuOpen ? (
-            <div
-              className="absolute right-0 top-[calc(100%+0.55rem)] z-20 min-w-[12rem] rounded-3xl border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]"
-              id={localeMenuId}
-              role="menu"
-              aria-label="Language options"
-            >
-              <div className="flex flex-col gap-1">
-                {locales.map((l) => {
-                  const isCurrent = l === locale;
-                  const rowBaseClassName =
-                    'inline-flex min-h-11 items-center justify-between rounded-2xl px-4 py-2 font-sans text-sm font-normal no-underline transition-colors duration-150';
-                  const rowClassName = isCurrent
-                    ? `${rowBaseClassName} bg-accent text-[var(--color-accent-contrast)] shadow-[0_10px_28px_rgba(37,99,235,0.18)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-accent-contrast)]`
-                    : `${rowBaseClassName} text-text-primary hover:bg-surface hover:text-text-primary active:bg-surface`;
-                  return (
-                    <a
-                      key={l}
-                      className={rowClassName}
-                      href={localePath(l, currentPathWithinLocale)}
-                      aria-current={l === locale ? 'page' : undefined}
-                      role="menuitem"
-                    >
-                      <span className={localeLabelClassName(l)} lang={localeLang[l]}>
-                        {localeLabels[l]}
-                      </span>
-                    </a>
-                  );
-                })}
-              </div>
+            <div className="inline-flex min-w-max items-center gap-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  className={tabLinkClassName}
+                  href={item.href}
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
-          ) : null}
-        </div>
+          </div>
 
-        <noscript>
-          <style>{'[data-locale-switch]{display:flex}[data-locale-picker]{display:none}'}</style>
-        </noscript>
+          <AnimatePresence initial={false}>
+            {shouldShowNavCta ? (
+              <motion.div
+                key="nav-cta"
+                className="ml-auto"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: -6, scale: 0.96 }}
+                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
+                transition={{ duration: shouldReduceMotion ? 0.12 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <a
+                  className={`${compactCtaClassName} inline-flex`}
+                  href={LINKS.appStore}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={messages.cta.appStore}
+                >
+                  <span aria-hidden="true" className="inline-flex items-center gap-2 text-inherit">
+                    <span className="inline-block text-[1.2em] leading-none"></span>
+                    <span className="text-sm font-medium tracking-[0.02em] text-inherit">{messages.cta.download}</span>
+                  </span>
+                </a>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+
+          <div data-locale-switch className="ml-auto hidden" aria-label="Language" hidden>
+            {locales.map((l) => {
+              const isCurrent = l === locale;
+              return (
+                <a
+                  key={l}
+                  className={`${localeLinkBaseClassName} ${localeLinkClassName(isCurrent)}`}
+                  href={localePath(l, currentPathWithinLocale)}
+                  aria-current={l === locale ? 'page' : undefined}
+                >
+                  <span className={localeLabelClassName(l)} lang={localeLang[l]}>
+                    {localeLabels[l]}
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+
+          <div data-locale-picker className="relative ml-auto hidden sm:block" ref={pickerRef}>
+            <button
+              type="button"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] px-4 py-2 font-sans text-sm font-medium text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface"
+              aria-expanded={isLocaleMenuOpen}
+              aria-controls={localeMenuId}
+              onClick={() => setIsLocaleMenuOpen((current) => !current)}
+            >
+              <span className={localeLabelClassName(locale)} lang={localeLang[locale]}>
+                {localeLabels[locale]}
+              </span>
+              <span aria-hidden="true" className="text-text-secondary">
+                {isLocaleMenuOpen ? '▴' : '▾'}
+              </span>
+            </button>
+
+            {isLocaleMenuOpen ? (
+              <div
+                className="absolute right-0 top-[calc(100%+0.55rem)] z-20 min-w-[12rem] rounded-3xl border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]"
+                id={localeMenuId}
+                role="menu"
+                aria-label="Language options"
+              >
+                <div className="flex flex-col gap-1">
+                  {locales.map((l) => {
+                    const isCurrent = l === locale;
+                    return (
+                      <a
+                        key={l}
+                        className={localeRowClassName(isCurrent)}
+                        href={localePath(l, currentPathWithinLocale)}
+                        aria-current={l === locale ? 'page' : undefined}
+                        role="menuitem"
+                      >
+                        <span className={localeLabelClassName(l)} lang={localeLang[l]}>
+                          {localeLabels[l]}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          <AnimatePresence initial={false}>
+            {isMobileMenuOpen ? (
+              <motion.div
+                key="mobile-menu"
+                ref={mobileMenuRef}
+                id={mobileMenuId}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: -10, scale: 0.98 }}
+                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
+                transition={{ duration: shouldReduceMotion ? 0.12 : 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-x-0 top-[calc(100%+0.7rem)] z-20 sm:hidden"
+              >
+                <div className="overflow-hidden rounded-[1.7rem] border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2.5 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]">
+                  <div className="flex flex-col gap-1.5">
+                    {navItems.map((item) => (
+                      <a
+                        key={item.href}
+                        className="inline-flex min-h-11 items-center rounded-[1.15rem] px-4 py-2 font-sans text-[0.95rem] font-medium text-text-primary no-underline transition-colors duration-150 hover:bg-surface active:bg-surface"
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+
+                  <div className="my-2 h-px bg-[color-mix(in_srgb,var(--color-border)_78%,transparent)]" />
+
+                  <div className="px-2 pb-1 pt-0.5">
+                    <p className="m-0 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-text-secondary/80">
+                      {nav.language}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {locales.map((l) => {
+                      const isCurrent = l === locale;
+                      return (
+                        <a
+                          key={l}
+                          className={localeRowClassName(isCurrent)}
+                          href={localePath(l, currentPathWithinLocale)}
+                          aria-current={l === locale ? 'page' : undefined}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <span className={localeLabelClassName(l)} lang={localeLang[l]}>
+                            {localeLabels[l]}
+                          </span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+
+          <noscript>
+            <style>{'[data-locale-switch]{display:flex!important}[data-locale-picker]{display:none!important}[data-mobile-menu-button]{display:none!important}[data-primary-tabs]{display:block!important}'}</style>
+          </noscript>
         </div>
       </div>
     </nav>
