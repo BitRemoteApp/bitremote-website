@@ -22,7 +22,7 @@ export function TextButton({
   dataHeroCta,
 }: Props) {
   const baseClassName =
-    'inline-flex min-h-11 items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold leading-none no-underline transition-[background-color,border-color,color,box-shadow,transform] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg active:scale-[0.98]';
+    'inline-flex min-h-11 items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold leading-none no-underline transition-[background-color,border-color,color,box-shadow,scale] duration-150 ease-out focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg active:scale-[0.98]';
   const variantClassName =
     variant === 'secondary'
       ? 'border-border bg-[var(--button-secondary-bg)] text-text-primary shadow-none hover:border-[var(--button-secondary-border-hover)] hover:bg-[var(--button-secondary-bg-hover)]'

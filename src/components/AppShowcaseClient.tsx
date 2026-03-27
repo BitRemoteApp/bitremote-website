@@ -306,7 +306,7 @@ function MobileShowcaseStage({
   const item = items[activeIndex];
 
   return (
-    <div className="relative rounded-[4.75rem] border border-[var(--color-border-soft)] bg-surface p-4 shadow-card">
+    <div className="relative rounded-[4.75rem] border border-[var(--color-border-soft)] bg-surface p-4 shadow-[var(--shadow-card)]">
       <div
         className="relative overflow-hidden rounded-[3.5rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]"
         style={{ height: `calc(100dvh - ${navHeight}px - 4.5rem)` }}

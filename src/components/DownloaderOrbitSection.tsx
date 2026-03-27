@@ -103,7 +103,7 @@ export function DownloaderOrbitSection({
                   }
                 >
                   <a
-                    className="group relative flex min-h-28 h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/70 bg-surface px-5 py-5 no-underline transition-[border-color,background-color,transform,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt"
+                    className="group relative flex min-h-28 h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/70 bg-surface px-5 py-5 no-underline transition-[border-color,background-color,translate,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt"
                     href={href}
                     style={
                       {
@@ -125,7 +125,7 @@ export function DownloaderOrbitSection({
                     />
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 scale-[0.98] opacity-0 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:opacity-100"
+                      className="pointer-events-none absolute inset-0 scale-[0.98] opacity-0 transition-[opacity,scale] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:opacity-100"
                       style={{
                         background:
                           'linear-gradient(145deg, color-mix(in srgb, var(--downloader-primary) 16%, transparent) 0%, transparent 36%), radial-gradient(circle at top right, color-mix(in srgb, var(--downloader-primary) 20%, transparent) 0%, transparent 42%), radial-gradient(circle at bottom left, color-mix(in srgb, var(--downloader-secondary) 18%, transparent) 0%, transparent 54%)',
@@ -133,7 +133,7 @@ export function DownloaderOrbitSection({
                     />
                     <span
                       aria-hidden="true"
-                      className="absolute right-5 top-5 text-sm transition-[color,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5"
+                      className="absolute right-5 top-5 text-sm transition-[color,translate] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5"
                       style={{
                         color: 'color-mix(in srgb, var(--downloader-primary) 78%, var(--color-text-secondary))',
                       }}
@@ -178,7 +178,7 @@ export function DownloaderOrbitSection({
                   }
                 >
                   <a
-                    className="group relative flex min-h-24 flex-col overflow-hidden rounded-[1.5rem] border border-border/70 bg-surface px-4 py-4 no-underline transition-[border-color,background-color,transform,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt sm:min-h-28 sm:rounded-[1.75rem] sm:p-5 md:min-h-[7.25rem] md:w-full md:max-w-[13rem] md:p-4 lg:min-h-[8.75rem] lg:max-w-[16rem]"
+                    className="group relative flex min-h-24 flex-col overflow-hidden rounded-[1.5rem] border border-border/70 bg-surface px-4 py-4 no-underline transition-[border-color,background-color,translate,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt sm:min-h-28 sm:rounded-[1.75rem] sm:p-5 md:min-h-[7.25rem] md:w-full md:max-w-[13rem] md:p-4 lg:min-h-[8.75rem] lg:max-w-[16rem]"
                     href={href}
                     style={
                       {
@@ -200,7 +200,7 @@ export function DownloaderOrbitSection({
                     />
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 scale-[0.98] opacity-0 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:opacity-100"
+                      className="pointer-events-none absolute inset-0 scale-[0.98] opacity-0 transition-[opacity,scale] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:opacity-100"
                       style={{
                         background:
                           'linear-gradient(145deg, color-mix(in srgb, var(--downloader-primary) 16%, transparent) 0%, transparent 36%), radial-gradient(circle at top right, color-mix(in srgb, var(--downloader-primary) 20%, transparent) 0%, transparent 42%), radial-gradient(circle at bottom left, color-mix(in srgb, var(--downloader-secondary) 18%, transparent) 0%, transparent 54%)',
@@ -208,7 +208,7 @@ export function DownloaderOrbitSection({
                     />
                     <span
                       aria-hidden="true"
-                      className="absolute right-4 top-4 text-sm transition-[color,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 sm:right-5 sm:top-5 md:right-4 md:top-4"
+                      className="absolute right-4 top-4 text-sm transition-[color,translate] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 sm:right-5 sm:top-5 md:right-4 md:top-4"
                       style={{
                         color: 'color-mix(in srgb, var(--downloader-primary) 78%, var(--color-text-secondary))',
                       }}
