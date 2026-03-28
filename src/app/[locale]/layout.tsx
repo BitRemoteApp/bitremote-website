@@ -17,7 +17,7 @@ function FooterIcon({
 }>) {
   return (
     <a
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full text-text-secondary transition-colors duration-150 hover:bg-surface hover:text-text-primary"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full text-text-secondary transition-colors duration-150 hover:bg-surface hover:text-text-primary"
       href={href}
       target={href.startsWith('mailto:') ? undefined : '_blank'}
       rel={href.startsWith('mailto:') ? undefined : 'noreferrer'}
@@ -85,6 +85,12 @@ export default async function LocaleLayout({
 
   return (
     <div className="flex min-h-screen flex-col gap-12" data-locale={locale} lang={localeLang[locale]}>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-text-primary focus:shadow-lg focus:ring-2 focus:ring-accent"
+      >
+        Skip to content
+      </a>
       <TextTabsNav
         locale={locale}
         messages={messages}

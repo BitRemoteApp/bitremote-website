@@ -63,7 +63,7 @@ export default async function LocaleHomePage({
   }));
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 pb-20 pt-4 md:gap-20 md:px-8 md:pt-5 lg:px-8">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 pb-20 pt-4 md:gap-20 md:px-8 md:pt-5 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={serializeJsonLd(softwareApplicationSchema)}

@@ -105,6 +105,7 @@ export function DownloaderOrbitSection({
                   <a
                     className="group relative flex min-h-28 h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/70 bg-surface px-5 py-5 no-underline transition-[border-color,background-color,translate,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt"
                     href={href}
+                    aria-label={`${downloader} — ${items[downloader]}`}
                     style={
                       {
                         '--downloader-primary': downloaderTints[downloader].primary,
@@ -180,6 +181,7 @@ export function DownloaderOrbitSection({
                   <a
                     className="group relative flex min-h-24 flex-col overflow-hidden rounded-[1.5rem] border border-border/70 bg-surface px-4 py-4 no-underline transition-[border-color,background-color,translate,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:bg-surface-alt sm:min-h-28 sm:rounded-[1.75rem] sm:p-5 md:min-h-[7.25rem] md:w-full md:max-w-[13rem] md:p-4 lg:min-h-[8.75rem] lg:max-w-[16rem]"
                     href={href}
+                    aria-label={`${downloader} — ${items[downloader]}`}
                     style={
                       {
                         '--downloader-primary': downloaderTints[downloader].primary,

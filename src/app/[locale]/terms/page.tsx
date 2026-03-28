@@ -43,7 +43,7 @@ export default async function TermsPage({
   });
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-16 pt-6 md:px-8 md:pt-8 lg:px-8 lg:pt-10">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-16 pt-6 md:px-8 md:pt-8 lg:px-8 lg:pt-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={serializeJsonLd(breadcrumbSchema)}

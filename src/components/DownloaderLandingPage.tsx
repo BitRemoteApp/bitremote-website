@@ -18,7 +18,7 @@ export function DownloaderLandingPage({
     'rounded-[1.75rem] border border-[var(--color-border-soft)] bg-surface shadow-[0_16px_36px_rgba(15,23,42,0.05)]';
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-16 md:gap-16 md:px-8 lg:px-8">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-16 md:gap-16 md:px-8 lg:px-8">
       <section className={`grid grid-cols-1 gap-6 px-6 py-8 sm:px-8 ${cardClassName}`}>
         <div className="inline-flex w-fit items-center rounded-full border border-[color-mix(in_srgb,var(--color-border-soft)_80%,var(--color-accent))] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-bg))] px-3 py-1 text-sm font-semibold text-[color-mix(in_srgb,var(--color-accent)_82%,var(--color-text-primary))]">
           {content.downloader}
