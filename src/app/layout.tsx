@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { LenisProvider } from '@/components/providers/LenisProvider';
+import 'lenis/dist/lenis.css';
 
 import './globals.css';
 
@@ -17,6 +19,17 @@ export const metadata: Metadata = {
   },
 };
 
+const BACK_FORWARD_RELOAD_SCRIPT = `
+(function(){
+  var n=performance.getEntriesByType("navigation")[0];
+  if(n&&n.type==="back_forward"){
+    window.addEventListener("pageshow",function(e){
+      if(!e.persisted){window.location.reload()}
+    },{once:true})
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +37,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: BACK_FORWARD_RELOAD_SCRIPT }} />
+      </head>
+      <body>
+        <LenisProvider>
+          {children}
+        </LenisProvider>
+      </body>
     </html>
   );
 }

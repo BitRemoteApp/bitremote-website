@@ -6,18 +6,23 @@
   },
   "nav": {
     "home": "主页",
-    "features": "功能",
-    "downloaders": "支持的下载工具",
+    "feature": "功能",
+    "downloaders": "下载工具",
     "quickstart": "开始使用",
-    "subscription": "价格",
-    "faq": "常见问题"
+    "faq": "常见问题",
+    "language": "语言"
   },
   "cta": {
-    "appStore": "前往 App Store 下载",
-    "supportedDownloaders": "支持的下载工具"
+    "download": "下载",
+    "appStore": "前往 App Store 下载"
   },
   "hero": {
-    "subhead": "适用于 iPhone / iPad / Mac。连接你的下载工具，随时随地管理下载任务。"
+    "subhead": "适用于 iPhone / iPad / Mac。连接你的下载工具，随时随地管理下载任务。",
+    "platforms": [
+      { "id": "iphone", "label": "iPhone", "version": "iOS 26.0 及以上" },
+      { "id": "ipad", "label": "iPad", "version": "iPadOS 26.0 及以上" },
+      { "id": "mac", "label": "Mac", "version": "macOS 26.0 及以上" }
+    ]
   },
   "sections": {
     "benefits": {
@@ -34,29 +39,27 @@
           "subtitle": "不用回到 NAS、seedbox 或家庭服务器后台，也能新增、暂停、恢复或删除任务。"
         },
         {
-          "id": "smartFilteringSorting",
-          "title": "快速整理下载队列",
-          "subtitle": "按状态、类别或标签筛选与排序任务，更快找到进行中、暂停中或已完成的下载。"
-        },
-        {
           "id": "activityMonitor",
           "title": "查看传输活动",
           "subtitle": "在 iPhone、iPad 或 Mac 上实时查看速度、统计数据与传输记录。"
         },
         {
-          "id": "clientsBackupRestore",
-          "title": "备份连接设置",
-          "subtitle": "以统一的 JSON 格式导出与导入已保存的客户端设置，方便换机或重新安装。"
-        },
-        {
-          "id": "optionalCertificateEvaluation",
-          "title": "适合自托管环境",
-          "subtitle": "如果你的主机使用自签证书，可选择跳过证书验证。"
+          "id": "taskInsightPanel",
+          "title": "任务详情面板",
+          "subtitle": "清楚掌握下载任务的进度与性能状况，同时也能查看 trackers、用户与文件，全面了解任务状态。"
         }
       ]
     },
     "downloaders": {
-      "title": "支持的下载工具"
+      "title": "支持的下载工具",
+      "description": "BitRemote 支持技术用户已经在用的下载客户端。打开各个落地页，可以先查看兼容性、适用场景与支持的工作流程。",
+      "items": {
+        "aria2": "轻量级开源下载工具，支持 RPC 控制与多来源下载。",
+        "qBittorrent": "开源下载客户端，以分类、搜索插件和队列管理见长。",
+        "Transmission": "强调低资源占用与简洁体验的极简开源下载客户端。",
+        "Synology Download Station": "群晖 NAS 自带的下载客户端，支持 BitTorrent、HTTP、FTP 等协议。",
+        "QNAP Download Station": "威联通 NAS 自带的下载客户端，可管理 BitTorrent 与直链下载任务。"
+      }
     },
     "quickstart": {
       "title": "开始使用",
@@ -64,15 +67,7 @@
         { "title": "安装", "body": "在 iPhone、iPad 或 Mac 上从 App Store 获取 BitRemote。" },
         { "title": "连接", "body": "添加下载工具的主机地址与登录凭据。" },
         { "title": "管理", "body": "在 iPhone、iPad 和 Mac 上监控活动并控制下载任务。" }
-      ],
-      "requirements": "需要 iOS / iPadOS / macOS 26.0 或更高版本。"
-    },
-    "plus": {
-      "title": "价格",
-      "frameTitle": "BitRemote+",
-      "subtitle": "可先使用核心功能，等需要更多客户端与高级功能时再升级。",
-      "items": ["移除广告", "不限客户端数", "任务详情面板", "专属客户端类型"],
-      "note": "每月 US$1.99、每年 US$9.99，或单次购买方案 US$49.99。"
+      ]
     },
     "faq": {
       "title": "常见问题",
@@ -84,19 +79,13 @@
     }
   },
   "pages": {
-    "privacy": {
-      "title": "隐私权政策",
-      "body": "BitRemote 的官方隐私政策由 Ark Studios 托管。"
-    },
     "terms": {
-      "title": "EULA",
-      "body": "BitRemote 的官方 EULA 由 Ark Studios 托管。"
-    },
-    "support": {
-      "title": "支持",
-      "body": "问题、反馈与社区：",
-      "github": "Bug 报告与功能请求：",
-      "githubButton": "GitHub 仓库"
+      "title": "条款",
+      "body": "BitRemote 的法律文档由 Ark Studios LLC 提供。\n请使用下方链接打开官方页面。",
+      "privacyTitle": "隐私权政策",
+      "privacyBody": "了解 BitRemote 可能收集哪些数据、这些数据会如何使用，以及涉及哪些第三方服务。",
+      "eulaTitle": "最终用户许可协议",
+      "eulaBody": "查看 BitRemote 的使用条款，包括使用限制、更新方式，以及争议处理等内容。"
     }
   },
   "seo": {
@@ -114,32 +103,14 @@
         "QNAP Download Station 远程"
       ]
     },
-    "support": {
-      "title": "支持 | BitRemote",
-      "description": "获取 BitRemote 支持、提交问题、提出功能需求，并加入社区。这是面向 iPhone、iPad、Mac 的远程下载管理应用支持入口。",
-      "keywords": [
-        "BitRemote 支持",
-        "下载管理 支持",
-        "BitRemote GitHub",
-        "BitRemote 问题反馈",
-        "BitRemote 社区"
-      ]
-    },
-    "privacy": {
-      "title": "隐私权政策 | BitRemote",
-      "description": "查看 Ark Studios 提供的 BitRemote 官方隐私政策，了解这款 NAS 与下载工具远程控制应用的数据处理方式。",
+    "terms": {
+      "title": "条款 | BitRemote",
+      "description": "在一个页面中打开 BitRemote 的法律文档，包括 Ark Studios LLC 提供的隐私政策和 EULA。",
       "keywords": [
         "BitRemote 隐私政策",
-        "Ark Studios 隐私政策",
-        "下载管理 隐私"
-      ]
-    },
-    "terms": {
-      "title": "EULA | BitRemote",
-      "description": "查看 Ark Studios 提供的 BitRemote EULA。BitRemote 是一款适用于 iPhone、iPad 和 Mac 的远程下载管理应用。",
-      "keywords": [
         "BitRemote EULA",
         "BitRemote 条款",
+        "Ark Studios 隐私政策",
         "Ark Studios EULA"
       ]
     },

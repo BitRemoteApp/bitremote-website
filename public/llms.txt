@@ -1,14 +1,15 @@
 # BitRemote
 
-> Remote download manager for iPhone, iPad, and Mac. Control aria2, qBittorrent, Transmission, Synology Download Station, and QNAP Download Station from anywhere.
+> An app for iPhone, iPad, and Mac to remotely manage downloaders on NAS, seedbox, and home server setups.
 
 ## About
 
-BitRemote is a native Apple platform app that lets you remotely manage download tasks on NAS devices, seedboxes, and home servers. It connects to your existing downloader over LAN, VPN, or any remote access method — downloads stay on your server, not your device.
+BitRemote is a remote download manager for Apple platforms. It connects to your existing downloader over LAN, VPN, or another secure remote access method, so downloads stay on your NAS, seedbox, or server instead of your device.
 
+- Website: https://bitremote.app/en/
 - Platforms: iPhone, iPad, Mac (requires iOS / iPadOS / macOS 26.0 or later)
-- Pricing: Free with optional BitRemote+ subscription ($1.99/month, $9.99/year, or $49.99 one-time)
-- Publisher: Ark Studios
+- App Store: https://apps.apple.com/app/id6477765303
+- Publisher: Ark Studios LLC
 
 ## Supported Downloaders
 
@@ -20,19 +21,26 @@ BitRemote is a native Apple platform app that lets you remotely manage download 
 
 ## Features
 
-- Control remote download tasks (pause, resume, remove, add)
-- Filter and sort large queues by status, category, and tag
-- Monitor real-time transfer speeds and statistics
-- Back up and restore downloader connections (JSON export/import)
-- Connect to self-hosted environments with self-signed certificates
-- Rich accessibility support (VoiceOver, Voice Control, Dynamic Type)
+- Rich accessibility support, including VoiceOver, Voice Control, Larger Text, Differentiate Without Color, and Reduced Motion
+- Control remote download tasks from anywhere
+- Monitor transfer activity, speeds, statistics, and history
+- Review task details, trackers, peers, and files in one place
+
+## Quickstart
+
+- Install BitRemote from the App Store
+- Connect your downloader with its host address and credentials
+- Manage activity, queues, and remote download tasks from iPhone, iPad, or Mac
 
 ## Pages
 
 - [Home](https://bitremote.app/en/)
-- [Support](https://bitremote.app/en/support/)
-- [Privacy Policy](https://bitremote.app/en/privacy/)
-- [Terms / EULA](https://bitremote.app/en/terms/)
+- [Terms](https://bitremote.app/en/terms/)
+
+## Legal
+
+- [Privacy Policy](https://arkstudios.co.jp/en/privacy/bitremote)
+- [End User License Agreement](https://arkstudios.co.jp/en/eula/bitremote)
 
 ## Full Content
 
@@ -45,3 +53,4 @@ BitRemote is a native Apple platform app that lets you remotely manage download 
 - [Discord](https://discord.gg/x5TP2z6cFj)
 - [Telegram](https://t.me/bitremote)
 - [Twitter](https://twitter.com/bitremote)
+- [Email](mailto:support@bitremote.app)
