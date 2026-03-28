@@ -1,9 +1,8 @@
 'use client';
 
 import { ReactLenis, useLenis } from 'lenis/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-/** Height of the sticky nav — must match the rendered nav element */
 const NAV_SELECTOR = 'nav[aria-label="Site"]';
 
 /**
