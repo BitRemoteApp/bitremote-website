@@ -1,6 +1,5 @@
 'use client';
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { SectionLabel } from '@/components/SectionLabel';
@@ -302,8 +301,19 @@ function MobileShowcaseStage({
   direction: number;
   navHeight: number;
 }) {
-  const shouldReduceMotion = useReducedMotion();
-  const item = items[activeIndex];
+  const [displayedIndex, setDisplayedIndex] = useState(activeIndex);
+  const transitioning = displayedIndex !== activeIndex;
+
+  useEffect(() => {
+    if (activeIndex === displayedIndex) return;
+    const timeout = setTimeout(() => {
+      setDisplayedIndex(activeIndex);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [activeIndex, displayedIndex]);
+
+  const item = items[transitioning ? displayedIndex : activeIndex];
+  const enterY = direction > 0 ? 40 : -40;
 
   return (
     <div className="relative rounded-[4.75rem] border border-[var(--color-border-soft)] bg-surface p-4 shadow-[var(--shadow-card)]">
@@ -311,55 +321,42 @@ function MobileShowcaseStage({
         className="relative overflow-hidden rounded-[3.5rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]"
         style={{ height: `calc(100dvh - ${navHeight}px - 4.5rem)` }}
       >
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={item.id}
-            initial={
-              shouldReduceMotion
-                ? { opacity: 0 }
-                : { opacity: 0, y: direction > 0 ? 40 : -40 }
-            }
-            animate={
-              shouldReduceMotion
-                ? { opacity: 1 }
-                : { opacity: 1, y: 0 }
-            }
-            exit={
-              shouldReduceMotion
-                ? { opacity: 0 }
-                : { opacity: 0, y: direction > 0 ? -28 : 28 }
-            }
-            transition={{ duration: shouldReduceMotion ? 0.14 : 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-x-4 inset-y-4 flex flex-col gap-5"
-          >
-              <div className="shrink-0">
-                <h3 className="m-0 text-[1.45rem] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary">
-                  <span className="mr-3 text-sm tracking-[0.08em] text-accent align-[0.04em]">
-                    0{activeIndex + 1}
-                  </span>
-                  <span>{item.title}</span>
-                </h3>
-                <p className="m-0 mt-3 text-[0.98rem] leading-7 text-text-secondary">
-                  {item.subtitle}
-                </p>
-              </div>
+        <div
+          key={item.id}
+          className="absolute inset-x-4 inset-y-4 flex flex-col gap-5"
+          style={{
+            opacity: transitioning ? 0 : 1,
+            transform: transitioning ? `translateY(${enterY}px)` : 'translateY(0)',
+            transition: 'opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+        >
+            <div className="shrink-0">
+              <h3 className="m-0 text-[1.45rem] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary">
+                <span className="mr-3 text-sm tracking-[0.08em] text-accent align-[0.04em]">
+                  0{activeIndex + 1}
+                </span>
+                <span>{item.title}</span>
+              </h3>
+              <p className="m-0 mt-3 text-[0.98rem] leading-7 text-text-secondary">
+                {item.subtitle}
+              </p>
+            </div>
 
-              <div className="relative flex flex-1 items-end justify-center overflow-hidden">
-                <picture className="flex h-full w-full items-end justify-center">
-                  <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
-                  <img
-                    src={item.media.lightSrc}
-                    alt={item.media.alt}
-                    width={1260}
-                    height={2736}
-                    loading="lazy"
-                    decoding="async"
-                    className="apple-squircle h-auto max-h-full w-auto max-w-full rounded-[2.625rem] object-contain"
-                  />
-                </picture>
-              </div>
-          </motion.div>
-        </AnimatePresence>
+            <div className="relative flex flex-1 items-end justify-center overflow-hidden">
+              <picture className="flex h-full w-full items-end justify-center">
+                <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
+                <img
+                  src={item.media.lightSrc}
+                  alt={item.media.alt}
+                  width={1260}
+                  height={2736}
+                  loading="lazy"
+                  decoding="async"
+                  className="apple-squircle h-auto max-h-full w-auto max-w-full rounded-[2.625rem] object-contain"
+                />
+              </picture>
+            </div>
+        </div>
       </div>
     </div>
   );

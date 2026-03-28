@@ -1,6 +1,5 @@
 'use client';
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -19,7 +18,6 @@ export function TextTabsNav({
   locale,
   messages,
 }: Props) {
-  const shouldReduceMotion = useReducedMotion();
   const nav = messages.nav;
   const homeHref = localePath(locale, '/');
   const pathname = usePathname();
@@ -245,31 +243,28 @@ export function TextTabsNav({
             </div>
           </div>
 
-          <AnimatePresence initial={false}>
-            {shouldShowNavCta ? (
-              <motion.div
-                key="nav-cta"
-                className="ml-auto"
-                initial={shouldReduceMotion ? false : { opacity: 0, y: -6, scale: 0.96 }}
-                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
-                transition={{ duration: shouldReduceMotion ? 0.12 : 0.22, ease: [0.22, 1, 0.36, 1] }}
-              >
+          <div
+            className="ml-auto transition-[opacity,transform] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{
+              opacity: shouldShowNavCta ? 1 : 0,
+              transform: shouldShowNavCta ? 'translateY(0) scale(1)' : 'translateY(-6px) scale(0.96)',
+              pointerEvents: shouldShowNavCta ? 'auto' : 'none',
+            }}
+          >
                 <a
                   className={`${compactCtaClassName} inline-flex`}
                   href={LINKS.appStore}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={messages.cta.appStore}
+              tabIndex={shouldShowNavCta ? undefined : -1}
                 >
                   <span aria-hidden="true" className="inline-flex items-center gap-2 text-inherit">
                     <span className="inline-block text-[1.2em] leading-none"></span>
                     <span className="text-sm font-medium tracking-[0.02em] text-inherit">{messages.cta.download}</span>
                   </span>
                 </a>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
+          </div>
 
           <div data-locale-switch className="ml-auto hidden" aria-label="Language" hidden>
             {locales.map((l) => {
@@ -334,17 +329,11 @@ export function TextTabsNav({
             ) : null}
           </div>
 
-          <AnimatePresence initial={false}>
-            {isMobileMenuOpen ? (
-              <motion.div
-                key="mobile-menu"
+          {isMobileMenuOpen ? (
+              <div
                 ref={mobileMenuRef}
                 id={mobileMenuId}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: -10, scale: 0.98 }}
-                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
-                transition={{ duration: shouldReduceMotion ? 0.12 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-x-0 top-[calc(100%+0.7rem)] z-20 sm:hidden"
+                className="absolute inset-x-0 top-[calc(100%+0.7rem)] z-20 sm:hidden transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
                 <div className="overflow-hidden rounded-[1.7rem] border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2.5 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]">
                   <div className="flex flex-col gap-1.5">
@@ -387,9 +376,8 @@ export function TextTabsNav({
                     })}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ) : null}
-          </AnimatePresence>
 
           <noscript>
             <style>{'[data-locale-switch]{display:flex!important}[data-locale-picker]{display:none!important}[data-mobile-menu-button]{display:none!important}[data-primary-tabs]{display:block!important}'}</style>

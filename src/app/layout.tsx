@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { LenisProvider } from '@/components/providers/LenisProvider';
-import { MotionProvider } from '@/components/providers/MotionProvider';
 import 'lenis/dist/lenis.css';
 
 import './globals.css';
@@ -28,11 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MotionProvider>
-          <LenisProvider>
-            {children}
-          </LenisProvider>
-        </MotionProvider>
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );
