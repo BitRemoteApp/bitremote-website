@@ -192,9 +192,10 @@ export function AppShowcaseClient({ id, title, items }: Props) {
     <FadeInSection as="section" id={id} className="py-2 md:py-4">
       <div
         ref={sectionRef}
+        data-fs
         style={isDesktop ? { minHeight: `${itemsWithMedia.length * 90}vh` } : undefined}
       >
-      <div className="grid gap-8 md:hidden">
+      <div data-mobile-scroll className="grid gap-8 sm:hidden">
         <div className="flex flex-col gap-6">
           <SectionLabel>{title}</SectionLabel>
 
@@ -226,6 +227,42 @@ export function AppShowcaseClient({ id, title, items }: Props) {
         </div>
       </div>
 
+      <div data-sm-carousel className="hidden sm:block md:hidden">
+        <SectionLabel>{title}</SectionLabel>
+        <div className="mt-6 flex gap-4 overflow-x-auto pb-4 [scroll-snap-type:x_mandatory] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {itemsWithMedia.map((item, index) => (
+            <div
+              key={item.id}
+              className="w-[80vw] max-w-[20rem] shrink-0 [scroll-snap-align:center]"
+            >
+              <div className="rounded-[2.5rem] border border-[var(--color-border-soft)] bg-surface p-3">
+                <div className="overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]">
+                  <picture>
+                    <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
+                    <img
+                      src={item.media.lightSrc}
+                      alt={item.media.alt}
+                      width={1260}
+                      height={2736}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-auto w-full object-cover"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <div className="mt-5 px-2">
+                <h3 className="m-0 text-[1.1rem] font-semibold leading-[1.12] tracking-[-0.02em] text-text-primary">
+                  <span className="mr-2 text-xs tracking-[0.08em] text-accent">0{index + 1}</span>
+                  {item.title}
+                </h3>
+                <p className="m-0 mt-1.5 text-sm leading-5 text-text-secondary">{item.subtitle}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div
         className="hidden md:sticky md:flex md:items-start [@media(min-height:1000px)]:md:items-center md:overflow-y-hidden"
         style={{
@@ -237,14 +274,28 @@ export function AppShowcaseClient({ id, title, items }: Props) {
           <div className="flex flex-col justify-start gap-6 pt-2 md:gap-[clamp(0.75rem,2dvh,1.75rem)] md:pt-3 lg:gap-[clamp(1rem,2dvh,2rem)] lg:pt-4">
             <SectionLabel>{title}</SectionLabel>
 
+            {itemsWithMedia.map((_, i) => (
+              <input
+                key={i}
+                type="radio"
+                name="ft"
+                id={`ft${i}`}
+                defaultChecked={i === 0}
+                className="sr-only"
+                tabIndex={-1}
+                aria-hidden="true"
+              />
+            ))}
+
             <div className="grid gap-0 pt-3 md:pt-[clamp(0.5rem,1dvh,1rem)] lg:pt-[clamp(0.5rem,1.2dvh,1.25rem)]">
               {itemsWithMedia.map((item, index) => {
                 const isActive = index === activeIndex;
 
                 return (
-                  <div
+                  <label
                     key={item.id}
-                    className="grid min-h-[8.25rem] content-center gap-4 border-b border-[var(--color-border-soft)] py-4 last:border-b-0 last:pb-0 first:pt-0 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-4 md:min-h-[clamp(5rem,12dvh,8.75rem)] md:gap-5 md:py-[clamp(0.625rem,1.5dvh,1.25rem)] lg:min-h-[clamp(5.5rem,12dvh,9.5rem)] lg:gap-6 lg:py-[clamp(0.75rem,1.8dvh,1.5rem)]"
+                    htmlFor={`ft${index}`}
+                    className="grid min-h-[8.25rem] cursor-default content-center gap-4 border-b border-[var(--color-border-soft)] py-4 last:border-b-0 last:pb-0 first:pt-0 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-4 md:min-h-[clamp(5rem,12dvh,8.75rem)] md:gap-5 md:py-[clamp(0.625rem,1.5dvh,1.25rem)] lg:min-h-[clamp(5.5rem,12dvh,9.5rem)] lg:gap-6 lg:py-[clamp(0.75rem,1.8dvh,1.5rem)]"
                   >
                     <div
                       className={[
@@ -272,7 +323,7 @@ export function AppShowcaseClient({ id, title, items }: Props) {
                         {item.subtitle}
                       </p>
                     </div>
-                  </div>
+                  </label>
                 );
               })}
             </div>
@@ -286,6 +337,37 @@ export function AppShowcaseClient({ id, title, items }: Props) {
         </div>
       </div>
       </div>
+      <noscript>
+        <style>{[
+          '@media(min-width:768px){',
+            '[data-feature-screenshot]{opacity:0!important;translate:0!important;scale:1!important}',
+            '[data-feature-screenshot]:nth-child(1){opacity:1!important}',
+            '[data-fs]:has(#ft0:checked) [data-feature-screenshot]:nth-child(1),',
+            '[data-fs]:has(#ft1:checked) [data-feature-screenshot]:nth-child(2),',
+            '[data-fs]:has(#ft2:checked) [data-feature-screenshot]:nth-child(3),',
+            '[data-fs]:has(#ft3:checked) [data-feature-screenshot]:nth-child(4){opacity:1!important}',
+            '[data-fs]:has(#ft1:checked) [data-feature-screenshot]:nth-child(1),',
+            '[data-fs]:has(#ft2:checked) [data-feature-screenshot]:nth-child(1),',
+            '[data-fs]:has(#ft3:checked) [data-feature-screenshot]:nth-child(1){opacity:0!important}',
+            'label[for^=ft]{cursor:pointer}',
+            'label[for^=ft]>:first-child{color:var(--color-text-muted)!important}',
+            'label[for^=ft] h3{color:var(--color-text-secondary)!important}',
+            'label[for^=ft] p{color:var(--color-text-muted)!important}',
+            '[data-fs]:has(#ft0:checked) label[for=ft0]>:first-child,',
+            '[data-fs]:has(#ft1:checked) label[for=ft1]>:first-child,',
+            '[data-fs]:has(#ft2:checked) label[for=ft2]>:first-child,',
+            '[data-fs]:has(#ft3:checked) label[for=ft3]>:first-child{color:var(--color-accent)!important}',
+            '[data-fs]:has(#ft0:checked) label[for=ft0] h3,',
+            '[data-fs]:has(#ft1:checked) label[for=ft1] h3,',
+            '[data-fs]:has(#ft2:checked) label[for=ft2] h3,',
+            '[data-fs]:has(#ft3:checked) label[for=ft3] h3{color:var(--color-text-primary)!important}',
+            '[data-fs]:has(#ft0:checked) label[for=ft0] p,',
+            '[data-fs]:has(#ft1:checked) label[for=ft1] p,',
+            '[data-fs]:has(#ft2:checked) label[for=ft2] p,',
+            '[data-fs]:has(#ft3:checked) label[for=ft3] p{color:var(--color-text-secondary)!important}',
+          '}',
+        ].join('')}</style>
+      </noscript>
     </FadeInSection>
   );
 }
@@ -379,13 +461,14 @@ function ScreenshotStage({
       ].join(' ')}
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14),transparent_48%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_48%)]" />
-      <div className="relative aspect-[1260/2736] overflow-hidden rounded-[2.5rem] md:rounded-[2.75rem] lg:rounded-[3rem]">
+      <div data-feature-screenshots className="relative aspect-[1260/2736] overflow-hidden rounded-[2.5rem] md:rounded-[2.75rem] lg:rounded-[3rem]">
         {items.map((item, index) => {
           const isActive = index === activeIndex;
 
           return (
             <div
               key={item.id}
+              data-feature-screenshot
               className={[
                 'absolute inset-0 block transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
                 isActive

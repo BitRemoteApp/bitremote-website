@@ -156,7 +156,7 @@ export function TextTabsNav({
   const compactCtaClassName =
     'min-h-11 shrink-0 items-center rounded-full border border-[color-mix(in_srgb,var(--color-accent)_18%,var(--color-border))] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-bg))] px-4 py-2 text-sm font-semibold leading-none text-[color-mix(in_srgb,var(--color-accent)_92%,var(--color-text-primary))] no-underline transition-[background-color,border-color,color] duration-150 hover:border-[color-mix(in_srgb,var(--color-accent)_32%,var(--color-border))] hover:bg-[color-mix(in_srgb,var(--color-accent)_14%,var(--color-bg))] hover:text-[color-mix(in_srgb,var(--color-accent)_92%,var(--color-text-primary))]';
   const mobileMenuButtonClassName =
-    'inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface sm:hidden';
+    'inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface';
   const localeRowBaseClassName =
     'inline-flex min-h-11 items-center justify-between rounded-2xl px-4 py-2 font-sans text-sm font-normal no-underline transition-colors duration-150';
   const localeRowClassName = (isCurrent: boolean) =>
@@ -178,7 +178,7 @@ export function TextTabsNav({
       : value.startsWith('zh-')
         ? 'font-["PingFang_SC","PingFang_TC","Hiragino_Sans_GB","Noto_Sans_CJK_SC","Noto_Sans_CJK_TC","Microsoft_YaHei","Microsoft_JhengHei",sans-serif] text-[0.94rem] font-normal tracking-[-0.01em]'
         : 'font-normal';
-  const shouldShowNavCta = isTermsPage || (isHomePage && !isHeroCtaVisible);
+  const shouldShowNavCta = !isHomePage || !isHeroCtaVisible;
 
   return (
     <nav
@@ -186,6 +186,7 @@ export function TextTabsNav({
       aria-label="Site"
     >
       <div
+        data-nav-veil
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 -top-3 -z-10"
         style={{ height: navVeilHeight || undefined }}
@@ -197,16 +198,21 @@ export function TextTabsNav({
           ref={shellRef}
           className="relative flex w-full items-center gap-3 rounded-[1.85rem] border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_72%,transparent)] px-3 py-3 shadow-[0_20px_44px_rgba(15,23,42,0.08)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_50%,transparent)] sm:px-4"
         >
-          <div className="sm:hidden">
-            <button
-              type="button"
-              data-mobile-menu-button
-              ref={mobileMenuButtonRef}
-              className={mobileMenuButtonClassName}
+          <details
+            data-mobile-menu-button
+            className="md:hidden"
+            ref={mobileMenuButtonRef}
+            open={isMobileMenuOpen || undefined}
+          >
+            <summary
+              className={`${mobileMenuButtonClassName} cursor-pointer list-none select-none [&::-webkit-details-marker]:hidden`}
               aria-expanded={isMobileMenuOpen}
               aria-controls={mobileMenuId}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+              }}
             >
               <span className="sr-only">{isMobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
               <span aria-hidden="true" className="relative h-4 w-4">
@@ -220,14 +226,62 @@ export function TextTabsNav({
                   className={`absolute left-0 top-[12px] h-[1.5px] w-4 rounded-full bg-current transition-transform duration-200 ${isMobileMenuOpen ? '-translate-y-[5px] -rotate-45' : ''}`}
                 />
               </span>
-            </button>
-          </div>
+            </summary>
+            <div
+              ref={mobileMenuRef}
+              id={mobileMenuId}
+              className="absolute inset-x-0 top-[calc(100%+0.7rem)] z-20 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ left: '-0.75rem', right: '-0.75rem' }}
+            >
+              <div className="overflow-hidden rounded-[1.7rem] border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2.5 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]">
+                <div className="flex flex-col gap-1.5">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.href}
+                      className="inline-flex min-h-11 items-center rounded-[1.15rem] px-4 py-2 font-sans text-[0.95rem] font-medium text-text-primary no-underline transition-colors duration-150 hover:bg-surface active:bg-surface"
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
 
-          <div className="flex-1 sm:hidden" />
+                <div className="my-2 h-px bg-[color-mix(in_srgb,var(--color-border)_78%,transparent)]" />
+
+                <div className="px-2 pb-1 pt-0.5">
+                  <p className="m-0 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-text-secondary/80">
+                    {nav.language}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-1.5">
+                  {locales.map((l) => {
+                    const isCurrent = l === locale;
+                    return (
+                      <a
+                        key={l}
+                        className={localeRowClassName(isCurrent)}
+                        href={localePath(l, currentPathWithinLocale)}
+                        aria-current={l === locale ? 'page' : undefined}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span className={localeLabelClassName(l)} lang={localeLang[l]}>
+                          {localeLabels[l]}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <div className="flex-1 md:hidden" />
 
           <div
             data-primary-tabs
-            className="hidden min-w-0 flex-1 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:block"
+            className="hidden min-w-0 flex-1 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:block"
           >
             <div className="inline-flex min-w-max items-center gap-2">
               {navItems.map((item) => (
@@ -243,6 +297,7 @@ export function TextTabsNav({
           </div>
 
           <div
+            data-nav-cta
             className="ml-auto transition-[opacity,transform] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
               opacity: shouldShowNavCta ? 1 : 0,
@@ -265,7 +320,7 @@ export function TextTabsNav({
                 </a>
           </div>
 
-          <div data-locale-switch className="ml-auto hidden" aria-label="Language" hidden>
+          <div data-locale-switch className="ml-auto hidden" aria-label="Language">
             {locales.map((l) => {
               const isCurrent = l === locale;
               return (
@@ -283,13 +338,20 @@ export function TextTabsNav({
             })}
           </div>
 
-          <div data-locale-picker className="relative ml-auto hidden sm:block" ref={pickerRef}>
-            <button
-              type="button"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] px-4 py-2 font-sans text-sm font-medium text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface"
+          <details
+            data-locale-picker
+            className="relative ml-auto hidden md:block"
+            ref={pickerRef}
+            open={isLocaleMenuOpen || undefined}
+          >
+            <summary
+              className="inline-flex min-h-11 cursor-pointer select-none list-none items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] px-4 py-2 font-sans text-sm font-medium text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface [&::-webkit-details-marker]:hidden"
               aria-expanded={isLocaleMenuOpen}
               aria-controls={localeMenuId}
-              onClick={() => setIsLocaleMenuOpen(!isLocaleMenuOpen)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsLocaleMenuOpen(!isLocaleMenuOpen);
+              }}
             >
               <span className={localeLabelClassName(locale)} lang={localeLang[locale]}>
                 {localeLabels[locale]}
@@ -297,89 +359,37 @@ export function TextTabsNav({
               <span aria-hidden="true" className="text-text-secondary">
                 {isLocaleMenuOpen ? '▴' : '▾'}
               </span>
-            </button>
+            </summary>
 
-            {isLocaleMenuOpen ? (
-              <div
-                className="absolute right-0 top-[calc(100%+0.55rem)] z-20 min-w-[12rem] rounded-3xl border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]"
-                id={localeMenuId}
-                role="menu"
-                aria-label="Language options"
-              >
-                <div className="flex flex-col gap-1">
-                  {locales.map((l) => {
-                    const isCurrent = l === locale;
-                    return (
-                      <a
-                        key={l}
-                        className={localeRowClassName(isCurrent)}
-                        href={localePath(l, currentPathWithinLocale)}
-                        aria-current={l === locale ? 'page' : undefined}
-                        role="menuitem"
-                      >
-                        <span className={localeLabelClassName(l)} lang={localeLang[l]}>
-                          {localeLabels[l]}
-                        </span>
-                      </a>
-                    );
-                  })}
-                </div>
+            <div
+              className="absolute right-0 top-[calc(100%+0.55rem)] z-20 min-w-[12rem] rounded-3xl border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]"
+              id={localeMenuId}
+              role="menu"
+              aria-label="Language options"
+            >
+              <div className="flex flex-col gap-1">
+                {locales.map((l) => {
+                  const isCurrent = l === locale;
+                  return (
+                    <a
+                      key={l}
+                      className={localeRowClassName(isCurrent)}
+                      href={localePath(l, currentPathWithinLocale)}
+                      aria-current={l === locale ? 'page' : undefined}
+                      role="menuitem"
+                    >
+                      <span className={localeLabelClassName(l)} lang={localeLang[l]}>
+                        {localeLabels[l]}
+                      </span>
+                    </a>
+                  );
+                })}
               </div>
-            ) : null}
-          </div>
-
-          {isMobileMenuOpen ? (
-              <div
-                ref={mobileMenuRef}
-                id={mobileMenuId}
-                className="absolute inset-x-0 top-[calc(100%+0.7rem)] z-20 sm:hidden transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
-              >
-                <div className="overflow-hidden rounded-[1.7rem] border border-[color-mix(in_srgb,var(--color-border)_78%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-bg)_94%,transparent)] p-2.5 shadow-[0_24px_48px_rgba(15,23,42,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--color-bg)_98%,transparent)]">
-                  <div className="flex flex-col gap-1.5">
-                    {navItems.map((item) => (
-                      <a
-                        key={item.href}
-                        className="inline-flex min-h-11 items-center rounded-[1.15rem] px-4 py-2 font-sans text-[0.95rem] font-medium text-text-primary no-underline transition-colors duration-150 hover:bg-surface active:bg-surface"
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-
-                  <div className="my-2 h-px bg-[color-mix(in_srgb,var(--color-border)_78%,transparent)]" />
-
-                  <div className="px-2 pb-1 pt-0.5">
-                    <p className="m-0 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-text-secondary/80">
-                      {nav.language}
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {locales.map((l) => {
-                      const isCurrent = l === locale;
-                      return (
-                        <a
-                          key={l}
-                          className={localeRowClassName(isCurrent)}
-                          href={localePath(l, currentPathWithinLocale)}
-                          aria-current={l === locale ? 'page' : undefined}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <span className={localeLabelClassName(l)} lang={localeLang[l]}>
-                            {localeLabels[l]}
-                          </span>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            ) : null}
+            </div>
+          </details>
 
           <noscript>
-            <style>{'[data-locale-switch]{display:flex!important}[data-locale-picker]{display:none!important}[data-mobile-menu-button]{display:none!important}[data-primary-tabs]{display:block!important}'}</style>
+            <style>{'[data-nav-cta]{opacity:1!important;transform:none!important;pointer-events:auto!important}[data-nav-veil]{height:7rem}'}</style>
           </noscript>
         </div>
       </div>
