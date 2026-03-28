@@ -17,23 +17,22 @@ Project not yet initialized. Run /gsd:new-project to set up.
 - npm (with lockfile `package-lock.json`)
 - Lockfile: Present
 ## Frameworks
-- Next.js 15.1.0 - Full-stack React framework for SSR/static generation
+- Next.js 16.2.1 - Full-stack React framework for static export and App Router pages
 - React 19.0.0 - UI component library
 - React DOM 19.0.0 - DOM rendering
-- Tailwind CSS 3.4.0 - Utility-first CSS framework
-- PostCSS 8.4.0 - CSS transformations
-- Autoprefixer 10.4.0 - Vendor prefix automation
+- Tailwind CSS 4.2.2 - Utility-first CSS framework via `@tailwindcss/postcss`
+- PostCSS 8.5.8 - CSS transformations
 - TypeScript 5.7.3 - Language compilation
-- ESLint 8.57.0 with next/core-web-vitals - Code linting
-- ESLint Config Next 15.1.0 - Next.js specific linting rules
+- ESLint 9.0.0 - Code linting
+- ESLint Config Next 16.2.1 (`core-web-vitals`) - Next.js specific linting rules
 ## Key Dependencies
-- next (15.1.0) - Framework providing server rendering, static generation, and API routes
+- next (16.2.1) - Framework providing App Router rendering and static export
 - react (19.0.0) - Component library and state management
 - react-dom (19.0.0) - Renders React components to DOM
-- autoprefixer (10.4.0) - Auto-adds vendor prefixes to CSS
-- postcss (8.4.0) - CSS processing pipeline
-- tailwindcss (3.4.0) - CSS utility generation from config
-- @types/node (22.10.0) - Node.js type definitions
+- @tailwindcss/postcss (4.2.2) - Tailwind PostCSS integration
+- postcss (8.5.8) - CSS processing pipeline
+- tailwindcss (4.2.2) - CSS utility generation
+- @types/node (25.5.0) - Node.js type definitions
 - @types/react (19.0.0) - React component type definitions
 - @types/react-dom (19.0.0) - React DOM type definitions
 - typescript (5.7.3) - TypeScript compiler
@@ -41,8 +40,7 @@ Project not yet initialized. Run /gsd:new-project to set up.
 - `NEXT_ALLOWED_DEV_ORIGINS` (optional) - Comma-separated list of allowed origins for development
 - `next.config.ts` - Next.js configuration
 - `tsconfig.json` - TypeScript compiler settings
-- `tailwind.config.ts` - Tailwind CSS configuration
-- `.eslintrc.json` - ESLint configuration
+- `eslint.config.mjs` - Flat ESLint configuration
 - `postcss.config.js` - PostCSS pipeline
 ## Platform Requirements
 - Node.js 25 (see `.github/workflows/ci.yml`)
@@ -81,8 +79,8 @@ Project not yet initialized. Run /gsd:new-project to set up.
 - Line length: No strict limit observed but code typically under 120 chars per line
 - Indentation: 2 spaces (standard Next.js)
 - Trailing commas: Used in objects and arrays
-- ESLint configuration: `extends: ["next/core-web-vitals"]`
-- Config file: `.eslintrc.json`
+- ESLint configuration: flat config importing `eslint-config-next/core-web-vitals`
+- Config file: `eslint.config.mjs`
 - Lint command: `npm run lint` runs ESLint with `--max-warnings 0` (zero warnings allowed)
 - Enforced rules include Next.js best practices and core web vitals compliance
 - All imports sorted: React types first, then third-party, then local imports
@@ -147,7 +145,7 @@ Project not yet initialized. Run /gsd:new-project to set up.
 ## Architecture
 
 ## Pattern Overview
-- Next.js 15 with `output: export` configuration for static HTML generation
+- Next.js 16 with `output: export` configuration for static HTML generation
 - App Router with dynamic parameters disabled (`dynamicParams = false`) for type-safe static routes
 - Internationalization (i18n) as a core architectural concern handled via URL segments
 - Component-driven UI with Tailwind CSS styling
@@ -219,9 +217,15 @@ Project not yet initialized. Run /gsd:new-project to set up.
 - Location: `src/app/page.tsx`
 - Triggers: `/` root request
 - Responsibilities: Language selector, link to App Store
+- Location: `src/app/robots.ts`
+- Triggers: Build time (metadata route generation)
+- Responsibilities: Emit robots directives for the static site
 - Location: `src/app/sitemap.ts`
 - Triggers: Build time (static generation)
 - Responsibilities: List all localized routes and downloader pages with language alternates
+- Location: `src/app/llms-full.txt/route.ts`
+- Triggers: `/llms-full.txt` requests
+- Responsibilities: Emit the LLM-facing plain text route
 ## Error Handling
 - Locale validation via `isLocale()` guard; falls back to `defaultLocale` if invalid
 - Message loading fails hard (import-time, caught during build) rather than runtime
@@ -241,6 +245,7 @@ Any agent making design-related decisions for this project must read [`.impeccab
 Before using Edit, Write, or other file-changing tools, start work through a GSD command so planning artifacts and execution context stay in sync.
 
 Use these entry points:
+- `/gsd:fast` for trivial one-step fixes that stay within the fast workflow limits
 - `/gsd:quick` for small fixes, doc updates, and ad-hoc tasks
 - `/gsd:debug` for investigation and bug fixing
 - `/gsd:execute-phase` for planned phase work
