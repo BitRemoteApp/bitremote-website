@@ -227,24 +227,24 @@ export function AppShowcaseClient({ id, title, items }: Props) {
       </div>
 
       <div
-        className="hidden md:sticky md:flex md:items-center"
+        className="hidden md:sticky md:flex md:items-start [@media(min-height:1000px)]:md:items-center md:overflow-y-hidden"
         style={{
           top: `calc(${navHeight}px + 1.5rem)`,
           height: `calc(100dvh - ${navHeight}px - 3rem)`,
         }}
       >
         <div className="grid w-full grid-cols-[minmax(0,0.92fr)_minmax(240px,0.78fr)] items-start gap-8 md:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.84fr)] md:gap-10 lg:grid-cols-[minmax(0,0.86fr)_minmax(320px,0.92fr)] lg:gap-14">
-          <div className="flex flex-col justify-start gap-6 pt-2 md:gap-7 md:pt-3 lg:gap-8 lg:pt-4">
+          <div className="flex flex-col justify-start gap-6 pt-2 md:gap-[clamp(0.75rem,2dvh,1.75rem)] md:pt-3 lg:gap-[clamp(1rem,2dvh,2rem)] lg:pt-4">
             <SectionLabel>{title}</SectionLabel>
 
-            <div className="grid gap-0 pt-3 md:pt-4 lg:pt-5">
+            <div className="grid gap-0 pt-3 md:pt-[clamp(0.5rem,1dvh,1rem)] lg:pt-[clamp(0.5rem,1.2dvh,1.25rem)]">
               {itemsWithMedia.map((item, index) => {
                 const isActive = index === activeIndex;
 
                 return (
                   <div
                     key={item.id}
-                    className="grid min-h-[8.25rem] content-center gap-4 border-b border-[var(--color-border-soft)] py-4 last:border-b-0 last:pb-0 first:pt-0 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-4 md:min-h-[8.75rem] md:gap-5 md:py-5 lg:min-h-[9.5rem] lg:gap-6 lg:py-6"
+                    className="grid min-h-[8.25rem] content-center gap-4 border-b border-[var(--color-border-soft)] py-4 last:border-b-0 last:pb-0 first:pt-0 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-4 md:min-h-[clamp(5rem,12dvh,8.75rem)] md:gap-5 md:py-[clamp(0.625rem,1.5dvh,1.25rem)] lg:min-h-[clamp(5.5rem,12dvh,9.5rem)] lg:gap-6 lg:py-[clamp(0.75rem,1.8dvh,1.5rem)]"
                   >
                     <div
                       className={[
@@ -257,7 +257,7 @@ export function AppShowcaseClient({ id, title, items }: Props) {
                     <div>
                       <h3
                         className={[
-                          'm-0 text-[1.3rem] font-semibold leading-[1.08] tracking-[-0.03em] transition-colors duration-500 md:text-[1.45rem] lg:text-[1.7rem]',
+                          'm-0 text-[1.3rem] font-semibold leading-[1.08] tracking-[-0.03em] transition-colors duration-500 md:text-[clamp(1.1rem,2dvh,1.45rem)] lg:text-[clamp(1.2rem,2dvh,1.7rem)]',
                           isActive ? 'text-text-primary' : 'text-text-secondary',
                         ].join(' ')}
                       >
@@ -265,7 +265,7 @@ export function AppShowcaseClient({ id, title, items }: Props) {
                       </h3>
                       <p
                         className={[
-                          'm-0 mt-2 max-w-[34ch] text-[0.95rem] leading-6 transition-colors duration-500 md:mt-3 md:max-w-[36ch] md:text-base md:leading-7 lg:max-w-[38ch] lg:text-[1.0625rem]',
+                          'm-0 mt-2 max-w-[34ch] text-[0.95rem] leading-6 transition-colors duration-500 md:mt-[clamp(0.25rem,0.8dvh,0.75rem)] md:max-w-[36ch] md:text-[clamp(0.8rem,1.6dvh,1rem)] md:leading-[clamp(1.25rem,2.2dvh,1.75rem)] lg:max-w-[38ch] lg:text-[clamp(0.85rem,1.6dvh,1.0625rem)]',
                           isActive ? 'text-text-secondary' : 'text-text-muted',
                         ].join(' ')}
                       >
@@ -279,7 +279,7 @@ export function AppShowcaseClient({ id, title, items }: Props) {
           </div>
 
           <div className="justify-self-end pt-2 md:pt-3 lg:pt-4">
-            <div className="w-fit rounded-[3.75rem] border border-[var(--color-border-soft)] bg-surface p-3 shadow-[0_18px_56px_rgba(15,23,42,0.12)] md:rounded-[4.125rem] md:p-4 lg:rounded-[4.75rem] lg:p-5">
+            <div className="w-fit rounded-[3.75rem] border border-[var(--color-border-soft)] bg-surface p-3 md:rounded-[4.125rem] md:p-4 lg:rounded-[4.75rem] lg:p-5">
               <ScreenshotStage items={itemsWithMedia} activeIndex={activeIndex} />
             </div>
           </div>
