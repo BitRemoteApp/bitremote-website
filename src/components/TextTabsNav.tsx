@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import type { Locale } from '@/i18n/locales';
@@ -31,8 +31,12 @@ export function TextTabsNav({
   const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const shellRef = useRef<HTMLDivElement | null>(null);
-  const [isLocaleMenuOpen, setIsLocaleMenuOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [localeMenuOpenAt, setLocaleMenuOpenAt] = useState<string | null>(null);
+  const [mobileMenuOpenAt, setMobileMenuOpenAt] = useState<string | null>(null);
+  const isLocaleMenuOpen = localeMenuOpenAt === pathname;
+  const isMobileMenuOpen = mobileMenuOpenAt === pathname;
+  const setIsLocaleMenuOpen = useCallback((open: boolean) => setLocaleMenuOpenAt(open ? pathname : null), [pathname]);
+  const setIsMobileMenuOpen = useCallback((open: boolean) => setMobileMenuOpenAt(open ? pathname : null), [pathname]);
   const [navVeilHeight, setNavVeilHeight] = useState(0);
   const [isHeroCtaVisible, setIsHeroCtaVisible] = useState(isHomePage);
   const localeMenuId = `locale-menu-${locale}`;
@@ -84,11 +88,6 @@ export function TextTabsNav({
   }, [isHomePage, pathname]);
 
   useEffect(() => {
-    setIsLocaleMenuOpen(false);
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (!isLocaleMenuOpen) {
       return;
     }
@@ -113,7 +112,7 @@ export function TextTabsNav({
       document.removeEventListener('pointerdown', onPointerDown);
       document.removeEventListener('keydown', onEscape);
     };
-  }, [isLocaleMenuOpen]);
+  }, [isLocaleMenuOpen, setIsLocaleMenuOpen]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -144,7 +143,7 @@ export function TextTabsNav({
       document.removeEventListener('pointerdown', onPointerDown);
       document.removeEventListener('keydown', onEscape);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, setIsMobileMenuOpen]);
 
   const tabLinkClassName =
     'inline-flex min-h-11 items-center rounded-full px-4 py-2 font-sans text-sm font-medium text-text-secondary no-underline transition-colors duration-150 hover:bg-surface hover:text-text-primary active:bg-surface';
@@ -207,7 +206,7 @@ export function TextTabsNav({
               aria-expanded={isMobileMenuOpen}
               aria-controls={mobileMenuId}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              onClick={() => setIsMobileMenuOpen((current) => !current)}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span className="sr-only">{isMobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
               <span aria-hidden="true" className="relative h-4 w-4">
@@ -290,7 +289,7 @@ export function TextTabsNav({
               className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-border)_82%,var(--color-bg))] bg-[color-mix(in_srgb,var(--color-surface)_82%,var(--color-bg))] px-4 py-2 font-sans text-sm font-medium text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-colors duration-150 hover:bg-surface active:bg-surface"
               aria-expanded={isLocaleMenuOpen}
               aria-controls={localeMenuId}
-              onClick={() => setIsLocaleMenuOpen((current) => !current)}
+              onClick={() => setIsLocaleMenuOpen(!isLocaleMenuOpen)}
             >
               <span className={localeLabelClassName(locale)} lang={localeLang[locale]}>
                 {localeLabels[locale]}
