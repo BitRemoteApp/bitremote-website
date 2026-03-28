@@ -48,9 +48,7 @@ const FEATURE_MEDIA_BY_ID: Record<string, FeatureMedia> = {
 
 export function AppShowcaseClient({ id, title, items }: Props) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const mobileStepRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [mobileDirection, setMobileDirection] = useState(1);
   const [isDesktop, setIsDesktop] = useState(false);
   const [navHeight, setNavHeight] = useState(84);
 
@@ -129,64 +127,7 @@ export function AppShowcaseClient({ id, title, items }: Props) {
         window.removeEventListener('resize', requestUpdate);
       };
     }
-
-    let frame = 0;
-
-    const update = () => {
-      frame = 0;
-
-      const candidates = mobileStepRefs.current
-        .map((element, index) => ({ element, index }))
-        .filter(
-          (entry): entry is { element: HTMLDivElement; index: number } =>
-            entry.element instanceof HTMLDivElement,
-        );
-
-      if (candidates.length === 0) {
-        return;
-      }
-
-      const viewportCenter = navHeight + (window.innerHeight - navHeight) / 2;
-      let nextIndex = activeIndex;
-      let bestDistance = Number.POSITIVE_INFINITY;
-
-      candidates.forEach(({ element, index }) => {
-        const rect = element.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const distance = Math.abs(center - viewportCenter);
-
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          nextIndex = index;
-        }
-      });
-
-      if (nextIndex !== activeIndex) {
-        setMobileDirection(nextIndex > activeIndex ? 1 : -1);
-        setActiveIndex(nextIndex);
-      }
-    };
-
-    const requestUpdate = () => {
-      if (frame !== 0) {
-        return;
-      }
-
-      frame = window.requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
-
-    return () => {
-      if (frame !== 0) {
-        window.cancelAnimationFrame(frame);
-      }
-      window.removeEventListener('scroll', requestUpdate);
-      window.removeEventListener('resize', requestUpdate);
-    };
-  }, [activeIndex, isDesktop, itemsWithMedia.length, navHeight]);
+  }, [isDesktop, itemsWithMedia.length]);
 
   return (
     <FadeInSection as="section" id={id} className="py-2 md:py-4">
@@ -195,41 +136,10 @@ export function AppShowcaseClient({ id, title, items }: Props) {
         data-fs
         style={isDesktop ? { minHeight: `${itemsWithMedia.length * 90}vh` } : undefined}
       >
-      <div data-mobile-scroll className="grid gap-8 sm:hidden">
-        <div className="flex flex-col gap-6">
-          <SectionLabel>{title}</SectionLabel>
-
-          <div className="relative">
-            <div
-              className="sticky z-[1]"
-              style={{ top: `calc(${navHeight}px + 1.5rem)` }}
-            >
-              <MobileShowcaseStage
-                items={itemsWithMedia}
-                activeIndex={activeIndex}
-                direction={mobileDirection}
-                navHeight={navHeight}
-              />
-            </div>
-
-            <div className="mt-6 grid gap-0" aria-hidden="true">
-              {itemsWithMedia.map((item, index) => (
-                <div
-                  key={item.id}
-                  ref={(element) => {
-                    mobileStepRefs.current[index] = element;
-                  }}
-                  className="min-h-[52vh] first:min-h-[42vh] last:min-h-[96vh]"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div data-sm-carousel className="hidden sm:block md:hidden">
+      <div data-sm-carousel className="md:hidden">
         <SectionLabel>{title}</SectionLabel>
-        <div className="mt-6 flex gap-4 overflow-x-auto pb-4 [scroll-snap-type:x_mandatory] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-6 mt-6 flex gap-4 overflow-x-auto pb-4 [scroll-snap-type:x_mandatory] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="w-2 shrink-0" />
           {itemsWithMedia.map((item, index) => (
             <div
               key={item.id}
@@ -260,6 +170,7 @@ export function AppShowcaseClient({ id, title, items }: Props) {
               </div>
             </div>
           ))}
+          <div className="w-2 shrink-0" />
         </div>
       </div>
 
@@ -372,94 +283,16 @@ export function AppShowcaseClient({ id, title, items }: Props) {
   );
 }
 
-function MobileShowcaseStage({
-  items,
-  activeIndex,
-  direction,
-  navHeight,
-}: {
-  items: Array<BenefitItem & { media: FeatureMedia }>;
-  activeIndex: number;
-  direction: number;
-  navHeight: number;
-}) {
-  const [displayedIndex, setDisplayedIndex] = useState(activeIndex);
-  const transitioning = displayedIndex !== activeIndex;
-
-  useEffect(() => {
-    if (activeIndex === displayedIndex) return;
-    const timeout = setTimeout(() => {
-      setDisplayedIndex(activeIndex);
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, [activeIndex, displayedIndex]);
-
-  const item = items[transitioning ? displayedIndex : activeIndex];
-  const enterY = direction > 0 ? 40 : -40;
-
-  return (
-    <div className="relative rounded-[4.75rem] border border-[var(--color-border-soft)] bg-surface p-4 shadow-[var(--shadow-card)]">
-      <div
-        className="relative overflow-hidden rounded-[3.5rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]"
-        style={{ height: `calc(100dvh - ${navHeight}px - 4.5rem)` }}
-      >
-        <div
-          key={item.id}
-          className="absolute inset-x-4 inset-y-4 flex flex-col gap-5"
-          style={{
-            opacity: transitioning ? 0 : 1,
-            transform: transitioning ? `translateY(${enterY}px)` : 'translateY(0)',
-            transition: 'opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
-          }}
-        >
-            <div className="shrink-0">
-              <h3 className="m-0 text-[1.45rem] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary">
-                <span className="mr-3 text-sm tracking-[0.08em] text-accent align-[0.04em]">
-                  0{activeIndex + 1}
-                </span>
-                <span>{item.title}</span>
-              </h3>
-              <p className="m-0 mt-3 text-[0.98rem] leading-7 text-text-secondary">
-                {item.subtitle}
-              </p>
-            </div>
-
-            <div className="relative flex flex-1 items-end justify-center overflow-hidden">
-              <picture className="flex h-full w-full items-end justify-center">
-                <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
-                <img
-                  src={item.media.lightSrc}
-                  alt={item.media.alt}
-                  width={1260}
-                  height={2736}
-                  loading="lazy"
-                  decoding="async"
-                  className="apple-squircle h-auto max-h-full w-auto max-w-full rounded-[2.625rem] object-contain"
-                />
-              </picture>
-            </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ScreenshotStage({
   items,
   activeIndex,
-  compact = false,
 }: {
   items: Array<BenefitItem & { media: FeatureMedia }>;
   activeIndex: number;
-  compact?: boolean;
 }) {
   return (
-    <div
-      className={[
-        'relative overflow-hidden rounded-[3.5rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]',
-        compact ? 'mx-auto w-full max-w-[18rem]' : 'w-[15.5rem] md:w-[19rem] lg:w-[25rem]',
-      ].join(' ')}
-    >
+    <div className="relative w-[15.5rem] overflow-hidden rounded-[3.5rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)] md:w-[19rem] lg:w-[25rem]">
+
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14),transparent_48%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_48%)]" />
       <div data-feature-screenshots className="relative aspect-[1260/2736] overflow-hidden rounded-[2.5rem] md:rounded-[2.75rem] lg:rounded-[3rem]">
         {items.map((item, index) => {
