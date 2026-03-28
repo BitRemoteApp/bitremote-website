@@ -27,8 +27,8 @@ export function TextTabsNav({
     : '/';
   const isHomePage = currentPathWithinLocale === '/';
   const isTermsPage = currentPathWithinLocale === '/terms/';
-  const pickerRef = useRef<HTMLDivElement | null>(null);
-  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const pickerRef = useRef<HTMLDetailsElement | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLDetailsElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const shellRef = useRef<HTMLDivElement | null>(null);
   const [localeMenuOpenAt, setLocaleMenuOpenAt] = useState<string | null>(null);
