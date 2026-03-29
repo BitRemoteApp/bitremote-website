@@ -143,9 +143,16 @@ export function AppShowcaseClient({ id, title, items }: Props) {
           {itemsWithMedia.map((item, index) => (
             <div
               key={item.id}
-              className="w-[80vw] max-w-[20rem] shrink-0 [scroll-snap-align:center]"
+              className="flex w-[80vw] max-w-[20rem] shrink-0 flex-col [scroll-snap-align:center]"
             >
-              <div className="rounded-[2.5rem] border border-[var(--color-border-soft)] bg-surface p-3">
+              <div className="mt-2 mb-5 px-2">
+                <h3 className="m-0 text-[1.1rem] font-semibold leading-[1.12] tracking-[-0.02em] text-text-primary">
+                  <span className="mr-2 text-xs tracking-[0.08em] text-accent">0{index + 1}</span>
+                  {item.title}
+                </h3>
+                <p className="m-0 mt-1.5 text-sm leading-5 text-text-secondary">{item.subtitle}</p>
+              </div>
+              <div className="mt-auto rounded-[2.5rem] border border-[var(--color-border-soft)] bg-surface p-3">
                 <div className="overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_58%),var(--color-surface-alt)]">
                   <picture>
                     <source media="(prefers-color-scheme: dark)" srcSet={item.media.darkSrc} />
@@ -160,13 +167,6 @@ export function AppShowcaseClient({ id, title, items }: Props) {
                     />
                   </picture>
                 </div>
-              </div>
-              <div className="mt-5 px-2">
-                <h3 className="m-0 text-[1.1rem] font-semibold leading-[1.12] tracking-[-0.02em] text-text-primary">
-                  <span className="mr-2 text-xs tracking-[0.08em] text-accent">0{index + 1}</span>
-                  {item.title}
-                </h3>
-                <p className="m-0 mt-1.5 text-sm leading-5 text-text-secondary">{item.subtitle}</p>
               </div>
             </div>
           ))}
