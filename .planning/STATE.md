@@ -113,6 +113,12 @@ None yet.
 - [Pre-Phase 3]: Screenshot content is not yet defined — exact screenshots, device frame approach, and dimensions require a product decision before Phase 3 can begin (noted in research SUMMARY.md).
 - [Pre-Phase 1]: Dark vs. light theme default is pending — research recommends dark; final call affects glassmorphism and glow feasibility.
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260426-wu9 | Replace root / language switcher with default-locale homepage | 2026-04-26 | e8bca85 | [260426-wu9-replace-root-language-switcher-with-defa](./quick/260426-wu9-replace-root-language-switcher-with-defa/) |
+
 ## Session Continuity
 
 Last session: 2026-04-26T14:46:40.235Z
