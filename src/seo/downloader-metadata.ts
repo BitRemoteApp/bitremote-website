@@ -6,7 +6,7 @@ import {
   type DownloaderLandingContent,
   type DownloaderLandingSlug,
 } from '@/domain/downloader-landings';
-import { localeLang, type Locale } from '@/i18n/locales';
+import { localeHreflang, type Locale } from '@/i18n/locales';
 import { absoluteUrl } from '@/i18n/urls';
 
 const platforms = ['iPhone', 'iPad', 'Mac', 'iOS', 'iPadOS', 'macOS'] as const;
@@ -45,7 +45,7 @@ export function buildDownloaderLandingMetadata({
       languages: {
         ...Object.fromEntries(
           availableLocales.map((candidateLocale) => [
-            localeLang[candidateLocale],
+            localeHreflang[candidateLocale],
             absoluteUrl(landingPath(candidateLocale, slug)),
           ]),
         ),

@@ -4,7 +4,7 @@ import {
   getAvailableDownloaderLandingLocales,
   getDownloaderLandingEntries,
 } from '@/domain/downloader-landings';
-import { localeLang, locales } from '@/i18n/locales';
+import { localeHreflang, locales } from '@/i18n/locales';
 import { absoluteUrl, localePath } from '@/i18n/urls';
 import { getLocalizedRouteEntries } from '@/seo/routes';
 
@@ -17,14 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: absoluteUrl('/'),
       lastModified,
-    },
-    {
-      url: absoluteUrl('/llms.txt'),
-      lastModified,
-    },
-    {
-      url: absoluteUrl('/llms-full.txt'),
-      lastModified,
+      alternates: {
+        languages: {
+          ...Object.fromEntries(
+            locales.map((candidateLocale) => [
+              localeHreflang[candidateLocale],
+              absoluteUrl(localePath(candidateLocale, '/')),
+            ]),
+          ),
+          'x-default': absoluteUrl('/'),
+        },
+      },
     },
     ...getLocalizedRouteEntries().map(({ locale, pathname, url }) => ({
       url,
@@ -32,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: Object.fromEntries(
           locales.map((candidateLocale) => [
-            localeLang[candidateLocale],
+            localeHreflang[candidateLocale],
             absoluteUrl(localePath(candidateLocale, pathname)),
           ]),
         ),
@@ -44,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: Object.fromEntries(
           getAvailableDownloaderLandingLocales(content.slug).map((candidateLocale) => [
-            localeLang[candidateLocale],
+            localeHreflang[candidateLocale],
             absoluteUrl(`/${candidateLocale}/downloaders/${content.slug}/`),
           ]),
         ),

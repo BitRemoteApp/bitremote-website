@@ -38,7 +38,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: BACK_FORWARD_RELOAD_SCRIPT }} />
+        <link rel="preconnect" href="https://static.cloudflareinsights.com" crossOrigin="" />
+        <script defer dangerouslySetInnerHTML={{ __html: BACK_FORWARD_RELOAD_SCRIPT }} />
       </head>
       <body>
         <LenisProvider>
