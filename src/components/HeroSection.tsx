@@ -67,7 +67,7 @@ export function HeroSection({ tagline, subhead, ctaLabel, siteName, platforms }:
           <div className="block">
             <Image
               src="/icons/app-icon-light.png"
-              alt=""
+              alt={`${siteName} app icon`}
               width={96}
               height={96}
               className="block h-[13rem] w-[13rem] dark:hidden [filter:drop-shadow(0_0_0.7px_rgba(148,163,184,0.52))] md:h-[14.58rem] md:w-[14.58rem] lg:h-[17.82rem] lg:w-[17.82rem]"

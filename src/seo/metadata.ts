@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import type { Messages } from '@/i18n/messages';
-import { localeLang, locales, type Locale } from '@/i18n/locales';
+import { localeHreflang, locales, type Locale } from '@/i18n/locales';
 import { absoluteUrl, localePath } from '@/i18n/urls';
 
 type SeoPage = keyof Messages['seo'];
@@ -16,7 +16,7 @@ const openGraphLocaleByLocale: Record<Locale, string> = {
 function buildLanguageAlternates(pathname: string): Record<string, string> {
   return {
     ...Object.fromEntries(
-      locales.map((locale) => [localeLang[locale], absoluteUrl(localePath(locale, pathname))]),
+      locales.map((locale) => [localeHreflang[locale], absoluteUrl(localePath(locale, pathname))]),
     ),
     'x-default': absoluteUrl('/'),
   };

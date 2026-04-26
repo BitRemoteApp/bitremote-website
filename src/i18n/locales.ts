@@ -18,7 +18,14 @@ export const localeLang: Record<Locale, string> = {
   'zh-hant': 'zh-Hant',
 };
 
+/** Region-based hreflang tags used for search crawler compatibility. */
+export const localeHreflang: Record<Locale, string> = {
+  en: 'en',
+  ja: 'ja',
+  'zh-hans': 'zh-CN',
+  'zh-hant': 'zh-TW',
+};
+
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
-
