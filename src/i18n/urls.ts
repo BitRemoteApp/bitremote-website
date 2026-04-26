@@ -1,11 +1,9 @@
-import type { Locale } from './locales';
-
-export function localeRoot(locale: Locale): string {
-  return `/${locale}/`;
-}
+import { defaultLocale, type Locale } from './locales';
 
 export function localePath(locale: Locale, path: string): string {
-  if (path === '/') return localeRoot(locale);
+  if (path === '' || path === '/') {
+    return locale === defaultLocale ? '/' : `/${locale}/`;
+  }
   const trimmed = path.replace(/^\/+/, '').replace(/\/+$/, '');
   return `/${locale}/${trimmed}/`;
 }

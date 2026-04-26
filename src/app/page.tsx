@@ -4,7 +4,7 @@ import { HomeView } from '@/components/HomeView';
 import { SiteChrome } from '@/components/SiteChrome';
 import { defaultLocale, localeHreflang, locales, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
-import { absoluteUrl, localeRoot } from '@/i18n/urls';
+import { absoluteUrl, localePath } from '@/i18n/urls';
 
 const openGraphLocaleByLocale: Record<Locale, string> = {
   en: 'en_US',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     canonical: absoluteUrl('/'),
     languages: {
       ...Object.fromEntries(
-        locales.map((locale) => [localeHreflang[locale], absoluteUrl(localeRoot(locale))]),
+        locales.map((locale) => [localeHreflang[locale], absoluteUrl(localePath(locale, '/'))]),
       ),
       'x-default': absoluteUrl('/'),
     },
