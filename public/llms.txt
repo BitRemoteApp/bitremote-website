@@ -36,11 +36,15 @@ BitRemote is a remote download manager for Apple platforms. It connects to your 
 
 - [Home](https://bitremote.app/en/)
 - [Terms](https://bitremote.app/en/terms/)
+- [Privacy Policy](https://bitremote.app/en/terms/privacy/)
+- [End User License Agreement](https://bitremote.app/en/terms/eula/)
+- [Specified Commercial Transactions Act Disclosure](https://bitremote.app/en/terms/scta/)
 
 ## Legal
 
-- [Privacy Policy](https://arkstudios.co.jp/en/privacy/bitremote)
-- [End User License Agreement](https://arkstudios.co.jp/en/eula/bitremote)
+- [Privacy Policy](https://bitremote.app/en/terms/privacy/)
+- [End User License Agreement](https://bitremote.app/en/terms/eula/)
+- [Specified Commercial Transactions Act Disclosure](https://bitremote.app/en/terms/scta/)
 
 ## Full Content
 

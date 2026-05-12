@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 
 import { FadeInSection } from '@/components/ui/FadeInSection';
-import { eulaUrl, privacyPolicyUrl } from '@/i18n/links';
+import { legalDocumentPathByKind } from '@/domain/legal-documents';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/locales';
 import { getMessages } from '@/i18n/messages';
+import { localePath } from '@/i18n/urls';
 import { buildMetadataForCurrentLocalePage } from '@/seo/metadata';
 import { buildBreadcrumbSchema, serializeJsonLd } from '@/seo/schema';
 
@@ -32,8 +33,9 @@ export default async function TermsPage({
   const { locale: rawLocale } = await params;
   const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const messages = getMessages(locale);
-  const eulaHref = eulaUrl(locale);
-  const privacyHref = privacyPolicyUrl(locale);
+  const eulaHref = localePath(locale, legalDocumentPathByKind.eula);
+  const privacyHref = localePath(locale, legalDocumentPathByKind.privacy);
+  const sctaHref = localePath(locale, legalDocumentPathByKind.scta);
   const breadcrumbSchema = buildBreadcrumbSchema({
     locale,
     items: [
@@ -61,11 +63,9 @@ export default async function TermsPage({
               </span>
             ))}
           </p>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
             <a
               href={privacyHref}
-              target="_blank"
-              rel="noreferrer"
               className="group relative block rounded-[1.5rem] border border-[var(--color-border-soft)] bg-surface/70 p-6 text-inherit no-underline transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-border-soft)_72%,var(--color-text-primary))] hover:bg-surface"
             >
               <span
@@ -84,8 +84,6 @@ export default async function TermsPage({
 
             <a
               href={eulaHref}
-              target="_blank"
-              rel="noreferrer"
               className="group relative block rounded-[1.5rem] border border-[var(--color-border-soft)] bg-surface/70 p-6 text-inherit no-underline transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-border-soft)_72%,var(--color-text-primary))] hover:bg-surface"
             >
               <span
@@ -99,6 +97,24 @@ export default async function TermsPage({
               </h2>
               <p className="mb-0 mt-3 text-sm leading-6 text-text-secondary">
                 {messages.pages.terms.eulaBody}
+              </p>
+            </a>
+
+            <a
+              href={sctaHref}
+              className="group relative block rounded-[1.5rem] border border-[var(--color-border-soft)] bg-surface/70 p-6 text-inherit no-underline transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-border-soft)_72%,var(--color-text-primary))] hover:bg-surface"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute right-6 top-6 text-lg leading-none text-text-secondary transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-text-primary"
+              >
+                →
+              </span>
+              <h2 className="m-0 text-lg font-semibold tracking-[-0.02em] text-text-primary">
+                {messages.pages.terms.sctaTitle}
+              </h2>
+              <p className="mb-0 mt-3 text-sm leading-6 text-text-secondary">
+                {messages.pages.terms.sctaBody}
               </p>
             </a>
           </div>

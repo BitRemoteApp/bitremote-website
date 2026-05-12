@@ -99,11 +99,13 @@
   "pages": {
     "terms": {
       "title": "Terms",
-      "body": "BitRemote’s legal documents are hosted by Ark Studios LLC.\nUse the links below to open the official pages.",
+      "body": "Review BitRemote’s legal documents from Ark Studios LLC.\nChoose a document below to continue.",
       "privacyTitle": "Privacy Policy",
       "privacyBody": "Learn what BitRemote data may be collected, how it may be used, and which third-party services are involved.",
       "eulaTitle": "End User License Agreement",
-      "eulaBody": "Review the license terms for BitRemote, including usage limits, legal precedence, updates, and dispute handling."
+      "eulaBody": "Review the license terms for BitRemote, including usage limits, legal precedence, updates, and dispute handling.",
+      "sctaTitle": "Specified Commercial Transactions Act Disclosure",
+      "sctaBody": "Review the transaction details for BitRemote, including seller information, App Store payment terms, access timing, and refunds."
     }
   },
   "seo": {
@@ -123,13 +125,43 @@
     },
     "terms": {
       "title": "Terms | BitRemote",
-      "description": "Open BitRemote’s legal documents from Ark Studios LLC, including the privacy policy and end user license agreement.",
+      "description": "Review BitRemote’s legal documents from Ark Studios LLC, including the privacy policy and end user license agreement.",
       "keywords": [
         "bitremote privacy policy",
         "bitremote eula",
         "bitremote terms",
         "ark studios privacy",
         "ark studios eula"
+      ]
+    },
+    "termsPrivacy": {
+      "title": "BitRemote Privacy Policy",
+      "description": "Review the BitRemote privacy policy from Ark Studios LLC, including information collection, third-party services, log data, and contact details.",
+      "keywords": [
+        "bitremote privacy policy",
+        "ark studios privacy policy",
+        "bitremote data collection",
+        "bitremote privacy"
+      ]
+    },
+    "termsEula": {
+      "title": "BitRemote End User License Agreement",
+      "description": "Review the BitRemote end user license agreement from Ark Studios LLC, including platform usage limits, purchase terms, updates, and dispute handling.",
+      "keywords": [
+        "bitremote eula",
+        "bitremote license agreement",
+        "ark studios eula",
+        "bitremote terms"
+      ]
+    },
+    "termsScta": {
+      "title": "Specified Commercial Transactions Act Disclosure | BitRemote",
+      "description": "Review BitRemote seller information, App Store payment terms, access timing, and refunds under Japan’s Specified Commercial Transactions Act.",
+      "keywords": [
+        "bitremote specified commercial transactions act",
+        "bitremote legal disclosure",
+        "ark studios commercial transactions",
+        "特定商取引法 BitRemote"
       ]
     },
     "languageSelector": {

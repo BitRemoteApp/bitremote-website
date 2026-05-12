@@ -1,5 +1,6 @@
 import { downloaderSlugByDownloader, getDownloaderLandingContent } from '@/domain/downloader-landings';
 import { supportedDownloaders } from '@/domain/downloaders';
+import { getLegalDocument, legalDocumentPathByKind } from '@/domain/legal-documents';
 import { LINKS } from '@/i18n/links';
 import { getMessages } from '@/i18n/messages';
 import { absoluteUrl } from '@/i18n/urls';
@@ -22,6 +23,9 @@ export function GET() {
   sections.push(`- GitHub: ${LINKS.github}`);
   sections.push(`- Discord: ${LINKS.discord}`);
   sections.push(`- Telegram: ${LINKS.telegram}`);
+  sections.push(`- Privacy Policy: ${absoluteUrl(`/en${legalDocumentPathByKind.privacy}`)}`);
+  sections.push(`- End User License Agreement: ${absoluteUrl(`/en${legalDocumentPathByKind.eula}`)}`);
+  sections.push(`- Specified Commercial Transactions Act Disclosure: ${absoluteUrl(`/en${legalDocumentPathByKind.scta}`)}`);
 
   // Features
   sections.push(`\n## Features\n`);
@@ -74,6 +78,25 @@ export function GET() {
       sections.push(`- ${item}`);
     }
     sections.push('');
+  }
+
+  // Legal Documents
+  sections.push(`## Legal Documents\n`);
+  for (const kind of ['privacy', 'eula', 'scta'] as const) {
+    const document = getLegalDocument('en', kind);
+    sections.push(`### ${document.title}\n`);
+    sections.push(document.intro);
+    sections.push('');
+    for (const section of document.sections) {
+      sections.push(`#### ${section.title}\n`);
+      sections.push(section.content);
+      if (section.links) {
+        for (const link of section.links) {
+          sections.push(`- [${link.title}](${link.href})`);
+        }
+      }
+      sections.push('');
+    }
   }
 
   const body = sections.join('\n');
