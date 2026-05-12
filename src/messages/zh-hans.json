@@ -81,11 +81,13 @@
   "pages": {
     "terms": {
       "title": "条款",
-      "body": "BitRemote 的法律文档由 Ark Studios LLC 提供。\n请使用下方链接打开官方页面。",
+      "body": "查看 Ark Studios LLC 提供的 BitRemote 法律文档。\n请从下方选择文档。",
       "privacyTitle": "隐私权政策",
       "privacyBody": "了解 BitRemote 可能收集哪些数据、这些数据会如何使用，以及涉及哪些第三方服务。",
       "eulaTitle": "最终用户许可协议",
-      "eulaBody": "查看 BitRemote 的使用条款，包括使用限制、更新方式，以及争议处理等内容。"
+      "eulaBody": "查看 BitRemote 的使用条款，包括使用限制、更新方式，以及争议处理等内容。",
+      "sctaTitle": "基于日本特定商业交易法的标示",
+      "sctaBody": "查看 BitRemote 的销售经营者、App Store 支付、提供时间与退款等信息。"
     }
   },
   "seo": {
@@ -105,13 +107,43 @@
     },
     "terms": {
       "title": "条款 | BitRemote",
-      "description": "在一个页面中打开 BitRemote 的法律文档，包括 Ark Studios LLC 提供的隐私政策和 EULA。",
+      "description": "查看 Ark Studios LLC 提供的 BitRemote 法律文档，包括隐私权政策和 EULA。",
       "keywords": [
         "BitRemote 隐私政策",
         "BitRemote EULA",
         "BitRemote 条款",
         "Ark Studios 隐私政策",
         "Ark Studios EULA"
+      ]
+    },
+    "termsPrivacy": {
+      "title": "BitRemote 隐私权政策",
+      "description": "查看 Ark Studios LLC 提供的 BitRemote 隐私权政策，包括信息收集、第三方服务、日志数据与联系方式。",
+      "keywords": [
+        "BitRemote 隐私权政策",
+        "Ark Studios 隐私权政策",
+        "BitRemote 数据收集",
+        "BitRemote 隐私"
+      ]
+    },
+    "termsEula": {
+      "title": "BitRemote 最终用户许可协议",
+      "description": "查看 Ark Studios LLC 提供的 BitRemote EULA，包括平台使用限制、购买条款、更新方式与争议处理。",
+      "keywords": [
+        "BitRemote EULA",
+        "BitRemote 许可协议",
+        "Ark Studios EULA",
+        "BitRemote 条款"
+      ]
+    },
+    "termsScta": {
+      "title": "基于日本特定商业交易法的标示 | BitRemote",
+      "description": "查看 BitRemote 依据日本特定商业交易法列明的销售经营者、App Store 支付、提供时间与退款等信息。",
+      "keywords": [
+        "BitRemote 特定商业交易法",
+        "日本特定商业交易法标示",
+        "Ark Studios 特定商业交易法",
+        "BitRemote 法律标示"
       ]
     },
     "languageSelector": {

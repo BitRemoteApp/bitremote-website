@@ -81,11 +81,13 @@
   "pages": {
     "terms": {
       "title": "利用規約",
-      "body": "BitRemote の法的文書は Ark Studios LLC が提供しています。\n以下のリンクから公式ページを開けます。",
+      "body": "Ark Studios LLC が提供する BitRemote の法的文書を確認できます。\n以下から文書を選択してください。",
       "privacyTitle": "個人情報保護方針",
       "privacyBody": "BitRemote で収集される可能性のある情報、その利用目的、利用される第三者サービスについて確認できます。",
       "eulaTitle": "エンドユーザー使用許諾契約",
-      "eulaBody": "BitRemote の利用条件、使用制限、更新、紛争時の扱いなどの契約内容を確認できます。"
+      "eulaBody": "BitRemote の利用条件、使用制限、更新、紛争時の扱いなどの契約内容を確認できます。",
+      "sctaTitle": "特定商取引法に基づく表記",
+      "sctaBody": "BitRemote の販売事業者、App Store での支払い、提供時期、返金に関する表示事項を確認できます。"
     }
   },
   "seo": {
@@ -105,13 +107,43 @@
     },
     "terms": {
       "title": "利用規約 | BitRemote",
-      "description": "BitRemote の法的文書をまとめたページです。Ark Studios LLC が提供する個人情報保護方針と EULA を確認できます。",
+      "description": "Ark Studios LLC が提供する BitRemote の法的文書を確認できます。個人情報保護方針と EULA を掲載しています。",
       "keywords": [
         "BitRemote 個人情報保護方針",
         "BitRemote EULA",
         "BitRemote 利用規約",
         "Ark Studios 個人情報保護方針",
         "Ark Studios EULA"
+      ]
+    },
+    "termsPrivacy": {
+      "title": "BitRemote 個人情報保護方針",
+      "description": "Ark Studios LLC が提供する BitRemote の個人情報保護方針です。情報収集、第三者サービス、ログデータ、お問い合わせ先を確認できます。",
+      "keywords": [
+        "BitRemote 個人情報保護方針",
+        "Ark Studios 個人情報保護方針",
+        "BitRemote データ収集",
+        "BitRemote プライバシー"
+      ]
+    },
+    "termsEula": {
+      "title": "BitRemote エンドユーザー使用許諾契約",
+      "description": "Ark Studios LLC が提供する BitRemote の EULA です。プラットフォームごとの使用制限、購入条件、更新、紛争時の扱いを確認できます。",
+      "keywords": [
+        "BitRemote EULA",
+        "BitRemote 使用許諾契約",
+        "Ark Studios EULA",
+        "BitRemote 利用規約"
+      ]
+    },
+    "termsScta": {
+      "title": "特定商取引法に基づく表記 | BitRemote",
+      "description": "BitRemote の販売事業者、App Store での支払い、提供時期、返金など、特定商取引法に基づく表示事項を確認できます。",
+      "keywords": [
+        "BitRemote 特定商取引法",
+        "特定商取引法に基づく表記",
+        "Ark Studios 特定商取引法",
+        "BitRemote 法的表示"
       ]
     },
     "languageSelector": {
