@@ -1,8 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import 'lenis/dist/lenis.css';
 
 import './globals.css';
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#090b0d' },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://bitremote.app'),
